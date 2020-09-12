@@ -167,12 +167,14 @@ _{explain the feature here}_
 
 ## Command summary
 
-Action | Format, Examples
+Action | Format
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+**Add contant** | `add -c n/“NAME” [p/“PHONE_NUMBER”] [e/“EMAIL”]  [a/“ADDRESS”] [t/“TAGS”]`
+**List contact** | `list -c`
+**View contact** | `view -c INDEX`
+**Delete contact** | `remove -c INDEX`
+**Add journal entry** | `add -j n/“NAME” [d/“DATE AND TIME”] [c/“CONTENT”] [t/“TAGS”]`
+**List journal entry** | `list -c INDEX` 
+**View journal entry** | `view -j INDEX`
+**Delete journal entry** | `remove -j INDEX`
+**Show help menu** | `help [COMMAND]`
