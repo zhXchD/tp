@@ -30,6 +30,10 @@ public class UniqueEntryList implements Iterable<Entry> {
         return this.internalUnmodifiableList;
     }
 
+    /**
+     * Adds an entry to the entry list.
+     * @param entry Entry that will be added.
+     */
     public void add(Entry entry) {
         requireNonNull(entry);
         if (contains(entry)) {
@@ -38,6 +42,10 @@ public class UniqueEntryList implements Iterable<Entry> {
         internalList.add(entry);
     }
 
+    /**
+     * Removes an entry from entry list.
+     * @param entry Entry that will be removed.
+     */
     public void remove(Entry entry) {
         requireNonNull(entry);
         if (!internalList.remove(entry)) {

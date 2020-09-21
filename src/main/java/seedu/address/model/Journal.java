@@ -16,28 +16,50 @@ public class Journal implements ReadOnlyJournal {
         this.entryList = new UniqueEntryList();
     }
 
+    /**
+     * Overwrite the original journal with given data.
+     * @param newData Journal to overwrite.
+     */
     public Journal(ReadOnlyJournal newData) {
         this();
         resetData(newData);
     }
 
     // operations
-    public void addEntry(Entry e) {
-        requireNonNull(e);
-        this.entryList.add(e);
+
+    /**
+     * Adds an entry to the existing journal.
+     * @param newEntry Entry to be added.
+     */
+    public void addEntry(Entry newEntry) {
+        requireNonNull(newEntry);
+        this.entryList.add(newEntry);
     }
 
-    public void removeEntry(Entry e) {
-        requireNonNull(e);
-        this.entryList.remove(e);
+    /**
+     * Removes a certain entry inside the journal.
+     * @param target Target entry to be removed.
+     */
+    public void removeEntry(Entry target) {
+        requireNonNull(target);
+        this.entryList.remove(target);
     }
 
     // util methods
 
+    /**
+     * Checks whether there is a certain entry in journal.
+     * @param toCheck Entry that needs to be checked.
+     * @return True if the entry is inside the journal, false otherwise.
+     */
     public boolean hasEntry(Entry toCheck) {
         return this.entryList.contains(toCheck);
     }
 
+    /**
+     * Resets the current journal with new data.
+     * @param newData Journal that is used to overwrite.
+     */
     public void resetData(ReadOnlyJournal newData) {
         requireNonNull(newData);
 
