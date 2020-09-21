@@ -4,10 +4,11 @@ import static java.util.Objects.requireNonNull;
 
 public class Title {
 
-    private final String title;
+    public final String title;
 
     /**
      * Creates an instance of title for entry.
+     *
      * @param title Title of the entry.
      */
     public Title(String title) {
