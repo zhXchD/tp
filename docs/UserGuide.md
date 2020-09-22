@@ -76,7 +76,7 @@ show.
 
 Adds a contact to the address book or journal entry to the journal.
 
-Format: `add OPTION/ n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_AND_TIME] [i/INFORMATION] [t/TAG]…​`
+Format: `add OPTION/ n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [at/DATE_AND_TIME] [d/DESCRIPTION] [t/TAG]…​`
 * The option indicates what is to be added, `c/` for adding contacts, `j/` for
 adding journal entries.
 
@@ -90,7 +90,7 @@ Examples:
 `Robert` and tags of `client` and `important`.
 * `add j/ n/Meeting with client` Adds a journal entry with the name
 `Meeting with client`.
-* `add j/ n/Meeting with client d/2020-9-20 1400 i/Tea` Adds a journal 
+* `add j/ n/Meeting with client at/2020-9-20 1400 d/Tea` Adds a journal 
 entry with the name `Meeting with client`, a date and time of `2020-9-20 1400`
 and content `Tea`.
 
@@ -156,7 +156,7 @@ that changes the data. There is no need to save manually.
 | Command                                  | Format                                                             |
 | :---                                     | :---                                                               |
 | **Viewing help menu**                    | `help [COMMAND]`                                                   |
-| **Adding a contact/journal entry**       | `add OPTION/ n/NAME [d/DATE_AND_TIME] [i/INFORMATION] [t/TAGS]...` |
+| **Adding a contact/journal entry**       | `add OPTION/ n/NAME [at/DATE_AND_TIME] [d/DESCRIPTION] [t/TAGS]...` |
 | **Listing all contacts/journal entries** | `list OPTION/`                                                     |
 | **Viewing contact/journal entry**        | `view OPTION/ INDEX`                                               |
 | **Removing contact/journal entry**       | `remove OPTION/ INDEX`                                             |
