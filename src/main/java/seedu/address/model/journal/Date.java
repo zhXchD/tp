@@ -9,8 +9,9 @@ import java.time.LocalDateTime;
  */
 public class Date {
 
-    private final LocalDateTime date;
     public final String value;
+
+    private final LocalDateTime date;
 
     /**
      * Creates an instance of date to represent the date of the entry.

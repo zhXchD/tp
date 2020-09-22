@@ -51,7 +51,7 @@
                         <Insets right="10.0" />
                      </HBox.margin>
             </StackPane>
-            <StackPane fx:id="journalListPanelPlaceholder" HBox.hgrow="ALWAYS" />
+            <StackPane fx:id="entryListPanelPlaceholder" HBox.hgrow="ALWAYS" />
           </children>
         </HBox>
 

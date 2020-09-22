@@ -24,7 +24,7 @@ public class ModelManager implements Model {
     private final Journal journal;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private final FilteredList<Entry> filteredJournals;
+    private final FilteredList<Entry> filteredEntries;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -39,7 +39,7 @@ public class ModelManager implements Model {
         this.journal = new Journal(journal);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredJournals = new FilteredList<>(this.journal.getEntryList());
+        filteredEntries = new FilteredList<>(this.journal.getEntryList());
     }
 
     public ModelManager() {
@@ -143,8 +143,8 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Entry> getFilteredJournalList() {
-        return filteredJournals;
+    public ObservableList<Entry> getFilteredEntryList() {
+        return filteredEntries;
     }
 
     @Override

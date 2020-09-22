@@ -4,15 +4,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.Journal;
 import seedu.address.model.journal.Entry;
 
 
-public class JournalCard extends UiPart<Region> {
+public class EntryCard extends UiPart<Region> {
 
-    private static final String FXML = "JournalListCard.fxml";
+    private static final String FXML = "EntryListCard.fxml";
 
-    public final Entry journal;
+    public final Entry entry;
 
     @FXML
     private HBox cardPane;
@@ -23,12 +22,15 @@ public class JournalCard extends UiPart<Region> {
     @FXML
     private Label date;
 
-    public JournalCard(Entry journal, int displayedIndex) {
+    /**
+     * Creates a {@code JournalCard} with the given {@code Entry} and index to display.
+     */
+    public EntryCard(Entry entry, int displayedIndex) {
         super(FXML);
-        this.journal = journal;
+        this.entry = entry;
         id.setText(displayedIndex + ". ");
-        title.setText(journal.getTitle().title);
-        date.setText(journal.getDate().value);
+        title.setText(entry.getTitle().title);
+        date.setText(entry.getDate().value);
     }
 
     @Override
@@ -39,13 +41,13 @@ public class JournalCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof JournalCard)) {
+        if (!(other instanceof EntryCard)) {
             return false;
         }
 
         // state check
-        JournalCard card = (JournalCard) other;
+        EntryCard card = (EntryCard) other;
         return id.getText().equals(card.id.getText())
-            && journal.equals(card.journal);
+            && entry.equals(card.entry);
     }
 }

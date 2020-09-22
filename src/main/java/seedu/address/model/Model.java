@@ -99,7 +99,7 @@ public interface Model {
     /**
      * Returns an unmodifiable view of the filtered journal list
      */
-    ObservableList<Entry> getFilteredJournalList();
+    ObservableList<Entry> getFilteredEntryList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
