@@ -18,12 +18,14 @@ import seedu.address.model.person.UniquePersonList;
 public class JsonAdaptedEntry {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT =
-            "Person's %s field is missing!";
+            "Entry's %s field is missing!";
 
     private final String title;
     private final String date;
     private final String description;
 
+    // TODO: Add representation of UniquePersonList.
+    // TODO: Add tags to Entry?
     /**
      * Constructs a {@code JsonAdaptedEntry} with the given entry details.
      */
