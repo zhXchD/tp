@@ -16,15 +16,19 @@ public interface JournalStorage {
     /**
      * Returns Journal data as a {@link ReadOnlyJournal}.
      *   Returns {@code Optional.empty()} if storage file is not found.
-     * @throws DataConversionException if the data in storage is not in the expected format.
-     * @throws IOException if there was any problem when reading from the storage.
+     * @throws DataConversionException if the data in storage is not in the
+     * expected format.
+     * @throws IOException if there was any problem when reading from the
+     * storage.
      */
-    Optional<ReadOnlyJournal> readJournal() throws DataConversionException, IOException;
+    Optional<ReadOnlyJournal> readJournal()
+            throws DataConversionException, IOException;
 
     /**
      * @see #getJournalFilePath()
      */
-    Optional<ReadOnlyJournal> readJournal(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyJournal> readJournal(Path filePath)
+            throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyJournal} to the storage.

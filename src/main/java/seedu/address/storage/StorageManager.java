@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyJournal;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
@@ -16,16 +17,25 @@ import seedu.address.model.UserPrefs;
  */
 public class StorageManager implements Storage {
 
-    private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
-    private UserPrefsStorage userPrefsStorage;
+    private static final Logger logger =
+            LogsCenter.getLogger(StorageManager.class);
+    private final AddressBookStorage addressBookStorage;
+    private final UserPrefsStorage userPrefsStorage;
+    private final JournalStorage journalStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given
+     * {@code AddressBookStorage}, {@code UserPrefStorage} and
+     * {@code JournalStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(
+            AddressBookStorage addressBookStorage,
+            JournalStorage journalStorage,
+            UserPrefsStorage userPrefsStorage
+    ) {
         super();
         this.addressBookStorage = addressBookStorage;
+        this.journalStorage = journalStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -37,7 +47,8 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException {
+    public Optional<UserPrefs> readUserPrefs()
+            throws DataConversionException, IOException {
         return userPrefsStorage.readUserPrefs();
     }
 
@@ -45,7 +56,6 @@ public class StorageManager implements Storage {
     public void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException {
         userPrefsStorage.saveUserPrefs(userPrefs);
     }
-
 
     // ================ AddressBook methods ==============================
 
@@ -55,25 +65,66 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
+    public Optional<ReadOnlyAddressBook> readAddressBook()
+            throws DataConversionException, IOException {
         return readAddressBook(addressBookStorage.getAddressBookFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
-        logger.fine("Attempting to read data from file: " + filePath);
+    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath)
+            throws DataConversionException, IOException {
+        logger.fine("Attempting to read addressBook data from file: "
+                + filePath);
         return addressBookStorage.readAddressBook(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+    public void saveAddressBook(ReadOnlyAddressBook addressBook)
+            throws IOException {
+        saveAddressBook(addressBook,
+                addressBookStorage.getAddressBookFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
-        logger.fine("Attempting to write to data file: " + filePath);
+    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath)
+            throws IOException {
+        logger.fine("Attempting to write to addressBook data file: "
+                + filePath);
         addressBookStorage.saveAddressBook(addressBook, filePath);
+    }
+
+    // ================ Journal methods ==============================
+
+    @Override
+    public Path getJournalFilePath() {
+        return journalStorage.getJournalFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyJournal> readJournal()
+            throws DataConversionException, IOException {
+        return readJournal(journalStorage.getJournalFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyJournal> readJournal(Path filePath)
+            throws DataConversionException, IOException {
+        logger.fine("Attempting to read journal data from file: "
+                + filePath);
+        return journalStorage.readJournal(filePath);
+    }
+
+    @Override
+    public void saveJournal(ReadOnlyJournal journal) throws IOException {
+        saveJournal(journal, journalStorage.getJournalFilePath());
+    }
+
+    @Override
+    public void saveJournal(ReadOnlyJournal journal, Path filePath)
+            throws IOException {
+        logger.fine("Attempting to write to journal data file: "
+                + filePath);
+        journalStorage.saveJournal(journal, filePath);
     }
 
 }
