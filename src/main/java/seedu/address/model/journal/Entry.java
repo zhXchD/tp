@@ -41,8 +41,9 @@ public class Entry {
             return true;
         }
 
-        return toCheck != null && toCheck.title == this.title
-            && toCheck.date == this.date && toCheck.description == this.description;
+        return toCheck != null && toCheck.title.equals(title)
+                && toCheck.date.equals(date)
+                && toCheck.description.equals(description);
     }
 
 }

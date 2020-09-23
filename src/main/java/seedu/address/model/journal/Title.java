@@ -18,7 +18,8 @@ public class Title {
 
     @Override
     public boolean equals(Object other) {
-        return other == this || (other instanceof Title && ((Title) other).title.equals(this.title));
+        return other == this || (other instanceof Title
+                && ((Title) other).title.equals(title));
     }
 
 }

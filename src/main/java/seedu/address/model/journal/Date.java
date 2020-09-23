@@ -58,7 +58,8 @@ public class Date {
 
     @Override
     public boolean equals(Object other) {
-        return other == this || (other instanceof Date && ((Date) other).date == this.date);
+        return other == this
+                || (other instanceof Date && ((Date) other).date.equals(date));
     }
 }
 
