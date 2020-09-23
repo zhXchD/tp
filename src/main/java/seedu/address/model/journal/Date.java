@@ -9,15 +9,19 @@ import java.time.LocalDateTime;
  */
 public class Date {
 
+    public final String value;
+
     private final LocalDateTime date;
 
     /**
      * Creates an instance of date to represent the date of the entry.
+     *
      * @param date Event date.
      */
     public Date(LocalDateTime date) {
         requireNonNull(date);
         this.date = date;
+        this.value = date.toString();
     }
 
     @Override

@@ -4,10 +4,11 @@ import static java.util.Objects.requireNonNull;
 
 public class Description {
 
-    private final String description;
+    public final String description;
 
     /**
      * Creates an instance of description for entry.
+     *
      * @param description Description of an entry.
      */
     public Description(String description) {
@@ -18,6 +19,6 @@ public class Description {
     @Override
     public boolean equals(Object other) {
         return other == this || (other instanceof Description
-                && ((Description) other).description.equals(this.description));
+            && ((Description) other).description.equals(this.description));
     }
 }

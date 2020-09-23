@@ -19,7 +19,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyJournal;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.journal.Entry;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -124,6 +126,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setJournal(ReadOnlyJournal newData) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyJournal getJournal() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
@@ -140,6 +152,11 @@ public class AddCommandTest {
 
         @Override
         public ObservableList<Person> getFilteredPersonList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Entry> getFilteredEntryList() {
             throw new AssertionError("This method should not be called.");
         }
 

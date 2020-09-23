@@ -21,6 +21,18 @@ public class Entry {
         this.contactList = contactList;
     }
 
+    public Title getTitle() {
+        return title;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public Description getDescription() {
+        return description;
+    }
+
     /**
      * Returns true if the given entry is the same as the current one.
      */
@@ -30,7 +42,7 @@ public class Entry {
         }
 
         return toCheck != null && toCheck.title == this.title
-                && toCheck.date == this.date && toCheck.description == this.description;
+            && toCheck.date == this.date && toCheck.description == this.description;
     }
 
 }
