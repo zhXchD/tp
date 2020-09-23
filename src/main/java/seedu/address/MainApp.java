@@ -63,7 +63,8 @@ public class MainApp extends Application {
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(
                 userPrefs.getAddressBookFilePath());
-        JournalStorage journalStorage = new JsonJournalStorage();
+        JournalStorage journalStorage = new JsonJournalStorage(
+                userPrefs.getJournalFilePath());
         storage = new StorageManager(
                 addressBookStorage,
                 journalStorage,

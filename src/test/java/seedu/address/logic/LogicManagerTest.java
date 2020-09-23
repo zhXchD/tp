@@ -46,9 +46,14 @@ public class LogicManagerTest {
     @BeforeEach
     public void setUp() {
         JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
-        JsonJournalStorage journalStorage = new JsonJournalStorage();
-        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
+                new JsonAddressBookStorage(
+                        temporaryFolder.resolve("addressBook.json"));
+        JsonJournalStorage journalStorage =
+                new JsonJournalStorage(
+                        temporaryFolder.resolve("journal.json"));
+        JsonUserPrefsStorage userPrefsStorage =
+                new JsonUserPrefsStorage(
+                        temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(
                 addressBookStorage,
                 journalStorage,
@@ -79,10 +84,14 @@ public class LogicManagerTest {
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
         JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
-        JsonJournalStorage journalStorage = new JsonJournalStorage();
+                new JsonAddressBookIoExceptionThrowingStub(
+                        temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        JsonJournalStorage journalStorage =
+                new JsonJournalStorage(
+                        temporaryFolder.resolve("ioExceptionJournal.json"));
         JsonUserPrefsStorage userPrefsStorage =
-                new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
+                new JsonUserPrefsStorage(
+                        temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         StorageManager storage = new StorageManager(
                 addressBookStorage,
                 journalStorage,

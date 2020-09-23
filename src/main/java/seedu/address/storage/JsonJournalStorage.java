@@ -1,10 +1,17 @@
 package seedu.address.storage;
 
+import static java.util.Objects.requireNonNull;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.commons.util.FileUtil;
+import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyJournal;
 
 /**
@@ -12,31 +19,63 @@ import seedu.address.model.ReadOnlyJournal;
  */
 public class JsonJournalStorage implements JournalStorage {
 
-    @Override
+    private static final Logger logger = LogsCenter.getLogger(
+            JsonJournalStorage.class);
+
+    private Path filePath;
+
+    public JsonJournalStorage(Path filePath) {
+        this.filePath = filePath;
+    }
+
     public Path getJournalFilePath() {
-        return null;
+        return filePath;
     }
 
     @Override
-    public Optional<ReadOnlyJournal> readJournal()
-            throws DataConversionException, IOException {
-        return Optional.empty();
+    public Optional<ReadOnlyJournal> readJournal() throws DataConversionException {
+        return readJournal(filePath);
     }
 
-    @Override
-    public Optional<ReadOnlyJournal> readJournal(Path filePath)
-            throws DataConversionException, IOException {
-        return Optional.empty();
+    /**
+     * Similar to {@link #readJournal()}.
+     *
+     * @param filePath location of the data. Cannot be null.
+     * @throws DataConversionException if the file is not in the correct format.
+     */
+    public Optional<ReadOnlyJournal> readJournal(Path filePath) throws DataConversionException {
+        requireNonNull(filePath);
+
+        Optional<JsonSerializableJournal> jsonJournal = JsonUtil.readJsonFile(
+                filePath, JsonSerializableJournal.class);
+        if (jsonJournal.isEmpty()) {
+            return Optional.empty();
+        }
+
+        try {
+            return Optional.of(jsonJournal.get().toModelType());
+        } catch (IllegalValueException ive) {
+            logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
+            throw new DataConversionException(ive);
+        }
     }
 
     @Override
     public void saveJournal(ReadOnlyJournal journal) throws IOException {
-
+        saveJournal(journal, filePath);
     }
 
-    @Override
-    public void saveJournal(ReadOnlyJournal journal, Path filePath)
-            throws IOException {
+    /**
+     * Similar to {@link #saveJournal(ReadOnlyJournal)}.
+     *
+     * @param filePath location of the data. Cannot be null.
+     */
+    public void saveJournal(ReadOnlyJournal journal, Path filePath) throws IOException {
+        requireNonNull(journal);
+        requireNonNull(filePath);
 
+        FileUtil.createIfMissing(filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableJournal(journal), filePath);
     }
+
 }
