@@ -28,7 +28,8 @@ public class JsonSerializableJournal {
      * Constructs a {@code JsonSerializableJournal} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableJournal(@JsonProperty("entries") List<JsonAdaptedEntry> entries) {
+    public JsonSerializableJournal(
+            @JsonProperty("entries") List<JsonAdaptedEntry> entries) {
         this.entries.addAll(entries);
     }
 
