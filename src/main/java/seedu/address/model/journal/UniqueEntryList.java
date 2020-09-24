@@ -12,7 +12,8 @@ import seedu.address.model.journal.exceptions.EntryNotFoundException;
 
 public class UniqueEntryList implements Iterable<Entry> {
 
-    private final ObservableList<Entry> internalList = FXCollections.observableArrayList();
+    private final ObservableList<Entry> internalList =
+            FXCollections.observableArrayList();
     private final ObservableList<Entry> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
@@ -60,5 +61,13 @@ public class UniqueEntryList implements Iterable<Entry> {
     @Override
     public Iterator<Entry> iterator() {
         return internalList.iterator();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+                || (other instanceof UniqueEntryList
+                        && ((UniqueEntryList) other).internalList.equals(
+                                internalList));
     }
 }

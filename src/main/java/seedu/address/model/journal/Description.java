@@ -19,6 +19,6 @@ public class Description {
     @Override
     public boolean equals(Object other) {
         return other == this || (other instanceof Description
-            && ((Description) other).description.equals(this.description));
+            && ((Description) other).description.equals(description));
     }
 }
