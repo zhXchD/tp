@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.*;
 
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.journal.Entry;
@@ -17,19 +18,10 @@ public class AddJournalEntryCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a journal entry to the journal. "
             + "Parameters: "
             + PREFIX_NAME + "TITLE "
-//            + PREFIX_PHONE + "PHONE "
-//            + PREFIX_EMAIL + "EMAIL "
-//            + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_DATE_AND_TIME + "DATE_AND_TIME"
             + PREFIX_DESCRIPTION + "DESCRIPTION"
-//            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Meet with client John Doe"
-//            + PREFIX_PHONE + "98765432 "
-//            + PREFIX_EMAIL + "johnd@example.com "
-//            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-//            + PREFIX_TAG + "friends "
-//            + PREFIX_TAG + "owesMoney";
             + PREFIX_DATE_AND_TIME + "2020-9-20 1400"
             + PREFIX_DESCRIPTION + "Discussed about his demands.";
 
