@@ -61,5 +61,10 @@ public class Date {
         return other == this
                 || (other instanceof Date && ((Date) other).date.equals(date));
     }
+
+    @Override
+    public String toString() {
+        return date.toString();
+    }
 }
 

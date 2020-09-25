@@ -21,4 +21,9 @@ public class Description {
         return other == this || (other instanceof Description
             && ((Description) other).description.equals(description));
     }
+
+    @Override
+    public String toString() {
+        return description;
+    }
 }

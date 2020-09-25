@@ -22,4 +22,8 @@ public class Title {
                 && ((Title) other).title.equals(title));
     }
 
+    @Override
+    public String toString() {
+        return title;
+    }
 }
