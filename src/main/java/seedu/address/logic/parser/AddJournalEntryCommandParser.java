@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddContactCommand;
 import seedu.address.logic.commands.AddJournalEntryCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.journal.Date;
@@ -17,13 +17,13 @@ import seedu.address.model.journal.Title;
 import seedu.address.model.person.UniquePersonList;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddContactCommand object
  */
 public class AddJournalEntryCommandParser implements Parser<AddJournalEntryCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddContactCommand
+     * and returns an AddContactCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddJournalEntryCommand parse(String args) throws ParseException {
@@ -32,7 +32,7 @@ public class AddJournalEntryCommandParser implements Parser<AddJournalEntryComma
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DATE_AND_TIME, PREFIX_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddContactCommand.MESSAGE_USAGE));
         }
 
         Title title = new Title(argMultimap.getValue(PREFIX_NAME).get());
