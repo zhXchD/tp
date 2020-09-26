@@ -72,25 +72,35 @@ Format: `help [COMMAND]`
 show.
 * If no `COMMAND` argument is supplied, all commands will be shown.
 
-### Adding a contact/journal entry: `add`
+### Adding a contact: `addc`
 
 Adds a contact to the address book or journal entry to the journal.
 
-Format: `add OPTION/ n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [at/DATE_AND_TIME] [d/DESCRIPTION] [t/TAG]…​`
-* The option indicates what is to be added, `c/` for adding contacts, `j/` for
-adding journal entries.
+format: `addc n/name [p/phone_number] [e/email] [a/address] [at/date_and_time] [t/tag]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A contact/journal entry can have any number of tags (including 0)
+A contact can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add c/ n/John Doe` Adds a contact with the name of `Robert`.
-* `add c/ n/Betsy Crowe t/client t/important` Adds a contact with the name of 
+* `addc n/John Doe` Adds a contact with the name of `Robert`.
+* `addc n/Betsy Crowe t/client t/important` Adds a contact with the name of 
 `Robert` and tags of `client` and `important`.
-* `add j/ n/Meeting with client` Adds a journal entry with the name
+
+### Adding a journal entry: `addj`
+
+Adds a journal entry to the journal.
+
+format: `addj n/name [at/date_and_time] [d/description] [t/tag]`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A journal entry can have any number of tags (including 0)
+</div>
+
+Examples:
+* `addj n/Meeting with client` Adds a journal entry with the name
 `Meeting with client`.
-* `add j/ n/Meeting with client at/2020-9-20 1400 d/Tea` Adds a journal 
+* `addj n/Meeting with client at/2020-9-20 1400 d/Tea` Adds a journal 
 entry with the name `Meeting with client`, a date and time of `2020-9-20 1400`
 and content `Tea`.
 

@@ -127,6 +127,18 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public boolean hasEntry(Entry entry) {
+        requireNonNull(entry);
+        return journal.hasEntry(entry);
+    }
+
+    @Override
+    public void addEntry(Entry entry) {
+        requireNonNull(entry);
+        journal.addEntry(entry);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

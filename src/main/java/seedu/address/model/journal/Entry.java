@@ -47,4 +47,16 @@ public class Entry {
                 && toCheck.contactList.equals(contactList);
     }
 
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getTitle())
+                .append(" Date and time: ")
+                .append(getDate())
+                .append(" Description: ")
+                .append(getDescription())
+                .append(" Contacts: ");
+        return builder.toString();
+    }
+
 }
