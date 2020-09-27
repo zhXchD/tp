@@ -5,63 +5,55 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us through [GitHub](https://github.com/AY2021S1-CS2103T-W17-4).
+You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### Zhu Xiaochen
+### John Doe
 
-<img src="images/zhxchd.png" width="200px">
+<img src="images/johndoe.png" width="200px">
 
-[//]: #[[homepage](https://github.com/zhxchd)]
+[[homepage](http://www.comp.nus.edu.sg/~damithch)]
+[[github](https://github.com/johndoe)]
+[[portfolio](team/johndoe.md)]
 
-[[github](https://github.com/zhXchD)]
+* Role: Project Advisor
 
-[//]: #[[portfolio](team/johndoe.md)]
+### Jane Doe
 
-* Role: Team lead
-* Responsibilities:
-    * Code integration
+<img src="images/johndoe.png" width="200px">
 
-### Lin Geyu
+[[github](http://github.com/johndoe)]
+[[portfolio](team/johndoe.md)]
 
-<img src="images/lingy12.png" width="200px">
+* Role: Team Lead
+* Responsibilities: UI
 
-[[github](https://github.com/Lingy12)]
+### Johnny Doe
 
-* Role: developer
-* Responsibilities:
-    * Deliverables and deadlines
-    * Scheduling and tracking
+<img src="images/johndoe.png" width="200px">
 
-### Lin Zhengyang
+[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
 
-<img src="images/nauw1010.png" width="200px">
+* Role: Developer
+* Responsibilities: Data
 
-[[github](https://github.com/Nauw1010)]
+### Jean Doe
 
-* Role: developer
-* Responsibilities:
-    * UI
-    * Logic
+<img src="images/johndoe.png" width="200px">
 
-### Jazer Ler
+[[github](http://github.com/johndoe)]
+[[portfolio](team/johndoe.md)]
 
-<img src="images/jazerler.png" width="200px">
+* Role: Developer
+* Responsibilities: Dev Ops + Threading
 
-[[github](https://github.com/jazerler)]
+### James Doe
 
-* Role: developer
-* Responsibilities:
-    * Code integration
+<img src="images/johndoe.png" width="200px">
 
-### Joshua Liang
+[[github](http://github.com/johndoe)]
+[[portfolio](team/johndoe.md)]
 
-<img src="images/joshualiangxy.png" width="200px">
-
-[[github](https://github.com/joshualiangxy)]
-
-* Role: developer
-* Responsibilities:
-    * Documentation/testing/code quality
-    * Storage
+* Role: Developer
+* Responsibilities: UI
