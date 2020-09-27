@@ -15,7 +15,8 @@ public class IndexTest {
     @DisplayName("one based index")
     class OneBased {
         @Test
-        @DisplayName("should throw IndexOutOfBoundsException if index out of bounds")
+        @DisplayName("should throw IndexOutOfBoundsException if index out of "
+                + "bounds")
         public void fromOneBased_invalidIndex_throwIndexOutOfBoundsException() {
             assertThrows(IndexOutOfBoundsException.class, () ->
                     Index.fromOneBased(0));
@@ -42,7 +43,8 @@ public class IndexTest {
     @DisplayName("zero based index")
     class ZeroBased {
         @Test
-        @DisplayName("should throw IndexOutOfBoundsException if index out of bounds")
+        @DisplayName("should throw IndexOutOfBoundsException if index out of "
+                + "bounds")
         public void fromZeroBased_invalidIndex_throwIndexOutOfBoundsException() {
             assertThrows(IndexOutOfBoundsException.class, () ->
                     Index.fromZeroBased(-1));

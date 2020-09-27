@@ -22,15 +22,22 @@ public class VersionTest {
         }
 
         @Test
-        @DisplayName("should throw IllegalArgumentException when not a version string")
+        @DisplayName("should throw IllegalArgumentException when not a version "
+                + "string")
         public void versionParsing_wrongVersionString_throwIllegalArgumentException() {
             assertThrows(IllegalArgumentException.class, () ->
                     Version.fromString("This is not a version string"));
         }
 
-        private void verifyVersionParsedCorrectly(String versionString,
-                                                  int major, int minor, int patch, boolean isEarlyAccess) {
-            assertEquals(new Version(major, minor, patch, isEarlyAccess), Version.fromString(versionString));
+        private void verifyVersionParsedCorrectly(
+                String versionString,
+                int major,
+                int minor,
+                int patch,
+                boolean isEarlyAccess
+        ) {
+            assertEquals(new Version(major, minor, patch, isEarlyAccess),
+                    Version.fromString(versionString));
         }
     }
 
@@ -45,7 +52,7 @@ public class VersionTest {
             assertEquals(19, version.getMajor());
             assertEquals(10, version.getMinor());
             assertEquals(20, version.getPatch());
-            assertEquals(true, version.isEarlyAccess());
+            assertTrue(version.isEarlyAccess());
         }
     }
 
@@ -108,7 +115,8 @@ public class VersionTest {
         }
 
         @Test
-        @DisplayName("should have earlier major versions come first regardless of minor versions")
+        @DisplayName("should have earlier major versions come first regardless "
+                + "of minor versions")
         public void compareTo_differentMajorAndMinors_compareToIsCorrect() {
             one = new Version(10, 0, 0, true);
             another = new Version(0, 1, 0, true);
@@ -117,7 +125,8 @@ public class VersionTest {
         }
 
         @Test
-        @DisplayName("should have earlier minor versions come first regardless of patch versions")
+        @DisplayName("should have earlier minor versions come first regardless "
+                + "of patch versions")
         public void compareTo_differentMinorAndPatches_compareToIsCorrect() {
             one = new Version(0, 0, 10, false);
             another = new Version(0, 1, 0, false);
@@ -173,6 +182,7 @@ public class VersionTest {
     @DisplayName("equals method")
     class Equals {
         @Test
+        @DisplayName("should be equal if version is same")
         public void equals_validVersion_equalIsCorrect() {
             Version one = new Version(0, 0, 0, false);
             Version another = new Version(0, 0, 0, false);

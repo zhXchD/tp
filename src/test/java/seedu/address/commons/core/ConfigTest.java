@@ -57,7 +57,8 @@ public class ConfigTest {
         }
 
         @Test
-        @DisplayName("should equals config with same log level and userprefs filepath")
+        @DisplayName("should equals config with same log level and userprefs "
+                + "filepath")
         public void equals_sameLogLevelAndUserPrefsFilePath_true() {
             otherConfig.setLogLevel(Level.INFO);
             otherConfig.setUserPrefsFilePath(Paths.get("preferences.json"));
@@ -74,7 +75,8 @@ public class ConfigTest {
         }
 
         @Test
-        @DisplayName("should not equal config with different userprefs filepath")
+        @DisplayName("should not equal config with different userprefs "
+                + "filepath")
         public void equals_differentUserPrefsFilePath_true() {
             otherConfig.setUserPrefsFilePath(Paths.get("different.json"));
 
