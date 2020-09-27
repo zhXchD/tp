@@ -255,9 +255,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | add a new person               |                                                                        |
 | `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
 | `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
+| `* * *`  | user                                       | add a journal entry            | record an events                                                       |
+| `* * *`  | user                                      | delete a journal               | remove an event that is not important from journal                     |
+| `* * *`  | user                                      | list all journal entries       |                                                                        |
+| `* * *`  | user                                       | list all contacts in the contacts list                                                                  |   
+| `* * *`  | user                                        | search journal entries          |                                                                        |
 *{More to be added}*
 
 ### Use cases
