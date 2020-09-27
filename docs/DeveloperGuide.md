@@ -271,7 +271,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  IntelliJournal shows a list of persons
 3.  User requests to delete a specific person in the list
 4.  AddressBook deletes the person
 
@@ -285,9 +285,47 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. IntelliJournal shows an error message.
 
       Use case resumes at step 2.
+
+
+**Use case: Delete a journal entry**
+
+**MSS**
+
+1. User request to list persons
+2. IntelliJournal shows a list of journal entry
+3. User request to delte a specific journal entry in the list
+4. IntelliJournal deletes the entry
+
+    Use case ends
+    
+**Extensions**
+* 2a. The journal is empty (No entry in journal)
+    
+    Use case ends
+* 3a.  The given index is invalid
+    * 3a1. IntelliJournal shows an error message.
+    
+        Use case resumes at step 2.
+
+**Use case: Search for a journal entry (by entry name)**
+
+**MSS**
+
+1. User request to list entries
+2. User search the entry/entries with given name
+3. Intellij journal display a list of filtered entries
+
+**Extension**
+* 2a. The journal is empty (No entry in journal)
+    
+    Use case ends
+* 3a.  The given name is not in journal
+    * 3a1. IntelliJournal shows an error message.
+    
+        Use case resumes at step 1.
 
 *{More to be added}*
 
@@ -302,7 +340,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
