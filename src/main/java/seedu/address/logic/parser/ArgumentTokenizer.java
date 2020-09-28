@@ -30,8 +30,10 @@ public class ArgumentTokenizer {
      * @return           ArgumentMultimap object that maps prefixes to their
      *                   arguments
      */
-    public static ArgumentMultimap tokenize(String argsString, Prefix... prefixes) {
-        List<PrefixPosition> positions = findAllPrefixPositions(argsString, prefixes);
+    public static ArgumentMultimap tokenize(
+            String argsString, Prefix... prefixes) {
+        List<PrefixPosition> positions =
+                findAllPrefixPositions(argsString, prefixes);
         return extractArguments(argsString, positions);
     }
 
@@ -47,7 +49,8 @@ public class ArgumentTokenizer {
     private static List<PrefixPosition> findAllPrefixPositions(
             String argsString, Prefix... prefixes) {
         return Arrays.stream(prefixes)
-                .flatMap(prefix -> findPrefixPositions(argsString, prefix).stream())
+                .flatMap(prefix ->
+                        findPrefixPositions(argsString, prefix).stream())
                 .collect(Collectors.toList());
     }
 
@@ -150,8 +153,10 @@ public class ArgumentTokenizer {
     ) {
         Prefix prefix = currentPrefixPosition.getPrefix();
 
-        int valueStartPos = currentPrefixPosition.getStartPosition() + prefix.getPrefix().length();
-        String value = argsString.substring(valueStartPos, nextPrefixPosition.getStartPosition());
+        int valueStartPos = currentPrefixPosition.getStartPosition()
+                + prefix.getPrefix().length();
+        String value = argsString.substring(
+                valueStartPos, nextPrefixPosition.getStartPosition());
 
         return value.trim();
     }
@@ -176,5 +181,4 @@ public class ArgumentTokenizer {
             return prefix;
         }
     }
-
 }
