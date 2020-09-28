@@ -9,7 +9,9 @@ Interface ReadOnlyAddressBook <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
 Class AddressBook
+Class Journal
 Class ReadOnlyAddressBook
+Class ReadOnlyJournal
 Class Model
 Class ModelManager
 Class UserPrefs
@@ -24,6 +26,14 @@ Class Phone
 Class UniquePersonList
 }
 
+Package Entry {
+Class UniqueEntryList
+Class Entry
+Class Title
+Class Date
+Class Description
+}
+
 Package Tag {
 Class Tag
 }
@@ -32,12 +42,15 @@ Class Tag
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+AddressBook .up..|> ReadOnlyAddressBook
+Journal .up.|> ReadOnlyJournal
+
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
 ModelManager o--> "1" AddressBook
 ModelManager o-left-> "1" UserPrefs
+ModelManager o--> "1" Journal
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
@@ -48,9 +61,19 @@ Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
 
+Journal *--> "1" UniqueEntryList
+UniqueEntryList o--> "*" Entry
+Entry *--> Title
+Entry *--> Description
+Entry *--> Date
+Entry *-> UniquePersonList
+Entry *--> "*" Tag
+
+
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
 ModelManager -->"1" Person : filtered list
+ModelManager -->"1" Entry : filtered list
 @enduml
