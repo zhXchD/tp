@@ -12,25 +12,30 @@ as location information faster than traditional GUI apps.
 * Table of Contents
 {:toc}
 
---------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `intellijournal.jar` from 
+   [here](https://github.com/se-edu/addressbook-level3/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your 
+   IntelliJournal.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. The GUI similar to the below should 
+   appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the command box and press Enter to execute it. 
+   e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 
+     123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
    * **`remove`**`3` : Removes the 3rd contact shown in the current list.
 
@@ -38,7 +43,7 @@ as location information faster than traditional GUI apps.
 
 1. Refer to the [Features](#features) below for details of each command.
 
---------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 ## Features
 
@@ -59,7 +64,8 @@ as location information faster than traditional GUI apps.
   `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME`
+       is also acceptable.
 
 </div>
 
@@ -76,7 +82,8 @@ show.
 
 Adds a contact to the address book or journal entry to the journal.
 
-format: `addc n/name [p/phone_number] [e/email] [a/address] [at/date_and_time] [t/tag]…​`
+format: `addc n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [at/DATE_AND_TIME] 
+         [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A contact can have any number of tags (including 0)
@@ -91,7 +98,7 @@ Examples:
 
 Adds a journal entry to the journal.
 
-format: `addj n/name [at/date_and_time] [d/description] [t/tag]`
+format: `addj n/NAME [at/DATE_AND_TIME] [d/DESCRIPTION] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A journal entry can have any number of tags (including 0)
@@ -104,42 +111,59 @@ Examples:
 entry with the name `Meeting with client`, a date and time of `2020-9-20 1400`
 and content `Tea`.
 
-### Listing all contacts/journal entries: `list`
+### Listing all contacts: `listc`
 
-Lists all the contacts in the address book or journal entries in the journal.
+Lists all the contacts in the address book.
 
-Format: `list OPTION/`
-* The option indicates what is to be listed, `c/` for listing contacts, `j/` for
-listing journal entries.
+Format: `listc`
 
-Examples:
-* `list c/` Lists all contacts in the address book.
-* `list j/` Lists all journal entries in the journal.
+### Listing all journal entries: `listj`
 
-### Viewing contact/journal entry: `view`
-Opens up a contact or journal entry to show further details.
+Lists all journal entries in the journal.
 
-Format `view OPTION/ INDEX`
-* The option indicates what is to be viewed, `c/` for viewing contacts, `j/` for
-viewing journal entries.
-* `INDEX` refers to the index number of the contact/journal shown in the list.
+Format: `listj`
+
+### Viewing a contact: `viewc`
+Opens up a contact entry to show further details.
+
+Format `viewc INDEX`
+* `INDEX` refers to the index number of the contact shown in the list.
 
 Examples:
-* `view c/ 4` Views the 4th contact in the address book.
-* `view j/ 8` Views the 8th journal entry in the journal.
+* `viewc 4` Views the 4th contact in the address book.
+* `viewc 8` Views the 8th contact in the address book.
 
-### Removing contact/journal entry: `remove`
+### Viewing a journal entry: `viewc`
+Opens up a journal entry to show further details.
 
-Removes a contact from the address book or journal entry from the journal.
-
-Format `remove OPTION/ INDEX`
-* The option indicates what is to be removed, `c/` for removing contacts, `j/`
-for removing journal entries.
-* `INDEX` refers to the index number of the contact/journal shown in the list.
+Format `viewj INDEX`
+* `INDEX` refers to the index number of the journal shown in the list.
 
 Examples:
-* `remove c/ 4` Removes the 4th contact in the address book.
-* `remove j/ 8` Removes the 8th journal entry in the journal.
+* `viewj 4` Views the 4th journal entry in the journal.
+* `viewj 8` Views the 8th journal entry in the journal.
+
+### Removing a contact: `removec`
+
+Removes a contact from the address book.
+
+Format `removec INDEX`
+* `INDEX` refers to the index number of the contact in the list.
+
+Examples:
+* `removec 4` Removes the 4th contact in the address book.
+* `removec 8` Removes the 8th contact in the address book.
+
+### Removing a journal entry: `removej`
+
+Removes a journal entry from the journal.
+
+Format `removej INDEX`
+* `INDEX` refers to the index number of the journal shown in the list.
+
+Examples:
+* `removej 4` Removes the 4th journal entry in the journal.
+* `removej 8` Removes the 8th journal entry in the journal.
 
 ### Exiting the program: `exit`
 
@@ -152,22 +176,28 @@ Format: `exit`
 IntelliJournal data is saved in the hard disk automatically after any command 
 that changes the data. There is no need to save manually.
 
---------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file 
+       it creates with the file that contains the data of your previous 
+       IntelliJournal home folder.
 
---------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 ## Command Summary
 
-| Command                                  | Format                                                             |
-| :---                                     | :---                                                               |
-| **Viewing help menu**                    | `help [COMMAND]`                                                   |
-| **Adding a contact/journal entry**       | `add OPTION/ n/NAME [at/DATE_AND_TIME] [d/DESCRIPTION] [t/TAGS]...` |
-| **Listing all contacts/journal entries** | `list OPTION/`                                                     |
-| **Viewing contact/journal entry**        | `view OPTION/ INDEX`                                               |
-| **Removing contact/journal entry**       | `remove OPTION/ INDEX`                                             |
-| **Exiting the program**                  | `exit`                                                             |
+| Command                         | Format                                                                                 |
+| :---                            | :---                                                                                   |
+| **Viewing help menu**           | `help [COMMAND]`                                                                       |
+| **Adding a contact**            | `addc n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [at/DATE_AND_TIME] [t/TAG]…​` |
+| **Adding a journal entry**      | `addj n/NAME [at/DATE_AND_TIME] [d/DESCRIPTION] [t/TAG]…​`                        |
+| **Listing all contacts**        | `listc`                                                                                |
+| **Listing all journal entries** | `listj`                                                                                |
+| **Viewing a contact**           | `viewc INDEX`                                                                          |
+| **Viewing a journal entry**     | `viewj INDEX`                                                                          |
+| **Removing a contact**          | `removec INDEX`                                                                        |
+| **Removing a journal entry**    | `removej INDEX`                                                                        |
+| **Exiting the program**         | `exit`                                                                                 |
