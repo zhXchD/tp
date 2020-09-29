@@ -20,7 +20,7 @@ import seedu.address.testutil.PersonBuilder;
 public class PersonTest {
 
     @Nested
-    @DisplayName("miscellaneous methods")
+    @DisplayName("miscellaneous operations")
     class Misc {
         @Test
         @DisplayName("should throw UnsupportedOperationException if tags are "
