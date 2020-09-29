@@ -92,6 +92,17 @@ public interface Model {
     void setPerson(Person target, Person editedPerson);
 
     /**
+     * Returns true if a journal entry with the same identity as {@code entry} exists in the journal.
+     */
+    boolean hasEntry(Entry entry);
+
+    /**
+     * Adds the given person.
+     * {@code entry} must not already exist in the journal.
+     */
+    void addEntry(Entry entry);
+
+    /**
      * Returns an unmodifiable view of the filtered person list
      */
     ObservableList<Person> getFilteredPersonList();

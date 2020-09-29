@@ -41,8 +41,22 @@ public class Entry {
             return true;
         }
 
-        return toCheck != null && toCheck.title == this.title
-            && toCheck.date == this.date && toCheck.description == this.description;
+        return toCheck != null && toCheck.title.equals(title)
+                && toCheck.date.equals(date)
+                && toCheck.description.equals(description)
+                && toCheck.contactList.equals(contactList);
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getTitle())
+                .append(" Date and time: ")
+                .append(getDate())
+                .append(" Description: ")
+                .append(getDescription())
+                .append(" Contacts: ");
+        return builder.toString();
     }
 
 }
