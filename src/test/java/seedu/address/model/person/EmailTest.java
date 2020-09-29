@@ -35,7 +35,7 @@ public class EmailTest {
     class IsValidEmail {
         @Test
         @DisplayName("should throw NullPointerException if email is null")
-        public void isValidEmail() {
+        public void isValidEmail_null_throwsNullPointerException() {
             assertThrows(NullPointerException.class, () ->
                     Email.isValidEmail(null));
         }
