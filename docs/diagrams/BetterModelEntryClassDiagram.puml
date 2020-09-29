@@ -1,0 +1,20 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Journal *-right-> "1" UniqueEntryList
+Journal *-right-> "1" UniqueTagList
+UniqueTagList -[hidden]down- UniqueEntryList
+UniqueTagList -[hidden]down- UniqueEntryList
+
+UniqueTagList *-right-> "*" Tag
+UniqueEntryList o-right-> Entry
+
+Entry -up-> "*" Tag
+
+Entry *--> Title
+Entry *--> Date
+Entry *--> Description
+@enduml

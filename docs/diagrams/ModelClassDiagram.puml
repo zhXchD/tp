@@ -55,19 +55,20 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
 UniquePersonList o--> "*" Person
+Person *--> "*" Tag
 Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
-Person *--> "*" Tag
 
 Journal *--> "1" UniqueEntryList
-UniqueEntryList o--> "*" Entry
+UniqueEntryList o-> "*" Entry
+Entry *--> UniquePersonList
+Entry *-----> "*" Tag
 Entry *--> Title
 Entry *--> Description
-Entry *--> Date
-Entry *-> UniquePersonList
-Entry *--> "*" Tag
+Entry *-> Date
+
 
 
 Name -[hidden]right-> Phone
