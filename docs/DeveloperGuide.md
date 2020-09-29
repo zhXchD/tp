@@ -257,17 +257,17 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​ | I want to …​                      | So that I can…​                                                   |
-| :---:    | :---         | :---                                   | :---                                                                   |
-| `* * *`  | new user     | see usage instructions                 | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user         | add a new person                       |                                                                        |
-| `* * *`  | user         | delete a person                        | remove entries that I no longer need                                   |
-| `* * *`  | user         | find a person by name                  | locate details of persons without having to go through the entire list |
-| `* * *`  | user         | add a journal entry                    | record an events                                                       |
-| `* * *`  | user         | delete a journal                       | remove an event that is not important from journal                     |
-| `* * *`  | user         | list all journal entries               |                                                                        |
-| `* * *`  | user         | list all contacts in the contacts list |                                                                        |
-| `* * *`  | user         | search journal entries                 |                                                                        |
+| Priority | As a…​ | I want to…​                       | So that I can…​                                                   |
+| :---:    | :---        | :---                                   | :---                                                                   |
+| `* * *`  | new user    | see usage instructions                 | refer to instructions when I forget how to use the App                 |
+| `* * *`  | user        | add a new person                       |                                                                        |
+| `* * *`  | user        | delete a person                        | remove entries that I no longer need                                   |
+| `* * *`  | user        | find a person by name                  | locate details of persons without having to go through the entire list |
+| `* * *`  | user        | add a journal entry                    | record an events                                                       |
+| `* * *`  | user        | delete a journal                       | remove an event that is not important from journal                     |
+| `* * *`  | user        | list all journal entries               |                                                                        |
+| `* * *`  | user        | list all contacts in the contacts list |                                                                        |
+| `* * *`  | user        | search journal entries                 |                                                                        |
 
 *{More to be added}*
 
