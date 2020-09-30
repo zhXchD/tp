@@ -40,7 +40,7 @@ public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION =
             new IOException("dummy exception");
 
-    private Model model = new ModelManager();
+    private final Model model = new ModelManager();
     private Logic logic;
 
     @Nested

@@ -18,8 +18,12 @@ public class AddContactCommand extends Command {
 
     public static final String COMMAND_WORD = "addc";
 
+<<<<<<< HEAD:src/main/java/seedu/address/logic/commands/AddContactCommand.java
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a contact to the address book. "
+=======
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a person to the address book. "
+>>>>>>> 69cb027... Refactor AddCommandIntegrationTest:src/main/java/seedu/address/logic/commands/AddCommand.java
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "

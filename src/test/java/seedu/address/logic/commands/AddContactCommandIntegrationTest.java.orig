@@ -17,8 +17,12 @@ import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
 /**
+<<<<<<< HEAD:src/test/java/seedu/address/logic/commands/AddContactCommandIntegrationTest.java
+ * Contains integration tests (interaction with the Model) for {@code AddContactCommand}.
+=======
  * Contains integration tests (interaction with the Model) for
- * {@code AddContactCommand}.
+ * {@code AddCommand}.
+>>>>>>> 69cb027... Refactor AddCommandIntegrationTest:src/test/java/seedu/address/logic/commands/AddCommandIntegrationTest.java
  */
 public class AddContactCommandIntegrationTest {
 
@@ -42,10 +46,19 @@ public class AddContactCommandIntegrationTest {
                     model.getAddressBook(), new Journal(), new UserPrefs());
             expectedModel.addPerson(validPerson);
 
+<<<<<<< HEAD:src/test/java/seedu/address/logic/commands/AddContactCommandIntegrationTest.java
+        assertCommandSuccess(new AddContactCommand(validPerson), model,
+                String.format(AddContactCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
+    }
+
+    @Test
+    public void execute_duplicatePerson_throwsCommandException() {
+        Person personInList = model.getAddressBook().getPersonList().get(0);
+        assertCommandFailure(new AddContactCommand(personInList), model, AddContactCommand.MESSAGE_DUPLICATE_PERSON);
+=======
             assertCommandSuccess(
-                    new AddContactCommand(validPerson),
-                    model,
-                    String.format(AddContactCommand.MESSAGE_SUCCESS, validPerson),
+                    new AddCommand(validPerson), model,
+                    String.format(AddCommand.MESSAGE_SUCCESS, validPerson),
                     expectedModel
             );
         }
@@ -56,10 +69,11 @@ public class AddContactCommandIntegrationTest {
         public void execute_duplicatePerson_throwsCommandException() {
             Person personInList = model.getAddressBook().getPersonList().get(0);
             assertCommandFailure(
-                    new AddContactCommand(personInList),
+                    new AddCommand(personInList),
                     model,
-                    AddContactCommand.MESSAGE_DUPLICATE_PERSON
+                    AddCommand.MESSAGE_DUPLICATE_PERSON
             );
         }
+>>>>>>> 69cb027... Refactor AddCommandIntegrationTest:src/test/java/seedu/address/logic/commands/AddCommandIntegrationTest.java
     }
 }
