@@ -30,9 +30,6 @@ public class JsonAddressBookStorageTest {
             "JsonAddressBookStorageTest"
     );
 
-    @TempDir
-    public Path testFolder;
-
     private Optional<ReadOnlyAddressBook> readAddressBook(String filePath)
             throws Exception {
         return new JsonAddressBookStorage(Paths.get(filePath))
