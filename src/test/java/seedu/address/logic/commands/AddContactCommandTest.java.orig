@@ -29,6 +29,40 @@ import seedu.address.testutil.PersonBuilder;
 
 public class AddContactCommandTest {
 
+<<<<<<< HEAD:src/test/java/seedu/address/logic/commands/AddContactCommandTest.java
+    @Test
+    public void constructor_nullPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddContactCommand(null));
+    }
+
+    @Test
+    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+        Person validPerson = new PersonBuilder().build();
+
+        CommandResult commandResult = new AddContactCommand(validPerson).execute(modelStub);
+
+        assertEquals(String.format(AddContactCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+    }
+
+    @Test
+    public void execute_duplicatePerson_throwsCommandException() {
+        Person validPerson = new PersonBuilder().build();
+        AddContactCommand addContactCommand = new AddContactCommand(validPerson);
+        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+
+        assertThrows(CommandException.class, AddContactCommand.MESSAGE_DUPLICATE_PERSON, ()
+            -> addContactCommand.execute(modelStub));
+    }
+
+    @Test
+    public void equals() {
+        Person alice = new PersonBuilder().withName("Alice").build();
+        Person bob = new PersonBuilder().withName("Bob").build();
+        AddContactCommand addAliceCommand = new AddContactCommand(alice);
+        AddContactCommand addBobCommand = new AddContactCommand(bob);
+=======
     @Nested
     @DisplayName("constructor")
     class Constructor {
@@ -37,7 +71,7 @@ public class AddContactCommandTest {
                 + "passed into constructor")
         public void constructor_nullPerson_throwsNullPointerException() {
             assertThrows(NullPointerException.class, () ->
-                    new AddContactCommand(null));
+                    new AddCommand(null));
         }
     }
 
@@ -53,10 +87,10 @@ public class AddContactCommandTest {
             Person validPerson = new PersonBuilder().build();
 
             CommandResult commandResult =
-                    new AddContactCommand(validPerson).execute(modelStub);
+                    new AddCommand(validPerson).execute(modelStub);
 
             assertEquals(
-                    String.format(AddContactCommand.MESSAGE_SUCCESS, validPerson),
+                    String.format(AddCommand.MESSAGE_SUCCESS, validPerson),
                     commandResult.getFeedbackToUser()
             );
             assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
@@ -67,12 +101,12 @@ public class AddContactCommandTest {
                 + "the list")
         public void execute_duplicatePerson_throwsCommandException() {
             Person validPerson = new PersonBuilder().build();
-            AddContactCommand addCommand = new AddContactCommand(validPerson);
+            AddCommand addCommand = new AddCommand(validPerson);
             ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
             assertThrows(
                     CommandException.class,
-                    AddContactCommand.MESSAGE_DUPLICATE_PERSON, () ->
+                    AddCommand.MESSAGE_DUPLICATE_PERSON, () ->
                             addCommand.execute(modelStub)
             );
         }
@@ -83,8 +117,9 @@ public class AddContactCommandTest {
     class Equals {
         private Person alice = new PersonBuilder().withName("Alice").build();
         private Person bob = new PersonBuilder().withName("Bob").build();
-        private AddContactCommand addAliceCommand = new AddContactCommand(alice);
-        private AddContactCommand addBobCommand = new AddContactCommand(bob);
+        private AddCommand addAliceCommand = new AddCommand(alice);
+        private AddCommand addBobCommand = new AddCommand(bob);
+>>>>>>> a30c947... Refactor AddCommandTest:src/test/java/seedu/address/logic/commands/AddCommandTest.java
 
         @Test
         @DisplayName("should return true if same object")
@@ -92,12 +127,18 @@ public class AddContactCommandTest {
             assertTrue(addAliceCommand.equals(addAliceCommand));
         }
 
+<<<<<<< HEAD:src/test/java/seedu/address/logic/commands/AddContactCommandTest.java
+        // same values -> returns true
+        AddContactCommand addAliceCommandCopy = new AddContactCommand(alice);
+        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+=======
         @Test
         @DisplayName("should return true if same values")
         public void equals_sameValues_true() {
-            AddContactCommand addAliceCommandCopy = new AddContactCommand(alice);
+            AddCommand addAliceCommandCopy = new AddCommand(alice);
             assertTrue(addAliceCommand.equals(addAliceCommandCopy));
         }
+>>>>>>> a30c947... Refactor AddCommandTest:src/test/java/seedu/address/logic/commands/AddCommandTest.java
 
         @Test
         @DisplayName("should return false if different values")
