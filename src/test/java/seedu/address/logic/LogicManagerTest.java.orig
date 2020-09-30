@@ -94,6 +94,36 @@ public class LogicManagerTest {
             assertCommandFailure(inputCommand, ParseException.class, expectedMessage);
         }
 
+<<<<<<< HEAD
+    @Test
+    public void execute_storageThrowsIoException_throwsCommandException() {
+        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
+        JsonAddressBookStorage addressBookStorage =
+                new JsonAddressBookIoExceptionThrowingStub(
+                        temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        JsonJournalStorage journalStorage =
+                new JsonJournalStorage(
+                        temporaryFolder.resolve("ioExceptionJournal.json"));
+        JsonUserPrefsStorage userPrefsStorage =
+                new JsonUserPrefsStorage(
+                        temporaryFolder.resolve("ioExceptionUserPrefs.json"));
+        StorageManager storage = new StorageManager(
+                addressBookStorage,
+                journalStorage,
+                userPrefsStorage
+        );
+        logic = new LogicManager(model, storage);
+
+        // Execute add command
+        String addCommand = AddContactCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+                + ADDRESS_DESC_AMY;
+        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        ModelManager expectedModel = new ModelManager();
+        expectedModel.addPerson(expectedPerson);
+        String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
+        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
+    }
+=======
         /**
          * Executes the command, confirms that a CommandException is thrown and that
          * the result message is correct.
@@ -104,6 +134,7 @@ public class LogicManagerTest {
             assertCommandFailure(
                     inputCommand, CommandException.class, expectedMessage);
         }
+>>>>>>> 01c5ac8... Refactor LogicManagerTest
 
         /**
          * Executes the command, confirms that the exception is thrown and that the
@@ -194,7 +225,7 @@ public class LogicManagerTest {
             logic = new LogicManager(model, storage);
 
             // Execute add command
-            String addCommand = AddContactCommand.COMMAND_WORD
+            String addCommand = AddCommand.COMMAND_WORD
                     + NAME_DESC_AMY
                     + PHONE_DESC_AMY
                     + EMAIL_DESC_AMY
