@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
@@ -27,54 +29,93 @@ import seedu.address.testutil.PersonBuilder;
 
 public class AddContactCommandTest {
 
-    @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddContactCommand(null));
+    @Nested
+    @DisplayName("constructor")
+    class Constructor {
+        @Test
+        @DisplayName("should throw NullPointerException if null person is "
+                + "passed into constructor")
+        public void constructor_nullPerson_throwsNullPointerException() {
+            assertThrows(NullPointerException.class, () ->
+                    new AddContactCommand(null));
+        }
     }
 
-    @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+    @Nested
+    @DisplayName("execute method")
+    class Execute {
+        @Test
+        @DisplayName("should add person successfully if person is valid")
+        public void execute_personAcceptedByModel_addSuccessful()
+                throws Exception {
+            ModelStubAcceptingPersonAdded modelStub =
+                    new ModelStubAcceptingPersonAdded();
+            Person validPerson = new PersonBuilder().build();
 
-        CommandResult commandResult = new AddContactCommand(validPerson).execute(modelStub);
+            CommandResult commandResult =
+                    new AddContactCommand(validPerson).execute(modelStub);
 
-        assertEquals(String.format(AddContactCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+            assertEquals(
+                    String.format(AddContactCommand.MESSAGE_SUCCESS, validPerson),
+                    commandResult.getFeedbackToUser()
+            );
+            assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        }
+
+        @Test
+        @DisplayName("should throw CommandException if person is already in "
+                + "the list")
+        public void execute_duplicatePerson_throwsCommandException() {
+            Person validPerson = new PersonBuilder().build();
+            AddContactCommand addCommand = new AddContactCommand(validPerson);
+            ModelStub modelStub = new ModelStubWithPerson(validPerson);
+
+            assertThrows(
+                    CommandException.class,
+                    AddContactCommand.MESSAGE_DUPLICATE_PERSON, () ->
+                            addCommand.execute(modelStub)
+            );
+        }
     }
 
-    @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddContactCommand addContactCommand = new AddContactCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+    @Nested
+    @DisplayName("equals method")
+    class Equals {
+        private Person alice = new PersonBuilder().withName("Alice").build();
+        private Person bob = new PersonBuilder().withName("Bob").build();
+        private AddContactCommand addAliceCommand = new AddContactCommand(alice);
+        private AddContactCommand addBobCommand = new AddContactCommand(bob);
 
-        assertThrows(CommandException.class, AddContactCommand.MESSAGE_DUPLICATE_PERSON, ()
-            -> addContactCommand.execute(modelStub));
-    }
+        @Test
+        @DisplayName("should return true if same object")
+        public void equals_sameObject_true() {
+            assertTrue(addAliceCommand.equals(addAliceCommand));
+        }
 
-    @Test
-    public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        AddContactCommand addAliceCommand = new AddContactCommand(alice);
-        AddContactCommand addBobCommand = new AddContactCommand(bob);
+        @Test
+        @DisplayName("should return true if same values")
+        public void equals_sameValues_true() {
+            AddContactCommand addAliceCommandCopy = new AddContactCommand(alice);
+            assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        }
 
-        // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        @Test
+        @DisplayName("should return false if different values")
+        public void equals_differentValues_false() {
+            assertFalse(addAliceCommand.equals(1));
+        }
 
-        // same values -> returns true
-        AddContactCommand addAliceCommandCopy = new AddContactCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        @Test
+        @DisplayName("should return false if null")
+        public void equals_null_false() {
+            assertFalse(addAliceCommand.equals(null));
+        }
 
-        // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
-
-        // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
-
-        // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        @Test
+        @DisplayName("should return false if different person")
+        public void equals_differentPerson_false() {
+            assertFalse(addAliceCommand.equals(addBobCommand));
+        }
     }
 
     /**
@@ -218,5 +259,4 @@ public class AddContactCommandTest {
             return new AddressBook();
         }
     }
-
 }
