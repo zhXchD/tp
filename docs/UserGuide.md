@@ -5,7 +5,7 @@ title: User Guide
 
 IntelliJournal is a **desktop app for managing journals as well as contacts,
 optimised for use via a Command Line Interface** (CLI) while still having the
-benefits of a Graphical User Interface (GUI). If you can type fast, 
+benefits of a Graphical User Interface (GUI). If you can type fast,
 IntelliJournal can help you record down journal entries with contacts as well
 as location information faster than traditional GUI apps.
 
@@ -18,23 +18,23 @@ as location information faster than traditional GUI apps.
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `intellijournal.jar` from 
-   [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `intellijournal.jar` from
+   [here](https://github.com/AY2021S1-CS2103T-W17-4/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your 
+1. Copy the file to the folder you want to use as the _home folder_ for your
    IntelliJournal.
 
-1. Double-click the file to start the app. The GUI similar to the below should 
+1. Double-click the file to start the app. The GUI similar to the below should
    appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. 
+1. Type the command in the command box and press Enter to execute it.
    e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block
      123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
    * **`remove`**`3` : Removes the 3rd contact shown in the current list.
@@ -52,13 +52,13 @@ as location information faster than traditional GUI apps.
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as 
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as
   `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero 
+* Items with `…`​ after them can be used multiple times including zero
   times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`,
   `t/friend t/family` etc.
@@ -74,7 +74,7 @@ as location information faster than traditional GUI apps.
 Gives the explanation and format of commands in the system.
 
 Format: `help [COMMAND]`
-* The `COMMAND` argument supplied will indicate which command explanation to 
+* The `COMMAND` argument supplied will indicate which command explanation to
 show.
 * If no `COMMAND` argument is supplied, all commands will be shown.
 
@@ -82,7 +82,7 @@ show.
 
 Adds a contact to the address book or journal entry to the journal.
 
-format: `addc n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [at/DATE_AND_TIME] 
+format: `addc n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [at/DATE_AND_TIME]
          [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -91,7 +91,7 @@ A contact can have any number of tags (including 0)
 
 Examples:
 * `addc n/John Doe` Adds a contact with the name of `Robert`.
-* `addc n/Betsy Crowe t/client t/important` Adds a contact with the name of 
+* `addc n/Betsy Crowe t/client t/important` Adds a contact with the name of
 `Robert` and tags of `client` and `important`.
 
 ### Adding a journal entry: `addj`
@@ -107,7 +107,7 @@ A journal entry can have any number of tags (including 0)
 Examples:
 * `addj n/Meeting with client` Adds a journal entry with the name
 `Meeting with client`.
-* `addj n/Meeting with client at/2020-9-20 1400 d/Tea` Adds a journal 
+* `addj n/Meeting with client at/2020-9-20 1400 d/Tea` Adds a journal
 entry with the name `Meeting with client`, a date and time of `2020-9-20 1400`
 and content `Tea`.
 
@@ -173,7 +173,7 @@ Format: `exit`
 
 ### Saving the data
 
-IntelliJournal data is saved in the hard disk automatically after any command 
+IntelliJournal data is saved in the hard disk automatically after any command
 that changes the data. There is no need to save manually.
 
 --------------------------------------------------------------------------------
@@ -181,8 +181,8 @@ that changes the data. There is no need to save manually.
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file 
-       it creates with the file that contains the data of your previous 
+**A**: Install the app in the other computer and overwrite the empty data file
+       it creates with the file that contains the data of your previous
        IntelliJournal home folder.
 
 --------------------------------------------------------------------------------
