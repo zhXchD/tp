@@ -4,13 +4,13 @@ import static java.util.Objects.requireNonNull;
 
 public class Title {
 
-    public final String title;
-
     /*
-     * The first character of the address must not be a whitespace,
+     * The first character of the address must not be a whitespace and non-letter
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String VALIDATION_REGEX = "[a-zA-z].*";
+
+    public final String title;
 
     /**
      * Creates an instance of title for entry.
@@ -22,7 +22,7 @@ public class Title {
         this.title = title;
     }
 
-    public boolean isValidTitle(String test) {
+    public static boolean isValidTitle(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

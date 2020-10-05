@@ -8,7 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-public class DescriptionTest {
+public class TitleTest {
 
     @Nested
     @DisplayName("constructor")
@@ -16,38 +16,38 @@ public class DescriptionTest {
         @Test
         @DisplayName("Should throw nullpointerexception for null input")
         public void constructor_null_thrownullpointerexception() {
-            assertThrows(NullPointerException.class, () -> new Description(null));
+            assertThrows(NullPointerException.class, () -> new Title(null));
         }
     }
 
     @Nested
     @DisplayName("isValidDescription")
-    public class IsValidDescription {
+    public class IsValidTitle {
         @Test
         @DisplayName("Should throw NullPointerException for null input")
         public void isValidDescription_null_throwNullPointerException() {
-            assertThrows(NullPointerException.class, () -> Description.isValidDescription(null));
+            assertThrows(NullPointerException.class, () -> Title.isValidTitle(null));
         }
 
         @Test
         @DisplayName("Should return false for empty string")
         public void isValidDescription_empty_false() {
-            assertFalse(Description.isValidDescription(""));
-            assertFalse(Description.isValidDescription(" "));
+            assertFalse(Title.isValidTitle(""));
+            assertFalse(Title.isValidTitle(" "));
         }
 
         @Test
         @DisplayName("Should return false if the input do not start with letter")
         public void isValidDescription_notLetter_false() {
-            assertFalse(Description.isValidDescription("1team meeting"));
-            assertFalse(Description.isValidDescription(".interview with google"));
+            assertFalse(Title.isValidTitle("1team meeting"));
+            assertFalse(Title.isValidTitle(".interview with google"));
         }
 
         @Test
         @DisplayName("Should return true if the input is valid")
         public void isValidDescription_valid_true() {
-            assertTrue(Description.isValidDescription("team meeting"));
-            assertTrue(Description.isValidDescription("interview with google"));
+            assertTrue(Title.isValidTitle("team meeting"));
+            assertTrue(Title.isValidTitle("interview with google"));
         }
     }
 

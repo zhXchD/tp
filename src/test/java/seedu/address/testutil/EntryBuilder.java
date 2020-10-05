@@ -8,9 +8,9 @@ import seedu.address.model.person.UniquePersonList;
 
 public class EntryBuilder {
 
-    public static final String DEFAULT_TITLE = "";
-    public static final String DEFAULT_DESCRIPTION = "";
-    public static final String DEFAULT_DATE = "";
+    public static final String DEFAULT_TITLE = "Team Meeting";
+    public static final String DEFAULT_DESCRIPTION = "Team Meeting for CS2103T";
+    public static final String DEFAULT_DATE = "2020-12-20 18:00";
 
 
     private Title title;
