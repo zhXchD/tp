@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 
 import seedu.address.model.tag.Tag;
 
@@ -19,21 +20,31 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final UUID uuid;
 
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
+     * Creates an instance of Person object with a predefined UUID.
+     *
+     * @param name of the Person.
+     * @param phone of the Person.
+     * @param email of the Person.
+     * @param address of the Person.
+     * @param tags of the Person.
+     * @param uuid of the Person.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address,
+                  Set<Tag> tags, UUID uuid) {
+        requireAllNonNull(name, phone, email, address, tags, uuid);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.uuid = uuid;
     }
 
     public Name getName() {
@@ -50,6 +61,10 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public UUID getUuid() {
+        return uuid;
     }
 
     /**
@@ -71,7 +86,8 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName())
-                && (otherPerson.getPhone().equals(getPhone()) || otherPerson.getEmail().equals(getEmail()));
+                && (otherPerson.getPhone().equals(getPhone())
+                || otherPerson.getEmail().equals(getEmail()));
     }
 
     /**
@@ -93,7 +109,8 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getUuid().equals(getUuid());
     }
 
     @Override

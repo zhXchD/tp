@@ -12,6 +12,7 @@ import static seedu.address.testutil.TypicalPersons.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.UUID;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -191,7 +192,8 @@ public class LogicManagerTest {
                     journalStorage,
                     userPrefsStorage
             );
-            logic = new LogicManager(model, storage);
+            UUID uuid = UUID.randomUUID();
+            logic = new LogicManager(model, storage, uuid);
 
             // Execute add command
             String addCommand = AddContactCommand.COMMAND_WORD
@@ -199,7 +201,8 @@ public class LogicManagerTest {
                     + PHONE_DESC_AMY
                     + EMAIL_DESC_AMY
                     + ADDRESS_DESC_AMY;
-            Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+            Person expectedPerson =
+                    new PersonBuilder(AMY).withTags().build(uuid);
             ModelManager expectedModel = new ModelManager();
             expectedModel.addPerson(expectedPerson);
             String expectedMessage =

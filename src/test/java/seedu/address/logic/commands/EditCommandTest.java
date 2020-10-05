@@ -48,7 +48,9 @@ public class EditCommandTest {
         @Test
         @DisplayName("should edit person successfully in unfiltered list")
         public void execute_allFieldsSpecifiedUnfilteredList_success() {
-            Person editedPerson = new PersonBuilder().build();
+            Person originalPerson = model.getFilteredPersonList().get(0);
+            Person editedPerson = new PersonBuilder()
+                    .build(originalPerson.getUuid());
             EditPersonDescriptor descriptor =
                     new EditPersonDescriptorBuilder(editedPerson).build();
             EditCommand editCommand =
@@ -64,10 +66,7 @@ public class EditCommandTest {
                             new Journal(),
                             new UserPrefs()
                     );
-            expectedModel.setPerson(
-                    model.getFilteredPersonList().get(0),
-                    editedPerson
-            );
+            expectedModel.setPerson(originalPerson, editedPerson);
 
             assertCommandSuccess(
                     editCommand,
@@ -90,7 +89,7 @@ public class EditCommandTest {
             Person editedPerson = personInList.withName(VALID_NAME_BOB)
                     .withPhone(VALID_PHONE_BOB)
                     .withTags(VALID_TAG_HUSBAND)
-                    .build();
+                    .build(lastPerson.getUuid());
 
             EditPersonDescriptor descriptor =
                     new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
@@ -158,8 +157,9 @@ public class EditCommandTest {
             Person personInFilteredList = model.getFilteredPersonList()
                     .get(INDEX_FIRST_PERSON.getZeroBased());
             Person editedPerson =
-                    new PersonBuilder(personInFilteredList).withName(
-                            VALID_NAME_BOB).build();
+                    new PersonBuilder(personInFilteredList)
+                            .withName(VALID_NAME_BOB)
+                            .build(personInFilteredList.getUuid());
             EditCommand editCommand = new EditCommand(
                     INDEX_FIRST_PERSON,
                     new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)

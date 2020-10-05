@@ -96,9 +96,10 @@ public class PersonTest {
     @Nested
     @DisplayName("equals method")
     class Equals {
-        private final Person aliceCopy = new PersonBuilder(ALICE).build();
+        private final Person aliceCopy =
+                new PersonBuilder(ALICE).build(ALICE.getUuid());
         private Person editedAlice = new PersonBuilder(ALICE)
-                .withName(VALID_NAME_BOB).build();
+                .withName(VALID_NAME_BOB).build(ALICE.getUuid());
 
         @Test
         @DisplayName("should return true if same values")
