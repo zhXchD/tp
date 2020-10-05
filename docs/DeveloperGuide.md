@@ -23,7 +23,7 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 App. Given below is a quick overview of each component.
 
 **`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-W17-4/tp/blob/master/src/main/java/seedu/address/Main.java)
-and [`MainApp`](https://github.com/AY2021S1-CS2103T-W17-4/tp/blob/master/src/main/java/seedu/address/MainApp.java). 
+and [`MainApp`](https://github.com/AY2021S1-CS2103T-W17-4/tp/blob/master/src/main/java/seedu/address/MainApp.java).
 It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
@@ -100,7 +100,7 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the address book data.
-* stores the journal data. 
+* stores the journal data.
 * exposes an unmodifiable `ObservableList<Person>` and `ObservableList<Entry>` that can be 'observed', e.g. the UI
  can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other four components.
@@ -111,7 +111,7 @@ The `Model`,
 
 Similarly, an alternative model for the Journal is given below. Like the model above, it has a `Tag` list in the
  `Journal`, which `Entry` references, allowing `Journal` to only require one `Tag` object per unique `Tag`, instead
-  of each `Entry` needing their own `Tag` object. 
+  of each `Entry` needing their own `Tag` object.
 ![BetterModelEntryClassDiagram](images/BetterModelEntryClassDiagram.png)
 
 </div>
@@ -126,7 +126,7 @@ Similarly, an alternative model for the Journal is given below. Like the model a
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the address book data in json format and read it back.
-* can save the journal data in json format and read it back. 
+* can save the journal data in json format and read it back.
 
 ### Common classes
 
@@ -271,7 +271,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `intelliJournal` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
@@ -307,14 +307,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4. IntelliJournal deletes the entry
 
     Use case ends
-    
+
 **Extensions**
 * 2a. The journal is empty (No entry in journal)
-    
+
     Use case ends
 * 3a.  The given index is invalid
     * 3a1. IntelliJournal shows an error message.
-    
+
         Use case resumes at step 2.
 
 **Use case: Search for a journal entry (by entry name)**
@@ -327,11 +327,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extension**
 * 2a. The journal is empty (No entry in journal)
-    
+
     Use case ends
 * 3a.  The given name is not in journal
     * 3a1. IntelliJournal shows an error message.
-    
+
         Use case resumes at step 1.
 
 *{More to be added}*

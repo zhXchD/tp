@@ -17,11 +17,12 @@ public class TestUtil {
     /**
      * Folder used for temp files created during testing. Ignored by Git.
      */
-    private static final Path SANDBOX_FOLDER = Paths.get("src", "test", "data", "sandbox");
+    private static final Path SANDBOX_FOLDER =
+            Paths.get("src", "test", "data", "sandbox");
 
     /**
-     * Appends {@code fileName} to the sandbox folder path and returns the resulting path.
-     * Creates the sandbox folder if it doesn't exist.
+     * Appends {@code fileName} to the sandbox folder path and returns the
+     * resulting path. Creates the sandbox folder if it doesn't exist.
      */
     public static Path getFilePathInSandboxFolder(String fileName) {
         try {
@@ -33,7 +34,8 @@ public class TestUtil {
     }
 
     /**
-     * Returns the middle index of the person in the {@code model}'s person list.
+     * Returns the middle index of the person in the {@code model}'s person
+     * list.
      */
     public static Index getMidIndex(Model model) {
         return Index.fromOneBased(model.getFilteredPersonList().size() / 2);
