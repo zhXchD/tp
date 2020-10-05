@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import javafx.application.Application;
@@ -17,28 +19,37 @@ public class AppParametersTest {
     private final ParametersStub parametersStub = new ParametersStub();
     private final AppParameters expected = new AppParameters();
 
-    @Test
-    public void parse_validConfigPath_success() {
-        parametersStub.namedParameters.put("config", "config.json");
-        expected.setConfigPath(Paths.get("config.json"));
-        assertEquals(expected, AppParameters.parse(parametersStub));
-    }
+    @Nested
+    @DisplayName("parse method")
+    class Parse {
+        @Test
+        @DisplayName("should parse successfully if config path is valid")
+        public void parse_validConfigPath_success() {
+            parametersStub.namedParameters.put("config", "config.json");
+            expected.setConfigPath(Paths.get("config.json"));
+            assertEquals(expected, AppParameters.parse(parametersStub));
+        }
 
-    @Test
-    public void parse_nullConfigPath_success() {
-        parametersStub.namedParameters.put("config", null);
-        assertEquals(expected, AppParameters.parse(parametersStub));
-    }
+        @Test
+        @DisplayName("should return AppParameters without config path if "
+                + "config path is null")
+        public void parse_nullConfigPath_success() {
+            parametersStub.namedParameters.put("config", null);
+            assertEquals(expected, AppParameters.parse(parametersStub));
+        }
 
-    @Test
-    public void parse_invalidConfigPath_success() {
-        parametersStub.namedParameters.put("config", "a\0");
-        expected.setConfigPath(null);
-        assertEquals(expected, AppParameters.parse(parametersStub));
+        @Test
+        @DisplayName("should return AppParameters with config path as null if"
+                + " config path is invalid")
+        public void parse_invalidConfigPath_success() {
+            parametersStub.namedParameters.put("config", "a\0");
+            expected.setConfigPath(null);
+            assertEquals(expected, AppParameters.parse(parametersStub));
+        }
     }
 
     private static class ParametersStub extends Application.Parameters {
-        private Map<String, String> namedParameters = new HashMap<>();
+        private final Map<String, String> namedParameters = new HashMap<>();
 
         @Override
         public List<String> getRaw() {
