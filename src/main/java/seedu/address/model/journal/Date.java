@@ -14,6 +14,12 @@ public class Date {
     public static final String MESSAGE_CONSTRAINTS =
             "Dates should be in the format such as \"2011-12-03T10:15:30\"";
 
+    /*
+     * The first character of the address must not be a whitespace,
+     * otherwise " " (a blank string) becomes a valid input.
+     */
+    public static final String VALIDATION_REGEX = "[^\\s].*";
+
     public final String value;
 
     private final LocalDateTime date;
