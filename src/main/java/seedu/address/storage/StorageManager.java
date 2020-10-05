@@ -101,17 +101,20 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyJournal> readJournal()
-            throws DataConversionException, IOException {
-        return readJournal(journalStorage.getJournalFilePath());
+    public Optional<ReadOnlyJournal> readJournal(
+            ReadOnlyAddressBook addressBook
+    ) throws DataConversionException, IOException {
+        return readJournal(addressBook, journalStorage.getJournalFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyJournal> readJournal(Path filePath)
-            throws DataConversionException, IOException {
+    public Optional<ReadOnlyJournal> readJournal(
+            ReadOnlyAddressBook addressBook,
+            Path filePath
+    ) throws DataConversionException, IOException {
         logger.fine("Attempting to read journal data from file: "
                 + filePath);
-        return journalStorage.readJournal(filePath);
+        return journalStorage.readJournal(addressBook, filePath);
     }
 
     @Override

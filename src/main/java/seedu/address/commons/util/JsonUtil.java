@@ -61,7 +61,8 @@ public class JsonUtil {
             Path jsonFile,
             Class<T> classOfObjectToDeserialize
     ) throws IOException {
-        return fromJsonString(FileUtil.readFromFile(jsonFile), classOfObjectToDeserialize);
+        return fromJsonString(
+                FileUtil.readFromFile(jsonFile), classOfObjectToDeserialize);
     }
 
     /**
@@ -133,7 +134,8 @@ public class JsonUtil {
      * @return JSON data representation of the given class instance, in string
      */
     public static <T> String toJsonString(T instance) throws JsonProcessingException {
-        return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(instance);
+        return objectMapper.writerWithDefaultPrettyPrinter()
+                .writeValueAsString(instance);
     }
 
     /**
