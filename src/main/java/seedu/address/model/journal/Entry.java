@@ -1,5 +1,7 @@
 package seedu.address.model.journal;
 
+import javafx.collections.ObservableList;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
 public class Entry {
@@ -31,6 +33,10 @@ public class Entry {
 
     public Description getDescription() {
         return description;
+    }
+
+    public ObservableList<Person> getContactList() {
+        return contactList.asUnmodifiableObservableList();
     }
 
     /**

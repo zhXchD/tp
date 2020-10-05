@@ -4,6 +4,12 @@ import static java.util.Objects.requireNonNull;
 
 public class Description {
 
+    /*
+     * The first character of the address must not be a whitespace and non-letter
+     * otherwise " " (a blank string) becomes a valid input.
+     */
+    public static final String VALIDATION_REGEX = "[a-zA-z].*";
+
     public final String description;
 
     /**
@@ -14,6 +20,10 @@ public class Description {
     public Description(String description) {
         requireNonNull(description);
         this.description = description;
+    }
+
+    public static boolean isValidDescription(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override

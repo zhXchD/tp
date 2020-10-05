@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
@@ -12,7 +13,11 @@ import java.time.format.DateTimeParseException;
 public class Date {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Dates should be in the format such as \"2011-12-03T10:15:30\"";
+            "Dates should be in the format such as \"2011-12-03 10:15\"";
+
+    public static final String VALID_DATE_FORMAT = "yyyy-MM-dd HH:mm";
+
+    public static final DateTimeFormatter VALID_FORMATTER = DateTimeFormatter.ofPattern(VALID_DATE_FORMAT);
 
     public final String value;
 
@@ -38,7 +43,7 @@ public class Date {
     public Date(String date) {
         requireNonNull(date);
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
-        this.date = LocalDateTime.parse(date);
+        this.date = LocalDateTime.parse(date, VALID_FORMATTER);
         value = date;
     }
 
@@ -49,7 +54,7 @@ public class Date {
      */
     public static boolean isValidDate(String test) {
         try {
-            LocalDateTime.parse(test);
+            LocalDateTime.parse(test, VALID_FORMATTER);
             return true;
         } catch (DateTimeParseException e) {
             return false;
