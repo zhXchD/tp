@@ -23,7 +23,7 @@ public class AddJournalEntryCommand extends Command {
             + PREFIX_DESCRIPTION + "DESCRIPTION\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Meet with client John Doe "
-            + PREFIX_DATE_AND_TIME + "2020-10-10T10:00 "
+            + PREFIX_DATE_AND_TIME + "2020-10-10 10:00 "
             + PREFIX_DESCRIPTION + "Discussed about his demands.";
 
     public static final String MESSAGE_SUCCESS = "New journal entry added: %1$s";
