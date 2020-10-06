@@ -1,10 +1,14 @@
 package seedu.address.testutil;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import seedu.address.model.journal.Date;
 import seedu.address.model.journal.Description;
 import seedu.address.model.journal.Entry;
 import seedu.address.model.journal.Title;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.tag.Tag;
 
 public class EntryBuilder {
 
@@ -16,6 +20,7 @@ public class EntryBuilder {
     private Title title;
     private Date date;
     private Description description;
+    private Set<Tag> tagList;
 
     // Represents a contact list for a certain event
     private UniquePersonList contactList;
@@ -28,6 +33,7 @@ public class EntryBuilder {
         date = new Date(DEFAULT_DATE);
         description = new Description(DEFAULT_DESCRIPTION);
         contactList = new UniquePersonList();
+        tagList = new HashSet<>();
     }
 
     /**
@@ -38,6 +44,7 @@ public class EntryBuilder {
         date = entryToCopy.getDate();
         description = entryToCopy.getDescription();
         contactList = new UniquePersonList();
+        tagList.addAll(entryToCopy.getTags());
     }
 
     /**
@@ -74,6 +81,6 @@ public class EntryBuilder {
     }
 
     public Entry build() {
-        return new Entry(title, date, description, contactList);
+        return new Entry(title, date, description, contactList, tagList);
     }
 }
