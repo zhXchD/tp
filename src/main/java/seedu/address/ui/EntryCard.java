@@ -1,7 +1,10 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.journal.Entry;
@@ -21,6 +24,8 @@ public class EntryCard extends UiPart<Region> {
     private Label title;
     @FXML
     private Label date;
+    @FXML
+    private FlowPane tags;
 
     /**
      * Creates a {@code JournalCard} with the given {@code Entry} and index to display.
@@ -31,6 +36,9 @@ public class EntryCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         title.setText(entry.getTitle().title);
         date.setText(entry.getDate().value);
+        entry.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override
