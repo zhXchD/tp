@@ -54,6 +54,13 @@ public class Entry {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+        if (obj instanceof Entry) return this.isSameEntry((Entry) obj);
+        else return false;
+    }
+
+    @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getTitle())
