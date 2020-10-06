@@ -9,6 +9,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.DisplayName;
@@ -42,10 +43,11 @@ public class AddressBookParserTest {
         @DisplayName("should generate AddContactCommand object from appropriate add "
                 + "person input")
         public void parseCommand_add() throws Exception {
-            Person person = new PersonBuilder().build();
-            AddContactCommand command =
-                    (AddContactCommand) parser.parseCommand(PersonUtil.getAddCommand(
-                            person));
+            UUID uuid = UUID.randomUUID();
+            AddressBookParser parser = new AddressBookParser(uuid);
+            Person person = new PersonBuilder().build(uuid);
+            AddContactCommand command = (AddContactCommand) parser
+                    .parseCommand(PersonUtil.getAddCommand(person));
             assertEquals(new AddContactCommand(person), command);
         }
 

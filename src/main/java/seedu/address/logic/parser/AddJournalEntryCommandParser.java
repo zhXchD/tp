@@ -1,13 +1,13 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATE_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddContactCommand;
 import seedu.address.logic.commands.AddJournalEntryCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.journal.Date;
@@ -32,11 +32,16 @@ public class AddJournalEntryCommandParser implements Parser<AddJournalEntryComma
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DATE_AND_TIME, PREFIX_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddContactCommand.MESSAGE_USAGE));
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddJournalEntryCommand.MESSAGE_USAGE));
         }
 
         Title title = new Title(argMultimap.getValue(PREFIX_NAME).get());
-        Date date = new Date(argMultimap.getValue(PREFIX_DATE_AND_TIME).get());
+        String dateString = argMultimap.getValue(PREFIX_DATE_AND_TIME).get();
+        if (!Date.isValidDate(dateString)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_DATE_FORMAT, Date.MESSAGE_CONSTRAINTS));
+        }
+        Date date = new Date(dateString);
         Description description = new Description(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         UniquePersonList personList = new UniquePersonList();
 

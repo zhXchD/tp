@@ -17,7 +17,8 @@ public class Date {
 
     public static final String VALID_DATE_FORMAT = "yyyy-MM-dd HH:mm";
 
-    public static final DateTimeFormatter VALID_FORMATTER = DateTimeFormatter.ofPattern(VALID_DATE_FORMAT);
+    public static final DateTimeFormatter VALID_FORMATTER =
+            DateTimeFormatter.ofPattern(VALID_DATE_FORMAT);
 
     public final String value;
 
