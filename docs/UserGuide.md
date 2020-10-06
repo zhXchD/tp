@@ -37,7 +37,7 @@ as location information faster than traditional GUI apps.
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block
      123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
-   * **`remove`**`3` : Removes the 3rd contact shown in the current list.
+   * **`delete`**`3` : deletes the 3rd contact shown in the current list.
 
    * **`exit`** : Exits the app.
 
@@ -143,27 +143,27 @@ Examples:
 * `viewj 4` Views the 4th journal entry in the journal.
 * `viewj 8` Views the 8th journal entry in the journal.
 
-### Removing a contact: `removec`
+### Deleting a contact: `deletec`
 
-Removes a contact from the address book.
+Deletes a contact from the address book.
 
-Format `removec INDEX`
+Format `deletec INDEX`
 * `INDEX` refers to the index number of the contact in the list.
 
 Examples:
-* `removec 4` Removes the 4th contact in the address book.
-* `removec 8` Removes the 8th contact in the address book.
+* `deletec 4` Deletes the 4th contact in the address book.
+* `deletec 8` Deletes the 8th contact in the address book.
 
-### Removing a journal entry: `removej`
+### Deleting a journal entry: `deletej`
 
-Removes a journal entry from the journal.
+Deletes a journal entry from the journal.
 
-Format `removej INDEX`
+Format `deletej INDEX`
 * `INDEX` refers to the index number of the journal shown in the list.
 
 Examples:
-* `removej 4` Removes the 4th journal entry in the journal.
-* `removej 8` Removes the 8th journal entry in the journal.
+* `deletej 4` Deletes the 4th journal entry in the journal.
+* `deletej 8` Deletes the 8th journal entry in the journal.
 
 ### Exiting the program: `exit`
 
@@ -198,6 +198,6 @@ that changes the data. There is no need to save manually.
 | **Listing all journal entries** | `listj`                                                                                |
 | **Viewing a contact**           | `viewc INDEX`                                                                          |
 | **Viewing a journal entry**     | `viewj INDEX`                                                                          |
-| **Removing a contact**          | `removec INDEX`                                                                        |
-| **Removing a journal entry**    | `removej INDEX`                                                                        |
+| **Removing a contact**          | `deletec INDEX`                                                                        |
+| **Removing a journal entry**    | `deletej INDEX`                                                                        |
 | **Exiting the program**         | `exit`                                                                                 |
