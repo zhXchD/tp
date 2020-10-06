@@ -17,7 +17,8 @@ public interface Storage extends
         AddressBookStorage, JournalStorage, UserPrefsStorage {
 
     @Override
-    Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
+    Optional<UserPrefs> readUserPrefs()
+            throws DataConversionException, IOException;
 
     @Override
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
@@ -26,7 +27,8 @@ public interface Storage extends
     Path getAddressBookFilePath();
 
     @Override
-    Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyAddressBook> readAddressBook()
+            throws DataConversionException, IOException;
 
     @Override
     void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
@@ -35,7 +37,8 @@ public interface Storage extends
     Path getJournalFilePath();
 
     @Override
-    Optional<ReadOnlyJournal> readJournal() throws DataConversionException, IOException;
+    Optional<ReadOnlyJournal> readJournal(ReadOnlyAddressBook addressBook)
+            throws DataConversionException, IOException;
 
     @Override
     void saveJournal(ReadOnlyJournal journal) throws IOException;

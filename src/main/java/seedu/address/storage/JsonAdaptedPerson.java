@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -29,6 +30,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String uuid;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -40,12 +42,14 @@ class JsonAdaptedPerson {
             @JsonProperty("phone") String phone,
             @JsonProperty("email") String email,
             @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("uuid") String uuid
     ) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.uuid = uuid;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -59,6 +63,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        uuid = source.getUuid().toString();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -130,12 +135,15 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
+
+        final UUID modelUuid = UUID.fromString(uuid);
         return new Person(
                 modelName,
                 modelPhone,
                 modelEmail,
                 modelAddress,
-                modelTags
+                modelTags,
+                modelUuid
         );
     }
 

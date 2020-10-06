@@ -30,6 +30,7 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
+    private static final String VALID_UUID = BENSON.getUuid().toString();
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags()
             .stream()
             .map(JsonAdaptedTag::new)
@@ -54,7 +55,8 @@ public class JsonAdaptedPersonTest {
                     VALID_PHONE,
                     VALID_EMAIL,
                     VALID_ADDRESS,
-                    VALID_TAGS
+                    VALID_TAGS,
+                    VALID_UUID
             );
             String expectedMessage = Name.MESSAGE_CONSTRAINTS;
             assertThrows(
@@ -72,7 +74,8 @@ public class JsonAdaptedPersonTest {
                     VALID_PHONE,
                     VALID_EMAIL,
                     VALID_ADDRESS,
-                    VALID_TAGS
+                    VALID_TAGS,
+                    VALID_UUID
             );
             String expectedMessage = String.format(
                     MISSING_FIELD_MESSAGE_FORMAT,
@@ -93,7 +96,8 @@ public class JsonAdaptedPersonTest {
                     INVALID_PHONE,
                     VALID_EMAIL,
                     VALID_ADDRESS,
-                    VALID_TAGS
+                    VALID_TAGS,
+                    VALID_UUID
             );
             String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
             assertThrows(
@@ -111,7 +115,8 @@ public class JsonAdaptedPersonTest {
                     null,
                     VALID_EMAIL,
                     VALID_ADDRESS,
-                    VALID_TAGS
+                    VALID_TAGS,
+                    VALID_UUID
             );
             String expectedMessage = String.format(
                     MISSING_FIELD_MESSAGE_FORMAT,
@@ -132,7 +137,8 @@ public class JsonAdaptedPersonTest {
                     VALID_PHONE,
                     INVALID_EMAIL,
                     VALID_ADDRESS,
-                    VALID_TAGS
+                    VALID_TAGS,
+                    VALID_UUID
             );
             String expectedMessage = Email.MESSAGE_CONSTRAINTS;
             assertThrows(
@@ -150,7 +156,8 @@ public class JsonAdaptedPersonTest {
                     VALID_PHONE,
                     null,
                     VALID_ADDRESS,
-                    VALID_TAGS
+                    VALID_TAGS,
+                    VALID_UUID
             );
             String expectedMessage = String.format(
                     MISSING_FIELD_MESSAGE_FORMAT,
@@ -171,7 +178,8 @@ public class JsonAdaptedPersonTest {
                     VALID_PHONE,
                     VALID_EMAIL,
                     INVALID_ADDRESS,
-                    VALID_TAGS
+                    VALID_TAGS,
+                    VALID_UUID
             );
             String expectedMessage = Address.MESSAGE_CONSTRAINTS;
             assertThrows(
@@ -189,7 +197,8 @@ public class JsonAdaptedPersonTest {
                     VALID_PHONE,
                     VALID_EMAIL,
                     null,
-                    VALID_TAGS
+                    VALID_TAGS,
+                    VALID_UUID
             );
             String expectedMessage = String.format(
                     MISSING_FIELD_MESSAGE_FORMAT,
@@ -212,7 +221,8 @@ public class JsonAdaptedPersonTest {
                     VALID_PHONE,
                     VALID_EMAIL,
                     VALID_ADDRESS,
-                    invalidTags
+                    invalidTags,
+                    VALID_UUID
             );
             assertThrows(IllegalValueException.class, person::toModelType);
         }
