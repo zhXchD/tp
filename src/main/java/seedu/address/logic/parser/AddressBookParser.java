@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -28,6 +29,21 @@ public class AddressBookParser {
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
+    private UUID uuid;
+
+    /**
+     * Creates a default instance of AddressBookParser.
+     */
+    public AddressBookParser() { }
+
+    /**
+     * Creates an instance of AddressBookParser with a given uuid.
+     * @param uuid used in parsing.
+     */
+    public AddressBookParser(UUID uuid) {
+        this.uuid = uuid;
+    }
+
     /**
      * Parses user input into command for execution.
      *
@@ -46,7 +62,11 @@ public class AddressBookParser {
         switch (commandWord) {
 
         case AddContactCommand.COMMAND_WORD:
-            return new AddContactCommandParser().parse(arguments);
+            if (uuid == null) {
+                return new AddContactCommandParser().parse(arguments);
+            } else {
+                return new AddContactCommandParser(uuid).parse(arguments);
+            }
 
         case AddJournalEntryCommand.COMMAND_WORD:
             return new AddJournalEntryCommandParser().parse(arguments);

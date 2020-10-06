@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyJournal;
 
 public interface JournalStorage {
@@ -16,19 +17,22 @@ public interface JournalStorage {
     /**
      * Returns Journal data as a {@link ReadOnlyJournal}.
      *   Returns {@code Optional.empty()} if storage file is not found.
+     * @param addressBook the address book of the journal.
      * @throws DataConversionException if the data in storage is not in the
      * expected format.
      * @throws IOException if there was any problem when reading from the
      * storage.
      */
-    Optional<ReadOnlyJournal> readJournal()
+    Optional<ReadOnlyJournal> readJournal(ReadOnlyAddressBook addressBook)
             throws DataConversionException, IOException;
 
     /**
      * @see #getJournalFilePath()
      */
-    Optional<ReadOnlyJournal> readJournal(Path filePath)
-            throws DataConversionException, IOException;
+    Optional<ReadOnlyJournal> readJournal(
+            ReadOnlyAddressBook addressBook,
+            Path filePath
+    ) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyJournal} to the storage.

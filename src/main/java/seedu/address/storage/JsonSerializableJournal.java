@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.Journal;
+import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyJournal;
 import seedu.address.model.journal.Entry;
 
@@ -52,12 +53,14 @@ public class JsonSerializableJournal {
     /**
      * Converts this address book into the model's {@code Journal} object.
      *
+     * @param addressBook to create contact lists.
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public Journal toModelType() throws IllegalValueException {
+    public Journal toModelType(ReadOnlyAddressBook addressBook)
+            throws IllegalValueException {
         Journal journal = new Journal();
         for (JsonAdaptedEntry jsonAdaptedEntry : entries) {
-            Entry entry = jsonAdaptedEntry.toModelType();
+            Entry entry = jsonAdaptedEntry.toModelType(addressBook);
             if (journal.hasEntry(entry)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_ENTRY);
             }

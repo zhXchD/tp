@@ -112,7 +112,7 @@ public class MainApp extends Application {
         }
 
         try {
-            journalOptional = storage.readJournal();
+            journalOptional = storage.readJournal(initialAddressBook);
             if (journalOptional.isEmpty()) {
                 logger.info("Journal data file not found. Will be "
                         + "starting with a sample Journal");

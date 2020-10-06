@@ -13,6 +13,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.UUID;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -120,13 +121,15 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor
                 .getTags()
                 .orElse(personToEdit.getTags());
+        UUID uuid = personToEdit.getUuid();
 
         return new Person(
                 updatedName,
                 updatedPhone,
                 updatedEmail,
                 updatedAddress,
-                updatedTags
+                updatedTags,
+                uuid
         );
     }
 

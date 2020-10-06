@@ -12,6 +12,7 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
+import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyJournal;
 
 /**
@@ -33,17 +34,21 @@ public class JsonJournalStorage implements JournalStorage {
     }
 
     @Override
-    public Optional<ReadOnlyJournal> readJournal() throws DataConversionException {
-        return readJournal(filePath);
+    public Optional<ReadOnlyJournal> readJournal(
+            ReadOnlyAddressBook addressBook) throws DataConversionException {
+        return readJournal(addressBook, filePath);
     }
 
     /**
-     * Similar to {@link #readJournal()}.
+     * Similar to {@link #readJournal(ReadOnlyAddressBook)}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyJournal> readJournal(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyJournal> readJournal(
+            ReadOnlyAddressBook addressBook,
+            Path filePath
+    ) throws DataConversionException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableJournal> jsonJournal = JsonUtil.readJsonFile(
@@ -53,9 +58,12 @@ public class JsonJournalStorage implements JournalStorage {
         }
 
         try {
-            return Optional.of(jsonJournal.get().toModelType());
+            return Optional.of(jsonJournal.get().toModelType(addressBook));
         } catch (IllegalValueException ive) {
-            logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
+            logger.info("Illegal values found in "
+                    + filePath
+                    + ": "
+                    + ive.getMessage());
             throw new DataConversionException(ive);
         }
     }
@@ -77,5 +85,4 @@ public class JsonJournalStorage implements JournalStorage {
         FileUtil.createIfMissing(filePath);
         JsonUtil.saveJsonFile(new JsonSerializableJournal(journal), filePath);
     }
-
 }
