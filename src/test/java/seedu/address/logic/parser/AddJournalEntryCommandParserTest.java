@@ -1,20 +1,29 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.AddJournalEntryCommand;
-import seedu.address.model.journal.Entry;
-import seedu.address.model.person.Name;
-import seedu.address.testutil.EntryBuilder;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_OCTOBER;
+import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_STORY;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.TITLE_DESC_MEETING;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_OCTOBER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_STORY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_MEETING;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.AddJournalEntryCommand;
+import seedu.address.model.journal.Date;
+import seedu.address.model.journal.Entry;
+import seedu.address.testutil.EntryBuilder;
+
 public class AddJournalEntryCommandParserTest {
-    AddJournalEntryCommandParser parser = new AddJournalEntryCommandParser();
+    private AddJournalEntryCommandParser parser = new AddJournalEntryCommandParser();
 
     @Nested
     @DisplayName("parse method")
@@ -71,80 +80,26 @@ public class AddJournalEntryCommandParserTest {
             );
         }
 
-//        @Test
-//        @DisplayName("should no add person if there are invalid values in the"
-//                + " input")
-//        public void parse_invalidValue_failure() {
-//            // invalid title
-//            assertParseFailure(
-//                    parser,
-//                    INVALID_NAME_DESC + DATE_DESC_OCTOBER + DESCRIPTION_DESC_STORY,
-//                    Name.MESSAGE_CONSTRAINTS
-//            );
-//        }
-//            // invalid name
-//            assertParseFailure(
-//                    parser,
-//                    INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB
-//                            + ADDRESS_DESC_BOB
-//                            + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-//                    Name.MESSAGE_CONSTRAINTS
-//            );
-//
-//            // invalid phone
-//            assertParseFailure(
-//                    parser,
-//                    NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB
-//                            + ADDRESS_DESC_BOB
-//                            + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-//                    Phone.MESSAGE_CONSTRAINTS
-//            );
-//
-//            // invalid email
-//            assertParseFailure(
-//                    parser,
-//                    NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC
-//                            + ADDRESS_DESC_BOB
-//                            + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-//                    Email.MESSAGE_CONSTRAINTS
-//            );
-//
-//            // invalid address
-//            assertParseFailure(
-//                    parser,
-//                    NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-//                            + INVALID_ADDRESS_DESC
-//                            + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-//                    Address.MESSAGE_CONSTRAINTS
-//            );
-//
-//            // invalid tag
-//            assertParseFailure(
-//                    parser,
-//                    NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-//                            + ADDRESS_DESC_BOB
-//                            + INVALID_TAG_DESC + VALID_TAG_FRIEND,
-//                    Tag.MESSAGE_CONSTRAINTS
-//            );
-//
-//            // two invalid values, only first invalid value reported
-//            assertParseFailure(parser,
-//                    INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB
-//                            + INVALID_ADDRESS_DESC,
-//                    Name.MESSAGE_CONSTRAINTS
-//            );
-//
-//            // non-empty preamble
-//            assertParseFailure(parser,
-//                    PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB
-//                            + EMAIL_DESC_BOB
-//                            + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND
-//                            + TAG_DESC_FRIEND,
-//                    String.format(
-//                            MESSAGE_INVALID_COMMAND_FORMAT,
-//                            AddContactCommand.MESSAGE_USAGE
-//                    )
-//            );
-//        }
+        @Test
+        @DisplayName("should no add person if there are invalid values in the"
+                + " input")
+        public void parse_invalidValue_failure() {
+            // invalid date
+            assertParseFailure(
+                    parser,
+                    TITLE_DESC_MEETING + INVALID_DATE_DESC + DESCRIPTION_DESC_STORY,
+                    Date.MESSAGE_CONSTRAINTS
+            );
+
+            // non-empty preamble
+            assertParseFailure(parser,
+                    PREAMBLE_NON_EMPTY + TITLE_DESC_MEETING + DATE_DESC_OCTOBER
+                            + DESCRIPTION_DESC_STORY,
+                    String.format(
+                            MESSAGE_INVALID_COMMAND_FORMAT,
+                            AddJournalEntryCommand.MESSAGE_USAGE
+                    )
+            );
+        }
     }
 }

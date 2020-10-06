@@ -55,9 +55,13 @@ public class Entry {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == this) return true;
-        if (obj instanceof Entry) return this.isSameEntry((Entry) obj);
-        else return false;
+        if (obj == this) {
+            return true;
+        }
+        if (obj instanceof Entry) {
+            return this.isSameEntry((Entry) obj);
+        }
+        return false;
     }
 
     @Override

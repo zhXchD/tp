@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATE_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -39,7 +38,7 @@ public class AddJournalEntryCommandParser implements Parser<AddJournalEntryComma
         Title title = new Title(argMultimap.getValue(PREFIX_NAME).get());
         String dateString = argMultimap.getValue(PREFIX_DATE_AND_TIME).get();
         if (!Date.isValidDate(dateString)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_DATE_FORMAT, Date.MESSAGE_CONSTRAINTS));
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
         }
         Date date = new Date(dateString);
         Description description = new Description(argMultimap.getValue(PREFIX_DESCRIPTION).get());

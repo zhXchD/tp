@@ -2,7 +2,13 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -75,8 +81,6 @@ public class CommandTestUtil {
             " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_DATE_DESC =
             " " + PREFIX_DATE_AND_TIME + "2020/10/10 10:00";
-    public static final String INVALID_TITLE_DESC =
-            " " + PREFIX_NAME + "Meeting&";
 
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
