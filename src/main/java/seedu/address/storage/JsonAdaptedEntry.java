@@ -1,8 +1,10 @@
 package seedu.address.storage;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -16,6 +18,7 @@ import seedu.address.model.journal.Entry;
 import seedu.address.model.journal.Title;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Entry}
@@ -29,9 +32,11 @@ public class JsonAdaptedEntry {
     private final String date;
     private final String description;
     private final List<String> contactList;
+    private final Set<Tag> tagList = new HashSet<>();
 
     // TODO: Add representation of UniquePersonList.
-    // TODO: Add tags to Entry?
+    // TODO: Add tags to tagList
+
     /**
      * Constructs a {@code JsonAdaptedEntry} with the given entry details.
      */
@@ -113,7 +118,8 @@ public class JsonAdaptedEntry {
                 modelTitle,
                 modelDate,
                 modelDescription,
-                modelPersonList
+                modelPersonList,
+                tagList
         );
     }
 }
