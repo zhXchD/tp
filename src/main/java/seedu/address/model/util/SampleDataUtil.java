@@ -84,25 +84,29 @@ public class SampleDataUtil {
                     new Title("Sample Journal 1"),
                     new Date(LocalDateTime.of(2020, 10, 10, 10, 10)),
                     new Description("Sample Journal 1"),
-                    new UniquePersonList()
+                    new UniquePersonList(),
+                    getTagSet("10")
             ),
             new Entry(
                     new Title("Sample Journal 2"),
                     new Date(LocalDateTime.of(1990, 1, 1, 0, 0)),
                     new Description("Sample Journal 2"),
-                    new UniquePersonList()
+                    new UniquePersonList(),
+                    getTagSet("11")
             ),
             new Entry(
                     new Title("A Big Event"),
                     new Date(LocalDateTime.of(2000, 1, 1, 0, 0)),
                     new Description("A Big Event"),
-                    new UniquePersonList()
+                    new UniquePersonList(),
+                    getTagSet("event")
             ),
             new Entry(
                     new Title("Meeting"),
                     new Date(LocalDateTime.of(2500, 12, 31, 23, 59)),
                     new Description("I need to meet someone."),
-                    new UniquePersonList()
+                    new UniquePersonList(),
+                    getTagSet("meeting")
             )
         };
     }
