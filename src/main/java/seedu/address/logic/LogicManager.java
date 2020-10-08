@@ -2,6 +2,7 @@ package seedu.address.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.UUID;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -38,6 +39,16 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         addressBookParser = new AddressBookParser();
+    }
+
+    /**
+     * Constructs a {@code LogicManager} with the given {@code Model},
+     * {@code Storage} and {@code UUID}.
+     */
+    public LogicManager(Model model, Storage storage, UUID uuid) {
+        this.model = model;
+        this.storage = storage;
+        addressBookParser = new AddressBookParser(uuid);
     }
 
     @Override

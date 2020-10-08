@@ -1,16 +1,25 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.journal.Date;
 import seedu.address.model.journal.Description;
 import seedu.address.model.journal.Entry;
 import seedu.address.model.journal.Title;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Entry}
@@ -23,9 +32,12 @@ public class JsonAdaptedEntry {
     private final String title;
     private final String date;
     private final String description;
+    private final List<String> contactList;
+    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     // TODO: Add representation of UniquePersonList.
-    // TODO: Add tags to Entry?
+    // TODO: Add tags to tagList
+
     /**
      * Constructs a {@code JsonAdaptedEntry} with the given entry details.
      */
@@ -33,11 +45,17 @@ public class JsonAdaptedEntry {
     public JsonAdaptedEntry(
             @JsonProperty("title") String title,
             @JsonProperty("date") String date,
-            @JsonProperty("description") String description
+            @JsonProperty("description") String description,
+            @JsonProperty("contactList") List<String> contactList,
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged
     ) {
         this.title = title;
         this.date = date;
         this.description = description;
+        this.contactList = contactList;
+        if (tagged != null) {
+            this.tagged.addAll(tagged);
+        }
     }
 
     /**
@@ -47,16 +65,30 @@ public class JsonAdaptedEntry {
         title = source.getTitle().title;
         date = source.getDate().value;
         description = source.getDescription().description;
+        contactList = new ArrayList<>();
+        tagged.addAll(source.getTags().stream()
+                .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
+
+        for (Person person : source.getContactList()) {
+            contactList.add(person.getUuid().toString());
+        }
     }
 
     /**
      * Converts this Jackson-friendly adapted entry object into the model's
      * {@code Entry} object.
      *
+     * @param addressBook to create contact lists.
      * @throws IllegalValueException if there were any data constraints violated
      * in the adapted person.
      */
-    public Entry toModelType() throws IllegalValueException {
+    public Entry toModelType(ReadOnlyAddressBook addressBook)
+            throws IllegalValueException {
+        final List<Tag> personTags = new ArrayList<>();
+        for (JsonAdaptedTag tag : tagged) {
+            personTags.add(tag.toModelType());
+        }
 
         if (title == null) {
             throw new IllegalValueException(
@@ -85,12 +117,23 @@ public class JsonAdaptedEntry {
                 Objects.requireNonNullElse(description, ""));
 
         UniquePersonList modelPersonList = new UniquePersonList();
+        addressBook.getPersonList()
+                .parallelStream()
+                .filter(
+                        person -> contactList.parallelStream()
+                                .map(UUID::fromString)
+                                .anyMatch(uuid -> person.getUuid().equals(uuid))
+                )
+                .forEach(modelPersonList::add);
+
+        final Set<Tag> modelTags = new HashSet<>(personTags);
+
         return new Entry(
                 modelTitle,
                 modelDate,
                 modelDescription,
-                modelPersonList
+                modelPersonList,
+                modelTags
         );
     }
-
 }

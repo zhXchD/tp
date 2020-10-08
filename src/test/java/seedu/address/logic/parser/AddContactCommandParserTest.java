@@ -29,6 +29,8 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import static seedu.address.testutil.TypicalPersons.AMY;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
+import java.util.UUID;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -52,8 +54,12 @@ public class AddContactCommandParserTest {
         @DisplayName("should add person successfully if all required fields "
                 + "are present")
         public void parse_allFieldsPresent_success() {
-            Person expectedPerson =
-                    new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+            UUID uuid = UUID.randomUUID();
+            AddContactCommandParser parser =
+                    new AddContactCommandParser(uuid);
+            Person expectedPerson = new PersonBuilder(BOB)
+                    .withTags(VALID_TAG_FRIEND)
+                    .build(uuid);
 
             // whitespace only preamble
             assertParseSuccess(
@@ -101,11 +107,12 @@ public class AddContactCommandParserTest {
             );
 
             // multiple tags - all accepted
-            Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(
-                    VALID_TAG_FRIEND,
-                    VALID_TAG_HUSBAND
-            )
-                    .build();
+            Person expectedPersonMultipleTags = new PersonBuilder(BOB)
+                    .withTags(
+                            VALID_TAG_FRIEND,
+                            VALID_TAG_HUSBAND
+                    )
+                    .build(uuid);
             assertParseSuccess(
                     parser,
                     NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
@@ -119,10 +126,18 @@ public class AddContactCommandParserTest {
         @DisplayName("should add person successfully even if optional fields "
                 + "are missing")
         public void parse_optionalFieldsMissing_success() {
+            UUID uuid = UUID.randomUUID();
+            AddContactCommandParser parser =
+                    new AddContactCommandParser(uuid);
             // zero tags
-            Person expectedPerson = new PersonBuilder(AMY).withTags().build();
-            assertParseSuccess(parser,
-                    NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+            Person expectedPerson = new PersonBuilder(AMY)
+                    .withTags()
+                    .build(uuid);
+            assertParseSuccess(
+                    parser,
+                    NAME_DESC_AMY
+                            + PHONE_DESC_AMY
+                            + EMAIL_DESC_AMY
                             + ADDRESS_DESC_AMY,
                     new AddContactCommand(expectedPerson)
             );
