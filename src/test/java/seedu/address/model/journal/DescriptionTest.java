@@ -1,5 +1,6 @@
 package seedu.address.model.journal;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -13,10 +14,21 @@ public class DescriptionTest {
     @Nested
     @DisplayName("constructor")
     public class Constructor {
+
+        private Description sampleDescription = new Description("Team meeting");
+
         @Test
         @DisplayName("Should throw nullpointerexception for null input")
         public void constructor_null_thrownullpointerexception() {
             assertThrows(NullPointerException.class, () -> new Description(null));
+        }
+
+        @Test
+        @DisplayName("Should create an instance of description")
+        public void constructor_success_createDescription() {
+            Description description = new Description("Team meeting");
+            assertEquals("Team meeting", description.toString());
+            assertEquals(sampleDescription, description);
         }
     }
 

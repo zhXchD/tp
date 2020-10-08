@@ -1,5 +1,6 @@
 package seedu.address.model.journal;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -40,6 +41,29 @@ public class EntryTest {
         public void isSameEntry_null_false() {
             assertFalse(ENTRY_DEFAULT.isSameEntry(null));
         }
+    }
 
+    @Nested
+    @DisplayName("equals method")
+    class Equals {
+        @Test
+        @DisplayName("Should return true if the same instance of entry")
+        public void equals_sameInstance_true() {
+            assertTrue(ENTRY_DEFAULT.equals(ENTRY_DEFAULT));
+        }
+
+        @Test
+        @DisplayName("Should return true if the Entry content is the same")
+        public void equals_sameContent_true() {
+            Entry testEntry = new EntryBuilder().build();
+            assertTrue(testEntry.equals(ENTRY_DEFAULT));
+        }
+
+        @Test
+        @DisplayName("Should return false if the content is differnet")
+        public void equals_diffContent_false() {
+            Entry testEntry = new EntryBuilder().withDescription("Decide the product").build();
+            assertFalse(testEntry.equals(ENTRY_DEFAULT));
+        }
     }
 }

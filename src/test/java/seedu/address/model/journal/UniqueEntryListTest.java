@@ -8,6 +8,7 @@ import static seedu.address.testutil.TypicalEntries.ENTRY_DEFAULT;
 import static seedu.address.testutil.TypicalEntries.TEST_ENTRY_DIFFTITLE;
 import static seedu.address.testutil.TypicalEntries.TEST_ENTRY_DIFF_DECRIPTION;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -126,6 +127,21 @@ public class UniqueEntryListTest {
             expectedList.add(ENTRY_DEFAULT);
             expectedList.add(TEST_ENTRY_DIFFTITLE);
             assertEquals(expectedList, list);
+        }
+    }
+
+    @Nested
+    @DisplayName("iterator method")
+    class Iterator {
+        @Test
+        @DisplayName("Return a interator contains all element in the lsit")
+        void iterator_contains_allElementsInList() {
+            list.add(ENTRY_DEFAULT);
+            list.add(TEST_ENTRY_DIFF_DECRIPTION);
+            for (java.util.Iterator<Entry> it = list.iterator(); it.hasNext(); ) {
+                Entry e = it.next();
+                assertTrue(list.contains(e));
+            }
         }
     }
 }

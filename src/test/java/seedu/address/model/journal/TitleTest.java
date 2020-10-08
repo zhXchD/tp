@@ -1,5 +1,6 @@
 package seedu.address.model.journal;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -13,10 +14,20 @@ public class TitleTest {
     @Nested
     @DisplayName("constructor")
     public class Constructor {
+
+        public Title title = new Title("Title 1");
+
         @Test
         @DisplayName("Should throw nullpointerexception for null input")
         public void constructor_null_thrownullpointerexception() {
             assertThrows(NullPointerException.class, () -> new Title(null));
+        }
+
+        @Test
+        @DisplayName("Should create a title instance given a string")
+        public void constructor_success_createsInstance() {
+            assertEquals(title, new Title("Title 1"));
+            assertEquals("Title 1", new Title("Title 1").toString());
         }
     }
 
@@ -25,27 +36,27 @@ public class TitleTest {
     public class IsValidTitle {
         @Test
         @DisplayName("Should throw NullPointerException for null input")
-        public void isValidDescription_null_throwNullPointerException() {
+        public void isValidTitle_null_throwNullPointerException() {
             assertThrows(NullPointerException.class, () -> Title.isValidTitle(null));
         }
 
         @Test
         @DisplayName("Should return false for empty string")
-        public void isValidDescription_empty_false() {
+        public void isValidTitle_empty_false() {
             assertFalse(Title.isValidTitle(""));
             assertFalse(Title.isValidTitle(" "));
         }
 
         @Test
         @DisplayName("Should return false if the input do not start with letter")
-        public void isValidDescription_notLetter_false() {
+        public void isValidTitle_notLetter_false() {
             assertFalse(Title.isValidTitle("1team meeting"));
             assertFalse(Title.isValidTitle(".interview with google"));
         }
 
         @Test
         @DisplayName("Should return true if the input is valid")
-        public void isValidDescription_valid_true() {
+        public void isValidTitle_valid_true() {
             assertTrue(Title.isValidTitle("team meeting"));
             assertTrue(Title.isValidTitle("interview with google"));
         }
