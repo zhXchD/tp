@@ -20,7 +20,7 @@ public class DateTest {
 
     class Constructor {
 
-        public Date expectedDate = new Date(LocalDateTime.of(2020, 12, 20, 12, 0));
+        private final Date expectedDate = new Date(LocalDateTime.of(2020, 12, 20, 12, 0));
 
         @Test
         @DisplayName("Should throw NullPointerException for null input")

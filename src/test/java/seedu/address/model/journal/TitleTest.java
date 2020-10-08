@@ -15,7 +15,7 @@ public class TitleTest {
     @DisplayName("constructor")
     public class Constructor {
 
-        public Title title = new Title("Title 1");
+        private final Title title = new Title("Title 1");
 
         @Test
         @DisplayName("Should throw nullpointerexception for null input")
