@@ -8,6 +8,7 @@ import static seedu.address.testutil.TypicalEntries.ENTRY_DEFAULT;
 import static seedu.address.testutil.TypicalEntries.TEST_ENTRY_DIFFTITLE;
 import static seedu.address.testutil.TypicalEntries.TEST_ENTRY_DIFF_DECRIPTION;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -126,6 +127,53 @@ public class UniqueEntryListTest {
             expectedList.add(ENTRY_DEFAULT);
             expectedList.add(TEST_ENTRY_DIFFTITLE);
             assertEquals(expectedList, list);
+        }
+    }
+
+    @Nested
+    @DisplayName("iterator method")
+    class Iterator {
+        @Test
+        @DisplayName("Return a interator contains all element in the lsit")
+        void iterator_contains_allElementsInList() {
+            list.add(ENTRY_DEFAULT);
+            list.add(TEST_ENTRY_DIFF_DECRIPTION);
+            for (java.util.Iterator<Entry> it = list.iterator(); it.hasNext(); ) {
+                Entry e = it.next();
+                assertTrue(list.contains(e));
+            }
+        }
+    }
+
+    @Nested
+    @DisplayName("Equals method")
+    class Equals {
+
+        private final UniqueEntryList list = new UniqueEntryList();
+
+        @Test
+        @DisplayName("Should return true when the same object")
+        void equals_sameObject_true() {
+            assertTrue(list.equals(list));
+        }
+
+        @Test
+        @DisplayName("Should return true when the content is the same")
+        void equals_true_sameContent() {
+            list.add(ENTRY_DEFAULT);
+            list.add(TEST_ENTRY_DIFF_DECRIPTION);
+            UniqueEntryList testList = new UniqueEntryList();
+            testList.add(ENTRY_DEFAULT);
+            testList.add(TEST_ENTRY_DIFF_DECRIPTION);
+            assertTrue(testList.equals(list));
+        }
+
+        @Test
+        @DisplayName("SHould return false when the content is not the same")
+        void equals_diffContent_false() {
+            list.add(ENTRY_DEFAULT);
+            UniqueEntryList testList = new UniqueEntryList();
+            assertFalse(testList.equals(list));
         }
     }
 }
