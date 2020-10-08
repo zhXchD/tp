@@ -144,4 +144,36 @@ public class UniqueEntryListTest {
             }
         }
     }
+
+    @Nested
+    @DisplayName("Equals method")
+    class Equals {
+
+        private final UniqueEntryList list = new UniqueEntryList();
+
+        @Test
+        @DisplayName("Should return true when the same object")
+        void equals_sameObject_true() {
+            assertTrue(list.equals(list));
+        }
+
+        @Test
+        @DisplayName("Should return true when the content is the same")
+        void equals_true_sameContent() {
+            list.add(ENTRY_DEFAULT);
+            list.add(TEST_ENTRY_DIFF_DECRIPTION);
+            UniqueEntryList testList = new UniqueEntryList();
+            testList.add(ENTRY_DEFAULT);
+            testList.add(TEST_ENTRY_DIFF_DECRIPTION);
+            assertTrue(testList.equals(list));
+        }
+
+        @Test
+        @DisplayName("SHould return false when the content is not the same")
+        void equals_diffContent_false() {
+            list.add(ENTRY_DEFAULT);
+            UniqueEntryList testList = new UniqueEntryList();
+            assertFalse(testList.equals(list));
+        }
+    }
 }

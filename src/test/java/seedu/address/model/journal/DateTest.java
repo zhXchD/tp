@@ -81,4 +81,15 @@ public class DateTest {
             assertEquals("2020-12-29T10:15", date.toString());
         }
     }
+
+    @Nested
+    @DisplayName("equals method")
+    class Equals {
+        @Test
+        @DisplayName("Should return true for the same object")
+        public void equals_sameObj_true() {
+            Date testDate = new Date("2020-12-29 10:15");
+            assertTrue(testDate.equals(testDate));
+        }
+    }
 }

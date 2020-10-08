@@ -62,5 +62,15 @@ public class TitleTest {
         }
     }
 
+    @Nested
+    @DisplayName("equals method")
+    class Equals {
+        @Test
+        @DisplayName("Should return true for the same object")
+        public void equals_sameObj_true() {
+            Title testTitle = new Title("Title 1");
+            assertTrue(testTitle.equals(testTitle));
+        }
+    }
 }
 

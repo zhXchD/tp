@@ -63,5 +63,15 @@ public class DescriptionTest {
         }
     }
 
+    @Nested
+    @DisplayName("equals method")
+    class Equals {
+        @Test
+        @DisplayName("Should return true for the same object")
+        public void equals_sameObj_true() {
+            Description testDescription = new Description("interview with google");
+            assertTrue(testDescription.equals(testDescription));
+        }
+    }
 }
 
