@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
@@ -206,11 +207,35 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            if (commandResult.isSwitch()) {
+                handleSwapTabs();
+            } else if (commandResult.isAddressBookTab()) {
+                handleSwitchToAddressbookTab();
+            } else {
+                handleSwitchToJournalTab();
+            }
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    private void handleSwitchToAddressbookTab() {
+        SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
+        selectionModel.select(addressBookTab);
+    }
+
+    private void handleSwitchToJournalTab() {
+        SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
+        selectionModel.select(journalTab);
+    }
+
+    private void handleSwapTabs() {
+        SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
+        int selected = selectionModel.getSelectedIndex();
+        selectionModel.select(1 - selected);
     }
 }
