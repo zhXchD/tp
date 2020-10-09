@@ -32,9 +32,9 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
-public class AppParserTest {
+public class AddressBookParserTest {
 
-    private final AppParser parser = new AppParser();
+    private final AddressBookParser parser = new AddressBookParser();
 
     @Nested
     @DisplayName("parseCommand method")
@@ -44,7 +44,7 @@ public class AppParserTest {
                 + "person input")
         public void parseCommand_add() throws Exception {
             UUID uuid = UUID.randomUUID();
-            AppParser parser = new AppParser(uuid);
+            AddressBookParser parser = new AddressBookParser(uuid);
             Person person = new PersonBuilder().build(uuid);
             AddContactCommand command = (AddContactCommand) parser
                     .parseCommand(PersonUtil.getAddCommand(person));
