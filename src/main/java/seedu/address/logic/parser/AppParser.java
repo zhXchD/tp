@@ -16,13 +16,14 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListContactCommand;
+import seedu.address.logic.commands.ListJournalEntryCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class AppParser {
 
     /**
      * Used for initial separation of command word and args.
@@ -32,15 +33,15 @@ public class AddressBookParser {
     private UUID uuid;
 
     /**
-     * Creates a default instance of AddressBookParser.
+     * Creates a default instance of AppParser.
      */
-    public AddressBookParser() { }
+    public AppParser() { }
 
     /**
-     * Creates an instance of AddressBookParser with a given uuid.
+     * Creates an instance of AppParser with a given uuid.
      * @param uuid used in parsing.
      */
-    public AddressBookParser(UUID uuid) {
+    public AppParser(UUID uuid) {
         this.uuid = uuid;
     }
 
@@ -83,8 +84,11 @@ public class AddressBookParser {
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+        case ListContactCommand.COMMAND_WORD:
+            return new ListContactCommand();
+
+        case ListJournalEntryCommand.COMMAND_WORD:
+            return new ListJournalEntryCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
