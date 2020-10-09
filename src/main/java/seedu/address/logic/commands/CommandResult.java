@@ -17,6 +17,10 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    private  boolean isAddressbookTab = true;
+
+    private boolean isSwitchingTab = false;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
@@ -70,5 +74,28 @@ public class CommandResult {
     @Override
     public int hashCode() {
         return Objects.hash(feedbackToUser, showHelp, exit);
+    }
+
+    public boolean isAddressbookTab() {
+        return isAddressbookTab;
+    }
+
+    public CommandResult setAddressbookTab() {
+        this.isAddressbookTab = true;
+        return this;
+    }
+
+    public CommandResult setJournalTab() {
+        this.isAddressbookTab = false;
+        return this;
+    }
+
+    public CommandResult switchTab() {
+        this.isSwitchingTab = true;
+        return this;
+    }
+
+    public boolean isSwitchingTab() {
+        return isSwitchingTab;
     }
 }
