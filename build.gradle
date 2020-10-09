@@ -54,6 +54,8 @@ dependencies {
     String jUnitVersion = '5.4.2'
     String javaFxVersion = '11'
 
+    compile 'com.jfoenix:jfoenix:9.0.10'
+
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'win'
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'mac'
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'linux'

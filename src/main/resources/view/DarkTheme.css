@@ -29,6 +29,16 @@
     -fx-font-family: "Segoe UI Semibold";
 }
 
+.tab {
+    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-pref-height: 50;
+    -fx-pref-width: 150;
+}
+
+.tab-header-background {
+    -fx-background-color: derive(#1d1d1d, 20%);
+}
+
 .tab-pane {
     -fx-padding: 0 0 0 1;
 }
@@ -197,7 +207,7 @@
 }
 
 .menu-bar .label {
-    -fx-font-size: 14pt;
+    -fx-font-size: 12pt;
     -fx-font-family: "Segoe UI Light";
     -fx-text-fill: white;
     -fx-opacity: 0.9;

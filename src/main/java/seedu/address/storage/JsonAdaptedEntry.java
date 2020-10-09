@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -32,7 +33,7 @@ public class JsonAdaptedEntry {
     private final String date;
     private final String description;
     private final List<String> contactList;
-    private final Set<Tag> tagList = new HashSet<>();
+    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     // TODO: Add representation of UniquePersonList.
     // TODO: Add tags to tagList
@@ -45,12 +46,16 @@ public class JsonAdaptedEntry {
             @JsonProperty("title") String title,
             @JsonProperty("date") String date,
             @JsonProperty("description") String description,
-            @JsonProperty("contactList") List<String> contactList
+            @JsonProperty("contactList") List<String> contactList,
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged
     ) {
         this.title = title;
         this.date = date;
         this.description = description;
         this.contactList = contactList;
+        if (tagged != null) {
+            this.tagged.addAll(tagged);
+        }
     }
 
     /**
@@ -61,6 +66,9 @@ public class JsonAdaptedEntry {
         date = source.getDate().value;
         description = source.getDescription().description;
         contactList = new ArrayList<>();
+        tagged.addAll(source.getTags().stream()
+                .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
 
         for (Person person : source.getContactList()) {
             contactList.add(person.getUuid().toString());
@@ -77,6 +85,10 @@ public class JsonAdaptedEntry {
      */
     public Entry toModelType(ReadOnlyAddressBook addressBook)
             throws IllegalValueException {
+        final List<Tag> personTags = new ArrayList<>();
+        for (JsonAdaptedTag tag : tagged) {
+            personTags.add(tag.toModelType());
+        }
 
         if (title == null) {
             throw new IllegalValueException(
@@ -114,12 +126,14 @@ public class JsonAdaptedEntry {
                 )
                 .forEach(modelPersonList::add);
 
+        final Set<Tag> modelTags = new HashSet<>(personTags);
+
         return new Entry(
                 modelTitle,
                 modelDate,
                 modelDescription,
                 modelPersonList,
-                tagList
+                modelTags
         );
     }
 }
