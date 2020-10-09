@@ -90,12 +90,12 @@ public class CommandResult {
         return this;
     }
 
-    public CommandResult switchTab() {
+    public CommandResult setSwitch() {
         this.isSwitchingTab = true;
         return this;
     }
 
-    public boolean isSwitchingTab() {
+    public boolean isSwitch() {
         return isSwitchingTab;
     }
 }

@@ -203,7 +203,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            if (commandResult.isSwitchingTab()) {
+            if (commandResult.isSwitch()) {
                 handleSwapTabs();
             } else if (commandResult.isAddressbookTab()) {
                 handleSwitchToAddressbookTab();
