@@ -1,8 +1,8 @@
 package seedu.address.logic.commands;
 
-import seedu.address.model.Model;
-
 import static java.util.Objects.requireNonNull;
+
+import seedu.address.model.Model;
 
 public class SwitchCommand extends Command {
     public static final String COMMAND_WORD = "switch";

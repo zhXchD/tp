@@ -17,8 +17,7 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
-    private  boolean isAddressbookTab = true;
-
+    private boolean isAddressBookTab = true;
     private boolean isSwitchingTab = false;
 
     /**
@@ -76,17 +75,17 @@ public class CommandResult {
         return Objects.hash(feedbackToUser, showHelp, exit);
     }
 
-    public boolean isAddressbookTab() {
-        return isAddressbookTab;
+    public boolean isAddressBookTab() {
+        return isAddressBookTab;
     }
 
-    public CommandResult setAddressbookTab() {
-        this.isAddressbookTab = true;
+    public CommandResult setAddressBookTab() {
+        this.isAddressBookTab = true;
         return this;
     }
 
     public CommandResult setJournalTab() {
-        this.isAddressbookTab = false;
+        this.isAddressBookTab = false;
         return this;
     }
 

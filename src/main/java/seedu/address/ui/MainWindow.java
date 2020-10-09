@@ -205,7 +205,7 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isSwitch()) {
                 handleSwapTabs();
-            } else if (commandResult.isAddressbookTab()) {
+            } else if (commandResult.isAddressBookTab()) {
                 handleSwitchToAddressbookTab();
             } else {
                 handleSwitchToJournalTab();
