@@ -13,7 +13,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
-public class ClearCommandTest {
+public class ClearAddressBookCommandTest {
 
     @Nested
     @DisplayName("execute method")
@@ -25,9 +25,9 @@ public class ClearCommandTest {
             Model expectedModel = new ModelManager();
 
             assertCommandSuccess(
-                    new ClearCommand(),
+                    new ClearAddressBookCommand(),
                     model,
-                    ClearCommand.MESSAGE_SUCCESS,
+                    ClearAddressBookCommand.MESSAGE_SUCCESS,
                     expectedModel
             );
         }
@@ -48,9 +48,9 @@ public class ClearCommandTest {
             expectedModel.setAddressBook(new AddressBook());
 
             assertCommandSuccess(
-                    new ClearCommand(),
+                    new ClearAddressBookCommand(),
                     model,
-                    ClearCommand.MESSAGE_SUCCESS,
+                    ClearAddressBookCommand.MESSAGE_SUCCESS,
                     expectedModel
             );
         }
