@@ -126,4 +126,14 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    public static String parseScope(String scope) throws ParseException {
+        requireNonNull(scope);
+        String trimmedScope = scope.trim();
+        if (scope.equals("c") || scope.equals("j")) {
+            return scope;
+        } else {
+            throw new ParseException("Scope can only be \"c\" or \"j\".");
+        }
+    }
 }
