@@ -11,8 +11,8 @@ public abstract class ViewCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Views the person or entry by the "
             + "index number used in the displayed list."
-            + "\nParameters: in/SCOPE (must be \"c\" or  \"j\") INDEX (must be a positive integer)"
-            + "\nExample: " + COMMAND_WORD + " in/c" + " 1";
+            + "\nParameters: in/SCOPE (must be \"c\" or  \"j\") index/INDEX (must be a positive integer)"
+            + "\nExample: " + COMMAND_WORD + " in/c" + " index/1";
 
     protected final Index targetIndex;
 

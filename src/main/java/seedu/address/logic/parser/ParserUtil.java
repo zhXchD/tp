@@ -127,11 +127,17 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * Parses string into scope.
+     * @param scope a string specified a certain scope
+     * @return "c" if it's address book scope or "j" for journal scope
+     * @throws ParseException if the string is not "c" or "j" throws exception
+     */
     public static String parseScope(String scope) throws ParseException {
         requireNonNull(scope);
         String trimmedScope = scope.trim();
-        if (scope.equals("c") || scope.equals("j")) {
-            return scope;
+        if (trimmedScope.equals("c") || trimmedScope.equals("j")) {
+            return trimmedScope;
         } else {
             throw new ParseException("Scope can only be \"c\" or \"j\".");
         }
