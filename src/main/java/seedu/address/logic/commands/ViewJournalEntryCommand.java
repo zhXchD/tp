@@ -32,7 +32,8 @@ public class ViewJournalEntryCommand extends ViewCommand {
         Entry entryToView = lastShownList.get(targetIndex.getZeroBased());
         model.updateFilteredEntryList(entry -> entry.isSameEntry(entryToView));
 
-        return new CommandResult(String.format(MESSAGE_VIEW_SUCCESS, "entry", entryToView.toString()));
+        return new CommandResult(String.format(MESSAGE_VIEW_SUCCESS, "entry", entryToView.toString()))
+                .setJournalTab();
     }
 
     @Override
