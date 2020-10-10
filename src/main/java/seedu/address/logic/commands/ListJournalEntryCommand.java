@@ -19,6 +19,6 @@ public class ListJournalEntryCommand extends Command {
         requireNonNull(model);
         // TODO: model.updateFilteredEntryList(PREDICATE_SHOW_ALL_ENTRIES);
         // model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS).setJournalTab();
     }
 }
