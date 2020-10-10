@@ -37,6 +37,7 @@ public class ViewJournalEntryCommand extends ViewCommand {
 
     @Override
     public boolean equals(Object other) {
-        return false;
+        return other == this || (other instanceof ViewJournalEntryCommand
+                && ((ViewJournalEntryCommand) other).targetIndex.equals(targetIndex));
     }
 }

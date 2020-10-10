@@ -37,6 +37,7 @@ public class ViewPersonCommand extends ViewCommand {
 
     @Override
     public boolean equals(Object other) {
-        return false;
+        return other == this || (other instanceof ViewPersonCommand
+                && ((ViewPersonCommand) other).targetIndex.equals(targetIndex));
     }
 }
