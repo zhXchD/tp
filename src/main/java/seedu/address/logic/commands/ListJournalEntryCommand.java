@@ -17,8 +17,7 @@ public class ListJournalEntryCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        // TODO: model.updateFilteredEntryList(PREDICATE_SHOW_ALL_ENTRIES);
-        // model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredEntryList(entry -> true);
         return new CommandResult(MESSAGE_SUCCESS).setJournalTab();
     }
 }
