@@ -307,7 +307,7 @@ public class EditCommandTest {
         @Test
         @DisplayName("should return false if different types")
         public void equals_differentTypes_false() {
-            assertFalse(standardCommand.equals(new ClearCommand()));
+            assertFalse(standardCommand.equals(new ClearAddressBookCommand()));
         }
 
         @Test

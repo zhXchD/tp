@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddContactCommand;
-import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.ClearAddressBookCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
@@ -52,14 +52,14 @@ public class AddressBookParserTest {
         }
 
         @Test
-        @DisplayName("should generate ClearCommand object from appropriate "
+        @DisplayName("should generate ClearAddressBookCommand object from appropriate "
                 + "clear input")
         public void parseCommand_clear() throws Exception {
-            assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD)
-                    instanceof ClearCommand);
+            assertTrue(parser.parseCommand(ClearAddressBookCommand.COMMAND_WORD)
+                    instanceof ClearAddressBookCommand);
             assertTrue(parser.parseCommand(
-                    ClearCommand.COMMAND_WORD + " 3")
-                    instanceof ClearCommand);
+                    ClearAddressBookCommand.COMMAND_WORD + " 3")
+                    instanceof ClearAddressBookCommand);
         }
 
         @Test
