@@ -17,9 +17,9 @@ import seedu.address.model.UserPrefs;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * ListCommand.
+ * ListContactCommand.
  */
-public class ListCommandTest {
+public class ListContactCommandTest {
 
     private Model model;
     private Model expectedModel;
@@ -37,9 +37,9 @@ public class ListCommandTest {
         @DisplayName("should show same list if list is not filtered")
         public void execute_listIsNotFiltered_showsSameList() {
             assertCommandSuccess(
-                    new ListCommand(),
+                    new ListContactCommand(),
                     model,
-                    ListCommand.MESSAGE_SUCCESS,
+                    ListContactCommand.MESSAGE_SUCCESS,
                     expectedModel
             );
         }
@@ -49,9 +49,9 @@ public class ListCommandTest {
         public void execute_listIsFiltered_showsEverything() {
             showPersonAtIndex(model, INDEX_FIRST_PERSON);
             assertCommandSuccess(
-                    new ListCommand(),
+                    new ListContactCommand(),
                     model,
-                    ListCommand.MESSAGE_SUCCESS,
+                    ListContactCommand.MESSAGE_SUCCESS,
                     expectedModel
             );
         }
