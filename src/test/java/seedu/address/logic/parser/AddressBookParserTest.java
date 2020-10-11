@@ -16,15 +16,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddContactCommand;
-import seedu.address.logic.commands.ClearAddressBookCommand;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.*;
+import seedu.address.logic.commands.DeleteContactCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListContactCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -63,13 +57,13 @@ public class AddressBookParserTest {
         }
 
         @Test
-        @DisplayName("should generate DeleteCommand object from appropriate "
+        @DisplayName("should generate DeleteContactCommand object from appropriate "
                 + "delete person input")
         public void parseCommand_delete() throws Exception {
-            DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                    DeleteCommand.COMMAND_WORD + " "
+            DeleteContactCommand command = (DeleteContactCommand) parser.parseCommand(
+                    DeleteContactCommand.COMMAND_WORD + " "
                             + INDEX_FIRST_PERSON.getOneBased());
-            assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+            assertEquals(new DeleteContactCommand(INDEX_FIRST_PERSON), command);
         }
 
         @Test

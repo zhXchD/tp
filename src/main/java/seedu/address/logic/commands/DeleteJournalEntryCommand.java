@@ -42,9 +42,9 @@ public class DeleteJournalEntryCommand extends Command {
         }
 
         Entry entryToDelete = lastShownList.get(targetIndex.getZeroBased());
-        // TODO: model.deleteEntry(entryToDelete);
+        model.deleteEntry(entryToDelete);
         return new CommandResult(
-                String.format(MESSAGE_DELETE_ENTRY_SUCCESS, entryToDelete));
+                String.format(MESSAGE_DELETE_ENTRY_SUCCESS, entryToDelete)).setJournalTab();
     }
 
     @Override

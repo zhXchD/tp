@@ -7,20 +7,7 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddContactCommand;
-import seedu.address.logic.commands.AddJournalEntryCommand;
-import seedu.address.logic.commands.ClearAddressBookCommand;
-import seedu.address.logic.commands.ClearJournalCommand;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListContactCommand;
-import seedu.address.logic.commands.ListJournalEntryCommand;
-import seedu.address.logic.commands.SwitchCommand;
-import seedu.address.logic.commands.ViewCommand;
+import seedu.address.logic.commands.*;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -78,8 +65,11 @@ public class AddressBookParser {
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+        case DeleteContactCommand.COMMAND_WORD:
+            return new DeleteContactCommandParser().parse(arguments);
+
+        case DeleteJournalEntryCommand.COMMAND_WORD:
+            return new DeleteJournalEntryCommandParser().parse(arguments);
 
         case ClearAddressBookCommand.COMMAND_WORD:
             return new ClearAddressBookCommand();
