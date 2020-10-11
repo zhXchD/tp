@@ -156,7 +156,7 @@ public class LogicManagerTest {
         @DisplayName("should throw exception if index passed into command is "
                 + "invalid")
         public void execute_commandExecutionError_throwsCommandException() {
-            String deleteCommand = "delete 9";
+            String deleteCommand = "deletec 9";
             assertCommandException(
                     deleteCommand,
                     MESSAGE_INVALID_PERSON_DISPLAYED_INDEX
