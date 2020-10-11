@@ -207,11 +207,13 @@ that changes the data. There is no need to save manually.
 | :---                            | :---                                                                                   |
 | **Viewing help menu**           | `help [COMMAND]`                                                                       |
 | **Adding a contact**            | `addc n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [at/DATE_AND_TIME] [t/TAG]…​` |
-| **Adding a journal entry**      | `addj n/NAME [at/DATE_AND_TIME] [d/DESCRIPTION] [t/TAG]…​`                        |
+| **Adding a journal entry**      | `addj n/NAME [at/DATE_AND_TIME] [d/DESCRIPTION] [with/CONTACT_NAME] [t/TAG]…​`                        |
 | **Listing all contacts**        | `listc`                                                                                |
 | **Listing all journal entries** | `listj`                                                                                |
-| **Viewing a contact**           | `viewc INDEX`                                                                          |
-| **Viewing a journal entry**     | `viewj INDEX`                                                                          |
+| **Viewing a contact or journal entry**           | `view in/SCOPE INDEX`                                                                          |
 | **Removing a contact**          | `deletec INDEX`                                                                        |
 | **Removing a journal entry**    | `deletej INDEX`                                                                        |
+| **Clear the address book** | `clearc`|
+| **Clear the journal** | `clearj`|
+| **Switch the displaying tab** | `switch`|
 | **Exiting the program**         | `exit`                                                                                 |
