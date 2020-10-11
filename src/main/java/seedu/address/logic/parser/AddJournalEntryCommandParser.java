@@ -31,7 +31,13 @@ public class AddJournalEntryCommandParser implements Parser<AddJournalEntryComma
      */
     public AddJournalEntryCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DATE_AND_TIME, PREFIX_DESCRIPTION, PREFIX_TAG, PREFIX_CONTACT);
+                ArgumentTokenizer.tokenize(args,
+                        PREFIX_NAME,
+                        PREFIX_DATE_AND_TIME,
+                        PREFIX_DESCRIPTION,
+                        PREFIX_TAG,
+                        PREFIX_CONTACT
+                );
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DATE_AND_TIME, PREFIX_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {

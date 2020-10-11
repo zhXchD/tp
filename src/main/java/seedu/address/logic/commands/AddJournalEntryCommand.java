@@ -1,15 +1,19 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+
+import java.util.Optional;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.journal.Entry;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
-
-import java.util.Optional;
 
 /**
  * Adds a person to the address book.
@@ -56,13 +60,15 @@ public class AddJournalEntryCommand extends Command {
                     .filter(p -> p.getName().equals(person.getName()))
                     .findFirst();
             if (personInList.isEmpty()) {
-                throw new CommandException("Person named " +person.getName() + " does not exist in the address book!");
+                throw new CommandException("Person named " + person.getName() + " does not exist in the address book!");
             } else {
                 uniquePersonList.add(personInList.get());
             }
         }
 
-        Entry validToAdd = new Entry(toAdd.getTitle(), toAdd.getDate(), toAdd.getDescription(), uniquePersonList, toAdd.getTags());
+        Entry validToAdd = new Entry(
+                toAdd.getTitle(), toAdd.getDate(), toAdd.getDescription(), uniquePersonList, toAdd.getTags()
+        );
 
         if (model.hasEntry(validToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_ENTRY);
