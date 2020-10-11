@@ -46,7 +46,7 @@ public class AddJournalEntryCommandParser implements Parser<AddJournalEntryComma
         }
         Date date = new Date(dateString);
         Description description = new Description(argMultimap.getValue(PREFIX_DESCRIPTION).get());
-        UniquePersonList personList = new UniquePersonList();
+        UniquePersonList personList = ParserUtil.parseContacts(argMultimap.getAllValues(PREFIX_CONTACT));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Entry entry = new Entry(title, date, description, personList, tagList);

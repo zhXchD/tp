@@ -5,14 +5,12 @@ import static java.util.Objects.requireNonNull;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -125,6 +123,21 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code Collection<String> names} into a {@code UniquePersonList}.
+     */
+    public static UniquePersonList parseContacts(Collection<String> contacts) throws ParseException {
+        requireNonNull(contacts);
+        final UniquePersonList personList = new UniquePersonList();
+        for (String name : contacts) {
+            // The only field that matters is the name of the person, all other fields are filled with placeholders.
+            // TODO: once the constructor of Person is updated to be able to take in just the name, I will remove this line.
+            Person person = new Person(parseName(name), new Phone("000"), new Email("a@test.com"), new Address("address"), new HashSet<>(), UUID.randomUUID());
+            personList.add(person);
+        }
+        return personList;
     }
 
     /**
