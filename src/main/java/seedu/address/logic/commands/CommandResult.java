@@ -18,6 +18,7 @@ public class CommandResult {
     private final boolean exit;
 
     private boolean isAddressBookTab = true;
+    private boolean isSameTab = false;
     private boolean isSwitchingTab = false;
 
     /**
@@ -94,7 +95,16 @@ public class CommandResult {
         return this;
     }
 
+    public CommandResult setSameTab() {
+        this.isSameTab = true;
+        return this;
+    }
+
     public boolean isSwitch() {
         return isSwitchingTab;
+    }
+
+    public boolean isSameTab() {
+        return isSameTab;
     }
 }
