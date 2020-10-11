@@ -166,6 +166,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateFilteredEntryList(Predicate<Entry> predicate) {
+        requireNonNull(predicate);
+        filteredEntries.setPredicate(predicate);
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
