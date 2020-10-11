@@ -102,8 +102,12 @@ public interface Model {
      */
     void addEntry(Entry entry);
 
+    /**
+     * Delete given entry.
+     * @param entry Target entry to delete.
+     */
     void deleteEntry(Entry entry);
-    
+
     /**
      * Returns an unmodifiable view of the filtered person list
      */
