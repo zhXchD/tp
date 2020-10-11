@@ -9,14 +9,18 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddContactCommand;
 import seedu.address.logic.commands.AddJournalEntryCommand;
-import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.ClearAddressBookCommand;
+import seedu.address.logic.commands.ClearJournalCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListContactCommand;
+import seedu.address.logic.commands.ListJournalEntryCommand;
+import seedu.address.logic.commands.SwitchCommand;
+import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -77,20 +81,32 @@ public class AddressBookParser {
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+        case ClearAddressBookCommand.COMMAND_WORD:
+            return new ClearAddressBookCommand();
+
+        case ClearJournalCommand.COMMAND_WORD:
+            return new ClearJournalCommand();
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+        case ListContactCommand.COMMAND_WORD:
+            return new ListContactCommand();
+
+        case ListJournalEntryCommand.COMMAND_WORD:
+            return new ListJournalEntryCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case ViewCommand.COMMAND_WORD:
+            return new ViewCommandParser().parse(arguments);
+
+        case SwitchCommand.COMMAND_WORD:
+            return new SwitchCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

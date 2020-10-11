@@ -17,14 +17,14 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddContactCommand;
-import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.ClearAddressBookCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListContactCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -52,14 +52,14 @@ public class AddressBookParserTest {
         }
 
         @Test
-        @DisplayName("should generate ClearCommand object from appropriate "
+        @DisplayName("should generate ClearAddressBookCommand object from appropriate "
                 + "clear input")
         public void parseCommand_clear() throws Exception {
-            assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD)
-                    instanceof ClearCommand);
+            assertTrue(parser.parseCommand(ClearAddressBookCommand.COMMAND_WORD)
+                    instanceof ClearAddressBookCommand);
             assertTrue(parser.parseCommand(
-                    ClearCommand.COMMAND_WORD + " 3")
-                    instanceof ClearCommand);
+                    ClearAddressBookCommand.COMMAND_WORD + " 3")
+                    instanceof ClearAddressBookCommand);
         }
 
         @Test
@@ -125,14 +125,14 @@ public class AddressBookParserTest {
         }
 
         @Test
-        @DisplayName("should generate ListCommand object from appropriate "
+        @DisplayName("should generate ListContactCommand object from appropriate "
                 + "list input")
         public void parseCommand_list() throws Exception {
-            assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD)
-                    instanceof ListCommand);
+            assertTrue(parser.parseCommand(ListContactCommand.COMMAND_WORD)
+                    instanceof ListContactCommand);
             assertTrue(parser.parseCommand(
-                    ListCommand.COMMAND_WORD + " 3")
-                    instanceof ListCommand);
+                    ListContactCommand.COMMAND_WORD + " 3")
+                    instanceof ListContactCommand);
         }
 
         @Test

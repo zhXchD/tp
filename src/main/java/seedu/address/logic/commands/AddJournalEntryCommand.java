@@ -48,7 +48,7 @@ public class AddJournalEntryCommand extends Command {
         }
 
         model.addEntry(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd)).setJournalTab();
     }
 
     @Override
