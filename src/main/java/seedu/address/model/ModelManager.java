@@ -139,6 +139,12 @@ public class ModelManager implements Model {
         journal.addEntry(entry);
     }
 
+    @Override
+    public void deleteEntry(Entry entry) {
+        requireNonNull(entry);
+        journal.removeEntry(entry);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

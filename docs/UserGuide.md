@@ -34,10 +34,10 @@ as location information faster than traditional GUI apps.
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block
+   * **`addc`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block
      123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
-   * **`delete`**`3` : deletes the 3rd contact shown in the current list.
+   * **`deletec`**`3` : deletes the 3rd contact shown in the current list.
 
    * **`exit`** : Exits the app.
 
@@ -71,7 +71,8 @@ as location information faster than traditional GUI apps.
 
 ### Viewing help menu: `help`
 
-Gives the explanation and format of commands in the system.
+Gives the explanation and format of commands in the system and does not change
+the current displaying tab.
 
 Format: `help [COMMAND]`
 * The `COMMAND` argument supplied will indicate which command explanation to
@@ -80,7 +81,7 @@ show.
 
 ### Adding a contact: `addc`
 
-Adds a contact to the address book or journal entry to the journal.
+Adds a contact to the address book and switches to the address book tab.
 
 format: `addc n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [at/DATE_AND_TIME]
          [t/TAG]…​`
@@ -96,12 +97,14 @@ Examples:
 
 ### Adding a journal entry: `addj`
 
-Adds a journal entry to the journal.
+Adds a journal entry to the journal and switches to the journal tab.
 
-format: `addj n/NAME [at/DATE_AND_TIME] [d/DESCRIPTION] [t/TAG]…​`
+format: `addj n/NAME [at/DATE_AND_TIME] [d/DESCRIPTION] [with/CONTACT_NAMES] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A journal entry can have any number of tags (including 0)
+A journal entry can have any number of contacts or tags (including 0)
+
+`CONTACT_NAME` must be an existing name in the address book.
 </div>
 
 Examples:
@@ -113,39 +116,32 @@ and content `Tea`.
 
 ### Listing all contacts: `listc`
 
-Lists all the contacts in the address book.
+Lists all the contacts in the address book and switches to the address book tab.
 
 Format: `listc`
 
 ### Listing all journal entries: `listj`
 
-Lists all journal entries in the journal.
+Lists all journal entries in the journal and switches to the journal tab.
 
 Format: `listj`
 
-### Viewing a contact: `viewc`
-Opens up a contact entry to show further details.
+### Viewing a contact or journal entry: `view`
+Opens up a contact or journal entry to show further details and switches to the corresponding tab.
 
-Format `viewc INDEX`
+Format `view in/SCOPE index/INDEX`
 * `INDEX` refers to the index number of the contact shown in the list.
+* `SCOPE` must be `c` (refers to contact) or `j` (refers to journal entry).
 
 Examples:
-* `viewc 4` Views the 4th contact in the address book.
-* `viewc 8` Views the 8th contact in the address book.
-
-### Viewing a journal entry: `viewc`
-Opens up a journal entry to show further details.
-
-Format `viewj INDEX`
-* `INDEX` refers to the index number of the journal shown in the list.
-
-Examples:
-* `viewj 4` Views the 4th journal entry in the journal.
-* `viewj 8` Views the 8th journal entry in the journal.
+* `view in/c index/4` Views the 4th contact in the address book.
+* `view in/c index/8` Views the 8th contact in the address book.
+* `view in/j index/4` Views the 4th journal entry in the journal.
+* `view in/j index/8` Views the 8th journal entry in the journal.
 
 ### Deleting a contact: `deletec`
 
-Deletes a contact from the address book.
+Deletes a contact from the address book and switches to the address book tab.
 
 Format `deletec INDEX`
 * `INDEX` refers to the index number of the contact in the list.
@@ -156,7 +152,7 @@ Examples:
 
 ### Deleting a journal entry: `deletej`
 
-Deletes a journal entry from the journal.
+Deletes a journal entry from the journal and switches to the journal tab.
 
 Format `deletej INDEX`
 * `INDEX` refers to the index number of the journal shown in the list.
@@ -164,6 +160,24 @@ Format `deletej INDEX`
 Examples:
 * `deletej 4` Deletes the 4th journal entry in the journal.
 * `deletej 8` Deletes the 8th journal entry in the journal.
+
+### Deleting the address book: `clearc`
+
+Clears all contacts in the addressbook and switches to the address book tab.
+
+Format: `clearc`
+
+### Deleting the journal: `clearj`
+
+Clears all journal entries in the journal and switches to the journal tab.
+
+Format: `clearj`
+
+### Switch the displaying tab: `switch`
+
+Switches the current displaying tab to the other tab.
+
+Format: `switch`
 
 ### Exiting the program: `exit`
 
@@ -193,11 +207,13 @@ that changes the data. There is no need to save manually.
 | :---                            | :---                                                                                   |
 | **Viewing help menu**           | `help [COMMAND]`                                                                       |
 | **Adding a contact**            | `addc n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [at/DATE_AND_TIME] [t/TAG]…​` |
-| **Adding a journal entry**      | `addj n/NAME [at/DATE_AND_TIME] [d/DESCRIPTION] [t/TAG]…​`                        |
+| **Adding a journal entry**      | `addj n/NAME [at/DATE_AND_TIME] [d/DESCRIPTION] [with/CONTACT_NAME] [t/TAG]…​`                        |
 | **Listing all contacts**        | `listc`                                                                                |
 | **Listing all journal entries** | `listj`                                                                                |
-| **Viewing a contact**           | `viewc INDEX`                                                                          |
-| **Viewing a journal entry**     | `viewj INDEX`                                                                          |
+| **Viewing a contact or journal entry**           | `view in/SCOPE INDEX`                                                                          |
 | **Removing a contact**          | `deletec INDEX`                                                                        |
 | **Removing a journal entry**    | `deletej INDEX`                                                                        |
+| **Clear the address book** | `clearc`|
+| **Clear the journal** | `clearj`|
+| **Switch the displaying tab** | `switch`|
 | **Exiting the program**         | `exit`                                                                                 |
