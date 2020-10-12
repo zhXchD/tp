@@ -14,10 +14,8 @@ public class Phone {
             "Phone numbers should only contain numbers, and it should be at least 3 digits long";
     public static final String VALIDATION_REGEX = "\\d{3,}";
     public static final Phone EMPTY_PHONE = new Phone(Phone.EMPTY_MESSAGE);
-
-    public final String value;
-
     private static final String EMPTY_MESSAGE = "No phone number found!";
+    public final String value;
 
     /**
      * Constructs a {@code Phone}.

@@ -1,7 +1,5 @@
 package seedu.address.model.journal;
 
-import static java.util.Objects.requireNonNull;
-
 public class Description {
 
     /*
@@ -9,8 +7,8 @@ public class Description {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[a-zA-z].*";
-    private static final String EMPTY_MESSAGE = "No description found!";
     public static final String MESSAGE_CONSTRAINTS = "This is not a valid description!";
+    private static final String EMPTY_MESSAGE = "No description found!";
 
     public final String description;
 

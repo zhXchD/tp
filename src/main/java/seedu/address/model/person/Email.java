@@ -27,10 +27,9 @@ public class Email {
     private static final String DOMAIN_LAST_CHARACTER_REGEX = "[^\\W_]$";
     public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@"
             + DOMAIN_FIRST_CHARACTER_REGEX + DOMAIN_MIDDLE_REGEX + DOMAIN_LAST_CHARACTER_REGEX;
+    public static final Email EMPTY_EMAIL = new Email(EMPTY_MESSAGE);
 
     public final String value;
-
-    public static final Email EMPTY_EMAIL = new Email(EMPTY_MESSAGE);
 
     /**
      * Constructs an {@code Email}.
