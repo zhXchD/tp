@@ -80,6 +80,17 @@ public class EntryBuilder {
         return this;
     }
 
+    /**
+     * Builds an entry with contactList.
+     *
+     * @param contactList contactList for this entry
+     * @return Entry with new contacts list.
+     */
+    public EntryBuilder withContacts(UniquePersonList contactList) {
+        this.contactList = contactList;
+        return this;
+    }
+
     public Entry build() {
         return new Entry(title, date, description, contactList, tagList);
     }
