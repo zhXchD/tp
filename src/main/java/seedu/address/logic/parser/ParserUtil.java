@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -12,7 +13,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -125,6 +128,22 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code Collection<String> names} into a {@code UniquePersonList}.
+     */
+    public static UniquePersonList parseContacts(Collection<String> contacts)
+            throws ParseException {
+        requireNonNull(contacts);
+        final UniquePersonList personList = new UniquePersonList();
+        for (String name : contacts) {
+            Person person = new Person(
+                    parseName(name), null, null, null, new HashSet<>(), UUID.randomUUID()
+            );
+            personList.add(person);
+        }
+        return personList;
     }
 
     /**

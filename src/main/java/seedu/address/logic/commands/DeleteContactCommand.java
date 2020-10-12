@@ -3,11 +3,13 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.journal.Entry;
 import seedu.address.model.person.Person;
 
 /**
@@ -23,7 +25,7 @@ public class DeleteContactCommand extends Command {
             + "integer)\nExample: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS =
-            "Deleted Person: %1$s";
+            "Deleted Person: %1$s\nwith associate journals:%2$s";
 
     private final Index targetIndex;
 
@@ -42,9 +44,28 @@ public class DeleteContactCommand extends Command {
         }
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
+        List<Entry> entriesListToDelete = model
+                .getJournal()
+                .getEntryList()
+                .stream()
+                .filter(entry -> entry.getContactList().contains(personToDelete))
+                .collect(Collectors.toList());
+
+        String entriesToDelete = "";
+        for (Entry entry : entriesListToDelete) {
+            entriesToDelete = new StringBuilder()
+                    .append(entriesToDelete)
+                    .append(" ")
+                    .append(entry.getTitle()).toString();
+        }
+        if (entriesToDelete == "") {
+            entriesToDelete = " None";
+        }
+
         model.deletePerson(personToDelete);
+
         return new CommandResult(
-                String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete)).setAddressBookTab();
+                String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete, entriesToDelete)).setAddressBookTab();
     }
 
     @Override
