@@ -69,6 +69,16 @@ public class Entry {
                 && toCheck.contactList.equals(contactList);
     }
 
+    /**
+     * Returns true if the person is related to this entry.
+     *
+     * @param person Person needs to check.
+     * @return True if person is in {@code contactList}
+     */
+    public boolean isRelatedTo(Person person) {
+        return contactList.contains(person);
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj == this) {
