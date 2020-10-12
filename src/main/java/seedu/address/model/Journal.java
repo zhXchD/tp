@@ -2,11 +2,13 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.HashSet;
 import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.journal.Entry;
 import seedu.address.model.journal.UniqueEntryList;
+import seedu.address.model.person.Person;
 
 public class Journal implements ReadOnlyJournal {
 
@@ -43,6 +45,28 @@ public class Journal implements ReadOnlyJournal {
     public void removeEntry(Entry target) {
         requireNonNull(target);
         this.entryList.remove(target);
+    }
+
+    //TODO: Add dependency between Journal and Person in DG UML diagram
+
+    /**
+     * Removes entry that associate with certain person.
+     * @param person Target person to be removed from {@code AddressBook}.
+     */
+    public void removeAssociateEntry(Person person) {
+        requireNonNull(person);
+
+        HashSet<Entry> toDeleteEntry = new HashSet<>();
+
+        for (Entry entry: entryList) {
+            if (entry.isRelatedTo(person)) {
+                toDeleteEntry.add(entry);
+            }
+        }
+
+        for (Entry entry: toDeleteEntry) {
+            removeEntry(entry);
+        }
     }
 
     // util methods
