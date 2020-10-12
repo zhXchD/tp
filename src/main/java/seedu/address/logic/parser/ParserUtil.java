@@ -138,12 +138,8 @@ public class ParserUtil {
         requireNonNull(contacts);
         final UniquePersonList personList = new UniquePersonList();
         for (String name : contacts) {
-            // The only field that matters is the name of the person, all other fields are filled with placeholders.
-            // TODO: once the constructor of Person is updated to be able to take in just the name,
-            //  I will remove this line.
             Person person = new Person(
-                    parseName(name), new Phone("000"), new Email("a@test.com"),
-                    new Address("address"), new HashSet<>(), UUID.randomUUID()
+                    parseName(name), null, null, null, new HashSet<>(), UUID.randomUUID()
             );
             personList.add(person);
         }

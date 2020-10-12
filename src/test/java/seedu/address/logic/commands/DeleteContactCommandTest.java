@@ -48,11 +48,12 @@ public class DeleteContactCommandTest {
         public void execute_validIndexUnfilteredList_success() {
             Person personToDelete = model.getFilteredPersonList()
                     .get(INDEX_FIRST_PERSON.getZeroBased());
+
             DeleteContactCommand deleteContactCommand = new DeleteContactCommand(INDEX_FIRST_PERSON);
 
             String expectedMessage = String.format(
                     DeleteContactCommand.MESSAGE_DELETE_PERSON_SUCCESS,
-                    personToDelete
+                    personToDelete, " None"
             );
 
             ModelManager expectedModel =
@@ -97,7 +98,8 @@ public class DeleteContactCommandTest {
 
             String expectedMessage = String.format(
                     DeleteContactCommand.MESSAGE_DELETE_PERSON_SUCCESS,
-                    personToDelete
+                    personToDelete,
+                    " None"
             );
 
             Model expectedModel = new ModelManager(model.getAddressBook(),
