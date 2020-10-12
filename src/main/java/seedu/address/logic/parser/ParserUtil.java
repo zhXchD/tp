@@ -2,10 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -85,6 +82,19 @@ public class ParserUtil {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
         return new Address(trimmedAddress);
+    }
+
+    /**
+     * Parses a {@code Optional<String> address} into an {@code Address}.
+     *
+     * @throws ParseException if the given {@code address} is present but invalid.
+     */
+    public static Address parseAddress(Optional<String> address) throws ParseException {
+        if (address.isEmpty()) {
+            return Address.EMPTY_ADDRESS;
+        } else {
+            return parseAddress(address.get());
+        }
     }
 
     /**
