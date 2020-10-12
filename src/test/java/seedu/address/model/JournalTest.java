@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalEntries.ENTRY_DEFAULT;
 import static seedu.address.testutil.TypicalEntries.getTypicalEntry;
 import static seedu.address.testutil.TypicalEntries.getTypicalJournal;
+import static seedu.address.testutil.TypicalPersons.ALICE;
 
 import java.util.Collections;
 import java.util.List;
@@ -16,7 +17,9 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.journal.Entry;
+import seedu.address.model.person.UniquePersonList;
 import seedu.address.testutil.Assert;
+import seedu.address.testutil.EntryBuilder;
 
 
 public class JournalTest {
@@ -74,6 +77,28 @@ public class JournalTest {
         public void getEntryList_modifyList_throwsUnsupportedOperationException() {
             Assert.assertThrows(UnsupportedOperationException.class, () ->
                     journal.getEntryList().remove(0));
+        }
+    }
+
+    @Nested
+    @DisplayName("removeAssociateEntry method")
+    class RemoveAssociateEntry {
+        @Test
+        @DisplayName("should throw NullPointerException if pass in a null")
+        public void removeAssociateEntry_null_throwNullPointerException() {
+            assertThrows(NullPointerException.class, () -> journal.removeAssociateEntry(null));
+        }
+
+        @Test
+        @DisplayName("should remove the entry that associate with the person")
+        public void removeAssociateEntry_success_removeTheAssociateEntry() {
+            UniquePersonList contactList = new UniquePersonList();
+            contactList.add(ALICE);
+            Entry test = new EntryBuilder().withContacts(contactList).build();
+            journal.addEntry(test);
+            assertTrue(journal.hasEntry(test));
+            journal.removeAssociateEntry(ALICE);
+            assertFalse(journal.hasEntry(test));
         }
     }
 }

@@ -137,7 +137,7 @@ public class UniqueEntryListTest {
         @DisplayName("Return a interator contains all element in the lsit")
         void iterator_contains_allElementsInList() {
             list.add(ENTRY_DEFAULT);
-            list.add(TEST_ENTRY_DIFF_DECRIPTION);
+            list.add(TEST_ENTRY_DIFFTITLE);
             for (java.util.Iterator<Entry> it = list.iterator(); it.hasNext(); ) {
                 Entry e = it.next();
                 assertTrue(list.contains(e));
@@ -161,10 +161,10 @@ public class UniqueEntryListTest {
         @DisplayName("Should return true when the content is the same")
         void equals_true_sameContent() {
             list.add(ENTRY_DEFAULT);
-            list.add(TEST_ENTRY_DIFF_DECRIPTION);
+            list.add(TEST_ENTRY_DIFFTITLE);
             UniqueEntryList testList = new UniqueEntryList();
             testList.add(ENTRY_DEFAULT);
-            testList.add(TEST_ENTRY_DIFF_DECRIPTION);
+            testList.add(TEST_ENTRY_DIFFTITLE);
             assertTrue(testList.equals(list));
         }
 
