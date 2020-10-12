@@ -10,6 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Email {
 
     private static final String SPECIAL_CHARACTERS = "!#$%&'*+/=?`{|}~^.-";
+    private static final String EMPTY_MESSAGE = "No email found!";
     public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
             + "and adhere to the following constraints:\n"
             + "1. The local-part should only contain alphanumeric characters and these special characters, excluding "
@@ -29,6 +30,8 @@ public class Email {
 
     public final String value;
 
+    public static final Email EMPTY_EMAIL = new Email(EMPTY_MESSAGE);
+
     /**
      * Constructs an {@code Email}.
      *
@@ -44,7 +47,7 @@ public class Email {
      * Returns if a given string is a valid email.
      */
     public static boolean isValidEmail(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) || test.equals(EMPTY_MESSAGE);
     }
 
     @Override

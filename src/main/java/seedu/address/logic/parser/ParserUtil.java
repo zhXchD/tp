@@ -127,6 +127,19 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code Optional<String> email} into an {@code Email}.
+     *
+     * @throws ParseException if the given {@code email} is present but invalid.
+     */
+    public static Email parseEmail(Optional<String> email) throws ParseException {
+        if (email.isEmpty()) {
+            return Email.EMPTY_EMAIL;
+        } else {
+            return parseEmail(email.get());
+        }
+    }
+
+    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
