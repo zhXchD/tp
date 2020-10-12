@@ -63,10 +63,7 @@ public class Entry {
             return true;
         }
 
-        return toCheck != null && toCheck.title.equals(title)
-                && toCheck.date.equals(date)
-                && toCheck.description.equals(description)
-                && toCheck.contactList.equals(contactList);
+        return toCheck != null && toCheck.title.equals(title);
     }
 
     /**
