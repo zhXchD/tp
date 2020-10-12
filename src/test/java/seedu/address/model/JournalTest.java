@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.journal.Entry;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.testutil.Assert;
 import seedu.address.testutil.EntryBuilder;
@@ -31,13 +32,13 @@ public class JournalTest {
     class Constructor {
         @Test
         @DisplayName("Should create an empty entry list")
-        public void constructor_create_emptylist() {
+        public void constructor_create_emptyList() {
             assertEquals(Collections.emptyList(), new Journal().getEntryList());
         }
 
         @Test
         @DisplayName("Should create journal according to given entry")
-        public void constructor_create_givendata() {
+        public void constructor_create_givenData() {
             Journal journal = getTypicalJournal();
             List<Entry> entries = getTypicalEntry();
 
@@ -94,7 +95,13 @@ public class JournalTest {
         public void removeAssociateEntry_success_removeTheAssociateEntry() {
             UniquePersonList contactList = new UniquePersonList();
             contactList.add(ALICE);
-            Entry test = new EntryBuilder().withContacts(contactList).build();
+            Entry test = new EntryBuilder()
+                    .withContacts(
+                            contactList
+                                    .asUnmodifiableObservableList()
+                                    .toArray(new Person[0])
+                    )
+                    .build();
             journal.addEntry(test);
             assertTrue(journal.hasEntry(test));
             journal.removeAssociateEntry(ALICE);
