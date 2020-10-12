@@ -6,6 +6,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.journal.Date;
+import seedu.address.model.journal.Description;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -185,7 +186,17 @@ public class ParserUtil {
     }
 
     public static Date parseDate(String date) throws ParseException {
+        if (date != null && !Date.isValidDate(date)) {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+        }
         return new Date(date);
+    }
+
+    public static Description parseDescription(String description) throws ParseException {
+        if (description != null && !Description.isValidDescription(description)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
+        return new Description(description);
     }
 
     /**
