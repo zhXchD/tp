@@ -39,18 +39,14 @@ public class AddJournalEntryCommandParser implements Parser<AddJournalEntryComma
                         PREFIX_CONTACT
                 );
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DATE_AND_TIME, PREFIX_DESCRIPTION)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddJournalEntryCommand.MESSAGE_USAGE));
         }
 
         Title title = new Title(argMultimap.getValue(PREFIX_NAME).get());
-        String dateString = argMultimap.getValue(PREFIX_DATE_AND_TIME).get();
-        if (!Date.isValidDate(dateString)) {
-            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
-        }
-        Date date = new Date(dateString);
+        Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE_AND_TIME).orElse(null));
         Description description = new Description(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         UniquePersonList personList = ParserUtil.parseContacts(argMultimap.getAllValues(PREFIX_CONTACT));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
