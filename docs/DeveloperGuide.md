@@ -265,7 +265,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user        | delete a journal                       | remove an event that is not important from journal                     |
 | `* * *`  | user        | list all journal entries               |                                                                        |
 | `* * *`  | user        | list all contacts in the contacts list |                                                                        |
-| `* * *`  | user        | search journal entries                 |                                                                        |
+| `* * *`  | user        | search journal entries                 | navigate to the entry that I am interested                             |
 
 *{More to be added}*
 
