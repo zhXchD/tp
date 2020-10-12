@@ -70,6 +70,20 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code Optional<String> phone} into an {@code Phone}.
+     *
+     * @throws ParseException if the given {@code phone} is present but invalid.
+     */
+    public static Phone parsePhone(Optional<String> phone) throws ParseException {
+        if (phone.isEmpty()) {
+            return Phone.EMPTY_PHONE;
+        } else {
+            return parsePhone(phone.get());
+        }
+    }
+
+
+    /**
      * Parses a {@code String address} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
      *
