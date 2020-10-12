@@ -54,6 +54,8 @@ public class Journal implements ReadOnlyJournal {
      * @param person Target person to be removed from {@code AddressBook}.
      */
     public void removeAssociateEntry(Person person) {
+        requireNonNull(person);
+
         HashSet<Entry> toDeleteEntry = new HashSet<>();
 
         for (Entry entry: entryList) {
