@@ -23,9 +23,9 @@ import seedu.address.model.person.Person;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and
- * RedoCommand) and unit tests for {@code DeleteCommand}.
+ * RedoCommand) and unit tests for {@code DeleteContactCommand}.
  */
-public class DeleteCommandTest {
+public class DeleteContactCommandTest {
 
     private final Model model = new ModelManager(
             getTypicalAddressBook(), new Journal(), new UserPrefs());
@@ -48,11 +48,12 @@ public class DeleteCommandTest {
         public void execute_validIndexUnfilteredList_success() {
             Person personToDelete = model.getFilteredPersonList()
                     .get(INDEX_FIRST_PERSON.getZeroBased());
-            DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
+
+            DeleteContactCommand deleteContactCommand = new DeleteContactCommand(INDEX_FIRST_PERSON);
 
             String expectedMessage = String.format(
-                    DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
-                    personToDelete
+                    DeleteContactCommand.MESSAGE_DELETE_PERSON_SUCCESS,
+                    personToDelete, " None"
             );
 
             ModelManager expectedModel =
@@ -63,7 +64,7 @@ public class DeleteCommandTest {
             expectedModel.deletePerson(personToDelete);
 
             assertCommandSuccess(
-                    deleteCommand,
+                    deleteContactCommand,
                     model,
                     expectedMessage,
                     expectedModel
@@ -76,10 +77,10 @@ public class DeleteCommandTest {
         public void execute_invalidIndexUnfilteredList_throwsCommandException() {
             Index outOfBoundIndex = Index.fromOneBased(
                     model.getFilteredPersonList().size() + 1);
-            DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+            DeleteContactCommand deleteContactCommand = new DeleteContactCommand(outOfBoundIndex);
 
             assertCommandFailure(
-                    deleteCommand,
+                    deleteContactCommand,
                     model,
                     Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX
             );
@@ -93,11 +94,12 @@ public class DeleteCommandTest {
 
             Person personToDelete = model.getFilteredPersonList()
                     .get(INDEX_FIRST_PERSON.getZeroBased());
-            DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
+            DeleteContactCommand deleteContactCommand = new DeleteContactCommand(INDEX_FIRST_PERSON);
 
             String expectedMessage = String.format(
-                    DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
-                    personToDelete
+                    DeleteContactCommand.MESSAGE_DELETE_PERSON_SUCCESS,
+                    personToDelete,
+                    " None"
             );
 
             Model expectedModel = new ModelManager(model.getAddressBook(),
@@ -108,7 +110,7 @@ public class DeleteCommandTest {
             showNoPerson(expectedModel);
 
             assertCommandSuccess(
-                    deleteCommand,
+                    deleteContactCommand,
                     model,
                     expectedMessage,
                     expectedModel
@@ -129,10 +131,10 @@ public class DeleteCommandTest {
                             .size()
             );
 
-            DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+            DeleteContactCommand deleteContactCommand = new DeleteContactCommand(outOfBoundIndex);
 
             assertCommandFailure(
-                    deleteCommand,
+                    deleteContactCommand,
                     model,
                     Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX
             );
@@ -142,10 +144,10 @@ public class DeleteCommandTest {
     @Nested
     @DisplayName("equals method")
     class Equals {
-        private final DeleteCommand deleteFirstCommand =
-                new DeleteCommand(INDEX_FIRST_PERSON);
-        private final DeleteCommand deleteSecondCommand =
-                new DeleteCommand(INDEX_SECOND_PERSON);
+        private final DeleteContactCommand deleteFirstCommand =
+                new DeleteContactCommand(INDEX_FIRST_PERSON);
+        private final DeleteContactCommand deleteSecondCommand =
+                new DeleteContactCommand(INDEX_SECOND_PERSON);
 
         @Test
         @DisplayName("should return true if same object")
@@ -156,8 +158,8 @@ public class DeleteCommandTest {
         @Test
         @DisplayName("should return true if same values")
         public void equals_sameValues_true() {
-            DeleteCommand deleteFirstCommandCopy =
-                    new DeleteCommand(INDEX_FIRST_PERSON);
+            DeleteContactCommand deleteFirstCommandCopy =
+                    new DeleteContactCommand(INDEX_FIRST_PERSON);
             assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
         }
 

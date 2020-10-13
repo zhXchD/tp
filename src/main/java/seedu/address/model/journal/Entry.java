@@ -63,10 +63,17 @@ public class Entry {
             return true;
         }
 
-        return toCheck != null && toCheck.title.equals(title)
-                && toCheck.date.equals(date)
-                && toCheck.description.equals(description)
-                && toCheck.contactList.equals(contactList);
+        return toCheck != null && toCheck.title.equals(title);
+    }
+
+    /**
+     * Returns true if the person is related to this entry.
+     *
+     * @param person Person needs to check.
+     * @return True if person is in {@code contactList}
+     */
+    public boolean isRelatedTo(Person person) {
+        return contactList.contains(person);
     }
 
     @Override

@@ -78,7 +78,7 @@ public class DateTest {
         @DisplayName("Should return the string representation of a Date")
         public void toString_date_stringRepresentation() {
             Date date = new Date("2020-12-29 10:15");
-            assertEquals("2020-12-29T10:15", date.toString());
+            assertEquals("2020-12-29 10:15", date.toString());
         }
     }
 

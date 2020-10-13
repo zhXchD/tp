@@ -61,7 +61,7 @@ public class EntryTest {
         @Test
         @DisplayName("Should return false if the content is differnet")
         public void equals_diffContent_false() {
-            Entry testEntry = new EntryBuilder().withDescription("Decide the product").build();
+            Entry testEntry = new EntryBuilder().withTitle("Decide the product").build();
             assertFalse(testEntry.equals(ENTRY_DEFAULT));
         }
     }

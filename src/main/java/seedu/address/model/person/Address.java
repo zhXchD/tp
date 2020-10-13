@@ -17,7 +17,13 @@ public class Address {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
+    public static final Address EMPTY_ADDRESS = new Address();
+
     public final String value;
+
+    private Address() {
+        value = "No address information found!";
+    }
 
     /**
      * Constructs an {@code Address}.

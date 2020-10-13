@@ -42,7 +42,9 @@ public class Date {
      * @param date Event date.
      */
     public Date(String date) {
-        requireNonNull(date);
+        if (date == null) {
+            date = LocalDateTime.now().format(VALID_FORMATTER);
+        }
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
         this.date = LocalDateTime.parse(date, VALID_FORMATTER);
         value = date;
@@ -70,7 +72,7 @@ public class Date {
 
     @Override
     public String toString() {
-        return date.toString();
+        return date.format(VALID_FORMATTER);
     }
 }
 

@@ -112,6 +112,7 @@ public class ModelManager implements Model {
     @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
+        journal.removeAssociateEntry(target);
     }
 
     @Override
@@ -137,6 +138,12 @@ public class ModelManager implements Model {
     public void addEntry(Entry entry) {
         requireNonNull(entry);
         journal.addEntry(entry);
+    }
+
+    @Override
+    public void deleteEntry(Entry entry) {
+        requireNonNull(entry);
+        journal.removeEntry(entry);
     }
 
     //=========== Filtered Person List Accessors =============================================================
