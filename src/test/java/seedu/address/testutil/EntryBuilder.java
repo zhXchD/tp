@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -7,8 +8,10 @@ import seedu.address.model.journal.Date;
 import seedu.address.model.journal.Description;
 import seedu.address.model.journal.Entry;
 import seedu.address.model.journal.Title;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.util.SampleDataUtil;
 
 public class EntryBuilder {
 
@@ -20,10 +23,10 @@ public class EntryBuilder {
     private Title title;
     private Date date;
     private Description description;
-    private Set<Tag> tagList;
+    private Set<Tag> tags;
 
     // Represents a contact list for a certain event
-    private UniquePersonList contactList;
+    private final UniquePersonList contactList;
 
     /**
      * Initialize the Entry with default value.
@@ -33,7 +36,7 @@ public class EntryBuilder {
         date = new Date(DEFAULT_DATE);
         description = new Description(DEFAULT_DESCRIPTION);
         contactList = new UniquePersonList();
-        tagList = new HashSet<>();
+        tags = new HashSet<>();
     }
 
     /**
@@ -44,7 +47,9 @@ public class EntryBuilder {
         date = entryToCopy.getDate();
         description = entryToCopy.getDescription();
         contactList = new UniquePersonList();
-        tagList.addAll(entryToCopy.getTags());
+        entryToCopy.getContactList()
+                .forEach(contactList::add);
+        tags.addAll(entryToCopy.getTags());
     }
 
     /**
@@ -81,17 +86,23 @@ public class EntryBuilder {
     }
 
     /**
-     * Builds an entry with contactList.
-     *
-     * @param contactList contactList for this entry
-     * @return Entry with new contacts list.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the
+     * {@code Person} that we are building.
      */
-    public EntryBuilder withContacts(UniquePersonList contactList) {
-        this.contactList = contactList;
+    public EntryBuilder withTags(String... tags) {
+        this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    /**
+     * Adds person to the contact list.
+     */
+    public EntryBuilder withContacts(Person... persons) {
+        Arrays.stream(persons).forEach(contactList::add);
         return this;
     }
 
     public Entry build() {
-        return new Entry(title, date, description, contactList, tagList);
+        return new Entry(title, date, description, contactList, tags);
     }
 }

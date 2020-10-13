@@ -20,10 +20,10 @@ import seedu.address.model.ReadOnlyJournal;
  */
 public class JsonJournalStorage implements JournalStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(
-            JsonJournalStorage.class);
+    private static final Logger logger =
+            LogsCenter.getLogger(JsonJournalStorage.class);
 
-    private Path filePath;
+    private final Path filePath;
 
     public JsonJournalStorage(Path filePath) {
         this.filePath = filePath;
@@ -60,10 +60,12 @@ public class JsonJournalStorage implements JournalStorage {
         try {
             return Optional.of(jsonJournal.get().toModelType(addressBook));
         } catch (IllegalValueException ive) {
-            logger.info("Illegal values found in "
-                    + filePath
-                    + ": "
-                    + ive.getMessage());
+            logger.info(
+                    "Illegal values found in "
+                            + filePath
+                            + ": "
+                            + ive.getMessage()
+            );
             throw new DataConversionException(ive);
         }
     }
@@ -78,7 +80,8 @@ public class JsonJournalStorage implements JournalStorage {
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveJournal(ReadOnlyJournal journal, Path filePath) throws IOException {
+    public void saveJournal(ReadOnlyJournal journal, Path filePath)
+            throws IOException {
         requireNonNull(journal);
         requireNonNull(filePath);
 
