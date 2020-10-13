@@ -19,11 +19,11 @@ public class TypicalEntries {
 
     public static final Entry ENTRY_DEFAULT = new EntryBuilder().build(); //Default
     public static final Entry TEST_ENTRY_DIFF_DATE = new EntryBuilder()
-            .withTitle("Different title")
+            .withTitle("Product Design")
             .withDate("2020-12-21 19:00")
             .build();
     public static final Entry TEST_ENTRY_DIFF_DESCRIPTION = new EntryBuilder()
-            .withTitle("Another title")
+            .withTitle("Sample 1")
             .withDescription("Meet with boss")
             .build();
     public static final Entry TEST_ENTRY_DIFF_TITLE = new EntryBuilder()
