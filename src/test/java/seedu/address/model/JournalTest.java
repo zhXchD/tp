@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.TypicalEntries.ENTRY_DEFAULT;
-import static seedu.address.testutil.TypicalEntries.getTypicalEntry;
+import static seedu.address.testutil.TypicalEntries.TEST_ENTRY_DEFAULT;
+import static seedu.address.testutil.TypicalEntries.getTypicalEntries;
 import static seedu.address.testutil.TypicalEntries.getTypicalJournal;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 
@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.journal.Entry;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.testutil.Assert;
 import seedu.address.testutil.EntryBuilder;
@@ -31,15 +32,15 @@ public class JournalTest {
     class Constructor {
         @Test
         @DisplayName("Should create an empty entry list")
-        public void constructor_create_emptylist() {
+        public void constructor_create_emptyList() {
             assertEquals(Collections.emptyList(), new Journal().getEntryList());
         }
 
         @Test
         @DisplayName("Should create journal according to given entry")
-        public void constructor_create_givendata() {
+        public void constructor_create_givenData() {
             Journal journal = getTypicalJournal();
-            List<Entry> entries = getTypicalEntry();
+            List<Entry> entries = getTypicalEntries();
 
             for (int i = 0; i < journal.getEntryList().size(); i++) {
                 assertEquals(entries.get(i), journal.getEntryList().get(i));
@@ -59,13 +60,13 @@ public class JournalTest {
         @Test
         @DisplayName("Should return false when entry is not in the journal")
         public void hasEntry_false_entryNotInList() {
-            assertFalse(journal.hasEntry(ENTRY_DEFAULT));
+            assertFalse(journal.hasEntry(TEST_ENTRY_DEFAULT));
         }
 
         @Test
         @DisplayName("Should return true when the entry is in the journal")
         public void hasEntry_true_entryInList() {
-            assertTrue(getTypicalJournal().hasEntry(ENTRY_DEFAULT));
+            assertTrue(getTypicalJournal().hasEntry(TEST_ENTRY_DEFAULT));
         }
     }
 
@@ -94,7 +95,13 @@ public class JournalTest {
         public void removeAssociateEntry_success_removeTheAssociateEntry() {
             UniquePersonList contactList = new UniquePersonList();
             contactList.add(ALICE);
-            Entry test = new EntryBuilder().withContacts(contactList).build();
+            Entry test = new EntryBuilder()
+                    .withContacts(
+                            contactList
+                                    .asUnmodifiableObservableList()
+                                    .toArray(new Person[0])
+                    )
+                    .build();
             journal.addEntry(test);
             assertTrue(journal.hasEntry(test));
             journal.removeAssociateEntry(ALICE);

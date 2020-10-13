@@ -1,0 +1,24 @@
+{
+  "entries": [
+    {
+      "title": "Valid Entry",
+      "date": "1023-03-11 23:59",
+      "description": "teatime with the queen",
+      "contactList": [
+        "3f40a181-8153-4616-a69a-3362664f5a50",
+        "6d07561e-3230-49a1-85e8-226e588fffdf"
+      ],
+      "tagged": ["tea", "queen"]
+    },
+    {
+      "title": "Entry With Invalid Date Format",
+      "date": "2011/12/03 1015",
+      "description": "meeting with client",
+      "contactList": [
+        "f73eaee6-a320-4005-b09c-98450d1ef661",
+        "e26616c9-c740-4d86-861e-733a4d377a3e"
+      ],
+      "tagged": ["client", "meeting"]
+    }
+  ]
+}

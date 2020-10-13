@@ -45,6 +45,7 @@ public class AddJournalEntryCommandParser implements Parser<AddJournalEntryComma
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddJournalEntryCommand.MESSAGE_USAGE));
         }
 
+        // TODO: Use ParserUtil to parse these values
         Title title = new Title(argMultimap.getValue(PREFIX_NAME).get());
         Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE_AND_TIME).orElse(null));
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).orElse(null));

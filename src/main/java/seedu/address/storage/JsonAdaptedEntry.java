@@ -3,7 +3,6 @@ package seedu.address.storage;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -113,14 +112,21 @@ public class JsonAdaptedEntry {
         }
         final Date modelDate = new Date(date);
 
-        Description modelDescription = new Description(
-                Objects.requireNonNullElse(description, ""));
+        if (description == null) {
+            throw new IllegalValueException(
+                    String.format(
+                            MISSING_FIELD_MESSAGE_FORMAT,
+                            Description.class.getSimpleName()
+                    )
+            );
+        }
+        Description modelDescription = new Description(description);
 
         UniquePersonList modelPersonList = new UniquePersonList();
         addressBook.getPersonList()
-                .parallelStream()
+                .stream()
                 .filter(
-                        person -> contactList.parallelStream()
+                        person -> contactList.stream()
                                 .map(UUID::fromString)
                                 .anyMatch(uuid -> person.getUuid().equals(uuid))
                 )
