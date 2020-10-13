@@ -48,7 +48,7 @@ public class EntryListPanel extends UiPart<Region> {
      * to the {@code EntryContent}.
      * @param entryContent the EntryContent
      */
-    public void setListenToSelectedChangesAndPassToEntryContent(EntryContent entryContent){
+    public void setListenToSelectedChangesAndPassToEntryContent(EntryContent entryContent) {
         entryListView.getSelectionModel().selectedItemProperty().addListener((observableValue, prev, curr) -> {
             entryContent.setEntryContentToUser(curr);
         });

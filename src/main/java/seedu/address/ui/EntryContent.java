@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import com.jfoenix.controls.JFXTextArea;
+
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
@@ -15,7 +16,7 @@ public class EntryContent extends UiPart<Region> {
 
     private static final String FXML = "EntryContent.fxml";
 
-    public Entry entry;
+    private Entry entry;
 
     @FXML
     private VBox entryPane;
@@ -45,5 +46,9 @@ public class EntryContent extends UiPart<Region> {
         this.entry = entry;
         title.setText(entry.getTitle().title);
         description.setText(entry.getDescription().description);
+    }
+
+    public Entry getEntry() {
+        return entry;
     }
 }
