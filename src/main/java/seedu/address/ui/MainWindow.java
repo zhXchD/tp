@@ -231,6 +231,10 @@ public class MainWindow extends UiPart<Stage> {
                 }
             }
 
+            if(commandResult.isViewingJournal()) {
+                handleViewingJournal();
+            }
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
@@ -253,5 +257,9 @@ public class MainWindow extends UiPart<Stage> {
         SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
         int selected = selectionModel.getSelectedIndex();
         selectionModel.select(1 - selected);
+    }
+
+    private void handleViewingJournal() {
+        entryContent.setEntryContentToUser(logic.getFilteredEntryList().get(0));
     }
 }

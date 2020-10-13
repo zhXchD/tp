@@ -20,6 +20,7 @@ public class CommandResult {
     private boolean isAddressBookTab = true;
     private boolean isSameTab = false;
     private boolean isSwitchingTab = false;
+    private boolean isViewingJournal = false;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
@@ -100,11 +101,20 @@ public class CommandResult {
         return this;
     }
 
+    public CommandResult setViewingJournal() {
+        isViewingJournal = true;
+        return this;
+    }
+
     public boolean isSwitch() {
         return isSwitchingTab;
     }
 
     public boolean isSameTab() {
         return isSameTab;
+    }
+
+    public boolean isViewingJournal() {
+        return isViewingJournal;
     }
 }
