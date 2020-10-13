@@ -98,4 +98,11 @@ public class Journal implements ReadOnlyJournal {
     public ObservableList<Entry> getEntryList() {
         return entryList.asUnmodifiableObservableList();
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+                || (other instanceof Journal
+                && entryList.equals(((Journal) other).entryList));
+    }
 }

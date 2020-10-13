@@ -2,7 +2,9 @@ package seedu.address.model.journal;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
@@ -82,7 +84,24 @@ public class Entry {
             return true;
         }
         if (obj instanceof Entry) {
-            return this.isSameEntry((Entry) obj);
+            Entry e = (Entry) obj;
+            List<Person> contactListOne = getContactList().stream()
+                    .sorted((personOne, personTwo) ->
+                            personOne.getUuid().toString()
+                                    .compareTo(personTwo.getUuid().toString()))
+                    .collect(Collectors.toList());
+            List<Person> contactListTwo = e.getContactList()
+                    .stream()
+                    .sorted((personOne, personTwo) ->
+                            personOne.getUuid().toString()
+                                    .compareTo(personTwo.getUuid().toString()))
+                    .collect(Collectors.toList());
+
+            return e.title.equals(title)
+                    && e.date.equals(date)
+                    && e.description.equals(description)
+                    && contactListOne.equals(contactListTwo)
+                    && tags.equals(e.tags);
         }
         return false;
     }
