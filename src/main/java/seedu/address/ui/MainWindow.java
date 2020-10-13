@@ -231,7 +231,7 @@ public class MainWindow extends UiPart<Stage> {
                 }
             }
 
-            if(commandResult.isViewingJournal()) {
+            if (commandResult.isViewingJournal()) {
                 handleViewingJournal();
             }
 
