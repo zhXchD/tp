@@ -4,12 +4,15 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.journal.Date;
+import seedu.address.model.journal.Description;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -17,6 +20,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.tag.Tag;
+
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser
@@ -73,6 +77,20 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code Optional<String> phone} into an {@code Phone}.
+     *
+     * @throws ParseException if the given {@code phone} is present but invalid.
+     */
+    public static Phone parsePhone(Optional<String> phone) throws ParseException {
+        if (phone.isEmpty()) {
+            return Phone.EMPTY_PHONE;
+        } else {
+            return parsePhone(phone.get());
+        }
+    }
+
+
+    /**
      * Parses a {@code String address} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -88,6 +106,19 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code Optional<String> address} into an {@code Address}.
+     *
+     * @throws ParseException if the given {@code address} is present but invalid.
+     */
+    public static Address parseAddress(Optional<String> address) throws ParseException {
+        if (address.isEmpty()) {
+            return Address.EMPTY_ADDRESS;
+        } else {
+            return parseAddress(address.get());
+        }
+    }
+
+    /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -100,6 +131,19 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code Optional<String> email} into an {@code Email}.
+     *
+     * @throws ParseException if the given {@code email} is present but invalid.
+     */
+    public static Email parseEmail(Optional<String> email) throws ParseException {
+        if (email.isEmpty()) {
+            return Email.EMPTY_EMAIL;
+        } else {
+            return parseEmail(email.get());
+        }
     }
 
     /**
@@ -144,6 +188,32 @@ public class ParserUtil {
             personList.add(person);
         }
         return personList;
+    }
+
+    /**
+     * Parses {@code String date} into a {@code Date}.
+     * @param date a {@String} to be parsed
+     * @return {@code Date} specified the string or current time if the string is null
+     * @throws ParseException if the sting is present but invalid
+     */
+    public static Date parseDate(String date) throws ParseException {
+        if (date != null && !Date.isValidDate(date)) {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+        }
+        return new Date(date);
+    }
+
+    /**
+     * Parses description string into Description.
+     * @param description the string to parse
+     * @return a new Description specified by the string
+     * @throws ParseException if the string is present by invalid
+     */
+    public static Description parseDescription(String description) throws ParseException {
+        if (description != null && !Description.isValidDescription(description)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
+        return new Description(description);
     }
 
     /**
