@@ -42,13 +42,13 @@ public class TypicalEntries {
      */
     public static Journal getTypicalJournal() {
         Journal journal = new Journal();
-        for (Entry entry: getTypicalEntry()) {
+        for (Entry entry: getTypicalEntries()) {
             journal.addEntry(entry);
         }
         return journal;
     }
 
-    public static List<Entry> getTypicalEntry() {
+    public static List<Entry> getTypicalEntries() {
         return new ArrayList<>(
                 Arrays.asList(
                         TEST_ENTRY_DEFAULT,

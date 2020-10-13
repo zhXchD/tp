@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalEntries.TEST_ENTRY_DEFAULT;
-import static seedu.address.testutil.TypicalEntries.getTypicalEntry;
+import static seedu.address.testutil.TypicalEntries.getTypicalEntries;
 import static seedu.address.testutil.TypicalEntries.getTypicalJournal;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 
@@ -40,7 +40,7 @@ public class JournalTest {
         @DisplayName("Should create journal according to given entry")
         public void constructor_create_givenData() {
             Journal journal = getTypicalJournal();
-            List<Entry> entries = getTypicalEntry();
+            List<Entry> entries = getTypicalEntries();
 
             for (int i = 0; i < journal.getEntryList().size(); i++) {
                 assertEquals(entries.get(i), journal.getEntryList().get(i));
