@@ -1,12 +1,6 @@
 package seedu.address.testutil;
 
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BENSON;
-import static seedu.address.testutil.TypicalPersons.CARL;
-import static seedu.address.testutil.TypicalPersons.DANIEL;
-import static seedu.address.testutil.TypicalPersons.ELLE;
-import static seedu.address.testutil.TypicalPersons.FIONA;
-import static seedu.address.testutil.TypicalPersons.GEORGE;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,10 +8,11 @@ import java.util.List;
 
 import seedu.address.model.Journal;
 import seedu.address.model.journal.Entry;
+import seedu.address.model.person.Person;
 
 public class TypicalEntries {
 
-    public static final Entry ENTRY_DEFAULT = new EntryBuilder().build(); //Default
+    public static final Entry TEST_ENTRY_DEFAULT = new EntryBuilder().build(); //Default
     public static final Entry TEST_ENTRY_DIFF_DATE = new EntryBuilder()
             .withTitle("Product Design")
             .withDate("2020-12-21 19:00")
@@ -31,7 +26,15 @@ public class TypicalEntries {
             .build();
     public static final Entry TEST_ENTRY_DIFF_CONTACTS = new EntryBuilder()
             .withTitle("Fish and chips")
-            .withContacts(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE)
+            .withContacts(
+                    getTypicalAddressBook()
+                            .getPersonList()
+                            .toArray(new Person[0])
+            )
+            .build();
+    public static final Entry TEST_ENTRY_DIFF_TAGS = new EntryBuilder()
+            .withTitle("Tea and biscuits")
+            .withTags("queen", "tea", "biscuits")
             .build();
 
     /**
@@ -46,10 +49,13 @@ public class TypicalEntries {
     }
 
     public static List<Entry> getTypicalEntry() {
-        return new ArrayList<>(Arrays.asList(
-                ENTRY_DEFAULT, TEST_ENTRY_DIFF_DATE,
-                TEST_ENTRY_DIFF_DESCRIPTION,
-                TEST_ENTRY_DIFF_TITLE
-        ));
+        return new ArrayList<>(
+                Arrays.asList(
+                        TEST_ENTRY_DEFAULT,
+                        TEST_ENTRY_DIFF_DATE,
+                        TEST_ENTRY_DIFF_DESCRIPTION,
+                        TEST_ENTRY_DIFF_TITLE
+                )
+        );
     }
 }

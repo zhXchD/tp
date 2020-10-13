@@ -3,7 +3,7 @@ package seedu.address.model.journal;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalEntries.ENTRY_DEFAULT;
+import static seedu.address.testutil.TypicalEntries.TEST_ENTRY_DEFAULT;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -32,13 +32,13 @@ public class EntryTest {
         @Test
         @DisplayName("Should be true if the same entry")
         public void isSameEntry_sameEntry_true() {
-            assertTrue(ENTRY_DEFAULT.isSameEntry(ENTRY_DEFAULT));
+            assertTrue(TEST_ENTRY_DEFAULT.isSameEntry(TEST_ENTRY_DEFAULT));
         }
 
         @Test
         @DisplayName("Should return false if the entry is null")
         public void isSameEntry_null_false() {
-            assertFalse(ENTRY_DEFAULT.isSameEntry(null));
+            assertFalse(TEST_ENTRY_DEFAULT.isSameEntry(null));
         }
     }
 
@@ -48,21 +48,21 @@ public class EntryTest {
         @Test
         @DisplayName("Should return true if the same instance of entry")
         public void equals_sameInstance_true() {
-            assertTrue(ENTRY_DEFAULT.equals(ENTRY_DEFAULT));
+            assertTrue(TEST_ENTRY_DEFAULT.equals(TEST_ENTRY_DEFAULT));
         }
 
         @Test
         @DisplayName("Should return true if the Entry content is the same")
         public void equals_sameContent_true() {
             Entry testEntry = new EntryBuilder().build();
-            assertTrue(testEntry.equals(ENTRY_DEFAULT));
+            assertTrue(testEntry.equals(TEST_ENTRY_DEFAULT));
         }
 
         @Test
         @DisplayName("Should return false if the content is differnet")
         public void equals_diffContent_false() {
             Entry testEntry = new EntryBuilder().withTitle("Decide the product").build();
-            assertFalse(testEntry.equals(ENTRY_DEFAULT));
+            assertFalse(testEntry.equals(TEST_ENTRY_DEFAULT));
         }
     }
 }

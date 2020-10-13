@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.TypicalEntries.ENTRY_DEFAULT;
+import static seedu.address.testutil.TypicalEntries.TEST_ENTRY_DEFAULT;
 import static seedu.address.testutil.TypicalEntries.getTypicalEntry;
 import static seedu.address.testutil.TypicalEntries.getTypicalJournal;
 import static seedu.address.testutil.TypicalPersons.ALICE;
@@ -60,13 +60,13 @@ public class JournalTest {
         @Test
         @DisplayName("Should return false when entry is not in the journal")
         public void hasEntry_false_entryNotInList() {
-            assertFalse(journal.hasEntry(ENTRY_DEFAULT));
+            assertFalse(journal.hasEntry(TEST_ENTRY_DEFAULT));
         }
 
         @Test
         @DisplayName("Should return true when the entry is in the journal")
         public void hasEntry_true_entryInList() {
-            assertTrue(getTypicalJournal().hasEntry(ENTRY_DEFAULT));
+            assertTrue(getTypicalJournal().hasEntry(TEST_ENTRY_DEFAULT));
         }
     }
 

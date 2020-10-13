@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalEntries.ENTRY_DEFAULT;
+import static seedu.address.testutil.TypicalEntries.TEST_ENTRY_DEFAULT;
 import static seedu.address.testutil.TypicalEntries.TEST_ENTRY_DIFF_DESCRIPTION;
 import static seedu.address.testutil.TypicalEntries.TEST_ENTRY_DIFF_TITLE;
 
@@ -37,8 +37,8 @@ public class UniqueEntryListTest {
         @DisplayName("Return true when the entry is in the list")
         void contains_containsEntry_returnTrue() {
             UniqueEntryList modifiedList = list;
-            modifiedList.add(ENTRY_DEFAULT);
-            assertTrue(modifiedList.contains(ENTRY_DEFAULT));
+            modifiedList.add(TEST_ENTRY_DEFAULT);
+            assertTrue(modifiedList.contains(TEST_ENTRY_DEFAULT));
         }
 
         @Test
@@ -56,7 +56,7 @@ public class UniqueEntryListTest {
         @DisplayName("Should throw unsupportedOperationException when modify the list")
         void asUnmodifiableList_modify_throwUnsupportedOpertationException() {
             assertThrows(UnsupportedOperationException.class, () ->
-                    list.asUnmodifiableObservableList().add(ENTRY_DEFAULT));
+                    list.asUnmodifiableObservableList().add(TEST_ENTRY_DEFAULT));
         }
     }
 
@@ -69,8 +69,8 @@ public class UniqueEntryListTest {
         void add_addDuplicate_throwDuplicateEntryException() {
             assertThrows(DuplicateEntryException.class, () -> {
                 UniqueEntryList list = new UniqueEntryList();
-                list.add(ENTRY_DEFAULT);
-                list.add(ENTRY_DEFAULT);
+                list.add(TEST_ENTRY_DEFAULT);
+                list.add(TEST_ENTRY_DEFAULT);
             });
         }
 
@@ -93,15 +93,16 @@ public class UniqueEntryListTest {
         @Test
         @DisplayName("Should throw EntryNotFoundException if the entry is not in the list")
         void remove_notInList_throwEntryNotFoundException() {
-            assertThrows(EntryNotFoundException.class, () -> list.remove(ENTRY_DEFAULT));
+            assertThrows(EntryNotFoundException.class, () -> list.remove(
+                    TEST_ENTRY_DEFAULT));
         }
 
         @Test
         @DisplayName("Should remove the entry if the entry is in the list")
         void remove_inList_removeEntry() {
             UniqueEntryList expectedList = new UniqueEntryList();
-            list.add(ENTRY_DEFAULT);
-            list.remove(ENTRY_DEFAULT);
+            list.add(TEST_ENTRY_DEFAULT);
+            list.remove(TEST_ENTRY_DEFAULT);
             assertEquals(expectedList, list);
         }
     }
@@ -119,11 +120,11 @@ public class UniqueEntryListTest {
         @DisplayName("set entry according to the list given")
         void setEntries_validList_setEntriesSuccess() {
             List<Entry> testList = new LinkedList<>();
-            testList.add(ENTRY_DEFAULT);
+            testList.add(TEST_ENTRY_DEFAULT);
             testList.add(TEST_ENTRY_DIFF_TITLE);
             list.setEntries(testList);
             UniqueEntryList expectedList = new UniqueEntryList();
-            expectedList.add(ENTRY_DEFAULT);
+            expectedList.add(TEST_ENTRY_DEFAULT);
             expectedList.add(TEST_ENTRY_DIFF_TITLE);
             assertEquals(expectedList, list);
         }
@@ -135,7 +136,7 @@ public class UniqueEntryListTest {
         @Test
         @DisplayName("Return a interator contains all element in the lsit")
         void iterator_contains_allElementsInList() {
-            list.add(ENTRY_DEFAULT);
+            list.add(TEST_ENTRY_DEFAULT);
             list.add(TEST_ENTRY_DIFF_DESCRIPTION);
             for (java.util.Iterator<Entry> it = list.iterator(); it.hasNext(); ) {
                 Entry e = it.next();
@@ -159,10 +160,10 @@ public class UniqueEntryListTest {
         @Test
         @DisplayName("Should return true when the content is the same")
         void equals_true_sameContent() {
-            list.add(ENTRY_DEFAULT);
+            list.add(TEST_ENTRY_DEFAULT);
             list.add(TEST_ENTRY_DIFF_DESCRIPTION);
             UniqueEntryList testList = new UniqueEntryList();
-            testList.add(ENTRY_DEFAULT);
+            testList.add(TEST_ENTRY_DEFAULT);
             testList.add(TEST_ENTRY_DIFF_DESCRIPTION);
             assertTrue(testList.equals(list));
         }
@@ -170,7 +171,7 @@ public class UniqueEntryListTest {
         @Test
         @DisplayName("SHould return false when the content is not the same")
         void equals_diffContent_false() {
-            list.add(ENTRY_DEFAULT);
+            list.add(TEST_ENTRY_DEFAULT);
             UniqueEntryList testList = new UniqueEntryList();
             assertFalse(testList.equals(list));
         }

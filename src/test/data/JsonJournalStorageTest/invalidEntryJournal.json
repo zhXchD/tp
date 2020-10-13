@@ -1,0 +1,14 @@
+{
+  "entries": [
+    {
+      "title": "Meeting 1",
+      "date": "2011/12/03 1015",
+      "description": "meeting with client",
+      "contactList": [
+        "f73eaee6-a320-4005-b09c-98450d1ef661",
+        "e26616c9-c740-4d86-861e-733a4d377a3e"
+      ],
+      "tagged": ["client", "meeting"]
+    }
+  ]
+}
