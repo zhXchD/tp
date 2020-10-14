@@ -53,7 +53,7 @@ public class EntryContent extends UiPart<Region> {
      */
     public void setEntryContentToUser(Entry entry) {
         this.entry = entry;
-        if(entry == null) {
+        if (entry == null) {
             setDefaultContent();
         } else {
             setContent(entry);
