@@ -78,7 +78,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveName = 'addressbook.jar'
+    archiveName = 'IntelliJournal.jar'
 }
 
 defaultTasks 'clean', 'test'
