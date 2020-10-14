@@ -110,8 +110,8 @@ A journal entry can have any number of contacts or tags (including 0)
 Examples:
 * `addj n/Meeting with client` Adds a journal entry with the name
 `Meeting with client`.
-* `addj n/Meeting with client at/2020-9-20 1400 d/Tea` Adds a journal
-entry with the name `Meeting with client`, a date and time of `2020-9-20 1400`
+* `addj n/Meeting with client at/2020-9-20 14:00 d/Tea` Adds a journal
+entry with the name `Meeting with client`, a date and time of `2020-9-20 14:00`
 and content `Tea`.
 
 ### Listing all contacts: `listc`
