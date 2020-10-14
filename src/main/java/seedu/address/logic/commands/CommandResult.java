@@ -21,6 +21,7 @@ public class CommandResult {
     private boolean isSameTab = false;
     private boolean isSwitchingTab = false;
     private boolean isViewingJournal = false;
+    private boolean isCleaningJournalView = false;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
@@ -102,7 +103,12 @@ public class CommandResult {
     }
 
     public CommandResult setViewingJournal() {
-        isViewingJournal = true;
+        this.isViewingJournal = true;
+        return this;
+    }
+
+    public CommandResult setCleaningJournalView(boolean isCleaningJournalView) {
+        this.isCleaningJournalView = isCleaningJournalView;
         return this;
     }
 
@@ -116,5 +122,9 @@ public class CommandResult {
 
     public boolean isViewingJournal() {
         return isViewingJournal;
+    }
+
+    public boolean isCleaningJournalView() {
+        return isCleaningJournalView;
     }
 }
