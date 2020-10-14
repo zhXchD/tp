@@ -1,0 +1,33 @@
+{
+  "_comment": "Journal save file which contains the same Entry values as in TypicalEntries#getTypicalJournal()",
+  "entries": [
+    {
+      "title": "Team Meeting",
+      "date": "2020-12-20 18:00",
+      "description": "Team Meeting for CS2103T",
+      "contactList": [],
+      "tagged": []
+    },
+    {
+      "title": "Product Design",
+      "date": "2020-12-21 19:00",
+      "description": "Team Meeting for CS2103T",
+      "contactList": [],
+      "tagged": []
+    },
+    {
+      "title": "Sample 1",
+      "date": "2020-12-20 18:00",
+      "description": "Meet with boss",
+      "contactList": [],
+      "tagged": []
+    },
+    {
+      "title": "Board Meeting",
+      "date": "2020-12-20 18:00",
+      "description": "Team Meeting for CS2103T",
+      "contactList": [],
+      "tagged": []
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "entries": [
+    {
+      "title": "Team Meeting",
+      "date": "2020-12-20 18:00",
+      "description": "Team Meeting for CS2103T",
+      "contactList": [],
+      "tagged": []
+    },
+    {
+      "title": "Team Meeting",
+      "date": "2020-12-21 19:00",
+      "description": "Apples",
+      "contactList": [],
+      "tagged": ["meet", "team"]
+    }
+  ]
+}

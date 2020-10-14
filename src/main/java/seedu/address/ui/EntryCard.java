@@ -9,7 +9,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.journal.Entry;
 
-
+/**
+ * An UI component that displays information of a {@code Entry} briefly.
+ */
 public class EntryCard extends UiPart<Region> {
 
     private static final String FXML = "EntryListCard.fxml";

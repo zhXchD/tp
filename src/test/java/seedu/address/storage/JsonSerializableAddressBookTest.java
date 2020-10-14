@@ -35,7 +35,7 @@ public class JsonSerializableAddressBookTest {
     class ToModelType {
         @Test
         @DisplayName("should successfully return an AddressBook object from a"
-                + " JsonSerializableAddressBook")
+                + " json file with valid persons")
         public void toModelType_typicalPersonsFile_success() throws Exception {
             JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(
                     TYPICAL_PERSONS_FILE,
