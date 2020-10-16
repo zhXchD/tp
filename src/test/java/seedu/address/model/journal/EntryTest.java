@@ -4,11 +4,14 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEntries.TEST_ENTRY_DEFAULT;
+import static seedu.address.testutil.TypicalPersons.ALICE;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.journal.exceptions.ContactNotInListException;
+import seedu.address.model.person.UniquePersonList;
 import seedu.address.testutil.EntryBuilder;
 
 public class EntryTest {
@@ -65,4 +68,25 @@ public class EntryTest {
             assertFalse(testEntry.equals(TEST_ENTRY_DEFAULT));
         }
     }
+
+    @Nested
+    @DisplayName("removeContact test")
+    class RemoveContact {
+        @Test
+        @DisplayName("Should throw ContactNotInListException")
+        public void removeContact_notInList_throwContactNotInListException() {
+            Entry testEntry = new EntryBuilder().build();
+            assertThrows(ContactNotInListException.class, () -> testEntry.removeContact(ALICE));
+        }
+
+        @Test
+        @DisplayName("Should remove the contact inside the entry")
+        public void removeContact_success_removeCotactInList() {
+            Entry testEntry = new EntryBuilder().withContacts(ALICE).build();
+            assertTrue(testEntry.isRelatedTo(ALICE));
+            testEntry.removeContact(ALICE);
+            assertFalse(testEntry.isRelatedTo(ALICE));
+        }
+    }
+
 }

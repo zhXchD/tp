@@ -7,6 +7,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.journal.exceptions.ContactNotInListException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.tag.Tag;
@@ -66,6 +67,17 @@ public class Entry {
         }
 
         return toCheck != null && toCheck.title.equals(title);
+    }
+
+    /**
+     * Remove certain contacts from entry (i.e. The contacts list).
+     */
+    public void removeContact(Person person) {
+        if (!contactList.contains(person)) {
+            throw new ContactNotInListException();
+        }
+
+        contactList.remove(person);
     }
 
     /**
