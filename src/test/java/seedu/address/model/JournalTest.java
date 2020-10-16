@@ -82,17 +82,17 @@ public class JournalTest {
     }
 
     @Nested
-    @DisplayName("removeAssociateEntry method")
-    class RemoveAssociateEntry {
+    @DisplayName("removeAssociateEntryContact method")
+    class RemoveAssociateEntryContact {
         @Test
         @DisplayName("should throw NullPointerException if pass in a null")
-        public void removeAssociateEntry_null_throwNullPointerException() {
-            assertThrows(NullPointerException.class, () -> journal.removeAssociateEntry(null));
+        public void removeAssociateEntryContact_null_throwNullPointerException() {
+            assertThrows(NullPointerException.class, () -> journal.removeAssociateEntryContact(null));
         }
 
         @Test
         @DisplayName("should remove the entry that associate with the person")
-        public void removeAssociateEntry_success_removeTheAssociateEntry() {
+        public void removeAssociateEntryContact_success_removeTheAssociateEntry() {
             UniquePersonList contactList = new UniquePersonList();
             contactList.add(ALICE);
             Entry test = new EntryBuilder()
@@ -103,9 +103,8 @@ public class JournalTest {
                     )
                     .build();
             journal.addEntry(test);
-            assertTrue(journal.hasEntry(test));
-            journal.removeAssociateEntry(ALICE);
-            assertFalse(journal.hasEntry(test));
+            journal.removeAssociateEntryContact(ALICE);
+            assertFalse(test.isRelatedTo(ALICE));
         }
     }
 }
