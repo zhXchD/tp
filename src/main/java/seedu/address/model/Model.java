@@ -53,6 +53,11 @@ public interface Model {
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
     /**
+     * Update journal regarding to a {@code addressbook}
+     */
+    void updateJournal(ReadOnlyAddressBook readOnlyAddressBook);
+
+    /**
      * Returns the AddressBook
      */
     ReadOnlyAddressBook getAddressBook();

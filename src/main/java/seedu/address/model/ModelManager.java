@@ -86,6 +86,12 @@ public class ModelManager implements Model {
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         this.addressBook.resetData(addressBook);
+        updateJournal(addressBook);
+    }
+
+    @Override
+    public void updateJournal(ReadOnlyAddressBook addressbook) {
+        journal.update(addressBook);
     }
 
     @Override

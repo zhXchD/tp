@@ -94,6 +94,20 @@ public class Journal implements ReadOnlyJournal {
         this.entryList.setEntries(entryList);
     }
 
+    /**
+     * Update journal with a contact list (change the contact list for each entry).
+     * @param addressBook New addressbook data
+     */
+    public void update(ReadOnlyAddressBook addressBook) {
+        for (Entry entry: entryList) {
+            for (Person person: entry.getContactList()) {
+                if (!addressBook.getPersonList().contains(person)) {
+                    entry.removeContact(person);
+                }
+            }
+        }
+    }
+
     @Override
     public ObservableList<Entry> getEntryList() {
         return entryList.asUnmodifiableObservableList();
