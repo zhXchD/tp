@@ -44,7 +44,7 @@
                         <Tab fx:id="journalTab" text="Journal">
                             <content>
                                 <HBox HBox.hgrow="ALWAYS">
-                                    <StackPane fx:id="entryListPanelPlaceholder" prefWidth="380.0" />
+                                    <StackPane fx:id="entryListPanelPlaceholder" prefWidth="250.0" />
                                     <StackPane fx:id="entryContentPlaceholder" HBox.hgrow="ALWAYS" />
                                 </HBox>
                             </content>

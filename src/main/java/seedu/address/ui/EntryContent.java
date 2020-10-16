@@ -33,19 +33,31 @@ public class EntryContent extends UiPart<Region> {
     public EntryContent() {
         super(FXML);
         this.entry = null;
+        setDefaultContent();
+    }
+
+    private void setDefaultContent() {
         title.setText("");
         description.setText("Please select a Journal Entry...");
     }
 
+    private void setContent(Entry entry) {
+        title.setText(entry.getTitle().title);
+        description.setText(entry.getDescription().description);
+    }
 
     /**
-     * Updates the information of the new {@code Entry}.
+     * Updates the information of a nullable {@code Entry}.
+     * If entry is null, the content will be reset to default.
      * @param entry the new entry
      */
     public void setEntryContentToUser(Entry entry) {
         this.entry = entry;
-        title.setText(entry.getTitle().title);
-        description.setText(entry.getDescription().description);
+        if (entry == null) {
+            setDefaultContent();
+        } else {
+            setContent(entry);
+        }
     }
 
     public Entry getEntry() {
