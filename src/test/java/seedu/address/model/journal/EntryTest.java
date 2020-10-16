@@ -1,7 +1,6 @@
 package seedu.address.model.journal;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEntries.TEST_ENTRY_DEFAULT;
 import static seedu.address.testutil.TypicalPersons.ALICE;
@@ -11,7 +10,6 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.journal.exceptions.ContactNotInListException;
-import seedu.address.model.person.UniquePersonList;
 import seedu.address.testutil.EntryBuilder;
 
 public class EntryTest {
@@ -58,14 +56,14 @@ public class EntryTest {
         @DisplayName("Should return true if the Entry content is the same")
         public void equals_sameContent_true() {
             Entry testEntry = new EntryBuilder().build();
-            assertTrue(testEntry.equals(TEST_ENTRY_DEFAULT));
+            assertEquals(TEST_ENTRY_DEFAULT, testEntry);
         }
 
         @Test
         @DisplayName("Should return false if the content is differnet")
         public void equals_diffContent_false() {
             Entry testEntry = new EntryBuilder().withTitle("Decide the product").build();
-            assertFalse(testEntry.equals(TEST_ENTRY_DEFAULT));
+            assertNotEquals(TEST_ENTRY_DEFAULT, testEntry);
         }
     }
 
