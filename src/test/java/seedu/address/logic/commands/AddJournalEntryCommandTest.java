@@ -163,6 +163,11 @@ class AddJournalEntryCommandTest {
         }
 
         @Override
+        public void updateJournal(ReadOnlyAddressBook readOnlyAddressBook) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ReadOnlyAddressBook getAddressBook() {
             throw new AssertionError("This method should not be called.");
         }
