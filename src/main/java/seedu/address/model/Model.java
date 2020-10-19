@@ -55,7 +55,7 @@ public interface Model {
     /**
      * Update journal regarding to a {@code addressbook}
      */
-    void updateJournal(ReadOnlyAddressBook readOnlyAddressBook);
+    void clearJournalContacts();
 
     /**
      * Returns the AddressBook

@@ -95,15 +95,12 @@ public class Journal implements ReadOnlyJournal {
     }
 
     /**
-     * Update journal with a contact list (change the contact list for each entry).
-     * @param addressBook New addressbook data
+     * Clear contact list for each entry.
      */
-    public void update(ReadOnlyAddressBook addressBook) {
+    public void clearContacts() {
         for (Entry entry: entryList) {
             for (Person person: entry.getContactList()) {
-                if (!addressBook.getPersonList().contains(person)) {
-                    entry.removeContact(person);
-                }
+                entry.removeContact(person);
             }
         }
     }
