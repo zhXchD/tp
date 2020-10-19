@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -18,8 +19,10 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.journal.Entry;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.EntryBuilder;
 
 public class ModelManagerTest {
 
@@ -142,6 +145,17 @@ public class ModelManagerTest {
     }
 
     @Nested
+    @DisplayName("getFilteredEntryList method")
+    class GetFilteredEntryList {
+        @Test
+        @DisplayName("Should throw UnsupportedOperationException when try to modify the list")
+        public void getFilteredEntryList_modifyList_throwUnsupportedOperationException() {
+            assertThrows(UnsupportedOperationException.class, () ->
+                    modelManager.getFilteredEntryList().remove(0));
+        }
+    }
+
+    @Nested
     @DisplayName("equals method")
     class Equals {
         private final AddressBook addressBook = new AddressBookBuilder()
@@ -165,25 +179,25 @@ public class ModelManagerTest {
         public void equals_sameValues_true() {
             ModelManager modelManagerCopy =
                     new ModelManager(addressBook, new Journal(), userPrefs);
-            assertTrue(modelManager.equals(modelManagerCopy));
+            assertEquals(modelManagerCopy, modelManager);
         }
 
         @Test
         @DisplayName("should return true if same object")
         public void equals_sameObject_true() {
-            assertTrue(modelManager.equals(modelManager));
+            assertEquals(modelManager, modelManager);
         }
 
         @Test
         @DisplayName("should return false if null")
         public void equals_null_false() {
-            assertFalse(modelManager.equals(null));
+            assertNotEquals(modelManager, null);
         }
 
         @Test
         @DisplayName("should return false if different type")
         public void equals_differentTypes_false() {
-            assertFalse(modelManager.equals(5));
+            assertNotEquals(modelManager, 5);
         }
 
         @Test
@@ -192,11 +206,11 @@ public class ModelManagerTest {
             System.out.println(modelManager);
             System.out.println(new ModelManager(differentAddressBook,
                     new Journal(), userPrefs));
-            assertFalse(modelManager.equals(new ModelManager(
+            assertNotEquals(new ModelManager(
                     differentAddressBook,
                     new Journal(),
                     userPrefs
-            )));
+            ), modelManager);
         }
 
         @Test
@@ -205,12 +219,13 @@ public class ModelManagerTest {
             String[] keywords = ALICE.getName().fullName.split("\\s+");
             modelManager.updateFilteredPersonList(
                     new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-            assertFalse(modelManager.equals(new ModelManager(
+            assertNotEquals(new ModelManager(
                     addressBook,
                     new Journal(),
                     userPrefs
-            )));
+            ), modelManager);
         }
+
 
         @Test
         @DisplayName("should return false if different user prefs")
@@ -222,11 +237,25 @@ public class ModelManagerTest {
             UserPrefs differentUserPrefs = new UserPrefs();
             differentUserPrefs.setAddressBookFilePath(Paths.get(
                     "differentFilePath"));
-            assertFalse(modelManager.equals(new ModelManager(
+            assertNotEquals(new ModelManager(
                     addressBook,
                     new Journal(),
                     differentUserPrefs
-            )));
+            ), modelManager);
+        }
+    }
+
+    @Nested
+    @DisplayName("DeleteEntry method")
+    class DeleteEntry {
+        @Test
+        @DisplayName("Should delete entry in the list")
+        public void deleteEntry_success_removeEntryInModel() {
+            Entry testEntry = new EntryBuilder().build();
+            modelManager.addEntry(testEntry);
+            assertTrue(modelManager.hasEntry(testEntry));
+            modelManager.deleteEntry(testEntry);
+            assertFalse(modelManager.hasEntry(testEntry));
         }
     }
 }
