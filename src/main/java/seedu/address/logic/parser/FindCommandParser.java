@@ -42,7 +42,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             Predicate<Person> personPredicate = person -> true;
             if (!arePrefixesEmpty(argMultimap,
                     PREFIX_TITLE, PREFIX_DATE_AND_TIME, PREFIX_DESCRIPTION, PREFIX_CONTACT)) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindContactCommand.MESSAGE_USAGE));
             }
             if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
                 String nameKeyWord = argMultimap.getValue(PREFIX_NAME).get().trim();

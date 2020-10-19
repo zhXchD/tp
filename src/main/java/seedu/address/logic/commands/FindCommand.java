@@ -1,11 +1,7 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the
@@ -17,8 +13,8 @@ public abstract class FindCommand extends Command {
 
     public static final String MESSAGE_USAGE = "find in/c" +
             " [n/NAME] [a/ADDRESS] [e/EMAIL] [p/PHONE] [t/TAG]" +
-            " or find in/j [t/TITLE] [at/DATE] [d/DESCRIPTION] " +
-            "[with/CONTACT_NAME] [t/TAG]";
+            " or find in/j [t/TITLE] [at/DATE] [d/DESCRIPTION]" +
+            " [with/CONTACT_NAME] [t/TAG]";
 
 //            COMMAND_WORD
 //            + ": Finds all persons whose names contain any of "

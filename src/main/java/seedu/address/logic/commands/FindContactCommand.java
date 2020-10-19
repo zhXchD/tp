@@ -14,9 +14,15 @@ import java.util.function.Predicate;
  */
 public class FindContactCommand extends FindCommand  {
 
+    public static final String MESSAGE_USAGE = FindCommand.COMMAND_WORD +
+            " in/c: Finds all persons in the address book whose fields contain" +
+            " the specified strings or tags contains specified tags.\n" +
+            "Parameters: [n/NAME] [a/ADDRESS] [e/EMAIL] [p/PHONE] [t/TAG]";
+
     private final Predicate<Person> predicate;
 
     public FindContactCommand(Predicate<Person> predicate) {
+        requireNonNull(predicate);
         this.predicate = predicate;
     }
 
