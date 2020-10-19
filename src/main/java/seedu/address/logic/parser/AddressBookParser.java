@@ -59,7 +59,7 @@ public class AddressBookParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
 
-        ValidCommand command = ValidCommand.commandType(commandWord);
+        ValidCommand command = ValidCommand.commandTypeOf(commandWord);
 
         switch (command) {
         case ADDCONTACT:

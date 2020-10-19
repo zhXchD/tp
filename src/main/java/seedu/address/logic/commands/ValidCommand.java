@@ -16,29 +16,19 @@ public enum ValidCommand {
 
     ADDCONTACT("addc", "addcontact"),
     ADDJOURNALENTRY("addj", "adde"),
-    CLEARJOURNAL("clearj"),
-    CLEARADDRESSBOOK("clearc"),
+    CLEARJOURNAL("clearj", "cj"),
+    CLEARADDRESSBOOK("clearc", "cc"),
     DELETECONTACT("deletec", "delc"),
     DELETEJOURNALENTRY("deletej", "delj"),
-    EDIT("edit"),
-    FIND("find"),
-    EXIT("exit"),
-    HELP("help"),
-    LISTCONTACT("listc"),
-    LISTJOURNALENTRY("listj"),
+    EDIT("edit", "ed"),
+    FIND("find", "f"),
+    EXIT("exit", "quit", "q"),
+    HELP("help", "h"),
+    LISTCONTACT("listc", "lc"),
+    LISTJOURNALENTRY("listj", "lj"),
     SWITCH("switch", "swt"),
-    VIEW("view");
-    
+    VIEW("view", "v");
     private static final Logger logger = LogsCenter.getLogger(ValidCommand.class);
-
-    /**
-     * Creates command alias from aliases list.
-     *
-     * @param aliases Aliases list.
-     */
-    ValidCommand(String... aliases) {
-        this.aliases = aliases;
-    }
 
     /**
      * Map that match alias with valid command
@@ -50,17 +40,32 @@ public enum ValidCommand {
      */
     private final String[] aliases;
 
+    /**
+     * Creates command alias from aliases list.
+     *
+     * @param aliases Aliases list.
+     */
+    ValidCommand(String... aliases) {
+        this.aliases = aliases;
+    }
+
 
     static {
         Arrays.stream(ValidCommand.values()).forEach(command -> Arrays.stream(command.aliases)
-                .forEach(alias -> aliasMap.put(alias, command)));
+                .forEach(alias -> {
+                    assert aliasMap.get(alias) == null;
+                    aliasMap.put(alias, command);
+                }));
     }
 
-    public static ValidCommand commandType(String alias) throws ParseException {
+    /**
+     * Give the command type of a valid alias.
+     */
+    public static ValidCommand commandTypeOf(String alias) throws ParseException {
         ValidCommand command = aliasMap.get(alias);
 
         if (command == null) {
-            throw new ParseException("Cannot parse command " + alias);
+            throw new ParseException("Unknown command");
         }
 
         logger.info(alias + " is a valid alias.");
@@ -68,7 +73,11 @@ public enum ValidCommand {
         return command;
     }
 
-    public static void AddAlias(ValidCommand command, String alias) {
+    //TODO: If we need to support this functionality, we need to find a way to store the user preference of alias.
+    /**
+     * Add a new {@code alias} to a valid command.
+     */
+    public static void addAlias(ValidCommand command, String alias) {
         assert command != null;
         assert alias != null && !alias.equals("");
 
