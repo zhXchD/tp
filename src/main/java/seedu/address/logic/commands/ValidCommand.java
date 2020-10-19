@@ -3,16 +3,15 @@ package seedu.address.logic.commands;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
-import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 
 /**
  * ValidCommand enum represents the possible command type.
  */
-
-
 public enum ValidCommand {
 
     ADDCONTACT("addc", "addcontact"),
@@ -27,10 +26,10 @@ public enum ValidCommand {
     HELP("help"),
     LISTCONTACT("listc"),
     LISTJOURNALENTRY("listj"),
-    SWITCH("switch"),
+    SWITCH("switch", "swt"),
     VIEW("view");
     
-
+    private static final Logger logger = LogsCenter.getLogger(ValidCommand.class);
 
     /**
      * Creates command alias from aliases list.
@@ -64,8 +63,18 @@ public enum ValidCommand {
             throw new ParseException("Cannot parse command " + alias);
         }
 
+        logger.info(alias + " is a valid alias.");
+
         return command;
     }
 
+    public static void AddAlias(ValidCommand command, String alias) {
+        assert command != null;
+        assert alias != null && !alias.equals("");
+
+        aliasMap.put(alias, command);
+
+        logger.info("Map the alias " + alias + " to " + command.toString());
+    }
 }
 
