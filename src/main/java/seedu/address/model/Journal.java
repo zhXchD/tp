@@ -94,6 +94,17 @@ public class Journal implements ReadOnlyJournal {
         this.entryList.setEntries(entryList);
     }
 
+    /**
+     * Clear contact list for each entry.
+     */
+    public void clearContacts() {
+        for (Entry entry: entryList) {
+            for (Person person: entry.getContactList()) {
+                entry.removeContact(person);
+            }
+        }
+    }
+
     @Override
     public ObservableList<Entry> getEntryList() {
         return entryList.asUnmodifiableObservableList();
