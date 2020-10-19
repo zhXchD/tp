@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 
 /**
@@ -17,6 +18,7 @@ public enum ValidCommand {
     ADDCONTACT("addc", "addcontact"),
     ADDJOURNALENTRY("addj", "adde"),
     CLEARJOURNAL("clearj"),
+    CLEARADDRESSBOOK("clearc"),
     DELETECONTACT("deletec", "delc"),
     DELETEJOURNALENTRY("deletej", "delj"),
     EDIT("edit"),
@@ -24,9 +26,9 @@ public enum ValidCommand {
     EXIT("exit"),
     HELP("help"),
     LISTCONTACT("listc"),
+    LISTJOURNALENTRY("listj"),
     SWITCH("switch"),
-    VIEWJOURNALENTRY("viewj"),
-    VIEWPERSON("viewc");
+    VIEW("view");
     
 
 
@@ -55,11 +57,11 @@ public enum ValidCommand {
                 .forEach(alias -> aliasMap.put(alias, command)));
     }
 
-    public static ValidCommand commandType(String alias) throws CommandException {
+    public static ValidCommand commandType(String alias) throws ParseException {
         ValidCommand command = aliasMap.get(alias);
 
         if (command == null) {
-            throw new CommandException("Does not support this command");
+            throw new ParseException("Cannot parse command " + alias);
         }
 
         return command;

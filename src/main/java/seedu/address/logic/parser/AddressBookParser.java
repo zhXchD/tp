@@ -7,21 +7,15 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddContactCommand;
-import seedu.address.logic.commands.AddJournalEntryCommand;
 import seedu.address.logic.commands.ClearAddressBookCommand;
 import seedu.address.logic.commands.ClearJournalCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteContactCommand;
-import seedu.address.logic.commands.DeleteJournalEntryCommand;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListContactCommand;
 import seedu.address.logic.commands.ListJournalEntryCommand;
 import seedu.address.logic.commands.SwitchCommand;
-import seedu.address.logic.commands.ViewCommand;
+import seedu.address.logic.commands.ValidCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -64,52 +58,54 @@ public class AddressBookParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
-        switch (commandWord) {
 
-        case AddContactCommand.COMMAND_WORD:
+        ValidCommand command = ValidCommand.commandType(commandWord);
+
+        switch (command) {
+        case ADDCONTACT:
             if (uuid == null) {
                 return new AddContactCommandParser().parse(arguments);
             } else {
                 return new AddContactCommandParser(uuid).parse(arguments);
             }
 
-        case AddJournalEntryCommand.COMMAND_WORD:
+        case ADDJOURNALENTRY:
             return new AddJournalEntryCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
+        case EDIT:
             return new EditCommandParser().parse(arguments);
 
-        case DeleteContactCommand.COMMAND_WORD:
+        case DELETECONTACT:
             return new DeleteContactCommandParser().parse(arguments);
 
-        case DeleteJournalEntryCommand.COMMAND_WORD:
+        case DELETEJOURNALENTRY:
             return new DeleteJournalEntryCommandParser().parse(arguments);
 
-        case ClearAddressBookCommand.COMMAND_WORD:
+        case CLEARADDRESSBOOK:
             return new ClearAddressBookCommand();
 
-        case ClearJournalCommand.COMMAND_WORD:
+        case CLEARJOURNAL:
             return new ClearJournalCommand();
 
-        case FindCommand.COMMAND_WORD:
+        case FIND:
             return new FindCommandParser().parse(arguments);
 
-        case ListContactCommand.COMMAND_WORD:
+        case LISTCONTACT:
             return new ListContactCommand();
 
-        case ListJournalEntryCommand.COMMAND_WORD:
+        case LISTJOURNALENTRY:
             return new ListJournalEntryCommand();
 
-        case ExitCommand.COMMAND_WORD:
+        case EXIT:
             return new ExitCommand();
 
-        case HelpCommand.COMMAND_WORD:
+        case HELP:
             return new HelpCommand();
 
-        case ViewCommand.COMMAND_WORD:
+        case VIEW:
             return new ViewCommandParser().parse(arguments);
 
-        case SwitchCommand.COMMAND_WORD:
+        case SWITCH:
             return new SwitchCommand();
 
         default:
