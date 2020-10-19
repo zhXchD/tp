@@ -148,7 +148,7 @@ public class AddContactCommandTest {
         }
 
         @Override
-        public void updateJournal(ReadOnlyAddressBook readOnlyAddressBook) {
+        public void clearJournalContacts() {
             throw new AssertionError("This method should not be called.");
         }
 
