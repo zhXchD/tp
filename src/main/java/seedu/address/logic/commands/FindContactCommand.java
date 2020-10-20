@@ -25,7 +25,7 @@ public class FindContactCommand extends FindCommand {
      * @param predicate the predicate to filter the contacts
      */
     public FindContactCommand(Predicate<Person> predicate) {
-        requireNonNull(predicate);
+        assert(predicate != null);
         this.predicate = predicate;
     }
 
