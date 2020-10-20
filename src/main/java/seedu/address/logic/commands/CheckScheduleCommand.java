@@ -50,6 +50,7 @@ public class CheckScheduleCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this || (other instanceof CheckScheduleCommand
-                && predicate.equals(((CheckScheduleCommand) other).predicate));
+                && predicate.equals(((CheckScheduleCommand) other).predicate)
+                && date.equals(((CheckScheduleCommand) other).date));
     }
 }

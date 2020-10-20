@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.address.testutil.TypicalEntries.TEST_ENTRY_DEFAULT;
-import static seedu.address.testutil.TypicalEntries.TEST_ENTRY_DIFF_CONTACTS;
-import static seedu.address.testutil.TypicalEntries.TEST_ENTRY_DIFF_TAGS;
+import static seedu.address.testutil.TypicalEntries.TEST_ENTRY_DIFF_TITLE;
+import static seedu.address.testutil.TypicalEntries.TEST_ENTRY_SEVEN;
 import static seedu.address.testutil.TypicalEntries.getTypicalJournal;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -141,7 +141,7 @@ class JsonJournalStorageTest {
             assertEquals(original, new Journal(readBack));
 
             // Modifying data, overwrite existing file, and read back
-            original.addEntry(TEST_ENTRY_DIFF_CONTACTS);
+            original.addEntry(TEST_ENTRY_DIFF_TITLE);
             original.removeEntry(TEST_ENTRY_DEFAULT);
             jsonJournalStorage.saveJournal(original, filePath);
             readBack = jsonJournalStorage.readJournal(
@@ -149,7 +149,7 @@ class JsonJournalStorageTest {
             assertEquals(original, new Journal(readBack));
 
             // Save and read without specifying file path
-            original.addEntry(TEST_ENTRY_DIFF_TAGS);
+            original.addEntry(TEST_ENTRY_SEVEN);
             jsonJournalStorage.saveJournal(original);
             readBack = jsonJournalStorage
                     .readJournal(getTypicalAddressBook())

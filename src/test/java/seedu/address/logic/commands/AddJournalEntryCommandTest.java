@@ -47,7 +47,7 @@ class AddJournalEntryCommandTest {
         @DisplayName("should add entry successfully if entry is valid")
         public void execute_entryAcceptedByModel_addSuccessful()
                 throws Exception {
-            AddJournalEntryCommandTest.ModelStubAcceptingEntryAdded modelStub =
+            ModelStubAcceptingEntryAdded modelStub =
                     new ModelStubAcceptingEntryAdded();
             Entry validEntry = new EntryBuilder().build();
 
@@ -67,7 +67,7 @@ class AddJournalEntryCommandTest {
         public void execute_duplicateEntry_throwsCommandException() {
             Entry validEntry = new EntryBuilder().build();
             AddJournalEntryCommand addCommand = new AddJournalEntryCommand(validEntry);
-            AddJournalEntryCommandTest.ModelStub modelStub =
+            ModelStub modelStub =
                     new ModelStubWithEntry(validEntry);
 
             assertThrows(
@@ -81,10 +81,14 @@ class AddJournalEntryCommandTest {
     @Nested
     @DisplayName("equals method")
     class Equals {
-        private Entry meeting = new EntryBuilder().withTitle("Meeting").build();
-        private Entry discussion = new EntryBuilder().withTitle("Discussion").build();
-        private AddJournalEntryCommand addMeetingCommand = new AddJournalEntryCommand(meeting);
-        private AddJournalEntryCommand addDiscussionCommand = new AddJournalEntryCommand(discussion);
+        private final Entry meeting = new EntryBuilder()
+                .withTitle("Meeting").build();
+        private final Entry discussion = new EntryBuilder()
+                .withTitle("Discussion").build();
+        private final AddJournalEntryCommand addMeetingCommand =
+                new AddJournalEntryCommand(meeting);
+        private final AddJournalEntryCommand addDiscussionCommand =
+                new AddJournalEntryCommand(discussion);
 
         @Test
         @DisplayName("should return true if same object")
@@ -236,7 +240,7 @@ class AddJournalEntryCommandTest {
     /**
      * A Model stub that contains a single entry.
      */
-    private static class ModelStubWithEntry extends AddJournalEntryCommandTest.ModelStub {
+    private static class ModelStubWithEntry extends ModelStub {
         private final Entry entry;
 
         ModelStubWithEntry(Entry entry) {

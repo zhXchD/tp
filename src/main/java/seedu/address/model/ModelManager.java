@@ -29,7 +29,11 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyJournal journal, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(
+            ReadOnlyAddressBook addressBook,
+            ReadOnlyJournal journal,
+            ReadOnlyUserPrefs userPrefs
+    ) {
         super();
         requireAllNonNull(addressBook, journal, userPrefs);
 
@@ -46,7 +50,7 @@ public class ModelManager implements Model {
         this(new AddressBook(), new Journal(), new UserPrefs());
     }
 
-    //=========== UserPrefs ==================================================================================
+    //=========== UserPrefs ====================================================
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -81,7 +85,7 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== AddressBook ==================================================
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
@@ -90,23 +94,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void clearJournalContacts() {
-        journal.clearContacts();
-    }
-
-    @Override
     public ReadOnlyAddressBook getAddressBook() {
         return addressBook;
-    }
-
-    @Override
-    public void setJournal(ReadOnlyJournal journal) {
-        this.journal.resetData(journal);
-    }
-
-    @Override
-    public ReadOnlyJournal getJournal() {
-        return journal;
     }
 
     @Override
@@ -123,17 +112,34 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addPerson(Person person) {
-        requireNonNull(person);
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-    }
-
-    @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+    //=========== Journal ======================================================
+
+    @Override
+    public void clearJournalContacts() {
+        journal.clearContacts();
+    }
+
+    @Override
+    public void setJournal(ReadOnlyJournal journal) {
+        this.journal.resetData(journal);
+    }
+
+    @Override
+    public ReadOnlyJournal getJournal() {
+        return journal;
+    }
+
+    @Override
+    public void addPerson(Person person) {
+        requireNonNull(person);
+        addressBook.addPerson(person);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
@@ -205,5 +211,4 @@ public class ModelManager implements Model {
             && filteredPersons.equals(other.filteredPersons)
             && filteredEntries.equals(other.filteredEntries);
     }
-
 }
