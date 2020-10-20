@@ -7,6 +7,8 @@ import java.util.function.Predicate;
 
 import seedu.address.model.Model;
 import seedu.address.model.journal.Date;
+import java.time.LocalDate;
+
 import seedu.address.model.journal.Entry;
 
 /**
@@ -25,6 +27,7 @@ public class CheckScheduleCommand extends Command {
 
     private final Predicate<Entry> predicate;
     private final Date date;
+
 
     /**
      * Creates a CheckScheduleCommand with the predicate for filtering the
