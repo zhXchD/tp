@@ -58,7 +58,7 @@ public class UniqueEntryList implements Iterable<Entry> {
         }
 
         if (!target.isSameEntry(editedEntry) && contains(editedEntry)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateEntryException();
         }
 
         internalList.set(index, editedEntry);
