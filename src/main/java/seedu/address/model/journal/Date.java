@@ -6,6 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoUnit;
 
 /**
  * Represents date for journal.
@@ -31,7 +32,7 @@ public class Date {
      */
     public Date(LocalDateTime date) {
         requireNonNull(date);
-        this.date = date;
+        this.date = date.truncatedTo(ChronoUnit.MINUTES);
         this.value = date.toString();
     }
 
@@ -46,7 +47,8 @@ public class Date {
             date = LocalDateTime.now().format(VALID_FORMATTER);
         }
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
-        this.date = LocalDateTime.parse(date, VALID_FORMATTER);
+        this.date = LocalDateTime.parse(date, VALID_FORMATTER)
+                .truncatedTo(ChronoUnit.MINUTES);
         value = date;
     }
 

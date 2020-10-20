@@ -24,7 +24,6 @@ import seedu.address.logic.commands.DeleteJournalEntryCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindContactCommand;
 import seedu.address.logic.commands.FindJournalEntryCommand;
 import seedu.address.logic.commands.HelpCommand;
