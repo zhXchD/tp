@@ -14,15 +14,22 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddContactCommand;
+import seedu.address.logic.commands.AddJournalEntryCommand;
+import seedu.address.logic.commands.CheckScheduleCommand;
 import seedu.address.logic.commands.ClearAddressBookCommand;
+import seedu.address.logic.commands.ClearJournalCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteContactCommand;
+import seedu.address.logic.commands.DeleteJournalEntryCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindContactCommand;
+import seedu.address.logic.commands.FindJournalEntryCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListContactCommand;
+import seedu.address.logic.commands.ListJournalEntryCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -37,9 +44,9 @@ public class AddressBookParserTest {
     @DisplayName("parseCommand method")
     class ParseCommand {
         @Test
-        @DisplayName("should generate AddContactCommand object from appropriate add "
-                + "person input")
-        public void parseCommand_add() throws Exception {
+        @DisplayName("should generate AddContactCommand object from appropriate"
+                + " add person input")
+        public void parseCommand_addContact() throws Exception {
             UUID uuid = UUID.randomUUID();
             AddressBookParser parser = new AddressBookParser(uuid);
             Person person = new PersonBuilder().build(uuid);
@@ -49,9 +56,18 @@ public class AddressBookParserTest {
         }
 
         @Test
-        @DisplayName("should generate ClearAddressBookCommand object from appropriate "
-                + "clear input")
-        public void parseCommand_clear() throws Exception {
+        @DisplayName("should generate AddJournalEntryCommand object from "
+                + "appropriate add person input")
+        public void parseCommand_addJournalEntry() throws Exception {
+            assertTrue(parser.parseCommand(
+                    AddJournalEntryCommand.COMMAND_WORD + " n/test"
+            ) instanceof AddJournalEntryCommand);
+        }
+
+        @Test
+        @DisplayName("should generate ClearAddressBookCommand object from "
+                + "appropriate clear input")
+        public void parseCommand_clearAddressBook() throws Exception {
             assertTrue(parser.parseCommand(ClearAddressBookCommand.COMMAND_WORD)
                     instanceof ClearAddressBookCommand);
             assertTrue(parser.parseCommand(
@@ -60,13 +76,36 @@ public class AddressBookParserTest {
         }
 
         @Test
-        @DisplayName("should generate DeleteContactCommand object from appropriate "
-                + "delete person input")
-        public void parseCommand_delete() throws Exception {
+        @DisplayName("should generate ClearJournalCommand object from "
+                + "appropriate clear input")
+        public void parseCommand_clearJournal() throws Exception {
+            assertTrue(parser.parseCommand(ClearJournalCommand.COMMAND_WORD)
+                    instanceof ClearJournalCommand);
+            assertTrue(parser.parseCommand(
+                    ClearJournalCommand.COMMAND_WORD + " 3")
+                    instanceof ClearJournalCommand);
+        }
+
+        @Test
+        @DisplayName("should generate DeleteContactCommand object from "
+                + "appropriate delete person input")
+        public void parseCommand_deleteContact() throws Exception {
             DeleteContactCommand command = (DeleteContactCommand) parser.parseCommand(
                     DeleteContactCommand.COMMAND_WORD + " "
                             + INDEX_FIRST_PERSON.getOneBased());
             assertEquals(new DeleteContactCommand(INDEX_FIRST_PERSON), command);
+        }
+
+        @Test
+        @DisplayName("should generate DeleteJournalEntryCommand object from "
+                + "appropriate delete journal entry input")
+        public void parseCommand_deleteJournalEntry() throws Exception {
+            DeleteJournalEntryCommand command =
+                    (DeleteJournalEntryCommand) parser.parseCommand(
+                            DeleteJournalEntryCommand.COMMAND_WORD + " "
+                                    + INDEX_FIRST_PERSON.getOneBased());
+            assertEquals(
+                    new DeleteJournalEntryCommand(INDEX_FIRST_PERSON), command);
         }
 
         @Test
@@ -99,11 +138,19 @@ public class AddressBookParserTest {
         }
 
         @Test
-        @DisplayName("should generate FindCommand object from appropriate "
-                + "find keyword input")
-        public void parseCommand_find() throws Exception {
+        @DisplayName("should generate FindContactCommand object from "
+                + "appropriate find keyword input")
+        public void parseCommand_findContact() throws Exception {
             Command command = parser.parseCommand("find in/c n/test");
-            assertTrue(command instanceof FindCommand);
+            assertTrue(command instanceof FindContactCommand);
+        }
+
+        @Test
+        @DisplayName("should generate FindJournalEntryCommand object from "
+                + "appropriate find keyword input")
+        public void parseCommand_findJournalEntry() throws Exception {
+            Command command = parser.parseCommand("find in/j n/test");
+            assertTrue(command instanceof FindJournalEntryCommand);
         }
 
         @Test
@@ -118,14 +165,36 @@ public class AddressBookParserTest {
         }
 
         @Test
-        @DisplayName("should generate ListContactCommand object from appropriate "
-                + "list input")
-        public void parseCommand_list() throws Exception {
+        @DisplayName("should generate ListContactCommand object from "
+                + "appropriate list input")
+        public void parseCommand_listContact() throws Exception {
             assertTrue(parser.parseCommand(ListContactCommand.COMMAND_WORD)
                     instanceof ListContactCommand);
             assertTrue(parser.parseCommand(
                     ListContactCommand.COMMAND_WORD + " 3")
                     instanceof ListContactCommand);
+        }
+
+        @Test
+        @DisplayName("should generate ListJournalEntryCommand object from "
+                + "appropriate list input")
+        public void parseCommand_listEntry() throws Exception {
+            assertTrue(parser.parseCommand(ListJournalEntryCommand.COMMAND_WORD)
+                    instanceof ListJournalEntryCommand);
+            assertTrue(parser.parseCommand(
+                    ListJournalEntryCommand.COMMAND_WORD + " 3")
+                    instanceof ListJournalEntryCommand);
+        }
+
+        @Test
+        @DisplayName("should generate CheckScheduleCommand object from "
+                + "appropriate check schedule input")
+        public void parseCommand_checkSchedule() throws Exception {
+            assertTrue(parser.parseCommand(CheckScheduleCommand.COMMAND_WORD)
+                    instanceof CheckScheduleCommand);
+            assertTrue(parser.parseCommand(
+                    CheckScheduleCommand.COMMAND_WORD + " 2020-03-04"
+            ) instanceof CheckScheduleCommand);
         }
 
         @Test
