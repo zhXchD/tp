@@ -137,6 +137,36 @@ Aliases: `listj`, `lj`
 
 Format: `listj`
 
+### Editing a contact: `editc`
+
+Edits an existing person in the address book.
+
+Format: `editc INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
+
+* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, ...
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* You can remove all the person’s tags by typing t/ without specifying any tags after it.
+
+Examples:
+* `editc 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be 91234567 and johndoe@example.com respectively.
+* `editc 2 n/Betsy Crower t/` Edits the name of the 2nd person to be Betsy Crower and clears all existing tags.
+
+
+### Editing a journal entry: `editj`
+
+Edits an existing entry in the journal.
+
+Format: `editj INDEX n/NAME [at/DATE_AND_TIME] [d/DESCRIPTION] [with/CONTACT_NAMES] [t/TAG]…​ `
+
+* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, ...
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the entry will be removed i.e adding of tags is not cumulative.
+* You can remove all the entry's tags by typing t/ without specifying any tags after it.
+
+
 ### Viewing a contact or journal entry: `view`
 
 Opens up a contact or journal entry to show further details and switches to the
