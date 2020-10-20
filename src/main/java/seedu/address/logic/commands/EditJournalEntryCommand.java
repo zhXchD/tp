@@ -9,15 +9,21 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import javafx.collections.ObservableList;
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.journal.Date;
 import seedu.address.model.journal.Description;
+import seedu.address.model.journal.Entry;
 import seedu.address.model.journal.Title;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.tag.Tag;
 
@@ -45,21 +51,69 @@ public class EditJournalEntryCommand extends Command {
             + "edit must be provided.";
     public static final String MESSAGE_DUPLICATE_ENTRY = "This person already"
             + " exists in the address book.";
+
     private final Index index;
+    private final EditJournalEntryDescriptor editJournalEntryDescriptor;
 
     /**
      * @param index
      */
-    public EditJournalEntryCommand(Index index) {
+    public EditJournalEntryCommand(Index index,
+                                   EditJournalEntryDescriptor editJournalEntryDescriptor) {
         requireNonNull(index);
-        // TODO: EditJournalEntryDescriptor
+        requireNonNull(editJournalEntryDescriptor);
 
         this.index = index;
+        this.editJournalEntryDescriptor = editJournalEntryDescriptor;
+    }
+
+    private static Entry createEditedEntry(Entry entryToEdit,
+                                           EditJournalEntryDescriptor editJournalEntryDescriptor) {
+        assert entryToEdit != null;
+
+        Title updatedTitle =
+                editJournalEntryDescriptor.getTitle().orElse(entryToEdit.getTitle());
+        Date updatedDate =
+                editJournalEntryDescriptor.getDate().orElse(entryToEdit.getDate());
+        Description updatedDescription =
+                editJournalEntryDescriptor.getDescription().orElse(entryToEdit.getDescription());
+        // TODO: figure how to add contact list
+        UniquePersonList updatedContactList = new UniquePersonList();
+        Set<Tag> updatedTags =
+                editJournalEntryDescriptor.getTags().orElse(entryToEdit.getTags());
+
+        return new Entry(
+                updatedTitle,
+                updatedDate,
+                updatedDescription,
+                updatedContactList,
+                updatedTags
+        );
+
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        return null;
+        requireNonNull(model);
+        List<Entry> lastShownList = model.getFilteredEntryList();
+
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(
+                    Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
+        }
+        Entry entryToEdit = lastShownList.get(index.getZeroBased());
+        Entry editedEntry = createEditedEntry(entryToEdit,
+                editJournalEntryDescriptor);
+        if (!entryToEdit.isSameEntry(editedEntry) && model.hasEntry(editedEntry)) {
+            throw new CommandException(MESSAGE_DUPLICATE_ENTRY);
+        }
+        model.setEntry(entryToEdit, editedEntry);
+        // TODO: Update the predicate here
+//        model.updateFilteredEntryList(PREDICATE_SHOW_ALL_ENTRIES);
+
+
+        return new CommandResult(
+                String.format(MESSAGE_EDIT_ENTRY_SUCCESS, editedEntry));
     }
 
     public static class EditJournalEntryDescriptor {
@@ -72,8 +126,28 @@ public class EditJournalEntryCommand extends Command {
         public EditJournalEntryDescriptor() {
         }
 
+        /**
+         * Copy constructor.
+         * A defensive copy of {@code tags} is used internally.
+         */
         public EditJournalEntryDescriptor(EditJournalEntryDescriptor toCopy) {
+            setTitle(toCopy.title);
+            setDate(toCopy.date);
+            setDescription(toCopy.description);
+            contactList = new UniquePersonList();
+            toCopy.getContactList()
+                    .forEach(contactList::add);
+            setTags(toCopy.tags);
+        }
 
+        public boolean isAnyFieldEdited() {
+            return CollectionUtil.isAnyNonNull(
+                    title,
+                    date,
+                    description,
+                    tags,
+                    contactList
+            );
         }
 
         public Optional<Title> getTitle() {
@@ -100,9 +174,8 @@ public class EditJournalEntryCommand extends Command {
             this.description = description;
         }
 
-        public UniquePersonList getContactList() {
-            // TODO: Look into the optional for this
-            return contactList;
+        public ObservableList<Person> getContactList() {
+            return contactList.asUnmodifiableObservableList();
         }
 
         public void setContactList(UniquePersonList contactList) {
@@ -148,7 +221,6 @@ public class EditJournalEntryCommand extends Command {
                     && getDate().equals(e.getDate())
                     && getDescription().equals(e.getDescription())
                     && getTags().equals(e.getTags());
-
 
         }
     }
