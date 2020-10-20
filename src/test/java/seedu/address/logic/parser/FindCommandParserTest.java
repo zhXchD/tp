@@ -33,7 +33,8 @@ public class FindCommandParserTest {
                             .withDate("2020-10-10 10:00")
                             .withContacts(CARL)
                             .withContacts(DANIEL)
-                            .build())
+                            .build()
+            )
             .withEntry(
                     new EntryBuilder()
                             .withTitle("second entry")
@@ -41,7 +42,8 @@ public class FindCommandParserTest {
                             .withDate("2020-10-11 10:00")
                             .withContacts(ALICE)
                             .withContacts(DANIEL)
-                            .build())
+                            .build()
+            )
             .withEntry(
                     new EntryBuilder()
                             .withTitle("third entry")
@@ -49,7 +51,8 @@ public class FindCommandParserTest {
                             .withDate("2020-10-12 10:00")
                             .withContacts(FIONA)
                             .withContacts(DANIEL)
-                            .build())
+                            .build()
+            )
             .build();
 
     private final Model model = new ModelManager(
@@ -78,10 +81,13 @@ public class FindCommandParserTest {
         @Test
         @DisplayName("should generate FindCommand object if arguments are "
                 + "valid")
-        public void parse_validArgs_returnsFindContactCommand() throws Exception {
+        public void parse_validArgs_returnsFindContactCommand()
+                throws Exception {
             // no leading and trailing whitespaces
-            FindCommand actualFindCommand = parser.parse(" in/c n/Alice e/test a/test p/000 t/tes");
-            String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+            FindCommand actualFindCommand =
+                    parser.parse(" in/c n/Alice e/test a/test p/000 t/tes");
+            String expectedMessage = String.format(
+                    MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
             expectedModel.updateFilteredPersonList(person -> false);
             assertCommandSuccess(
                     actualFindCommand,
