@@ -14,18 +14,18 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public enum ValidCommand {
 
-    ADDCONTACT("addc", "addcontact"),
-    ADDJOURNALENTRY("addj", "adde"),
-    CLEARJOURNAL("clearj", "cj"),
-    CLEARADDRESSBOOK("clearc", "cc"),
-    DELETECONTACT("deletec", "delc"),
-    DELETEJOURNALENTRY("deletej", "delj"),
+    ADD_CONTACT("addc", "addcontact"),
+    ADD_JOURNAL_ENTRY("addj", "adde"),
+    CLEAR_JOURNAL("clearj", "cj"),
+    CLEAR_ADDRESS_BOOK("clearc", "cc"),
+    DELETE_CONTACT("deletec", "delc"),
+    DELETE_JOURNAL_ENTRY("deletej", "delj"),
     EDIT("edit", "ed"),
     FIND("find", "f"),
     EXIT("exit", "quit", "q"),
     HELP("help", "h"),
-    LISTCONTACT("listc", "lc"),
-    LISTJOURNALENTRY("listj", "lj"),
+    LIST_CONTACT("listc", "lc"),
+    LIST_JOURNAL_ENTRY("listj", "lj"),
     SWITCH("switch", "swt"),
     VIEW("view", "v");
     private static final Logger logger = LogsCenter.getLogger(ValidCommand.class);

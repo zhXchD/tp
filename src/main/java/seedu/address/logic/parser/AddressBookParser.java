@@ -26,7 +26,8 @@ public class AddressBookParser {
     /**
      * Used for initial separation of command word and args.
      */
-    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+    private static final Pattern BASIC_COMMAND_FORMAT =
+            Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
     private UUID uuid;
 
@@ -62,38 +63,38 @@ public class AddressBookParser {
         ValidCommand command = ValidCommand.commandTypeOf(commandWord);
 
         switch (command) {
-        case ADDCONTACT:
+        case ADD_CONTACT:
             if (uuid == null) {
                 return new AddContactCommandParser().parse(arguments);
             } else {
                 return new AddContactCommandParser(uuid).parse(arguments);
             }
 
-        case ADDJOURNALENTRY:
+        case ADD_JOURNAL_ENTRY:
             return new AddJournalEntryCommandParser().parse(arguments);
 
         case EDIT:
             return new EditCommandParser().parse(arguments);
 
-        case DELETECONTACT:
+        case DELETE_CONTACT:
             return new DeleteContactCommandParser().parse(arguments);
 
-        case DELETEJOURNALENTRY:
+        case DELETE_JOURNAL_ENTRY:
             return new DeleteJournalEntryCommandParser().parse(arguments);
 
-        case CLEARADDRESSBOOK:
+        case CLEAR_ADDRESS_BOOK:
             return new ClearAddressBookCommand();
 
-        case CLEARJOURNAL:
+        case CLEAR_JOURNAL:
             return new ClearJournalCommand();
 
         case FIND:
             return new FindCommandParser().parse(arguments);
 
-        case LISTCONTACT:
+        case LIST_CONTACT:
             return new ListContactCommand();
 
-        case LISTJOURNALENTRY:
+        case LIST_JOURNAL_ENTRY:
             return new ListJournalEntryCommand();
 
         case EXIT:
