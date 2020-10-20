@@ -157,7 +157,6 @@ Given below is the sequence diagram of command alias feature (This change only r
 
 ![aliasSequenceDiagram](images/commandAlias/asliasSequenceDiagram.png)
 
- 
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
