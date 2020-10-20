@@ -7,10 +7,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -18,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddContactCommand;
 import seedu.address.logic.commands.ClearAddressBookCommand;
+import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteContactCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
@@ -26,7 +24,6 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListContactCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
@@ -105,12 +102,8 @@ public class AddressBookParserTest {
         @DisplayName("should generate FindCommand object from appropriate "
                 + "find keyword input")
         public void parseCommand_find() throws Exception {
-            List<String> keywords = Arrays.asList("foo", "bar", "baz");
-            FindCommand command = (FindCommand) parser.parseCommand(
-                    FindCommand.COMMAND_WORD + " " + keywords.stream()
-                            .collect(Collectors.joining(" ")));
-            assertEquals(new FindCommand(new NameContainsKeywordsPredicate(
-                    keywords)), command);
+            Command command = parser.parseCommand("find in/c n/test");
+            assertTrue(command instanceof FindCommand);
         }
 
         @Test
