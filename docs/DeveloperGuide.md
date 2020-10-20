@@ -150,13 +150,12 @@ Given below is the class diagram of related part of command alias feature:
 ![aliasClassDiagram](images/commandAlias/aliasClassDiagram.png)
 
 *`ValidCommand#commandTypeOf(String commandWord)` takes in a command keyword (eg. addj, addc, findc...) and returns a `ValidCommand` which will be used by `AddressBookParser`*
+
 *`AddressBookParser#parseCommand(String UserInput)` detect the command word and pass in to the `ValidCommand#commandTypeOf(String commandWord)` to find the valid command and produce the `Command` accordingly*
 
 Given below is the sequence diagram of command alias feature (This change only related to `Logic` component, so we omit the execution detail in model):
 
 ![aliasSequenceDiagram](images/commandAlias/asliasSequenceDiagram.png)
-
-#### Design Consideration
 
  
 ### \[Proposed\] Undo/redo feature
