@@ -10,8 +10,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.journal.exceptions.DuplicateEntryException;
 import seedu.address.model.journal.exceptions.EntryNotFoundException;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 public class UniqueEntryList implements Iterable<Entry> {
 
