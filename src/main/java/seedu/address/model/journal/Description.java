@@ -8,6 +8,7 @@ public class Description {
      */
     public static final String VALIDATION_REGEX = "[a-zA-z].*";
     public static final String MESSAGE_CONSTRAINTS = "This is not a valid description!";
+    public static final Description EMPTY_DESCRIPTION = new Description(null);
     private static final String EMPTY_MESSAGE = "No description found!";
 
     public final String description;
