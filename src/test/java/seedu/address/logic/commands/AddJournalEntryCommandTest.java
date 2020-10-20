@@ -48,7 +48,7 @@ class AddJournalEntryCommandTest {
         public void execute_entryAcceptedByModel_addSuccessful()
                 throws Exception {
             AddJournalEntryCommandTest.ModelStubAcceptingEntryAdded modelStub =
-                    new AddJournalEntryCommandTest.ModelStubAcceptingEntryAdded();
+                    new ModelStubAcceptingEntryAdded();
             Entry validEntry = new EntryBuilder().build();
 
             CommandResult commandResult =
@@ -68,7 +68,7 @@ class AddJournalEntryCommandTest {
             Entry validEntry = new EntryBuilder().build();
             AddJournalEntryCommand addCommand = new AddJournalEntryCommand(validEntry);
             AddJournalEntryCommandTest.ModelStub modelStub =
-                    new AddJournalEntryCommandTest.ModelStubWithEntry(validEntry);
+                    new ModelStubWithEntry(validEntry);
 
             assertThrows(
                     CommandException.class,
@@ -121,7 +121,7 @@ class AddJournalEntryCommandTest {
     /**
      * A default model stub that have all of the methods failing.
      */
-    private class ModelStub implements Model {
+    private static class ModelStub implements Model {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -236,7 +236,7 @@ class AddJournalEntryCommandTest {
     /**
      * A Model stub that contains a single entry.
      */
-    private class ModelStubWithEntry extends AddJournalEntryCommandTest.ModelStub {
+    private static class ModelStubWithEntry extends AddJournalEntryCommandTest.ModelStub {
         private final Entry entry;
 
         ModelStubWithEntry(Entry entry) {
@@ -254,7 +254,7 @@ class AddJournalEntryCommandTest {
     /**
      * A Model stub that always accept the entry being added.
      */
-    private class ModelStubAcceptingEntryAdded extends AddJournalEntryCommandTest.ModelStub {
+    private static class ModelStubAcceptingEntryAdded extends AddJournalEntryCommandTest.ModelStub {
         final ArrayList<Entry> entriesAdded = new ArrayList<>();
 
         @Override
