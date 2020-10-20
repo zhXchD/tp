@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.journal.exceptions.DuplicateEntryException;
 import seedu.address.model.journal.exceptions.EntryNotFoundException;
+import seedu.address.testutil.EntryBuilder;
 
 public class UniqueEntryListTest {
     //TODO: Update UniqueEntryTest
@@ -174,6 +175,39 @@ public class UniqueEntryListTest {
             list.add(TEST_ENTRY_DEFAULT);
             UniqueEntryList testList = new UniqueEntryList();
             assertFalse(testList.equals(list));
+        }
+    }
+
+    @Nested
+    @DisplayName("setEntry method")
+    class SetEntry {
+
+        private final UniqueEntryList list = new UniqueEntryList();
+        private final Entry sampleEntry1 = new EntryBuilder().build();
+        private final Entry sampleEntry2 = new EntryBuilder().withTitle("Dummy title").build();
+
+        @Test
+        @DisplayName("Should the replace the entry if the edited entry is valid.")
+        void setEntry_success_replaceEntry() {
+            list.add(sampleEntry1);
+            assertTrue(list.contains(sampleEntry1));
+            list.setEntry(sampleEntry1, sampleEntry2);
+            assertTrue(list.contains(sampleEntry2));
+            assertFalse(list.contains(sampleEntry1));
+        }
+
+        @Test
+        @DisplayName("Should throw EntryNotFoundException if the target is not in list")
+        void setEntry_notInList_throwsEntryNotFoundException() {
+            assertThrows(EntryNotFoundException.class, () -> list.setEntry(sampleEntry1, sampleEntry2));
+        }
+
+        @Test
+        @DisplayName("Should throw DuplicateEntryException if the entry is in the list")
+        void setEntry_editedEntryInList_throwsDuplicateEntryException() {
+            list.add(sampleEntry1);
+            list.add(sampleEntry2);
+            assertThrows(DuplicateEntryException.class, () -> list.setEntry(sampleEntry1, sampleEntry2));
         }
     }
 }

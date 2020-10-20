@@ -105,6 +105,10 @@ public class Journal implements ReadOnlyJournal {
         }
     }
 
+    public void setEntry(Entry target, Entry editedEntry) {
+        entryList.setEntry(target, editedEntry);
+    }
+
     @Override
     public ObservableList<Entry> getEntryList() {
         return entryList.asUnmodifiableObservableList();

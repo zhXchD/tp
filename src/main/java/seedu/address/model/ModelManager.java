@@ -154,6 +154,13 @@ public class ModelManager implements Model {
         journal.removeEntry(entry);
     }
 
+    @Override
+    public void setEntry(Entry target, Entry editedEntry) {
+        requireAllNonNull(target, editedEntry);
+
+        journal.setEntry(target, editedEntry);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
