@@ -1,17 +1,5 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
-import seedu.address.model.Journal;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
-
-import java.util.Arrays;
-import java.util.function.Predicate;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -19,6 +7,19 @@ import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIE
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+
+import java.util.Arrays;
+import java.util.function.Predicate;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.Journal;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Person;
 
 /**
  * Contains integration tests (interaction with the Model) for
@@ -33,9 +34,9 @@ class FindContactCommandTest {
     @DisplayName("equals method")
     class Equals {
         private final Predicate<Person> firstPredicate =
-                person -> person.getName().fullName.contains("first");
+            person -> person.getName().fullName.contains("first");
         private final Predicate<Person> secondPredicate =
-                person -> person.getName().fullName.contains("second");
+            person -> person.getName().fullName.contains("second");
 
         private final FindContactCommand findFirstCommand =
                 new FindContactCommand(firstPredicate);

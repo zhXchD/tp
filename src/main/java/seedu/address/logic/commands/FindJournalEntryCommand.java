@@ -2,25 +2,28 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.function.Predicate;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.journal.Entry;
-
-import java.util.function.Predicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the
  * argument keywords. Keyword matching is case insensitive.
  */
-public class FindJournalEntryCommand extends FindCommand  {
-
-    public static final String MESSAGE_USAGE = FindCommand.COMMAND_WORD +
-            " in/j: Finds all entries in the journal whose fields contain" +
-            " the specified strings or tags contains specified tags.\n" +
-            "Parameters: [n/TITLE] [at/DATE_AND_TIME] [d/DESCRIPTION] [with/CONTACT_NAME] [t/TAG]";
+public class FindJournalEntryCommand extends FindCommand {
+    public static final String MESSAGE_USAGE = FindCommand.COMMAND_WORD
+            + " in/j: Finds all entries in the journal whose fields contain"
+            + " the specified strings or tags contains specified tags.\n"
+            + "Parameters: [n/TITLE] [at/DATE_AND_TIME] [d/DESCRIPTION] [with/CONTACT_NAME] [t/TAG]";
 
     private final Predicate<Entry> predicate;
 
+    /**
+     * Create a new FindJournalEntryCommand from a specified predicate.
+     * @param predicate predicate to filter the journal entries
+     */
     public FindJournalEntryCommand(Predicate<Entry> predicate) {
         requireNonNull(predicate);
         this.predicate = predicate;

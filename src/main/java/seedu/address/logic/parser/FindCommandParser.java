@@ -1,7 +1,15 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCOPE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.List;
 import java.util.Set;
@@ -47,7 +55,8 @@ public class FindCommandParser implements Parser<FindCommand> {
         case "c":
             Predicate<Person> personPredicate = person -> true;
             if (!arePrefixesEmpty(argMultimap, PREFIX_DATE_AND_TIME, PREFIX_DESCRIPTION, PREFIX_CONTACT)) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindContactCommand.MESSAGE_USAGE));
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindContactCommand.MESSAGE_USAGE));
             }
             if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
                 String nameKeyWord = argMultimap.getValue(PREFIX_NAME).get().trim();
@@ -93,7 +102,8 @@ public class FindCommandParser implements Parser<FindCommand> {
         case "j":
             Predicate<Entry> entryPredicate = entry -> true;
             if (!arePrefixesEmpty(argMultimap, PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_PHONE)) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindJournalEntryCommand.MESSAGE_USAGE));
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindJournalEntryCommand.MESSAGE_USAGE));
             }
             if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
                 String titleKeyWord = argMultimap.getValue(PREFIX_NAME).get().trim();
@@ -117,11 +127,11 @@ public class FindCommandParser implements Parser<FindCommand> {
             }
             List<String> names = argMultimap.getAllValues(PREFIX_CONTACT);
             entryPredicate = entryPredicate.and(
-                    entry -> names.stream().allMatch(
-                                    name -> entry
-                                            .getContactList().stream()
-                                            .anyMatch(
-                                                    person -> person.getName().fullName.contains(name))));
+                entry -> names.stream().allMatch(
+                    name -> entry
+                        .getContactList().stream()
+                            .anyMatch(
+                                person -> person.getName().fullName.contains(name))));
             Set<Tag> tagList1 = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
             entryPredicate = entryPredicate.and(entry -> entry.getTags().containsAll(tagList1));
             return new FindJournalEntryCommand(entryPredicate);

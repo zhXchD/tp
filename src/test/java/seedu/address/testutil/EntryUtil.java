@@ -1,9 +1,11 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+
 import seedu.address.logic.commands.AddContactCommand;
 import seedu.address.model.journal.Entry;
-
-import static seedu.address.logic.parser.CliSyntax.*;
 
 public class EntryUtil {
 

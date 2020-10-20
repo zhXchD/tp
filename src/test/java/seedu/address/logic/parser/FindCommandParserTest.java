@@ -78,17 +78,10 @@ public class FindCommandParserTest {
         @Test
         @DisplayName("should generate FindCommand object if arguments are "
                 + "valid")
-        public void parse_validArgs_returnsFindContactCommand() {
+        public void parse_validArgs_returnsFindContactCommand() throws Exception {
             // no leading and trailing whitespaces
-
-            FindCommand actualFindCommand = null;
-            try {
-                actualFindCommand = parser.parse(" in/c n/Alice e/test a/test p/000 t/tes");
-            } catch (Exception e) {
-            }
-
-            String expectedMessage =
-                    String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+            FindCommand actualFindCommand = parser.parse(" in/c n/Alice e/test a/test p/000 t/tes");
+            String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
             expectedModel.updateFilteredPersonList(person -> false);
             assertCommandSuccess(
                     actualFindCommand,
@@ -101,14 +94,11 @@ public class FindCommandParserTest {
         @Test
         @DisplayName("should generate FindCommand object if arguments are "
                 + "valid")
-        public void parse_validArgs_returnsFindJournalCommand() {
+        public void parse_validArgs_returnsFindJournalCommand() throws Exception {
             // no leading and trailing whitespaces
 
-            FindCommand actualFindCommand = null;
-            try {
-                actualFindCommand = parser.parse(" in/j n/test d/test at/2020-10-10 10:00 with/test t/tes");
-            } catch (Exception e) {
-            }
+            FindCommand actualFindCommand = parser.parse(
+                    " in/j n/test d/test at/2020-10-10 10:00 with/test t/tes");
 
             String expectedMessage =
                     String.format(MESSAGE_ENTRIES_LISTED_OVERVIEW, 0);
