@@ -138,6 +138,8 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Command alias feature
+#### Implementation 
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
