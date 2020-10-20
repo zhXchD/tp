@@ -240,7 +240,7 @@ public class MainWindow extends UiPart<Stage> {
 
             return commandResult;
         } catch (CommandException | ParseException e) {
-            logger.warning("Invalid command: " + commandText + ". "+ e.getMessage());
+            logger.warning("Invalid command: " + commandText + ". " + e.getMessage());
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
