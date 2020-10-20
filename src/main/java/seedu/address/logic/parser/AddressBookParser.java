@@ -109,9 +109,11 @@ public class AddressBookParser {
         case SWITCH:
             return new SwitchCommand();
 
+        case CHECK_SCHEDULE:
+            return new CheckScheduleCommandParser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-
 }

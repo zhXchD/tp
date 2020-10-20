@@ -27,7 +27,9 @@ public enum ValidCommand {
     LIST_CONTACT("listc", "lc"),
     LIST_JOURNAL_ENTRY("listj", "lj"),
     SWITCH("switch", "swt"),
-    VIEW("view", "v");
+    VIEW("view", "v"),
+    CHECK_SCHEDULE("check", "ck");
+
     private static final Logger logger = LogsCenter.getLogger(ValidCommand.class);
 
     /**

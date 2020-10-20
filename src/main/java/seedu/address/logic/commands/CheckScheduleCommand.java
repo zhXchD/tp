@@ -3,10 +3,10 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static java.util.Objects.requireNonNullElse;
 
-import java.time.LocalDate;
 import java.util.function.Predicate;
 
 import seedu.address.model.Model;
+import seedu.address.model.journal.Date;
 import seedu.address.model.journal.Entry;
 
 /**
@@ -19,22 +19,12 @@ public class CheckScheduleCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Checks the schedule of a given date.\n"
             + "Parameters: DATE_AND_TIME\n"
-            + "Example: " + COMMAND_WORD + " 2011-12-0";
+            + "Example: " + COMMAND_WORD + " 2011-12-03";
 
     public static final String MESSAGE_SUCCESS = "Here is your schedule on %s";
 
     private final Predicate<Entry> predicate;
-    private final LocalDate date;
-
-    /**
-     * Creates a CheckScheduleCommand with the predicate for filtering the
-     * model.
-     * @param predicate to filter the model.
-     */
-    public CheckScheduleCommand(Predicate<Entry> predicate) {
-        this.predicate = requireNonNull(predicate);
-        date = LocalDate.now();
-    }
+    private final Date date;
 
     /**
      * Creates a CheckScheduleCommand with the predicate for filtering the
@@ -42,9 +32,9 @@ public class CheckScheduleCommand extends Command {
      * @param predicate to filter the model.
      * @param date of the schedule to check.
      */
-    public CheckScheduleCommand(Predicate<Entry> predicate, LocalDate date) {
+    public CheckScheduleCommand(Predicate<Entry> predicate, Date date) {
         this.predicate = requireNonNull(predicate);
-        this.date = requireNonNullElse(date, LocalDate.now());
+        this.date = requireNonNullElse(date, new Date(""));
     }
 
     @Override
@@ -52,8 +42,9 @@ public class CheckScheduleCommand extends Command {
         requireNonNull(model);
         model.updateFilteredEntryList(predicate);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, date))
-                .setJournalTab();
+        return new CommandResult(
+                String.format(MESSAGE_SUCCESS, date.getDateString())
+        ).setJournalTab();
     }
 
     @Override
