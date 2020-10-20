@@ -114,6 +114,13 @@ public interface Model {
     void deleteEntry(Entry entry);
 
     /**
+     * Replaces the given entry {@code target} with {@code description}
+     * @param target Target entry to be replaced.
+     * @param editedEntry New entry.
+     */
+    void setEntry(Entry target, Entry editedEntry);
+
+    /**
      * Returns an unmodifiable view of the filtered person list
      */
     ObservableList<Person> getFilteredPersonList();
