@@ -226,17 +226,125 @@ that changes the data. There is no need to save manually.
 
 ## Command Summary
 
-| Command                         | Format                                                                                 |
-| :---                            | :---                                                                                   |
-| **Viewing help menu**           | `help [COMMAND]`                                                                       |
-| **Adding a contact**            | `addc n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [at/DATE_AND_TIME] [t/TAG]…​` |
-| **Adding a journal entry**      | `addj n/NAME [at/DATE_AND_TIME] [d/DESCRIPTION] [with/CONTACT_NAME] [t/TAG]…​`                        |
-| **Listing all contacts**        | `listc`                                                                                |
-| **Listing all journal entries** | `listj`                                                                                |
-| **Viewing a contact or journal entry**           | `view in/SCOPE INDEX`                                                                          |
-| **Removing a contact**          | `deletec INDEX`                                                                        |
-| **Removing a journal entry**    | `deletej INDEX`                                                                        |
-| **Clear the address book** | `clearc`|
-| **Clear the journal** | `clearj`|
-| **Switch the displaying tab** | `switch`|
-| **Exiting the program**         | `exit`                                                                                 |
+<table>
+    <thead>
+        <tr>
+            <th>Command</th>
+            <th>Format</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><b>Viewing help menu</b></td>
+            <td><code>help [COMMAND]</code></td>
+        </tr>
+        <tr>
+            <td rowspan=2><b>Adding a contact</b></td>
+            <td>
+                <code>
+                    addcontact n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] 
+                    [at/DATE_AND_TIME] [t/TAG]…
+                </code>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code>
+                    addc n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] 
+                    [at/DATE_AND_TIME] [t/TAG]…
+                </code>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan=3><b>Adding a journal entry</b></td>
+            <td>
+                <code>
+                    addjournal n/NAME [at/DATE_AND_TIME] [d/DESCRIPTION]
+                    [with/CONTACT_NAME] [t/TAG]…
+                </code>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code>
+                    addj n/NAME [at/DATE_AND_TIME] [d/DESCRIPTION]
+                    [with/CONTACT_NAME] [t/TAG]…
+                </code>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code>
+                    adde n/NAME [at/DATE_AND_TIME] [d/DESCRIPTION]
+                    [with/CONTACT_NAME] [t/TAG]…​
+                </code>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="2"><b>Listing all contacts</b></td>
+            <td><code>listc</code></td>
+        </tr>
+        <tr>
+            <td><code>lc</code></td>
+        </tr>
+        <tr>
+            <td rowspan="2"><b>Listing all journal entries</b></td>
+            <td><code>listj</code></td>
+        </tr>
+        <tr>
+            <td><code>lj</code></td>
+        </tr>
+        <tr>
+            <td rowspan="2"><b>Viewing a contact or journal entry</b></td>
+            <td><code>view in/SCOPE INDEX</code></td>
+        </tr>
+        <tr>
+            <td><code>v in/SCOPE INDEX</code></td>
+        </tr>
+        <tr>
+            <td rowspan="2"><b>Removing a contact</b></td>
+            <td><code>deletec INDEX</code></td>
+        </tr>
+        <tr>
+            <td><code>delc INDEX</code></td>
+        </tr>
+        <tr>
+            <td rowspan="2"><b>Removing a journal entry</b></td>
+            <td><code>deletej INDEX</code></td>
+        </tr>
+        <tr>
+            <td><code>delj INDEX</code></td>
+        </tr>
+        <tr>
+            <td rowspan="2"><b>Clearing the address book</b></td>
+            <td><code>clearc</code></td>
+        </tr>
+        <tr>
+            <td><code>cc</code></td>
+        </tr>
+        <tr>
+            <td rowspan="2"><b>Clearing the journal</b></td>
+            <td><code>clearj</code></td>
+        </tr>
+        <tr>
+            <td><code>cj</code></td>
+        </tr>
+        <tr>
+            <td rowspan="2"><b>Switching the display tab</b></td>
+            <td><code>switch</code></td>
+        </tr>
+        <tr>
+            <td><code>swt</code></td>
+        </tr>
+        <tr>
+            <td rowspan="3"><b>Exiting the program</b></td>
+            <td><code>exit</code></td>
+        </tr>
+        <tr>
+            <td><code>quit</code></td>
+        </tr>
+        <tr>
+            <td><code>q</code></td>
+        </tr>
+    </tbody>
+</table>
