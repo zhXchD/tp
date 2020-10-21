@@ -14,12 +14,12 @@ public class HelpCommandParser implements Parser<HelpCommand>{
     public HelpCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_OF);
 
-        if(!arePrefixesPresent(argMultimap, PREFIX_OF) && !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+        if(!arePrefixesPresent(argMultimap, PREFIX_OF) && argMultimap.getPreamble().isEmpty()) {
+            return new HelpCommand(true);
         }
 
-        if(!arePrefixesPresent(argMultimap, PREFIX_OF)) {
-            return new HelpCommand(true);
+        if(!arePrefixesPresent(argMultimap, PREFIX_OF) || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
         assert argMultimap.getValue(PREFIX_OF).isPresent() : "Help command argument not present, please check.";
