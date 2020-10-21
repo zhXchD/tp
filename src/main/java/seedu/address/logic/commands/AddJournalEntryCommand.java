@@ -22,7 +22,8 @@ public class AddJournalEntryCommand extends Command {
 
     public static final String COMMAND_WORD = "addj";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a journal entry to the journal.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Adds a journal entry to the journal.\n"
             + "Parameters: "
             + PREFIX_NAME + "TITLE "
             + PREFIX_DATE_AND_TIME + "DATE_AND_TIME "
@@ -36,8 +37,10 @@ public class AddJournalEntryCommand extends Command {
             + PREFIX_CONTACT + "John Doe "
             + PREFIX_TAG + "Meeting";
 
-    public static final String MESSAGE_SUCCESS = "New journal entry added: %1$s";
-    public static final String MESSAGE_DUPLICATE_ENTRY = "This entry already exists in the journal";
+    public static final String MESSAGE_SUCCESS =
+            "New journal entry added: %1$s";
+    public static final String MESSAGE_DUPLICATE_ENTRY =
+            "This entry already exists in the journal";
 
     private final Entry toAdd;
 
@@ -55,19 +58,26 @@ public class AddJournalEntryCommand extends Command {
 
         UniquePersonList uniquePersonList = new UniquePersonList();
         for (Person person : toAdd.getContactList()) {
-            Optional<Person> personInList = model.getAddressBook().getPersonList()
+            Optional<Person> personInList = model.getAddressBook()
+                    .getPersonList()
                     .stream()
                     .filter(p -> p.getName().equals(person.getName()))
                     .findFirst();
             if (personInList.isEmpty()) {
-                throw new CommandException("Person named " + person.getName() + " does not exist in the address book!");
+                throw new CommandException(
+                        "Person named " + person.getName()
+                                + " does not exist in the address book!");
             } else {
                 uniquePersonList.add(personInList.get());
             }
         }
 
         Entry validToAdd = new Entry(
-                toAdd.getTitle(), toAdd.getDate(), toAdd.getDescription(), uniquePersonList, toAdd.getTags()
+                toAdd.getTitle(),
+                toAdd.getDate(),
+                toAdd.getDescription(),
+                uniquePersonList,
+                toAdd.getTags()
         );
 
         if (model.hasEntry(validToAdd)) {
@@ -75,7 +85,8 @@ public class AddJournalEntryCommand extends Command {
         }
 
         model.addEntry(validToAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, validToAdd)).setJournalTab();
+        return new CommandResult(String.format(MESSAGE_SUCCESS, validToAdd))
+                .setJournalTab();
     }
 
     @Override

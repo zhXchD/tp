@@ -6,20 +6,7 @@ skinparam classBackgroundColor UI_COLOR
 
 skinparam classAttributeIconSize 0
 class ValidCommand <<enumeration>> {
-        ADDCONTACT
-        ADDJOURNALENTRY
-        CLEARJOURNAL
-        CLEARADDRESSBOOK
-        DELETECONTACT
-        DELETEJOURNALENTRY
-        EDIT
-        FIND
-        EXIT
-        HELP
-        LISTCONTACT
-        LISTJOURNALENTRY
-        SWITCH
-        VIEW
+        XYZCOMMAND
 
         - {static} AliasMap
 
