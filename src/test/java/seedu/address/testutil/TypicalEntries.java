@@ -15,11 +15,12 @@ public class TypicalEntries {
     public static final Entry TEST_ENTRY_DEFAULT = new EntryBuilder().build(); //Default
     public static final Entry TEST_ENTRY_DIFF_DATE = new EntryBuilder()
             .withTitle("Product Design")
-            .withDate("2020-12-21 19:00")
+            .withDate("2000-12-21 19:00")
             .build();
     public static final Entry TEST_ENTRY_DIFF_DESCRIPTION = new EntryBuilder()
             .withTitle("Sample 1")
             .withDescription("Meet with boss")
+            .withDate("2000-12-21 14:00")
             .build();
     public static final Entry TEST_ENTRY_DIFF_TITLE = new EntryBuilder()
             .withTitle("Board Meeting")
@@ -31,10 +32,15 @@ public class TypicalEntries {
                             .getPersonList()
                             .toArray(new Person[0])
             )
+            .withDate("2000-12-13 14:00")
             .build();
     public static final Entry TEST_ENTRY_DIFF_TAGS = new EntryBuilder()
             .withTitle("Tea and biscuits")
             .withTags("queen", "tea", "biscuits")
+            .withDate("2000-12-13 19:00")
+            .build();
+    public static final Entry TEST_ENTRY_SEVEN = new EntryBuilder()
+            .withTitle("Scones and crumpets")
             .build();
 
     /**
@@ -54,7 +60,8 @@ public class TypicalEntries {
                         TEST_ENTRY_DEFAULT,
                         TEST_ENTRY_DIFF_DATE,
                         TEST_ENTRY_DIFF_DESCRIPTION,
-                        TEST_ENTRY_DIFF_TITLE
+                        TEST_ENTRY_DIFF_CONTACTS,
+                        TEST_ENTRY_DIFF_TAGS
                 )
         );
     }

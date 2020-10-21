@@ -10,24 +10,39 @@
     },
     {
       "title": "Product Design",
-      "date": "2020-12-21 19:00",
+      "date": "2000-12-21 19:00",
       "description": "Team Meeting for CS2103T",
       "contactList": [],
       "tagged": []
     },
     {
       "title": "Sample 1",
-      "date": "2020-12-20 18:00",
+      "date": "2000-12-21 14:00",
       "description": "Meet with boss",
       "contactList": [],
       "tagged": []
     },
     {
-      "title": "Board Meeting",
-      "date": "2020-12-20 18:00",
+      "title": "Fish and chips",
+      "date": "2000-12-13 14:00",
+      "description": "Team Meeting for CS2103T",
+      "contactList": [
+        "e26616c9-c740-4d86-861e-733a4d377a3e",
+        "f73eaee6-a320-4005-b09c-98450d1ef661",
+        "623afedd-5f71-4130-8ed3-7ebc0969d776",
+        "5f5df00a-60f6-43ad-aad5-77b17847c20a",
+        "3f40a181-8153-4616-a69a-3362664f5a50",
+        "bfac8b18-3103-43a3-bd98-3de9d3375655",
+        "6d07561e-3230-49a1-85e8-226e588fffdf"
+      ],
+      "tagged": []
+    },
+    {
+      "title": "Tea and biscuits",
+      "date": "2000-12-13 19:00",
       "description": "Team Meeting for CS2103T",
       "contactList": [],
-      "tagged": []
+      "tagged": ["queen", "tea", "biscuits"]
     }
   ]
 }

@@ -45,6 +45,11 @@ class JsonSerializableJournalTest {
             Journal journalFromFile = dataFromFile
                     .toModelType(getTypicalAddressBook());
             Journal typicalEntriesJournal = getTypicalJournal();
+
+            journalFromFile.getEntryList().forEach(System.out::println);
+            System.out.println();
+            typicalEntriesJournal.getEntryList().forEach(System.out::println);
+
             assertEquals(typicalEntriesJournal, journalFromFile);
         }
 
