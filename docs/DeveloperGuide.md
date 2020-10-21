@@ -141,8 +141,8 @@ This section describes some noteworthy details on how certain features are imple
 ### Command alias feature
 #### Current Implementation
 
-The current implementation is to keep an enumeration `ValidCommand` which keeps 
-a class level `HashMap` called `aliasMap`. The `HashMap` maps a `String` to a 
+The current implementation is to keep an enumeration `ValidCommand` which keeps
+a class level `HashMap` called `aliasMap`. The `HashMap` maps a `String` to a
 `ValidCommand`.
 
 The `key` of the `HashMap` represents a valid alias of its value which is a `ValidCommand`.
@@ -165,7 +165,7 @@ public enum ValidCommand {
      * Valid alias for the commands
      */
     private final String[] aliases;
-} 
+}
 ```
 
 1. `aliases` array stores valid alias for each of the `ValidCommand`
@@ -199,13 +199,13 @@ static {
     }
 ```
 
-Step 2: Use a class level initializer to construct the `aliasMap` 
+Step 2: Use a class level initializer to construct the `aliasMap`
 
 Given below is the class diagram of related part of command alias feature:
 
 ![aliasClassDiagram](images/commandAlias/aliasClassDiagram.png)
 
-Note: 
+Note:
 
 *`XYZCOMMAND` represents the enumeration element for valid commands that can be used in the system*
 
@@ -264,7 +264,7 @@ object after `Logic` executes the command. The activity diagram below shows how
 
 ### Check schedule feature
 
-IntelliJournal allows for users to check all journal entries for a given day, 
+IntelliJournal allows for users to check all journal entries for a given day,
 allowing them to check their schedule for the given day.
 
 #### Current Implementation

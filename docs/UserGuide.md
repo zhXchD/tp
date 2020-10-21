@@ -144,7 +144,7 @@ Finds a list of contacts or journal entries that satisfy the requirements
 on particular fields given by the user.
 
 Format `view in/SCOPE [different valid combinations dependent on SCOPE]`
-* `view in/c [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS] [e/EMAIL_KEYWORDS] 
+* `view in/c [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS] [e/EMAIL_KEYWORDS]
 [a/ADDRESS_KEYWORDS] [t/TAG]`
 * `view in/j [n/TITLE_KEYWORDS] [at/DATE_AND_TIME] [with/CONTACT_NAME_KEYWORDS]
 [d/DESCRIPTION_KEYWORDS] [t/TAG]`
