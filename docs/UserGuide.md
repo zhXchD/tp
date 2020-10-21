@@ -79,27 +79,28 @@ Format: `help [COMMAND]`
 show.
 * If no `COMMAND` argument is supplied, all commands will be shown.
 
-### Adding a contact: `addc`
+### Adding a contact: `addcontact`
 
 Adds a contact to the address book and switches to the address book tab.
 
-format: `addc n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [at/DATE_AND_TIME]
-         [t/TAG]…​`
+format: `addcontact n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]
+         [at/DATE_AND_TIME] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A contact can have any number of tags (including 0)
 </div>
 
 Examples:
-* `addc n/John Doe` Adds a contact with the name of `Robert`.
-* `addc n/Betsy Crowe t/client t/important` Adds a contact with the name of
-`Robert` and tags of `client` and `important`.
+* `addcontact n/John Doe` Adds a contact with the name of `Robert`.
+* `addcontact n/Betsy Crowe t/client t/important` Adds a contact with the name 
+  of `Robert` and tags of `client` and `important`.
 
-### Adding a journal entry: `addj`
+### Adding a journal entry: `addjournal`
 
 Adds a journal entry to the journal and switches to the journal tab.
 
-format: `addj n/NAME [at/DATE_AND_TIME] [d/DESCRIPTION] [with/CONTACT_NAMES] [t/TAG]…​`
+format: `addjournal n/NAME [at/DATE_AND_TIME] [d/DESCRIPTION] 
+         [with/CONTACT_NAMES] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A journal entry can have any number of contacts or tags (including 0)
@@ -108,11 +109,11 @@ A journal entry can have any number of contacts or tags (including 0)
 </div>
 
 Examples:
-* `addj n/Meeting with client` Adds a journal entry with the name
-`Meeting with client`.
-* `addj n/Meeting with client at/2020-9-20 14:00 d/Tea` Adds a journal
-entry with the name `Meeting with client`, a date and time of `2020-9-20 14:00`
-and content `Tea`.
+* `addjournal n/Meeting with client` Adds a journal entry with the name
+  `Meeting with client`.
+* `addjournal n/Meeting with client at/2020-9-20 14:00 d/Tea` Adds a journal
+  entry with the name `Meeting with client`, a date and time of
+  `2020-9-20 14:00` and content `Tea`.
 
 ### Listing all contacts: `listc`
 
@@ -127,9 +128,11 @@ Lists all journal entries in the journal and switches to the journal tab.
 Format: `listj`
 
 ### Viewing a contact or journal entry: `view`
-Opens up a contact or journal entry to show further details and switches to the corresponding tab.
 
-Format `view in/SCOPE index/INDEX`
+Opens up a contact or journal entry to show further details and switches to the
+corresponding tab.
+
+Format: `view in/SCOPE index/INDEX`
 * `INDEX` refers to the index number of the contact shown in the list.
 * `SCOPE` must be `c` (refers to contact) or `j` (refers to journal entry).
 
@@ -139,34 +142,47 @@ Examples:
 * `view in/j index/4` Views the 4th journal entry in the journal.
 * `view in/j index/8` Views the 8th journal entry in the journal.
 
-### Find contacts or journal entries with keywords on fileds: `find`
+### Finding contacts or journal entries: `find`
+
 Finds a list of contacts or journal entries that satisfy the requirements
 on particular fields given by the user.
 
-Format `view in/SCOPE [different valid combinations dependent on SCOPE]`
-* `view in/c [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS] [e/EMAIL_KEYWORDS]
-[a/ADDRESS_KEYWORDS] [t/TAG]`
-* `view in/j [n/TITLE_KEYWORDS] [at/DATE_AND_TIME] [with/CONTACT_NAME_KEYWORDS]
-[d/DESCRIPTION_KEYWORDS] [t/TAG]`
+Format: `find in/SCOPE [different valid combinations dependent on SCOPE]`
+* `find in/c [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS] [e/EMAIL_KEYWORDS]
+  [a/ADDRESS_KEYWORDS] [t/TAG]…​`
+* `find in/j [n/TITLE_KEYWORDS] [at/DATE_AND_TIME] [with/CONTACT_NAME_KEYWORDS]
+  [d/DESCRIPTION_KEYWORDS] [t/TAG]…​`
 
 Examples:
-* `view in/c n/Alice` Finds all contacts whose name contains "Alice".
-* `view in/n n/Alice p/65` Find all contacts whose name contains "Alice" and
-phone number contains "65".
-* `view in/c n/Alice p/65 e/@u.nus.edu a/RC4 t/Student` Find all contacts whose name
-contains "Alice" and phone number contains "65" and email contains "@u.nus.edu" and
-address name contains "RC4" and tagged "Student" (Note that for `TAG`, IntelliJournal
-searches for the exact same tag instead of find the ones that contain the searched string).
-* `view in/j n/Meeting d/plan for 2021 with/Alice t/Meeting at/2020-10-10` Finds all
-journal entries that have a name containing "Meeting", have a description containing
-"plan for 2021", with someone whose name contains "Alice", tagged "Meeting", happening
-on Oct 10, 2020.
+* `find in/c n/Alice` Finds all contacts whose name contains "Alice".
+* `find in/n n/Alice p/65` Find all contacts whose name contains "Alice" and
+  phone number contains "65".
+* `find in/c n/Alice p/65 e/@u.nus.edu a/RC4 t/Student`<br>
+  Find all contacts whose name contains "Alice" and phone number contains "65"
+  and email contains "@u.nus.edu" and address name contains "RC4" and tagged
+  "Student"<br>
+  (Note that for `TAG`, IntelliJournal searches for the exact same tag instead
+  of finding the ones that contain the searched string).
+* `find in/j n/Meeting d/plan for 2021 with/Alice t/Meeting at/2020-10-10 15:00`
+  <br>Finds all journal entries that have a name containing "Meeting", have a
+  description containing "plan for 2021", with someone whose name contains
+  "Alice", tagged "Meeting", happening on Oct 10, 2020, 3pm.
+
+### Checking schedule: `check`
+
+Finds a list of journal entries for a date given by the user.
+
+Format: `check [DATE]`
+
+Examples:
+* `check 2000-03-12` Finds a list of journal entries on the 12th of March, 2000.
+* `check` Finds a list of journal entries on the current date.
 
 ### Deleting a contact: `deletec`
 
 Deletes a contact from the address book and switches to the address book tab.
 
-Format `deletec INDEX`
+Format: `deletec INDEX`
 * `INDEX` refers to the index number of the contact in the list.
 
 Examples:
@@ -177,26 +193,26 @@ Examples:
 
 Deletes a journal entry from the journal and switches to the journal tab.
 
-Format `deletej INDEX`
+Format: `deletej INDEX`
 * `INDEX` refers to the index number of the journal shown in the list.
 
 Examples:
 * `deletej 4` Deletes the 4th journal entry in the journal.
 * `deletej 8` Deletes the 8th journal entry in the journal.
 
-### Deleting the address book: `clearc`
+### Clearing the address book: `clearc`
 
 Clears all contacts in the addressbook and switches to the address book tab.
 
 Format: `clearc`
 
-### Deleting the journal: `clearj`
+### Clearing the journal: `clearj`
 
 Clears all journal entries in the journal and switches to the journal tab.
 
 Format: `clearj`
 
-### Switch the displaying tab: `switch`
+### Switching the displaying tab: `switch`
 
 Switches the current displaying tab to the other tab.
 
@@ -235,32 +251,35 @@ that changes the data. There is no need to save manually.
     </thead>
     <tbody>
         <tr>
-            <td><b>Viewing help menu</b></td>
+            <td rowspan="2"><b>Viewing help menu</b></td>
             <td><code>help [COMMAND]</code></td>
         </tr>
         <tr>
-            <td rowspan=2><b>Adding a contact</b></td>
+            <td><code>h [COMMAND]</code></td>
+        </tr>
+        <tr>
+            <td rowspan="2"><b>Adding a contact</b></td>
             <td>
                 <code>
-                    addcontact n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] 
-                    [at/DATE_AND_TIME] [t/TAG]…
+                    addcontact n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]
+                    [at/DATE_AND_TIME] [t/TAG]…​
                 </code>
             </td>
         </tr>
         <tr>
             <td>
                 <code>
-                    addc n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] 
-                    [at/DATE_AND_TIME] [t/TAG]…
+                    addc n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]
+                    [at/DATE_AND_TIME] [t/TAG]…​
                 </code>
             </td>
         </tr>
         <tr>
-            <td rowspan=3><b>Adding a journal entry</b></td>
+            <td rowspan="3"><b>Adding a journal entry</b></td>
             <td>
                 <code>
                     addjournal n/NAME [at/DATE_AND_TIME] [d/DESCRIPTION]
-                    [with/CONTACT_NAME] [t/TAG]…
+                    [with/CONTACT_NAME] [t/TAG]…​
                 </code>
             </td>
         </tr>
@@ -268,7 +287,7 @@ that changes the data. There is no need to save manually.
             <td>
                 <code>
                     addj n/NAME [at/DATE_AND_TIME] [d/DESCRIPTION]
-                    [with/CONTACT_NAME] [t/TAG]…
+                    [with/CONTACT_NAME] [t/TAG]…​
                 </code>
             </td>
         </tr>
@@ -300,6 +319,46 @@ that changes the data. There is no need to save manually.
         </tr>
         <tr>
             <td><code>v in/SCOPE INDEX</code></td>
+        </tr>
+        <tr>
+            <td rowspan="4"><b>Finding contacts or journal entries</b></td>
+            <td>
+                <code>
+                    find in/c [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS]
+                    [e/EMAIL_KEYWORDS] [a/ADDRESS_KEYWORDS] [t/TAG]…​
+                </code>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code>
+                    f in/c [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS]
+                    [e/EMAIL_KEYWORDS] [a/ADDRESS_KEYWORDS] [t/TAG]…​
+                </code>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code>
+                    find in/j [n/TITLE_KEYWORDS] [at/DATE_AND_TIME]
+                    [with/CONTACT_NAME_KEYWORDS] [d/DESCRIPTION_KEYWORDS] [t/TAG]…​
+                </code>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code>
+                    f in/j [n/TITLE_KEYWORDS] [at/DATE_AND_TIME]
+                    [with/CONTACT_NAME_KEYWORDS] [d/DESCRIPTION_KEYWORDS] [t/TAG]…​
+                </code>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="2"><b>Checking schedule</b></td>
+            <td><code>check [DATE]</code></td>
+        </tr>
+        <tr>
+            <td><code>ck [DATE]</code></td>
         </tr>
         <tr>
             <td rowspan="2"><b>Removing a contact</b></td>
@@ -348,3 +407,4 @@ that changes the data. There is no need to save manually.
         </tr>
     </tbody>
 </table>
+
