@@ -1,0 +1,17 @@
+@startuml
+start
+:Takes in the command string to execute;
+if () then ([command string has arguments])
+    if () then ([argument is valid date])
+        :Parses the date;
+    else ([else])
+        :Throws a parse error;
+        stop
+    endif
+else ([else])
+    :Use local date of the machine;
+endif
+:Generates an instance of CheckScheduleCommand;
+stop
+@enduml
+
