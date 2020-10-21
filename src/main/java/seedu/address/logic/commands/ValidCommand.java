@@ -15,7 +15,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public enum ValidCommand {
 
     ADD_CONTACT("addc", "addcontact"),
-    ADD_JOURNAL_ENTRY("addj", "adde"),
+    ADD_JOURNAL_ENTRY("addj", "adde", "addjournal"),
     CLEAR_JOURNAL("clearj", "cj"),
     CLEAR_ADDRESS_BOOK("clearc", "cc"),
     DELETE_CONTACT("deletec", "delc"),
