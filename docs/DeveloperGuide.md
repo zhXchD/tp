@@ -199,7 +199,6 @@ static {
     }
 ```
 
-
 Step 2: Use a class level initializer to construct the `aliasMap`
 
 Given below is the class diagram of related part of command alias feature:
@@ -361,7 +360,7 @@ object after `Logic` executes the command. The activity diagram below shows how
 
 ### Check schedule feature
 
-IntelliJournal allows for users to check all journal entries for a given day, 
+IntelliJournal allows for users to check all journal entries for a given day,
 allowing them to check their schedule for the given day.
 
 #### Current Implementation
