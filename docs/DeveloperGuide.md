@@ -314,6 +314,51 @@ The following sequence diagrams show how the help command works:
 
 
 
+### Tab navigation feature
+
+IntelliJournal has two tabs for different information to display, one tab for `Addressbook`
+and another for `Journal`. The implementation of the tab UI is not the focus in this
+section, under this section, it is described how commands navigates from tab to tab.
+
+#### Current Implementation
+
+The current implementation is to keep track of `boolean` variables under `CommandResult`
+class. In `MainWindow`, when `Logic` executes a command, the returned `CommandResult` will specify the
+tab navigation behaviours of the executed command, and therefore `MainWindow` can
+make `Ui` changes to IntelliJournal and complete the tab navigation.
+
+`CommandResult` implements the following methods to specify tab navigation behaviors.
+* `public boolean isAddressBookTab()` - Returns `true` if the command needs to
+display the `AddressBook` tab, returns `false` is the command needs to display
+the `Journal` tab.
+*  `public boolean isSwitch()` - Returns `true` if the command requires to switch
+the current displaying tab to the other.
+* `public boolean isSameTab()` - Reuturns `true` if the command requires to remain
+the current displaying tab.
+
+In `Command` classes, the `execute(Model model)` method returns a `CommandResult`
+object. We assume the object to return is `commandResult` which does not have any
+specifications on tab navigation behavior. In order to specify the tab navigation
+behavior, one can call methods of `CommandResult` and return the following objects
+instead.
+* `commandResult.setAddressBookTab()` - Specifies the returned `CommandResult` to
+navigate to `AddressBook` tab (i.e. `isAddressBookTab()` of the returned object
+returns `true`).
+* `commandResult.setJournalTab()` - Specifies the returned `CommandResult` to
+navigate to `Journal` tab (i.e. `isAddressBookTab()` of the returned object returns
+`false`).
+* `commandResult.setSwitch()` - Specifies the returned `CommandResult` to switch the
+current displaying tab to the other tab (i.e. `isSwitch()` returns `false`).
+* `commandResult.setSameTab()` - Specifies the returned `CommandResult` to say on
+the same displaying tab as before the execution of the current command (i.e.
+`isSameTab()` returns `true`).
+
+In `MainWindow#executeCommand`, the method will examine the returned `CommandResult`
+object after `Logic` executes the command. The activity diagram below shows how
+`MainWindow#executeCommand` handles tab navigation.
+
+![MainWindowTabNavigationActivity](images/MainWindowTabNavigationActivityDiagram.png)
+
 ### Edit journal feature
 #### Current Implementation
 
