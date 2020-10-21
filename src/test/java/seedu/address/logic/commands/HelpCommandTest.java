@@ -19,14 +19,28 @@ public class HelpCommandTest {
     class Execute {
         @Test
         @DisplayName("should execute help command successfully")
-        public void execute_help_success() {
+        public void execute_help_showing_window() {
             CommandResult expectedCommandResult = new CommandResult(
                     SHOWING_HELP_MESSAGE, true, false);
             assertCommandSuccess(
-                    new HelpCommand(),
+                    new HelpCommand(true),
                     model,
                     expectedCommandResult,
                     expectedModel
+            );
+        }
+
+        @Test
+        @DisplayName("should execute help command successfully")
+        public void execute_help_with_addc_command() {
+            ValidCommand validCommandType = ValidCommand.ADD_CONTACT;
+            CommandResult expectedCommandResult = new CommandResult(
+                SHOWING_HELP_MESSAGE + AddContactCommand.MESSAGE_USAGE);
+            assertCommandSuccess(
+                new HelpCommand(validCommandType),
+                model,
+                expectedCommandResult,
+                expectedModel
             );
         }
     }

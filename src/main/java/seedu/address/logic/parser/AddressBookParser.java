@@ -101,7 +101,7 @@ public class AddressBookParser {
             return new ExitCommand();
 
         case HELP:
-            return new HelpCommand();
+            return new HelpCommandParser().parse(arguments);
 
         case VIEW:
             return new ViewCommandParser().parse(arguments);

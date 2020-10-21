@@ -11,12 +11,49 @@ public class HelpCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Shows program usage instructions.\n"
-            + "Example: " + COMMAND_WORD;
+            + "Example: " + COMMAND_WORD + "of/" + "addj";
 
-    public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
+    public static final String SHOWING_HELP_MESSAGE = "Showing help.\n";
+
+    protected boolean isShowHelpWindow;
+    protected ValidCommand validCommandType;
+
+    public HelpCommand(boolean isShowHelpWindow) {
+        this.isShowHelpWindow = isShowHelpWindow;
+        this.validCommandType = null;
+    }
+
+    public HelpCommand(ValidCommand validCommandType) {
+        this.isShowHelpWindow = false;
+        this.validCommandType = validCommandType;
+    }
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(SHOWING_HELP_MESSAGE, true, false).setSameTab();
+        if (this.isShowHelpWindow) {
+            return new CommandResult(SHOWING_HELP_MESSAGE, true, false).setSameTab();
+        }
+        assert this.validCommandType != null : "The valid command type is null. Please check.";
+
+        switch (this.validCommandType) {
+        case ADD_CONTACT:
+            return new CommandResult(SHOWING_HELP_MESSAGE + AddContactCommand.MESSAGE_USAGE);
+        case ADD_JOURNAL_ENTRY:
+            return new CommandResult(SHOWING_HELP_MESSAGE + AddJournalEntryCommand.MESSAGE_USAGE);
+        case DELETE_CONTACT:
+            return new CommandResult(SHOWING_HELP_MESSAGE + DeleteContactCommand.MESSAGE_USAGE);
+        case DELETE_JOURNAL_ENTRY:
+            return new CommandResult(SHOWING_HELP_MESSAGE + DeleteJournalEntryCommand.MESSAGE_USAGE);
+        case EDIT:
+            return new CommandResult(SHOWING_HELP_MESSAGE + EditCommand.MESSAGE_USAGE);
+        case FIND:
+            return new CommandResult(SHOWING_HELP_MESSAGE + FindCommand.MESSAGE_USAGE);
+        case VIEW:
+            return new CommandResult(SHOWING_HELP_MESSAGE + ViewCommand.MESSAGE_USAGE);
+        case CHECK_SCHEDULE:
+            return new CommandResult(SHOWING_HELP_MESSAGE + CheckScheduleCommand.MESSAGE_USAGE);
+        default:
+            return new CommandResult(SHOWING_HELP_MESSAGE + "This is a direct command to use.");
+        }
     }
 }
