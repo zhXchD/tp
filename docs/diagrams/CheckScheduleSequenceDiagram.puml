@@ -1,0 +1,82 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":CheckScheduleCommandParser" as CheckScheduleCommandParser LOGIC_COLOR
+participant ":ParserUtil" as ParserUtil LOGIC_COLOR
+participant "c:CheckScheduleCommand" as CheckScheduleCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("check")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("check")
+activate AddressBookParser
+
+create CheckScheduleCommandParser
+AddressBookParser -> CheckScheduleCommandParser
+activate CheckScheduleCommandParser
+
+CheckScheduleCommandParser --> AddressBookParser
+deactivate CheckScheduleCommandParser
+
+AddressBookParser -> CheckScheduleCommandParser : parse("")
+activate CheckScheduleCommandParser
+
+CheckScheduleCommandParser -> ParserUtil : parseDate("")
+activate ParserUtil
+
+ParserUtil --> CheckScheduleCommandParser : date
+deactivate ParserUtil
+
+create CheckScheduleCommand
+CheckScheduleCommandParser -> CheckScheduleCommand
+activate CheckScheduleCommand
+
+CheckScheduleCommand --> CheckScheduleCommandParser : c
+deactivate CheckScheduleCommand
+
+CheckScheduleCommandParser --> AddressBookParser : c
+deactivate CheckScheduleCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+CheckScheduleCommandParser -[hidden]-> AddressBookParser
+destroy CheckScheduleCommandParser
+
+AddressBookParser --> LogicManager : c
+deactivate AddressBookParser
+
+LogicManager -> CheckScheduleCommand : execute(model)
+activate CheckScheduleCommand
+
+CheckScheduleCommand -> Model : updateFilteredEntryList(predicate)
+activate Model
+
+Model --> CheckScheduleCommand
+deactivate Model
+
+create CommandResult
+CheckScheduleCommand -> CommandResult
+activate CommandResult
+
+CommandResult -> CommandResult : setJournalTab()
+activate CommandResult
+
+CommandResult --> CommandResult
+deactivate CommandResult
+
+CommandResult --> CheckScheduleCommand
+deactivate CommandResult
+
+CheckScheduleCommand --> LogicManager : result
+deactivate CheckScheduleCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

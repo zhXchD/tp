@@ -141,7 +141,9 @@ This section describes some noteworthy details on how certain features are imple
 ### Command alias feature
 #### Current Implementation
 
-The current implementation is to keep an enumeration `ValidCommand` which keeps a class level `HashMap` called `aliasMap`. The `HashMap` maps a `String` to a `ValidCommand`.
+The current implementation is to keep an enumeration `ValidCommand` which keeps
+a class level `HashMap` called `aliasMap`. The `HashMap` maps a `String` to a
+`ValidCommand`.
 
 The `key` of the `HashMap` represents a valid alias of its value which is a `ValidCommand`.
 
@@ -163,7 +165,7 @@ public enum ValidCommand {
      * Valid alias for the commands
      */
     private final String[] aliases;
-} 
+}
 ```
 
 1. `aliases` array stores valid alias for each of the `ValidCommand`
@@ -197,13 +199,13 @@ static {
     }
 ```
 
-Step 2: Use a class level initializer to construct the `aliasMap` 
+Step 2: Use a class level initializer to construct the `aliasMap`
 
 Given below is the class diagram of related part of command alias feature:
 
 ![aliasClassDiagram](images/commandAlias/aliasClassDiagram.png)
 
-Note: 
+Note:
 
 *`XYZCOMMAND` represents the enumeration element for valid commands that can be used in the system*
 
@@ -259,6 +261,33 @@ object after `Logic` executes the command. The activity diagram below shows how
 `MainWindow#executeCommand` handles tab navigation.
 
 ![MainWindowTabNavigationActivity](images/MainWindowTabNavigationActivityDiagram.png)
+
+### Check schedule feature
+
+IntelliJournal allows for users to check all journal entries for a given day,
+allowing them to check their schedule for the given day.
+
+#### Current Implementation
+
+The current implementation makes use of the `CheckScheduleCommandParser` as well
+as the `CheckScheduleCommand` classes. When `AddressBookParser` parses the
+command and finds the `check` command, the rest of the command is passed into
+the `CheckScheduleCommandParser`, where the rest of the command is parsed.
+
+If the rest of the command is empty, the command is parsed as though we are
+using the local date of the machine. Otherwise, if the rest of the command is
+not a valid date, we throw an error.
+
+The activity diagram for the parsing of command is given below.
+
+![CheckScheduleActivityDiagram](images/CheckScheduleActivityDiagram.png)
+
+The following sequence diagrams show how the check schedule command works:
+
+![CheckScheduleSequenceDiagram](images/CheckScheduleSequenceDiagram.png)
+
+In `MainWindow#executeCommand`, the returned `CommandResult` will then set the
+tab back to the journal tab if the user is viewing the AddressBook tab.
 
 ### \[Proposed\] Undo/redo feature
 

@@ -224,7 +224,7 @@ public class MainWindow extends UiPart<Stage> {
                 if (commandResult.isSwitch()) {
                     handleSwapTabs();
                 } else if (commandResult.isAddressBookTab()) {
-                    handleSwitchToAddressbookTab();
+                    handleSwitchToAddressBookTab();
                 } else {
                     handleSwitchToJournalTab();
                 }
@@ -246,7 +246,7 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    private void handleSwitchToAddressbookTab() {
+    private void handleSwitchToAddressBookTab() {
         SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
         selectionModel.select(addressBookTab);
     }
