@@ -1,0 +1,26 @@
+@startuml
+start
+:Takes in the command string to execute;
+:Logic#execute the command and
+gets the returned commandResult;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([!isSameTab()])
+    if () then ([isSwitch()])
+        :Gets current selected tab;
+        :Selects the other tab;
+    else ([else])
+        if () then ([isAddressBookTab()])
+            :Selects the
+            AddressBook tab;
+        else ([else])
+            :Selects the
+            Journal tab;
+        endif
+    endif
+else ([else])
+endif
+stop
+@enduml
