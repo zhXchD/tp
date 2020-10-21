@@ -141,13 +141,71 @@ This section describes some noteworthy details on how certain features are imple
 ### Command alias feature
 #### Current Implementation
 
-The current implementation is to keep an enumeration `ValidCommand` which keeps a class level `HashMap`. The `HashMap` maps a `String` to a `ValidCommand`.
+The current implementation is to keep an enumeration `ValidCommand` which keeps a class level `HashMap` called `aliasMap`. The `HashMap` maps a `String` to a `ValidCommand`.
 
 The `key` of the `HashMap` represents a valid alias of its value which is a `ValidCommand`.
+
+The enum is declared as below:
+
+```java
+public enum ValidCommand {
+
+    SOME_COMMAND("alias1", "alias2");
+
+    private static final Logger logger = LogsCenter.getLogger(ValidCommand.class);
+
+    /**
+     * Map that match alias with valid command
+     */
+    private static final Map<String, ValidCommand> aliasMap = new HashMap<>();
+
+    /**
+     * Valid alias for the commands
+     */
+    private final String[] aliases;
+} 
+```
+
+1. `aliases` array stores valid alias for each of the `ValidCommand`
+2. `aliasMap` maps alias to a `ValidCommand`
+
+Note: *alias1, alias2, alias3* are system's default aliases. Aliases can be extended by calling `ValidCommand#addAlias(ValidCommand command, String alias)`.
+
+Given below is the implementation of constructing the `aliasMap`:
+
+```java_holder_method_tree
+
+/**
+   * Creates command alias from aliases list.
+   *
+   * @param aliases Aliases list.
+*/
+ValidCommand(String... aliases) {
+    this.aliases = aliases;
+}
+```
+
+Step 1: Construct each `ValidCommand` with a list of `String`
+
+```java_holder_method_tree
+static {
+        Arrays.stream(ValidCommand.values()).forEach(command -> Arrays.stream(command.aliases)
+                .forEach(alias -> {
+                    assert aliasMap.get(alias) == null;
+                    aliasMap.put(alias, command);
+                }));
+    }
+```
+
+Step 2: Use a class level initializer to construct the `aliasMap` 
 
 Given below is the class diagram of related part of command alias feature:
 
 ![aliasClassDiagram](images/commandAlias/aliasClassDiagram.png)
+
+Note: 
+
+*`XYZCOMMAND` represents the enumeration element for valid commands that can be used in the system*
 
 *`ValidCommand#commandTypeOf(String commandWord)` takes in a command keyword (eg. addj, addc, findc...) and returns a `ValidCommand` which will be used by `AddressBookParser`*
 
