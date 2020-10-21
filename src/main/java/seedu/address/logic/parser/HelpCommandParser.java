@@ -3,22 +3,22 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OF;
 
+import java.util.stream.Stream;
+
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ValidCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-import java.util.stream.Stream;
-
-public class HelpCommandParser implements Parser<HelpCommand>{
+public class HelpCommandParser implements Parser<HelpCommand> {
     @Override
     public HelpCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_OF);
 
-        if(!arePrefixesPresent(argMultimap, PREFIX_OF) && argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_OF) && argMultimap.getPreamble().isEmpty()) {
             return new HelpCommand(true);
         }
 
-        if(!arePrefixesPresent(argMultimap, PREFIX_OF) || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_OF) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 

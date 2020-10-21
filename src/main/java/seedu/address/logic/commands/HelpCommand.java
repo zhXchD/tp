@@ -19,11 +19,20 @@ public class HelpCommand extends Command {
     protected boolean isShowHelpWindow;
     protected ValidCommand validCommandType;
 
+    /**
+     * Constructs a {@code HelpCommand} specified showing the help window
+     * or not.
+     * @param isShowHelpWindow show the help window or not.
+     */
     public HelpCommand(boolean isShowHelpWindow) {
         this.isShowHelpWindow = isShowHelpWindow;
         this.validCommandType = null;
     }
 
+    /**
+     * Constructs a {@code HelpCommand} of a specific valid command.
+     * @param validCommandType the valid command of type {@code ValidCommand}
+     */
     public HelpCommand(ValidCommand validCommandType) {
         this.isShowHelpWindow = false;
         this.validCommandType = validCommandType;
