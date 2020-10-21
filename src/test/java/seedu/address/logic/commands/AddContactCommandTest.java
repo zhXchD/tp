@@ -148,6 +148,11 @@ public class AddContactCommandTest {
         }
 
         @Override
+        public void clearJournalContacts() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setAddressBookFilePath(Path addressBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
@@ -194,6 +199,11 @@ public class AddContactCommandTest {
 
         @Override
         public void deleteEntry(Entry entry) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setEntry(Entry target, Entry editedEntry) {
             throw new AssertionError("This method should not be called.");
         }
 

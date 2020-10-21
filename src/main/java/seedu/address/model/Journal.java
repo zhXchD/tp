@@ -53,7 +53,7 @@ public class Journal implements ReadOnlyJournal {
      * Removes entry that associate with certain person.
      * @param person Target person to be removed from {@code AddressBook}.
      */
-    public void removeAssociateEntry(Person person) {
+    public void removeAssociateEntryContact(Person person) {
         requireNonNull(person);
 
         HashSet<Entry> toDeleteEntry = new HashSet<>();
@@ -65,7 +65,7 @@ public class Journal implements ReadOnlyJournal {
         }
 
         for (Entry entry: toDeleteEntry) {
-            removeEntry(entry);
+            entry.removeContact(person);
         }
     }
 
@@ -92,6 +92,21 @@ public class Journal implements ReadOnlyJournal {
 
     public void setEntries(List<Entry> entryList) {
         this.entryList.setEntries(entryList);
+    }
+
+    /**
+     * Clear contact list for each entry.
+     */
+    public void clearContacts() {
+        for (Entry entry: entryList) {
+            for (Person person: entry.getContactList()) {
+                entry.removeContact(person);
+            }
+        }
+    }
+
+    public void setEntry(Entry target, Entry editedEntry) {
+        entryList.setEntry(target, editedEntry);
     }
 
     @Override

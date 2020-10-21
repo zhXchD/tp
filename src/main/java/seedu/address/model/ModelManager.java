@@ -86,6 +86,12 @@ public class ModelManager implements Model {
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         this.addressBook.resetData(addressBook);
+        clearJournalContacts();
+    }
+
+    @Override
+    public void clearJournalContacts() {
+        journal.clearContacts();
     }
 
     @Override
@@ -111,12 +117,14 @@ public class ModelManager implements Model {
 
     @Override
     public void deletePerson(Person target) {
+        requireNonNull(target);
         addressBook.removePerson(target);
-        journal.removeAssociateEntry(target);
+        journal.removeAssociateEntryContact(target);
     }
 
     @Override
     public void addPerson(Person person) {
+        requireNonNull(person);
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
@@ -144,6 +152,13 @@ public class ModelManager implements Model {
     public void deleteEntry(Entry entry) {
         requireNonNull(entry);
         journal.removeEntry(entry);
+    }
+
+    @Override
+    public void setEntry(Entry target, Entry editedEntry) {
+        requireAllNonNull(target, editedEntry);
+
+        journal.setEntry(target, editedEntry);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -194,7 +209,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
             && userPrefs.equals(other.userPrefs)
-            && filteredPersons.equals(other.filteredPersons);
+            && filteredPersons.equals(other.filteredPersons)
+            && filteredEntries.equals(other.filteredEntries);
     }
 
 }

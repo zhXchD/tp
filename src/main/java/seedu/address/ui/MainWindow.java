@@ -41,7 +41,6 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
 
 
-
     @FXML
     private StackPane commandBoxPlaceholder;
 
@@ -235,9 +234,13 @@ public class MainWindow extends UiPart<Stage> {
                 handleViewingJournal();
             }
 
+            if (commandResult.isCleaningJournalView()) {
+                handleCleaningJournalView();
+            }
+
             return commandResult;
         } catch (CommandException | ParseException e) {
-            logger.info("Invalid command: " + commandText);
+            logger.warning("Invalid command: " + commandText + ". " + e.getMessage());
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
@@ -261,5 +264,9 @@ public class MainWindow extends UiPart<Stage> {
 
     private void handleViewingJournal() {
         entryContent.setEntryContentToUser(logic.getFilteredEntryList().get(0));
+    }
+
+    private void handleCleaningJournalView() {
+        entryContent.setEntryContentToUser(null);
     }
 }

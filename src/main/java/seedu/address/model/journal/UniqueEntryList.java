@@ -1,6 +1,7 @@
 package seedu.address.model.journal;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
@@ -41,6 +42,24 @@ public class UniqueEntryList implements Iterable<Entry> {
             throw new DuplicateEntryException();
         }
         internalList.add(entry);
+    }
+
+    /**
+     * Replace the {@code target} Entry with a new {@code editedEntry}.
+     */
+    public void setEntry(Entry target, Entry editedEntry) {
+        requireAllNonNull(target, editedEntry);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new EntryNotFoundException();
+        }
+
+        if (!target.isSameEntry(editedEntry) && contains(editedEntry)) {
+            throw new DuplicateEntryException();
+        }
+
+        internalList.set(index, editedEntry);
     }
 
     /**

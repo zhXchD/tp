@@ -18,12 +18,12 @@ public class DeleteJournalEntryCommand extends Command {
     public static final String COMMAND_WORD = "deletej";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the entry identified by the index number used in the "
-            + "displayed entries list.\nParameters: INDEX (must be a positive "
-            + "integer)\nExample: " + COMMAND_WORD + " 1";
+        + ": Deletes the entry identified by the index number used in the "
+        + "displayed entries list.\nParameters: INDEX (must be a positive "
+        + "integer)\nExample: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_ENTRY_SUCCESS =
-            "Deleted Entry: %1$s";
+        "Deleted Entry: %1$s";
 
     private final Index targetIndex;
 
@@ -38,18 +38,19 @@ public class DeleteJournalEntryCommand extends Command {
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(
-                    Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
+                Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
         }
 
         Entry entryToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteEntry(entryToDelete);
-        return new CommandResult(
-                String.format(MESSAGE_DELETE_ENTRY_SUCCESS, entryToDelete)).setJournalTab();
+        boolean isEmptyList = (lastShownList.size() == 0);
+        return new CommandResult(String.format(MESSAGE_DELETE_ENTRY_SUCCESS, entryToDelete))
+            .setJournalTab().setCleaningJournalView(isEmptyList);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this || (other instanceof DeleteJournalEntryCommand
-                && ((DeleteJournalEntryCommand) other).targetIndex.equals(targetIndex));
+            && ((DeleteJournalEntryCommand) other).targetIndex.equals(targetIndex));
     }
 }
