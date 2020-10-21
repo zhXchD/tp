@@ -40,17 +40,30 @@ public class FindCommandParser implements Parser<FindCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(
+                args,
                 PREFIX_SCOPE,
-                PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG,
-                PREFIX_DATE_AND_TIME, PREFIX_DESCRIPTION, PREFIX_CONTACT);
+                PREFIX_NAME,
+                PREFIX_ADDRESS,
+                PREFIX_PHONE,
+                PREFIX_EMAIL,
+                PREFIX_TAG,
+                PREFIX_DATE_AND_TIME,
+                PREFIX_DESCRIPTION,
+                PREFIX_CONTACT
+        );
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_SCOPE) || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        if (!arePrefixesPresent(argMultimap, PREFIX_SCOPE)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                            FindCommand.MESSAGE_USAGE)
+            );
         }
 
         assert (argMultimap.getValue(PREFIX_SCOPE).isPresent());
-        String scope = ParserUtil.parseScope(argMultimap.getValue(PREFIX_SCOPE).get());
+        String scope = ParserUtil.parseScope(
+                argMultimap.getValue(PREFIX_SCOPE).get());
 
         switch (scope) {
         case "c":
