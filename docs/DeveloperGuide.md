@@ -311,6 +311,8 @@ to show the help window if the `isShowHelpWindow` is `true`. Or it will return a
 The following sequence diagrams show how the help command works:
 ![HelpSequenceDiagram](images/HelpSequenceDiagram.png)
 
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
