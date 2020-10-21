@@ -6,6 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoUnit;
 
 /**
  * Represents date for journal.
@@ -31,7 +32,7 @@ public class Date {
      */
     public Date(LocalDateTime date) {
         requireNonNull(date);
-        this.date = date;
+        this.date = date.truncatedTo(ChronoUnit.MINUTES);
         this.value = date.toString();
     }
 
@@ -42,11 +43,12 @@ public class Date {
      * @param date Event date.
      */
     public Date(String date) {
-        if (date == null) {
+        if (date == null || date.length() == 0) {
             date = LocalDateTime.now().format(VALID_FORMATTER);
         }
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
-        this.date = LocalDateTime.parse(date, VALID_FORMATTER);
+        this.date = LocalDateTime.parse(date, VALID_FORMATTER)
+                .truncatedTo(ChronoUnit.MINUTES);
         value = date;
     }
 
@@ -62,6 +64,23 @@ public class Date {
         } catch (DateTimeParseException e) {
             return false;
         }
+    }
+
+    /**
+     * Returns true if both Date objects are on the same date.
+     * @param other date object.
+     * @return true if both Date objects are on the same date.
+     */
+    public boolean isSameDate(Date other) {
+        return date.toLocalDate().isEqual(other.date.toLocalDate());
+    }
+
+    /**
+     * Returns a string representing the date without time.
+     * @return a string representing the date without time.
+     */
+    public String getDateString() {
+        return date.toLocalDate().toString();
     }
 
     @Override
