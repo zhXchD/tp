@@ -58,7 +58,7 @@ as location information faster than traditional GUI apps.
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero
+* Items with `…​` after them can be used multiple times including zero
   times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`,
   `t/friend t/family` etc.
@@ -74,6 +74,8 @@ as location information faster than traditional GUI apps.
 Gives the explanation and format of commands in the system and does not change
 the current displaying tab.
 
+Aliases: `help`, `h`
+
 Format: `help [COMMAND]`
 * The `COMMAND` argument supplied will indicate which command explanation to
 show.
@@ -83,7 +85,9 @@ show.
 
 Adds a contact to the address book and switches to the address book tab.
 
-format: `addcontact n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]
+Aliases: `addcontact`, `addc`
+
+Format: `addcontact n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]
          [at/DATE_AND_TIME] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -99,7 +103,9 @@ Examples:
 
 Adds a journal entry to the journal and switches to the journal tab.
 
-format: `addjournal n/NAME [at/DATE_AND_TIME] [d/DESCRIPTION] 
+Aliases: `addjournal`, `addj`
+
+Format: `addjournal n/NAME [at/DATE_AND_TIME] [d/DESCRIPTION] 
          [with/CONTACT_NAMES] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -119,11 +125,15 @@ Examples:
 
 Lists all the contacts in the address book and switches to the address book tab.
 
+Aliases: `listc`, `lc`
+
 Format: `listc`
 
 ### Listing all journal entries: `listj`
 
 Lists all journal entries in the journal and switches to the journal tab.
+
+Aliases: `listj`, `lj`
 
 Format: `listj`
 
@@ -131,6 +141,8 @@ Format: `listj`
 
 Opens up a contact or journal entry to show further details and switches to the
 corresponding tab.
+
+Aliases: `view`, `v`
 
 Format: `view in/SCOPE index/INDEX`
 * `INDEX` refers to the index number of the contact shown in the list.
@@ -146,6 +158,8 @@ Examples:
 
 Finds a list of contacts or journal entries that satisfy the requirements
 on particular fields given by the user.
+
+Aliases: `find`, `f`
 
 Format: `find in/SCOPE [different valid combinations dependent on SCOPE]`
 * `find in/c [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS] [e/EMAIL_KEYWORDS]
@@ -172,6 +186,8 @@ Examples:
 
 Finds a list of journal entries for a date given by the user.
 
+Aliases: `check`, `ck`
+
 Format: `check [DATE]`
 
 Examples:
@@ -181,6 +197,8 @@ Examples:
 ### Deleting a contact: `deletec`
 
 Deletes a contact from the address book and switches to the address book tab.
+
+Aliases: `deletec`, `delc`
 
 Format: `deletec INDEX`
 * `INDEX` refers to the index number of the contact in the list.
@@ -193,6 +211,8 @@ Examples:
 
 Deletes a journal entry from the journal and switches to the journal tab.
 
+Aliases: `deletej`, `delj`
+
 Format: `deletej INDEX`
 * `INDEX` refers to the index number of the journal shown in the list.
 
@@ -204,11 +224,15 @@ Examples:
 
 Clears all contacts in the addressbook and switches to the address book tab.
 
+Aliases: `clearc`, `cc`
+
 Format: `clearc`
 
 ### Clearing the journal: `clearj`
 
 Clears all journal entries in the journal and switches to the journal tab.
+
+Aliases: `clearj`, `cj`
 
 Format: `clearj`
 
@@ -216,9 +240,13 @@ Format: `clearj`
 
 Switches the current displaying tab to the other tab.
 
+Aliases: `switch`, `swt`
+
 Format: `switch`
 
 ### Exiting the program: `exit`
+
+Aliases: `exit`, `quit`, `q`
 
 Exits the program.
 
