@@ -139,6 +139,29 @@ Examples:
 * `view in/j index/4` Views the 4th journal entry in the journal.
 * `view in/j index/8` Views the 8th journal entry in the journal.
 
+### Find contacts or journal entries with keywords on fileds: `find`
+Finds a list of contacts or journal entries that satisfy the requirements
+on particular fields given by the user.
+
+Format `view in/SCOPE [different valid combinations dependent on SCOPE]`
+* `view in/c [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS] [e/EMAIL_KEYWORDS] 
+[a/ADDRESS_KEYWORDS] [t/TAG]`
+* `view in/j [n/TITLE_KEYWORDS] [at/DATE_AND_TIME] [with/CONTACT_NAME_KEYWORDS]
+[d/DESCRIPTION_KEYWORDS] [t/TAG]`
+
+Examples:
+* `view in/c n/Alice` Finds all contacts whose name contains "Alice".
+* `view in/n n/Alice p/65` Find all contacts whose name contains "Alice" and
+phone number contains "65".
+* `view in/c n/Alice p/65 e/@u.nus.edu a/RC4 t/Student` Find all contacts whose name
+contains "Alice" and phone number contains "65" and email contains "@u.nus.edu" and
+address name contains "RC4" and tagged "Student" (Note that for `TAG`, IntelliJournal
+searches for the exact same tag instead of find the ones that contain the searched string).
+* `view in/j n/Meeting d/plan for 2021 with/Alice t/Meeting at/2020-10-10` Finds all
+journal entries that have a name containing "Meeting", have a description containing
+"plan for 2021", with someone whose name contains "Alice", tagged "Meeting", happening
+on Oct 10, 2020.
+
 ### Deleting a contact: `deletec`
 
 Deletes a contact from the address book and switches to the address book tab.
