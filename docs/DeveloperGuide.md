@@ -359,6 +359,33 @@ object after `Logic` executes the command. The activity diagram below shows how
 
 ![MainWindowTabNavigationActivity](images/MainWindowTabNavigationActivityDiagram.png)
 
+### Check schedule feature
+
+IntelliJournal allows for users to check all journal entries for a given day, 
+allowing them to check their schedule for the given day.
+
+#### Current Implementation
+
+The current implementation makes use of the `CheckScheduleCommandParser` as well
+as the `CheckScheduleCommand` classes. When `AddressBookParser` parses the
+command and finds the `check` command, the rest of the command is passed into
+the `CheckScheduleCommandParser`, where the rest of the command is parsed.
+
+If the rest of the command is empty, the command is parsed as though we are
+using the local date of the machine. Otherwise, if the rest of the command is
+not a valid date, we throw an error.
+
+The activity diagram for the parsing of command is given below.
+
+![CheckScheduleActivityDiagram](images/CheckScheduleActivityDiagram.png)
+
+The following sequence diagrams show how the check schedule command works:
+
+![CheckScheduleSequenceDiagram](images/CheckScheduleSequenceDiagram.png)
+
+In `MainWindow#executeCommand`, the returned `CommandResult` will then set the
+tab back to the journal tab if the user is viewing the AddressBook tab.
+
 ### Edit journal feature
 #### Current Implementation
 

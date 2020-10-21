@@ -14,4 +14,3 @@ endif
 :Generates an instance of CheckScheduleCommand;
 stop
 @enduml
-
