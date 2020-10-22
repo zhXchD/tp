@@ -115,7 +115,8 @@ public class EditJournalEntryCommand extends Command {
         model.updateFilteredEntryList(PREDICATE_SHOW_ALL_ENTRIES);
 
         return new CommandResult(
-                String.format(MESSAGE_EDIT_ENTRY_SUCCESS, editedEntry));
+                String.format(MESSAGE_EDIT_ENTRY_SUCCESS, editedEntry))
+                .setJournalTab();
     }
 
     public static class EditEntryDescriptor {
@@ -176,6 +177,8 @@ public class EditJournalEntryCommand extends Command {
         }
 
         public Optional<ObservableList<Person>> getContactList() {
+            // TODO: Fix null exception and invocation exception with calling
+            //  this method
             return contactList.spliterator().getExactSizeIfKnown() > 0
                     ? Optional.of(contactList.asUnmodifiableObservableList())
                     : Optional.empty();
