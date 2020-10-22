@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditContactCommand.EditPersonDescriptor;
 import seedu.address.model.AddressBook;
 import seedu.address.model.AliasMap;
 import seedu.address.model.Journal;
@@ -35,7 +35,7 @@ import seedu.address.testutil.PersonBuilder;
  * Contains integration tests (interaction with the Model, UndoCommand and
  * RedoCommand) and unit tests for EditCommand.
  */
-public class EditCommandTest {
+public class EditContactCommandTest {
 
     private final Model model = new ModelManager(
             getTypicalAddressBook(),
@@ -55,11 +55,11 @@ public class EditCommandTest {
                     .build(originalPerson.getUuid());
             EditPersonDescriptor descriptor =
                     new EditPersonDescriptorBuilder(editedPerson).build();
-            EditCommand editCommand =
-                    new EditCommand(INDEX_FIRST_PERSON, descriptor);
+            EditContactCommand editContactCommand =
+                    new EditContactCommand(INDEX_FIRST_PERSON, descriptor);
 
             String expectedMessage = String.format(
-                    EditCommand.MESSAGE_EDIT_PERSON_SUCCESS,
+                    EditContactCommand.MESSAGE_EDIT_PERSON_SUCCESS,
                     editedPerson
             );
 
@@ -72,7 +72,7 @@ public class EditCommandTest {
             expectedModel.setPerson(originalPerson, editedPerson);
 
             assertCommandSuccess(
-                    editCommand,
+                    editContactCommand,
                     model,
                     expectedMessage,
                     expectedModel
@@ -99,11 +99,11 @@ public class EditCommandTest {
                             .withPhone(VALID_PHONE_BOB)
                             .withTags(VALID_TAG_HUSBAND)
                             .build();
-            EditCommand editCommand =
-                    new EditCommand(indexLastPerson, descriptor);
+            EditContactCommand editContactCommand =
+                    new EditContactCommand(indexLastPerson, descriptor);
 
             String expectedMessage = String.format(
-                    EditCommand.MESSAGE_EDIT_PERSON_SUCCESS,
+                    EditContactCommand.MESSAGE_EDIT_PERSON_SUCCESS,
                     editedPerson
             );
 
@@ -116,7 +116,7 @@ public class EditCommandTest {
             expectedModel.setPerson(lastPerson, editedPerson);
 
             assertCommandSuccess(
-                    editCommand,
+                    editContactCommand,
                     model,
                     expectedMessage,
                     expectedModel
@@ -127,7 +127,7 @@ public class EditCommandTest {
         @DisplayName("should successfully edit person with no field specified"
                 + " in unfiltered list")
         public void execute_noFieldSpecifiedUnfilteredList_success() {
-            EditCommand editCommand = new EditCommand(
+            EditContactCommand editContactCommand = new EditContactCommand(
                     INDEX_FIRST_PERSON,
                     new EditPersonDescriptor()
             );
@@ -135,7 +135,7 @@ public class EditCommandTest {
                     .get(INDEX_FIRST_PERSON.getZeroBased());
 
             String expectedMessage = String.format(
-                    EditCommand.MESSAGE_EDIT_PERSON_SUCCESS,
+                    EditContactCommand.MESSAGE_EDIT_PERSON_SUCCESS,
                     editedPerson
             );
 
@@ -147,7 +147,7 @@ public class EditCommandTest {
                     );
 
             assertCommandSuccess(
-                    editCommand,
+                    editContactCommand,
                     model,
                     expectedMessage,
                     expectedModel
@@ -165,14 +165,14 @@ public class EditCommandTest {
                     new PersonBuilder(personInFilteredList)
                             .withName(VALID_NAME_BOB)
                             .build(personInFilteredList.getUuid());
-            EditCommand editCommand = new EditCommand(
+            EditContactCommand editContactCommand = new EditContactCommand(
                     INDEX_FIRST_PERSON,
                     new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                             .build()
             );
 
             String expectedMessage = String.format(
-                    EditCommand.MESSAGE_EDIT_PERSON_SUCCESS,
+                    EditContactCommand.MESSAGE_EDIT_PERSON_SUCCESS,
                     editedPerson
             );
 
@@ -188,7 +188,7 @@ public class EditCommandTest {
             );
 
             assertCommandSuccess(
-                    editCommand,
+                    editContactCommand,
                     model,
                     expectedMessage,
                     expectedModel
@@ -202,13 +202,13 @@ public class EditCommandTest {
                     .get(INDEX_FIRST_PERSON.getZeroBased());
             EditPersonDescriptor descriptor =
                     new EditPersonDescriptorBuilder(firstPerson).build();
-            EditCommand editCommand =
-                    new EditCommand(INDEX_SECOND_PERSON, descriptor);
+            EditContactCommand editContactCommand =
+                    new EditContactCommand(INDEX_SECOND_PERSON, descriptor);
 
             assertCommandFailure(
-                    editCommand,
+                    editContactCommand,
                     model,
-                    EditCommand.MESSAGE_DUPLICATE_PERSON
+                    EditContactCommand.MESSAGE_DUPLICATE_PERSON
             );
         }
 
@@ -222,15 +222,15 @@ public class EditCommandTest {
             Person personInList = model.getAddressBook()
                     .getPersonList()
                     .get(INDEX_SECOND_PERSON.getZeroBased());
-            EditCommand editCommand = new EditCommand(
+            EditContactCommand editContactCommand = new EditContactCommand(
                     INDEX_FIRST_PERSON,
                     new EditPersonDescriptorBuilder(personInList).build()
             );
 
             assertCommandFailure(
-                    editCommand,
+                    editContactCommand,
                     model,
-                    EditCommand.MESSAGE_DUPLICATE_PERSON
+                    EditContactCommand.MESSAGE_DUPLICATE_PERSON
             );
         }
 
@@ -243,11 +243,11 @@ public class EditCommandTest {
             EditPersonDescriptor descriptor =
                     new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                             .build();
-            EditCommand editCommand =
-                    new EditCommand(outOfBoundIndex, descriptor);
+            EditContactCommand editContactCommand =
+                    new EditContactCommand(outOfBoundIndex, descriptor);
 
             assertCommandFailure(
-                    editCommand,
+                    editContactCommand,
                     model,
                     Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX
             );
@@ -268,14 +268,14 @@ public class EditCommandTest {
                     .getPersonList()
                     .size());
 
-            EditCommand editCommand = new EditCommand(
+            EditContactCommand editContactCommand = new EditContactCommand(
                     outOfBoundIndex,
                     new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                             .build()
             );
 
             assertCommandFailure(
-                    editCommand,
+                    editContactCommand,
                     model,
                     Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX
             );
@@ -285,16 +285,16 @@ public class EditCommandTest {
     @Nested
     @DisplayName("equals method")
     class Equals {
-        private final EditCommand standardCommand =
-                new EditCommand(INDEX_FIRST_PERSON, DESC_AMY);
+        private final EditContactCommand standardCommand =
+                new EditContactCommand(INDEX_FIRST_PERSON, DESC_AMY);
 
         @Test
         @DisplayName("should return true if values are equal")
         public void equals_sameValue_true() {
             EditPersonDescriptor copyDescriptor =
                     new EditPersonDescriptor(DESC_AMY);
-            EditCommand commandWithSameValues =
-                    new EditCommand(INDEX_FIRST_PERSON, copyDescriptor);
+            EditContactCommand commandWithSameValues =
+                    new EditContactCommand(INDEX_FIRST_PERSON, copyDescriptor);
             assertTrue(standardCommand.equals(commandWithSameValues));
         }
 
@@ -321,7 +321,7 @@ public class EditCommandTest {
         public void equals_differentIndex_false() {
             assertFalse(
                     standardCommand.equals(
-                            new EditCommand(
+                            new EditContactCommand(
                                     INDEX_SECOND_PERSON,
                                     DESC_AMY
                             )
@@ -334,7 +334,7 @@ public class EditCommandTest {
         public void equals_differentDescriptor_false() {
             assertFalse(
                     standardCommand.equals(
-                            new EditCommand(
+                            new EditContactCommand(
                                     INDEX_FIRST_PERSON,
                                     DESC_BOB
                             )
