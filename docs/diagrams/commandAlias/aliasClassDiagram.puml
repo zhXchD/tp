@@ -16,7 +16,7 @@ show method
 show attribute
 
 
-class AddressBookParser {
+class IntelliJournalParser {
     +Command parseCommand(String userInput)
 }
 
@@ -24,7 +24,7 @@ class "{abstract}\nCommand" as Command {
     + {abstract} execute()
 }
 
-AddressBookParser ..> ValidCommand
-AddressBookParser ..> Command
+IntelliJournalParser ..> ValidCommand
+IntelliJournalParser ..> Command
 
 @enduml

@@ -21,7 +21,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class IntelliJournalParser {
 
     /**
      * Used for initial separation of command word and args.
@@ -32,15 +32,15 @@ public class AddressBookParser {
     private UUID uuid;
 
     /**
-     * Creates a default instance of AddressBookParser.
+     * Creates a default instance of IntelliJournalParser.
      */
-    public AddressBookParser() { }
+    public IntelliJournalParser() { }
 
     /**
-     * Creates an instance of AddressBookParser with a given uuid.
+     * Creates an instance of IntelliJournalParser with a given uuid.
      * @param uuid used in parsing.
      */
-    public AddressBookParser(UUID uuid) {
+    public IntelliJournalParser(UUID uuid) {
         this.uuid = uuid;
     }
 

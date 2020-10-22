@@ -96,7 +96,7 @@ A contact can have any number of tags (including 0)
 
 Examples:
 * `addcontact n/John Doe` Adds a contact with the name of `Robert`.
-* `addcontact n/Betsy Crowe t/client t/important` Adds a contact with the name 
+* `addcontact n/Betsy Crowe t/client t/important` Adds a contact with the name
   of `Robert` and tags of `client` and `important`.
 
 ### Adding a journal entry: `addjournal`
@@ -105,7 +105,7 @@ Adds a journal entry to the journal and switches to the journal tab.
 
 Aliases: `addjournal`, `addj`
 
-Format: `addjournal n/NAME [at/DATE_AND_TIME] [d/DESCRIPTION] 
+Format: `addjournal n/NAME [at/DATE_AND_TIME] [d/DESCRIPTION]
          [with/CONTACT_NAMES] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**

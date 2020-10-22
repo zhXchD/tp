@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":IntelliJournalParser" as IntelliJournalParser LOGIC_COLOR
 participant ":ValidCommand" as ValidCommand LOGIC_COLOR
 participant "c:Command" as Command LOGIC_COLOR
 end box
@@ -11,23 +11,23 @@ end box
 [-> LogicManager : execute(someInput)
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(someInput)
-activate AddressBookParser
+LogicManager -> IntelliJournalParser : parseCommand(someInput)
+activate IntelliJournalParser
 
 activate ValidCommand
-AddressBookParser -> ValidCommand: commandTypeOf(commandWord)
-ValidCommand --> AddressBookParser: commandType
+IntelliJournalParser -> ValidCommand: commandTypeOf(commandWord)
+ValidCommand --> IntelliJournalParser: commandType
 deactivate ValidCommand
 
 create Command
-AddressBookParser -> Command
+IntelliJournalParser -> Command
 activate Command
 
-Command --> AddressBookParser:c
+Command --> IntelliJournalParser:c
 deactivate Command
 
-AddressBookParser --> LogicManager : c
-deactivate AddressBookParser
+IntelliJournalParser --> LogicManager : c
+deactivate IntelliJournalParser
 
 LogicManager -> Command : execute()
 activate Command
