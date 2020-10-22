@@ -33,6 +33,7 @@ public class CheckScheduleCommand extends Command {
      * @param date of the schedule to check.
      */
     public CheckScheduleCommand(Predicate<Entry> predicate, Date date) {
+        assert predicate != null;
         this.predicate = requireNonNull(predicate);
         this.date = requireNonNullElse(date, new Date(""));
     }
