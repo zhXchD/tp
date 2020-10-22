@@ -1,0 +1,68 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":IntelliJournalParser" as IntelliJournalParser LOGIC_COLOR
+participant ":HelpCommandParser" as HelpCommandParser LOGIC_COLOR
+participant ":ParserUtil" as ParserUtil LOGIC_COLOR
+participant "c:HelpCommand" as HelpCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+[-> LogicManager : execute("help of/addc")
+activate LogicManager
+
+LogicManager -> IntelliJournalParser : parseCommand("help of/addc")
+activate IntelliJournalParser
+
+create HelpCommandParser
+IntelliJournalParser -> HelpCommandParser
+activate HelpCommandParser
+
+HelpCommandParser --> IntelliJournalParser
+deactivate HelpCommandParser
+
+IntelliJournalParser -> HelpCommandParser : parse(" of/addc")
+activate HelpCommandParser
+
+HelpCommandParser -> ParserUtil : parseValidCommand("addc")
+activate ParserUtil
+
+ParserUtil --> HelpCommandParser : validCommandType
+deactivate ParserUtil
+
+create HelpCommand
+HelpCommandParser -> HelpCommand
+activate HelpCommand
+
+HelpCommand --> HelpCommandParser : c
+deactivate HelpCommand
+
+HelpCommandParser --> IntelliJournalParser : c
+deactivate HelpCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+HelpCommandParser -[hidden]-> IntelliJournalParser
+destroy HelpCommandParser
+
+IntelliJournalParser --> LogicManager : c
+deactivate IntelliJournalParser
+
+LogicManager -> HelpCommand : execute(model)
+activate HelpCommand
+
+create CommandResult
+HelpCommand -> CommandResult
+activate CommandResult
+
+
+
+CommandResult --> HelpCommand
+deactivate CommandResult
+
+HelpCommand --> LogicManager : result
+deactivate HelpCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

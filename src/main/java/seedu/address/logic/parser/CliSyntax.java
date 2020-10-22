@@ -16,5 +16,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_SCOPE = new Prefix("in/");
     public static final Prefix PREFIX_CONTACT = new Prefix("with/");
     public static final Prefix PREFIX_INDEX = new Prefix("index/");
+    public static final Prefix PREFIX_OF = new Prefix("of/");
 
 }

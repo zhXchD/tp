@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":IntelliJournalParser" as IntelliJournalParser LOGIC_COLOR
 participant ":DeleteContactCommandParser" as DeleteContactCommandParser LOGIC_COLOR
 participant "d:DeleteContactCommand" as DeleteContactCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
@@ -16,17 +16,17 @@ end box
 [-> LogicManager : execute("deletec 1")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("delete 1")
-activate AddressBookParser
+LogicManager -> IntelliJournalParser : parseCommand("delete 1")
+activate IntelliJournalParser
 
 create DeleteContactCommandParser
-AddressBookParser -> DeleteContactCommandParser
+IntelliJournalParser -> DeleteContactCommandParser
 activate DeleteContactCommandParser
 
-DeleteContactCommandParser --> AddressBookParser
+DeleteContactCommandParser --> IntelliJournalParser
 deactivate DeleteContactCommandParser
 
-AddressBookParser -> DeleteContactCommandParser : parse("1")
+IntelliJournalParser -> DeleteContactCommandParser : parse("1")
 activate DeleteContactCommandParser
 
 create DeleteContactCommand
@@ -36,14 +36,14 @@ activate DeleteContactCommand
 DeleteContactCommand --> DeleteContactCommandParser : d
 deactivate DeleteContactCommand
 
-DeleteContactCommandParser --> AddressBookParser : d
+DeleteContactCommandParser --> IntelliJournalParser : d
 deactivate DeleteContactCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteContactCommandParser -[hidden]-> AddressBookParser
+DeleteContactCommandParser -[hidden]-> IntelliJournalParser
 destroy DeleteContactCommandParser
 
-AddressBookParser --> LogicManager : d
-deactivate AddressBookParser
+IntelliJournalParser --> LogicManager : d
+deactivate IntelliJournalParser
 
 LogicManager -> DeleteContactCommand : execute()
 activate DeleteContactCommand

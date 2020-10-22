@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":IntelliJournalParser" as IntelliJournalParser LOGIC_COLOR
 participant ":CheckScheduleCommandParser" as CheckScheduleCommandParser LOGIC_COLOR
 participant ":ParserUtil" as ParserUtil LOGIC_COLOR
 participant "c:CheckScheduleCommand" as CheckScheduleCommand LOGIC_COLOR
@@ -17,17 +17,17 @@ end box
 [-> LogicManager : execute("check")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("check")
-activate AddressBookParser
+LogicManager -> IntelliJournalParser : parseCommand("check")
+activate IntelliJournalParser
 
 create CheckScheduleCommandParser
-AddressBookParser -> CheckScheduleCommandParser
+IntelliJournalParser -> CheckScheduleCommandParser
 activate CheckScheduleCommandParser
 
-CheckScheduleCommandParser --> AddressBookParser
+CheckScheduleCommandParser --> IntelliJournalParser
 deactivate CheckScheduleCommandParser
 
-AddressBookParser -> CheckScheduleCommandParser : parse("")
+IntelliJournalParser -> CheckScheduleCommandParser : parse("")
 activate CheckScheduleCommandParser
 
 CheckScheduleCommandParser -> ParserUtil : parseDate("")
@@ -43,14 +43,14 @@ activate CheckScheduleCommand
 CheckScheduleCommand --> CheckScheduleCommandParser : c
 deactivate CheckScheduleCommand
 
-CheckScheduleCommandParser --> AddressBookParser : c
+CheckScheduleCommandParser --> IntelliJournalParser : c
 deactivate CheckScheduleCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-CheckScheduleCommandParser -[hidden]-> AddressBookParser
+CheckScheduleCommandParser -[hidden]-> IntelliJournalParser
 destroy CheckScheduleCommandParser
 
-AddressBookParser --> LogicManager : c
-deactivate AddressBookParser
+IntelliJournalParser --> LogicManager : c
+deactivate IntelliJournalParser
 
 LogicManager -> CheckScheduleCommand : execute(model)
 activate CheckScheduleCommand
