@@ -31,6 +31,7 @@ public class JsonSerializableJournal {
     @JsonCreator
     public JsonSerializableJournal(
             @JsonProperty("entries") List<JsonAdaptedEntry> entries) {
+        assert entries != null;
         this.entries.addAll(entries);
     }
 
