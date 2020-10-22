@@ -413,7 +413,7 @@ The following sequence diagrams show how the help command works:
 The current implementation of editing journal entries follows closely to the same process of editing contacts. Fields supplied as arguments are used to create an `EditJournalEntryDescriptor`, which are used to create a new `Entry` object by taking attributes from the `EditJournalEntryDescriptor` and using the original attributes from the `Entry` being edited in place of any null attributes in the `EditJournalEntryDescriptor`.
 
 ```
-Title updatedTitle = editJournalEntryDescriptor.getTitle().orElse(entryToEdit.getTitle());
+Title updatedTitle = editEntryDescriptor.getTitle().orElse(entryToEdit.getTitle());
 ```
 In this snippet from `createEditedEntry`, `getTitle()` returns an `Optional<Title>` which is used to determine if the new `Entry` should use the previous' attribute or not. For `Title`, `Date`, and `Description`, this same approach is used.
 

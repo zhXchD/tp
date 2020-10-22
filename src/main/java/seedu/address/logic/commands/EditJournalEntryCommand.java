@@ -54,39 +54,38 @@ public class EditJournalEntryCommand extends Command {
             + " exists in the address book.";
 
     private final Index index;
-    private final EditJournalEntryDescriptor editJournalEntryDescriptor;
+    private final EditEntryDescriptor editEntryDescriptor;
 
     /**
      * @param index
      */
     public EditJournalEntryCommand(Index index,
-                                   EditJournalEntryDescriptor editJournalEntryDescriptor) {
+                                   EditEntryDescriptor editEntryDescriptor) {
         requireNonNull(index);
-        requireNonNull(editJournalEntryDescriptor);
+        requireNonNull(editEntryDescriptor);
 
         this.index = index;
-        this.editJournalEntryDescriptor = editJournalEntryDescriptor;
+        this.editEntryDescriptor = editEntryDescriptor;
     }
 
     private static Entry createEditedEntry(Entry entryToEdit,
-                                           EditJournalEntryDescriptor editJournalEntryDescriptor) {
+                                           EditEntryDescriptor editEntryDescriptor) {
         assert entryToEdit != null;
 
         Title updatedTitle =
-                editJournalEntryDescriptor.getTitle().orElse(entryToEdit.getTitle());
+                editEntryDescriptor.getTitle().orElse(entryToEdit.getTitle());
         Date updatedDate =
-                editJournalEntryDescriptor.getDate().orElse(entryToEdit.getDate());
+                editEntryDescriptor.getDate().orElse(entryToEdit.getDate());
         Description updatedDescription =
-                editJournalEntryDescriptor.getDescription().orElse(entryToEdit.getDescription());
-        // TODO: figure how to add contact list
+                editEntryDescriptor.getDescription().orElse(entryToEdit.getDescription());
         ObservableList<Person> updatedPersonList =
-                editJournalEntryDescriptor.getContactList().orElse(entryToEdit.getContactList());
+                editEntryDescriptor.getContactList().orElse(entryToEdit.getContactList());
 
         UniquePersonList updatedContactList = new UniquePersonList();
         updatedPersonList.forEach(updatedContactList::add);
 
         Set<Tag> updatedTags =
-                editJournalEntryDescriptor.getTags().orElse(entryToEdit.getTags());
+                editEntryDescriptor.getTags().orElse(entryToEdit.getTags());
 
         return new Entry(
                 updatedTitle,
@@ -109,7 +108,7 @@ public class EditJournalEntryCommand extends Command {
         }
         Entry entryToEdit = lastShownList.get(index.getZeroBased());
         Entry editedEntry = createEditedEntry(entryToEdit,
-                editJournalEntryDescriptor);
+                editEntryDescriptor);
         if (!entryToEdit.isSameEntry(editedEntry) && model.hasEntry(editedEntry)) {
             throw new CommandException(MESSAGE_DUPLICATE_ENTRY);
         }
@@ -120,14 +119,14 @@ public class EditJournalEntryCommand extends Command {
                 String.format(MESSAGE_EDIT_ENTRY_SUCCESS, editedEntry));
     }
 
-    public static class EditJournalEntryDescriptor {
+    public static class EditEntryDescriptor {
         private Title title;
         private Date date;
         private Description description;
         private UniquePersonList contactList;
         private Set<Tag> tags;
 
-        public EditJournalEntryDescriptor() {
+        public EditEntryDescriptor() {
         }
 
         /**
@@ -135,7 +134,7 @@ public class EditJournalEntryCommand extends Command {
          * A defensive copy of {@code tags} and {@code contactList} is used
          * internally.
          */
-        public EditJournalEntryDescriptor(EditJournalEntryDescriptor toCopy) {
+        public EditEntryDescriptor(EditEntryDescriptor toCopy) {
             setTitle(toCopy.title);
             setDate(toCopy.date);
             setDescription(toCopy.description);
@@ -188,8 +187,11 @@ public class EditJournalEntryCommand extends Command {
          * A defensive copy of {@code contactList} is made and used internally.
          */
         public void setContactList(UniquePersonList contactList) {
-            this.contactList = new UniquePersonList();
-            contactList.forEach(this.contactList::add);
+            // Only sets if there are more than 0 contacts
+            if (contactList.spliterator().getExactSizeIfKnown() > 0) {
+                this.contactList = new UniquePersonList();
+                contactList.forEach(this.contactList::add);
+            }
         }
 
         /**
@@ -219,12 +221,12 @@ public class EditJournalEntryCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditJournalEntryDescriptor)) {
+            if (!(other instanceof EditEntryDescriptor)) {
                 return false;
             }
 
             // state check
-            EditJournalEntryDescriptor e = (EditJournalEntryDescriptor) other;
+            EditEntryDescriptor e = (EditEntryDescriptor) other;
 
             return getTitle().equals(e.getTitle())
                     && getContactList().equals(e.getContactList())
