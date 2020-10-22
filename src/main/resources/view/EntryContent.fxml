@@ -20,9 +20,9 @@
             <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
          </VBox.margin>
       </StackPane>
-      <StackPane fx:id="relatedListPane" prefHeight="52.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+      <StackPane fx:id="relatedListPane" prefHeight="125.0" styleClass="pane-with-border" VBox.vgrow="NEVER">
          <children>
-            <JFXListView fx:id="relatedPersonListView" nodeOrientation="LEFT_TO_RIGHT" orientation="HORIZONTAL" prefHeight="52.0" />
+            <JFXListView fx:id="relatedPersonListView" nodeOrientation="LEFT_TO_RIGHT" orientation="HORIZONTAL" />
          </children>
          <VBox.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

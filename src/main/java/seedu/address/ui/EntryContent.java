@@ -86,7 +86,6 @@ public class EntryContent extends UiPart<Region> {
      */
     class PersonListViewCell extends JFXListCell<Person> {
         {
-            setPrefHeight(50.0);
             setPrefWidth(250.0);
         }
 

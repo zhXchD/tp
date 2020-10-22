@@ -38,7 +38,10 @@
                     <tabs>
                         <Tab fx:id="addressBookTab" text="AddressBook">
                             <content>
-                                <StackPane fx:id="personListPanelPlaceholder" />
+                                <HBox HBox.hgrow="ALWAYS">
+                                    <StackPane fx:id="personListPanelPlaceholder" prefWidth="250.0" />
+                                    <StackPane fx:id="contactContentPlaceholder" HBox.hgrow="ALWAYS" />
+                                </HBox>
                             </content>
                         </Tab>
                         <Tab fx:id="journalTab" text="Journal">
