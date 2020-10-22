@@ -49,7 +49,9 @@ CommandBox --|> UiPart
 PersonListPanel --|> UiPart
 PersonCard --|> UiPart
 StatusBarFooter --|> UiPart
-HelpWindow -down-|> UiPart
+HelpWindow --|> UiPart
+EntryListPanel --|> UiPart
+EntryCard --|> UiPart
 
 PersonCard .right.> Model
 EntryCard ..> Model

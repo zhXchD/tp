@@ -10,6 +10,7 @@ import java.util.UUID;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.ValidCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.journal.Date;
 import seedu.address.model.journal.Description;
@@ -230,5 +231,21 @@ public class ParserUtil {
         } else {
             throw new ParseException("Scope can only be \"c\" or \"j\".");
         }
+    }
+
+    /**
+     * Parses description string into Description.
+     * @param command the string to parse
+     * @return the corresponding {@code ValidCommand}
+     * @throws ParseException if the string is not a valid command
+     */
+    public static ValidCommand parseValidCommand(String command) throws ParseException {
+        ValidCommand validCommandType;
+        try {
+            validCommandType = ValidCommand.commandTypeOf(command);
+        } catch (ParseException pe) {
+            throw new ParseException("This is not a valid command.");
+        }
+        return validCommandType;
     }
 }
