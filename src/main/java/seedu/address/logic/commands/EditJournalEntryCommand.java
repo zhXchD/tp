@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ENTRIES;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -78,7 +79,12 @@ public class EditJournalEntryCommand extends Command {
         Description updatedDescription =
                 editJournalEntryDescriptor.getDescription().orElse(entryToEdit.getDescription());
         // TODO: figure how to add contact list
+        ObservableList<Person> updatedPersonList =
+                editJournalEntryDescriptor.getContactList().orElse(entryToEdit.getContactList());
+
         UniquePersonList updatedContactList = new UniquePersonList();
+        updatedPersonList.forEach(updatedContactList::add);
+
         Set<Tag> updatedTags =
                 editJournalEntryDescriptor.getTags().orElse(entryToEdit.getTags());
 
@@ -108,9 +114,7 @@ public class EditJournalEntryCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_ENTRY);
         }
         model.setEntry(entryToEdit, editedEntry);
-        // TODO: Update the predicate here
-//        model.updateFilteredEntryList(PREDICATE_SHOW_ALL_ENTRIES);
-
+        model.updateFilteredEntryList(PREDICATE_SHOW_ALL_ENTRIES);
 
         return new CommandResult(
                 String.format(MESSAGE_EDIT_ENTRY_SUCCESS, editedEntry));
@@ -128,15 +132,14 @@ public class EditJournalEntryCommand extends Command {
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * A defensive copy of {@code tags} and {@code contactList} is used
+         * internally.
          */
         public EditJournalEntryDescriptor(EditJournalEntryDescriptor toCopy) {
             setTitle(toCopy.title);
             setDate(toCopy.date);
             setDescription(toCopy.description);
-            contactList = new UniquePersonList();
-            toCopy.getContactList()
-                    .forEach(contactList::add);
+            setContactList(toCopy.contactList);
             setTags(toCopy.tags);
         }
 
@@ -174,12 +177,19 @@ public class EditJournalEntryCommand extends Command {
             this.description = description;
         }
 
-        public ObservableList<Person> getContactList() {
-            return contactList.asUnmodifiableObservableList();
+        public Optional<ObservableList<Person>> getContactList() {
+            return contactList.spliterator().getExactSizeIfKnown() > 0
+                    ? Optional.of(contactList.asUnmodifiableObservableList())
+                    : Optional.empty();
         }
 
+        /**
+         * Sets {@code contactList} to this object's {@code contactList}.
+         * A defensive copy of {@code contactList} is made and used internally.
+         */
         public void setContactList(UniquePersonList contactList) {
-            this.contactList = contactList;
+            this.contactList = new UniquePersonList();
+            contactList.forEach(this.contactList::add);
         }
 
         /**

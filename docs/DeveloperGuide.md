@@ -313,6 +313,31 @@ The following sequence diagrams show how the help command works:
 
 
 
+### Edit journal feature
+#### Current Implementation
+
+The current implementation of editing journal entries follows closely to the same process of editing contacts. Fields supplied as arguments are used to create an `EditJournalEntryDescriptor`, which are used to create a new `Entry` object by taking attributes from the `EditJournalEntryDescriptor` and using the original attributes from the `Entry` being edited in place of any null attributes in the `EditJournalEntryDescriptor`.
+
+```
+Title updatedTitle = editJournalEntryDescriptor.getTitle().orElse(entryToEdit.getTitle());
+```
+In this snippet from `createEditedEntry`, `getTitle()` returns an `Optional<Title>` which is used to determine if the new `Entry` should use the previous' attribute or not. For `Title`, `Date`, and `Description`, this same approach is used.
+
+For the tags and contact list, defensive copies of the tags and contact list are made when creating the `EditJournalDescriptor` object. Similarly to how the list of tags are replaced by the arguments passed when editing `Person` in `EditContactCommand`, the `UniquePersonList` used to store contacts in an `Entry` will also be replaced with the contact list provided when calling `EditJournalEntryCommand`. 
+
+The respective setters' implementations are shown below.
+```
+public void setContactList(UniquePersonList contactList) {
+    this.contactList = new UniquePersonList();
+    contactList.forEach(this.contactList::add);
+}
+
+public void setTags(Set<Tag> tags) {
+    this.tags = (tags != null) ? new HashSet<>(tags) : null;
+}
+```
+Note that a new `UniquePersonList` is created whenever `setContactList` is called, rather than to simply check if `contactList` is null like in `setTags`.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
