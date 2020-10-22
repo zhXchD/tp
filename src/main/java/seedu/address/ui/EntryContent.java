@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import com.jfoenix.controls.JFXListCell;
+import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextArea;
 
 import javafx.fxml.FXML;
@@ -8,6 +10,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import seedu.address.model.journal.Entry;
+import seedu.address.model.person.Person;
 
 /**
  * An UI component that displays information of a {@code Entry} in detail.
@@ -18,14 +21,19 @@ public class EntryContent extends UiPart<Region> {
 
     private Entry entry;
 
+    private final Text emptyRelatedListText = new Text("No related contact list.");
     @FXML
     private VBox entryPane;
     @FXML
     private StackPane titlePane;
     @FXML
+    private StackPane relatedListPane;
+    @FXML
     private Text title;
     @FXML
     private JFXTextArea description;
+    @FXML
+    private JFXListView<Person> relatedPersonListView;
 
     /**
      * Creates a {@code EntryContent} containing no {@code Entry} temporarily.
@@ -33,16 +41,25 @@ public class EntryContent extends UiPart<Region> {
     public EntryContent() {
         super(FXML);
         this.entry = null;
+        emptyRelatedListText.getStyleClass().add("text-empty-list");
+        relatedPersonListView.setCellFactory(listView -> new PersonListViewCell());
         setDefaultContent();
     }
 
     private void setDefaultContent() {
         title.setText("");
+        relatedListPane.getChildren().setAll(emptyRelatedListText);
         description.setText("Please select a Journal Entry...");
     }
 
     private void setContent(Entry entry) {
         title.setText(entry.getTitle().title);
+        if (entry.getContactList().isEmpty()) {
+            relatedListPane.getChildren().setAll(emptyRelatedListText);
+        } else {
+            relatedPersonListView.setItems(entry.getContactList());
+            relatedListPane.getChildren().setAll(relatedPersonListView);
+        }
         description.setText(entry.getDescription().description);
     }
 
@@ -62,5 +79,27 @@ public class EntryContent extends UiPart<Region> {
 
     public Entry getEntry() {
         return entry;
+    }
+
+    /**
+     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     */
+    class PersonListViewCell extends JFXListCell<Person> {
+        {
+            setPrefHeight(50.0);
+            setPrefWidth(250.0);
+        }
+
+        @Override
+        protected void updateItem(Person person, boolean empty) {
+            super.updateItem(person, empty);
+
+            if (empty || person == null) {
+                setGraphic(null);
+            } else {
+                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+            }
+            setText(null);
+        }
     }
 }

@@ -15,6 +15,7 @@ Class PersonListPanel
 Class PersonCard
 Class EntryListPanel
 Class EntryCard
+Class EntryContent
 Class StatusBarFooter
 Class CommandBox
 }
@@ -38,9 +39,11 @@ MainWindow *-down-> ResultDisplay
 MainWindow *-down-> PersonListPanel
 MainWindow *-down-> StatusBarFooter
 MainWindow *-down-> EntryListPanel
+MainWindow *-down-> EntryContent
 
 PersonListPanel --down-> PersonCard
 EntryListPanel -down-> EntryCard
+EntryContent --down-> PersonCard
 
 MainWindow -left-|> UiPart
 
@@ -52,9 +55,10 @@ StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
 EntryListPanel --|> UiPart
 EntryCard --|> UiPart
+EntryContent --|> UiPart
 
 PersonCard .right.> Model
-EntryCard ..> Model
+EntryCard .right.> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
