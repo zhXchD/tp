@@ -31,6 +31,13 @@
     -fx-opacity: 1;
 }
 
+.text-empty-list {
+    -fx-font-size: 14pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-fill: #7b7b7b;
+    -fx-opacity: 1;
+}
+
 .text-field {
     -fx-font-size: 12pt;
     -fx-font-family: "Segoe UI Semibold";
