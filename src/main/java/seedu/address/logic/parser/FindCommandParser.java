@@ -61,7 +61,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             );
         }
 
-        assert (argMultimap.getValue(PREFIX_SCOPE).isPresent());
+        assert argMultimap.getValue(PREFIX_SCOPE).isPresent();
         String scope = ParserUtil.parseScope(
                 argMultimap.getValue(PREFIX_SCOPE).get());
 
@@ -73,13 +73,13 @@ public class FindCommandParser implements Parser<FindCommand> {
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindContactCommand.MESSAGE_USAGE));
             }
             if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
-                assert(argMultimap.getValue(PREFIX_NAME).isPresent());
+                assert argMultimap.getValue(PREFIX_NAME).isPresent();
                 String nameKeyWord = argMultimap.getValue(PREFIX_NAME).get().trim();
                 personPredicate =
                         personPredicate.and(person -> person.getName().fullName.contains(nameKeyWord));
             }
             if (arePrefixesPresent(argMultimap, PREFIX_EMAIL)) {
-                assert(argMultimap.getValue(PREFIX_EMAIL).isPresent());
+                assert argMultimap.getValue(PREFIX_EMAIL).isPresent();
                 String emailKeyWord = argMultimap.getValue(PREFIX_EMAIL).get().trim();
                 personPredicate =
                         personPredicate.and(person -> {
@@ -91,7 +91,7 @@ public class FindCommandParser implements Parser<FindCommand> {
                         });
             }
             if (arePrefixesPresent(argMultimap, PREFIX_ADDRESS)) {
-                assert(argMultimap.getValue(PREFIX_ADDRESS).isPresent());
+                assert argMultimap.getValue(PREFIX_ADDRESS).isPresent();
                 String addressKeyWord = argMultimap.getValue(PREFIX_ADDRESS).get().trim();
                 personPredicate =
                         personPredicate.and(person -> {
@@ -103,7 +103,7 @@ public class FindCommandParser implements Parser<FindCommand> {
                         });
             }
             if (arePrefixesPresent(argMultimap, PREFIX_PHONE)) {
-                assert(argMultimap.getValue(PREFIX_PHONE).isPresent());
+                assert argMultimap.getValue(PREFIX_PHONE).isPresent();
                 String phoneKeyWord = argMultimap.getValue(PREFIX_PHONE).get().trim();
                 personPredicate =
                         personPredicate.and(person -> {
@@ -124,13 +124,13 @@ public class FindCommandParser implements Parser<FindCommand> {
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindJournalEntryCommand.MESSAGE_USAGE));
             }
             if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
-                assert (argMultimap.getValue(PREFIX_NAME).isPresent());
+                assert argMultimap.getValue(PREFIX_NAME).isPresent();
                 String titleKeyWord = argMultimap.getValue(PREFIX_NAME).get().trim();
                 entryPredicate =
                         entryPredicate.and(entry -> entry.getTitle().title.contains(titleKeyWord));
             }
             if (arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)) {
-                assert (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent());
+                assert argMultimap.getValue(PREFIX_DESCRIPTION).isPresent();
                 String descriptionKeyWord = argMultimap.getValue(PREFIX_DESCRIPTION).get().trim();
                 entryPredicate =
                         entryPredicate.and(entry -> {
@@ -142,7 +142,7 @@ public class FindCommandParser implements Parser<FindCommand> {
                         });
             }
             if (arePrefixesPresent(argMultimap, PREFIX_DATE_AND_TIME)) {
-                assert (argMultimap.getValue(PREFIX_DATE_AND_TIME).isPresent());
+                assert argMultimap.getValue(PREFIX_DATE_AND_TIME).isPresent();
                 Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE_AND_TIME).orElse(null));
                 entryPredicate = entryPredicate.and(entry -> entry.getDate().equals(date));
             }
