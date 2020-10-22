@@ -79,7 +79,7 @@ public class EditJournalEntryCommand extends Command {
         Description updatedDescription =
                 editEntryDescriptor.getDescription().orElse(entryToEdit.getDescription());
         ObservableList<Person> updatedPersonList =
-                editEntryDescriptor.getContactList().orElse(entryToEdit.getContactList());
+                (entryToEdit.getContactList());
 
         UniquePersonList updatedContactList = new UniquePersonList();
         updatedPersonList.forEach(updatedContactList::add);
@@ -94,7 +94,6 @@ public class EditJournalEntryCommand extends Command {
                 updatedContactList,
                 updatedTags
         );
-
     }
 
     @Override

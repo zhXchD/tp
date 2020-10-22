@@ -56,7 +56,7 @@ public class HelpCommand extends Command {
             return new CommandResult(SHOWING_HELP_MESSAGE + DeleteContactCommand.MESSAGE_USAGE);
         case DELETE_JOURNAL_ENTRY:
             return new CommandResult(SHOWING_HELP_MESSAGE + DeleteJournalEntryCommand.MESSAGE_USAGE);
-        case EDIT:
+        case EDIT_CONTACT:
             return new CommandResult(SHOWING_HELP_MESSAGE + EditContactCommand.MESSAGE_USAGE);
         case FIND:
             return new CommandResult(SHOWING_HELP_MESSAGE + FindCommand.MESSAGE_USAGE);

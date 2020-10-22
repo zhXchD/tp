@@ -73,8 +73,11 @@ public class IntelliJournalParser {
         case ADD_JOURNAL_ENTRY:
             return new AddJournalEntryCommandParser().parse(arguments);
 
-        case EDIT:
+        case EDIT_CONTACT:
             return new EditContactCommandParser().parse(arguments);
+
+        case EDIT_JOURNAL_ENTRY:
+            return new EditJournalEntryCommandParser().parse(arguments);
 
         case DELETE_CONTACT:
             return new DeleteContactCommandParser().parse(arguments);
