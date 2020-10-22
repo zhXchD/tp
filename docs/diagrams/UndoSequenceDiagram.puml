@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":IntelliJournalParser" as IntelliJournalParser LOGIC_COLOR
 participant "u:UndoCommand" as UndoCommand LOGIC_COLOR
 end box
 
@@ -14,18 +14,18 @@ end box
 [-> LogicManager : execute(undo)
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(undo)
-activate AddressBookParser
+LogicManager -> IntelliJournalParser : parseCommand(undo)
+activate IntelliJournalParser
 
 create UndoCommand
-AddressBookParser -> UndoCommand
+IntelliJournalParser -> UndoCommand
 activate UndoCommand
 
-UndoCommand --> AddressBookParser
+UndoCommand --> IntelliJournalParser
 deactivate UndoCommand
 
-AddressBookParser --> LogicManager : u
-deactivate AddressBookParser
+IntelliJournalParser --> LogicManager : u
+deactivate IntelliJournalParser
 
 LogicManager -> UndoCommand : execute()
 activate UndoCommand

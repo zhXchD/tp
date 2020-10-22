@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":IntelliJournalParser" as IntelliJournalParser LOGIC_COLOR
 participant ":HelpCommandParser" as HelpCommandParser LOGIC_COLOR
 participant ":ParserUtil" as ParserUtil LOGIC_COLOR
 participant "c:HelpCommand" as HelpCommand LOGIC_COLOR
@@ -13,17 +13,17 @@ end box
 [-> LogicManager : execute("help of/addc")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("help of/addc")
-activate AddressBookParser
+LogicManager -> IntelliJournalParser : parseCommand("help of/addc")
+activate IntelliJournalParser
 
 create HelpCommandParser
-AddressBookParser -> HelpCommandParser
+IntelliJournalParser -> HelpCommandParser
 activate HelpCommandParser
 
-HelpCommandParser --> AddressBookParser
+HelpCommandParser --> IntelliJournalParser
 deactivate HelpCommandParser
 
-AddressBookParser -> HelpCommandParser : parse(" of/addc")
+IntelliJournalParser -> HelpCommandParser : parse(" of/addc")
 activate HelpCommandParser
 
 HelpCommandParser -> ParserUtil : parseValidCommand("addc")
@@ -39,14 +39,14 @@ activate HelpCommand
 HelpCommand --> HelpCommandParser : c
 deactivate HelpCommand
 
-HelpCommandParser --> AddressBookParser : c
+HelpCommandParser --> IntelliJournalParser : c
 deactivate HelpCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-HelpCommandParser -[hidden]-> AddressBookParser
+HelpCommandParser -[hidden]-> IntelliJournalParser
 destroy HelpCommandParser
 
-AddressBookParser --> LogicManager : c
-deactivate AddressBookParser
+IntelliJournalParser --> LogicManager : c
+deactivate IntelliJournalParser
 
 LogicManager -> HelpCommand : execute(model)
 activate HelpCommand

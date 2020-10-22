@@ -209,13 +209,13 @@ Note:
 
 *`XYZCOMMAND` represents the enumeration element for valid commands that can be used in the system*
 
-*`ValidCommand#commandTypeOf(String commandWord)` takes in a command keyword (eg. addj, addc, findc...) and returns a `ValidCommand` which will be used by `AddressBookParser`*
+*`ValidCommand#commandTypeOf(String commandWord)` takes in a command keyword (eg. addj, addc, findc...) and returns a `ValidCommand` which will be used by `IntelliJournalParser`*
 
-*`AddressBookParser#parseCommand(String UserInput)` detect the command word and pass in to the `ValidCommand#commandTypeOf(String commandWord)` to find the valid command and produce the `Command` accordingly*
+*`IntelliJournalParser#parseCommand(String UserInput)` detect the command word and pass in to the `ValidCommand#commandTypeOf(String commandWord)` to find the valid command and produce the `Command` accordingly*
 
 Given below is the sequence diagram of command alias feature (This change only related to `Logic` component, so we omit the execution detail in model):
 
-![aliasSequenceDiagram](images/commandAlias/asliasSequenceDiagram.png)
+![aliasSequenceDiagram](images/commandAlias/aliasSequenceDiagram.png)
 
 ### Tab navigation feature
 
@@ -270,7 +270,7 @@ allowing them to check their schedule for the given day.
 #### Current Implementation
 
 The current implementation makes use of the `CheckScheduleCommandParser` as well
-as the `CheckScheduleCommand` classes. When `AddressBookParser` parses the
+as the `CheckScheduleCommand` classes. When `IntelliJournalParser` parses the
 command and finds the `check` command, the rest of the command is passed into
 the `CheckScheduleCommandParser`, where the rest of the command is parsed.
 
@@ -294,18 +294,18 @@ The `help` command of IntelliJournal allows users to check the usage of a specif
 command, or get the link to the User Guide for the usage of all commands.
 #### Current Implementation
 In the current version of IntelliJournal, the help feature is implemented with
- both `HelpCommand` and `HelpCommandParser`. If the user input starts with `help`, 
- the `AddressBookParser` will catch it and pass the rest input into `HelpCommandParser`.
- 
+ both `HelpCommand` and `HelpCommandParser`. If the user input starts with `help`,
+ the `IntelliJournalParser` will catch it and pass the rest input into `HelpCommandParser`.
+
 Within the `HelpCommandParser`, there are mainly 3 execution path:
 1. If the argument starts with `of/` prefix, it will parse the argument behind `of/` to a
 `ValidCommand`, and return a HelpCommand with the `ValidCommand`.
-2. If the argument is empty, it will return a `HelpCommand` with the boolean term 
+2. If the argument is empty, it will return a `HelpCommand` with the boolean term
 `isShowHelpWindow` set to be `true`.
 3. Else, it will throw an `ParseException`.
 
 Back to `HelpCommand`, it will choose return a `CommandResult` which can make `MainWindow`
-to show the help window if the `isShowHelpWindow` is `true`. Or it will return a 
+to show the help window if the `isShowHelpWindow` is `true`. Or it will return a
 `CommandResult` which could print the usage of a certain valid command into result box.
 
 The following sequence diagrams show how the help command works:
