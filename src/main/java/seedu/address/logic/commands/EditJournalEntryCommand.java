@@ -79,10 +79,9 @@ public class EditJournalEntryCommand extends Command {
         Description updatedDescription =
                 editEntryDescriptor.getDescription().orElse(entryToEdit.getDescription());
         ObservableList<Person> updatedPersonList =
-                (entryToEdit.getContactList());
+                editEntryDescriptor.getContactList().orElse(entryToEdit.getContactList());
 
         UniquePersonList updatedContactList = new UniquePersonList();
-        updatedPersonList.forEach(updatedContactList::add);
 
         Set<Tag> updatedTags =
                 editEntryDescriptor.getTags().orElse(entryToEdit.getTags());
@@ -179,21 +178,15 @@ public class EditJournalEntryCommand extends Command {
         public Optional<ObservableList<Person>> getContactList() {
             // TODO: Fix null exception and invocation exception with calling
             //  this method
-            return contactList.spliterator().getExactSizeIfKnown() > 0
-                    ? Optional.of(contactList.asUnmodifiableObservableList())
-                    : Optional.empty();
+            return Optional.ofNullable(contactList.asUnmodifiableObservableList());
         }
 
         /**
          * Sets {@code contactList} to this object's {@code contactList}.
-         * A defensive copy of {@code contactList} is made and used internally.
          */
         public void setContactList(UniquePersonList contactList) {
             // Only sets if there are more than 0 contacts
-            if (contactList.spliterator().getExactSizeIfKnown() > 0) {
-                this.contactList = new UniquePersonList();
-                contactList.forEach(this.contactList::add);
-            }
+            this.contactList = contactList;
         }
 
         /**
