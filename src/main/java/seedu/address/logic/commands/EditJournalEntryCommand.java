@@ -82,6 +82,7 @@ public class EditJournalEntryCommand extends Command {
                 editEntryDescriptor.getContactList().orElse(entryToEdit.getContactList());
 
         UniquePersonList updatedContactList = new UniquePersonList();
+        updatedPersonList.forEach(updatedContactList::add);
 
         Set<Tag> updatedTags =
                 editEntryDescriptor.getTags().orElse(entryToEdit.getTags());
