@@ -390,8 +390,8 @@ The `help` command of IntelliJournal allows users to check the usage of a specif
 command, or get the link to the User Guide for the usage of all commands.
 #### Current Implementation
 In the current version of IntelliJournal, the help feature is implemented with
- both `HelpCommand` and `HelpCommandParser`. If the user input starts with `help`, 
- the `AddressBookParser` will catch it and pass the rest input into `HelpCommandParser`.
+both `HelpCommand` and `HelpCommandParser`. If the user input starts with `help`,
+the `AddressBookParser` will catch it and pass the rest input into `HelpCommandParser`.
  
 Within the `HelpCommandParser`, there are mainly 3 execution path:
 1. If the argument starts with `of/` prefix, it will parse the argument behind `of/` to a
@@ -401,7 +401,7 @@ Within the `HelpCommandParser`, there are mainly 3 execution path:
 3. Else, it will throw an `ParseException`.
 
 Back to `HelpCommand`, it will choose return a `CommandResult` which can make `MainWindow`
-to show the help window if the `isShowHelpWindow` is `true`. Or it will return a 
+to show the help window if the `isShowHelpWindow` is `true`. Or it will return a
 `CommandResult` which could print the usage of a certain valid command into result box.
 
 The following sequence diagrams show how the help command works:
@@ -417,7 +417,8 @@ Title updatedTitle = editEntryDescriptor.getTitle().orElse(entryToEdit.getTitle(
 ```
 In this snippet from `createEditedEntry`, `getTitle()` returns an `Optional<Title>` which is used to determine if the new `Entry` should use the previous' attribute or not. For `Title`, `Date`, and `Description`, this same approach is used.
 
-For the tags and contact list, defensive copies of the tags and contact list are made when creating the `EditJournalDescriptor` object. Similarly to how the list of tags are replaced by the arguments passed when editing `Person` in `EditContactCommand`, the `UniquePersonList` used to store contacts in an `Entry` will also be replaced with the contact list provided when calling `EditJournalEntryCommand`. 
+For the tags and contact list, defensive copies of the tags and contact list are made when creating the
+ `EditJournalDescriptor` object. Similarly to how the list of tags are replaced by the arguments passed when editing `Person` in `EditContactCommand`, the `UniquePersonList` used to store contacts in an `Entry` will also be replaced with the contact list provided when calling `EditJournalEntryCommand`.
 
 The respective setters' implementations are shown below.
 ```

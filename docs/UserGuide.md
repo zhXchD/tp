@@ -301,7 +301,7 @@ that changes the data. There is no need to save manually.
 ## Command Summary
 
 <table>
-    <thead>
+  <thead>
         <tr>
             <th>Command</th>
             <th>Format</th>
