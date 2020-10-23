@@ -177,8 +177,6 @@ public class EditJournalEntryCommand extends Command {
         }
 
         public Optional<ObservableList<Person>> getContactList() {
-            // TODO: Fix null exception and invocation exception with calling
-            //  this method
             return Optional.ofNullable(contactList.asUnmodifiableObservableList());
         }
 
