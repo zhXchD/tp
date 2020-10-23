@@ -126,7 +126,11 @@ public class Entry {
                 .append(getDate())
                 .append(" Description: ")
                 .append(getDescription())
-                .append(" Contacts: ");
+                .append(" Contacts: ")
+                .append(getContactList()
+                .stream()
+                .map(Person::toString)
+                .collect(Collectors.joining(", ")));
         return builder.toString();
     }
 
