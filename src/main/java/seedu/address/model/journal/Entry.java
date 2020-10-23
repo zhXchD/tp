@@ -121,6 +121,7 @@ public class Entry {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
+        // TODO: Come up with a better way to format contacts
         builder.append(getTitle())
                 .append(" Date and time: ")
                 .append(getDate())
