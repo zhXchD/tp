@@ -58,7 +58,7 @@ public class EditJournalEntryCommandParser implements Parser<EditJournalEntryCom
                     ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editEntryDescriptor::setTags);
-        editEntryDescriptor.setContactList(ParserUtil.parseContacts(argMultimap.getAllValues(PREFIX_CONTACT)));
+        editEntryDescriptor.setContactList(ParserUtil.parseContacts(argMultimap.getAllValues(PREFIX_CONTACT)).asUnmodifiableObservableList());
 
         if (!editEntryDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditJournalEntryCommand.MESSAGE_NOT_EDITED);

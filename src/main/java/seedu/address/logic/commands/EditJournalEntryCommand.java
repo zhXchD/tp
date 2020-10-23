@@ -138,7 +138,7 @@ public class EditJournalEntryCommand extends Command {
             setTitle(toCopy.title);
             setDate(toCopy.date);
             setDescription(toCopy.description);
-            setContactList(toCopy.contactList);
+            setContactList(toCopy.contactList.asUnmodifiableObservableList());
             setTags(toCopy.tags);
         }
 
@@ -183,9 +183,10 @@ public class EditJournalEntryCommand extends Command {
         /**
          * Sets {@code contactList} to this object's {@code contactList}.
          */
-        public void setContactList(UniquePersonList contactList) {
+        public void setContactList(ObservableList<Person> contactList) {
             // Only sets if there are more than 0 contacts
-            this.contactList = contactList;
+            this.contactList = new UniquePersonList();
+            contactList.forEach(this.contactList::add);
         }
 
         /**
