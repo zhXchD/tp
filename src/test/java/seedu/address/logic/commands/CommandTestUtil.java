@@ -10,17 +10,21 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BENSON;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.EditJournalEntryCommand.EditEntryDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.EditEntryDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -39,8 +43,11 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_DATE_OCTOBER = "2020-10-10 10:00";
+    public static final String VALID_DATE_NOVEMBER = "2020-11-11 11:00";
     public static final String VALID_TITLE_MEETING = "Meeting";
+    public static final String VALID_TITLE_MOVIE = "Movie";
     public static final String VALID_DESCRIPTION_STORY = "Brainstorm user stories";
+    public static final String VALID_DESCRIPTION_MOVIE = "Watch a movie";
 
     public static final String NAME_DESC_AMY =
             " " + PREFIX_NAME + VALID_NAME_AMY;
@@ -89,6 +96,8 @@ public class CommandTestUtil {
     public static final EditContactCommand.EditPersonDescriptor DESC_AMY;
     public static final EditContactCommand.EditPersonDescriptor DESC_BOB;
 
+    public static final EditEntryDescriptor DESC_MEETING;
+
     static {
         DESC_AMY = new EditPersonDescriptorBuilder()
                 .withName(VALID_NAME_AMY)
@@ -103,6 +112,13 @@ public class CommandTestUtil {
                 .withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+                .build();
+        DESC_MEETING = new EditEntryDescriptorBuilder()
+                .withTitle(VALID_TITLE_MEETING)
+                .withDescription(VALID_DESCRIPTION_STORY)
+                .withDate(VALID_DATE_OCTOBER)
+                .withTags(VALID_TAG_FRIEND)
+                .withContacts(ALICE, BENSON)
                 .build();
     }
 
@@ -167,6 +183,7 @@ public class CommandTestUtil {
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the person at the
      * given {@code targetIndex} in the {@code model}'s address book.

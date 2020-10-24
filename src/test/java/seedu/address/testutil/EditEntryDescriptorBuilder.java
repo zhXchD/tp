@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -10,6 +11,7 @@ import seedu.address.model.journal.Description;
 import seedu.address.model.journal.Entry;
 import seedu.address.model.journal.Title;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -63,12 +65,16 @@ public class EditEntryDescriptorBuilder {
         return this;
     }
 
-    // TODO: Implement the contacts
-//    public EditEntryDescriptorBuilder withContacts(String... contacts) {
-//        Set<Person> personSet = Stream.of(contacts)
-//                .map(Person::new)
-//                .collect(Collectors.toSet());
-//    }
+    public EditEntryDescriptorBuilder withContacts(Person... contacts) {
+        UniquePersonList contactList = new UniquePersonList();
+        Arrays.stream(contacts).forEach(contactList::add);
+        descriptor.setContactList(contactList.asUnmodifiableObservableList());
+        return this;
+    }
+
+    public EditEntryDescriptor build() {
+        return descriptor;
+    }
 
 
 }
