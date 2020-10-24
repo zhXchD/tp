@@ -7,6 +7,7 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.address.logic.commands.AddAliasCommand;
 import seedu.address.logic.commands.ClearAddressBookCommand;
 import seedu.address.logic.commands.ClearJournalCommand;
 import seedu.address.logic.commands.Command;
@@ -111,6 +112,9 @@ public class IntelliJournalParser {
 
         case CHECK_SCHEDULE:
             return new CheckScheduleCommandParser().parse(arguments);
+
+        case ADD_ALIAS:
+            return new AddAliasCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
