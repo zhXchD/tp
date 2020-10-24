@@ -194,7 +194,9 @@ public class EditJournalEntryCommand extends Command {
         }
 
         public Optional<ObservableList<Person>> getContactList() {
-            return Optional.ofNullable(contactList.asUnmodifiableObservableList());
+            return contactList != null
+                    ? Optional.ofNullable(contactList.asUnmodifiableObservableList())
+                    : Optional.empty();
         }
 
         /**

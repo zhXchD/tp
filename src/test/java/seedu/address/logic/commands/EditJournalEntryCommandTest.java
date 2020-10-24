@@ -3,11 +3,16 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_MEETING;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_MOVIE;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showEntryAtIndex;
 import static seedu.address.testutil.TypicalEntries.getTypicalJournal;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalPersons.GEORGE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.DisplayName;
@@ -17,11 +22,14 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditJournalEntryCommand.EditEntryDescriptor;
+import seedu.address.model.AddressBook;
+import seedu.address.model.Journal;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.journal.Entry;
 import seedu.address.testutil.EditEntryDescriptorBuilder;
+import seedu.address.testutil.EntryBuilder;
 
 public class EditJournalEntryCommandTest {
 
@@ -35,6 +43,139 @@ public class EditJournalEntryCommandTest {
     @DisplayName("execute method")
     class Execute {
 
+        @Test
+        @DisplayName("should edit person successfully in unfiltered list")
+        public void execute_allFieldsSpecifiedUnfilteredList_success() {
+            Entry originalEntry = model.getFilteredEntryList().get(0);
+            Entry editedEntry = new EntryBuilder().build();
+
+            EditEntryDescriptor descriptor =
+                    new EditEntryDescriptorBuilder(editedEntry).build();
+            EditJournalEntryCommand editJournalEntryCommand =
+                    new EditJournalEntryCommand(INDEX_FIRST_PERSON,
+                            descriptor);
+            String expectedMessage = String.format(
+                    EditJournalEntryCommand.MESSAGE_EDIT_ENTRY_SUCCESS,
+                    editedEntry
+            );
+            Model expectedModel =
+                    new ModelManager(
+                            new AddressBook(model.getAddressBook()),
+                            new Journal(model.getJournal()),
+                            new UserPrefs()
+
+                    );
+            expectedModel.setEntry(originalEntry, editedEntry);
+            assertCommandSuccess(
+                    editJournalEntryCommand,
+                    model,
+                    expectedMessage,
+                    expectedModel
+            );
+        }
+
+        @Test
+        @DisplayName("should successfully edit entry with only certain fields"
+                + " specified")
+        public void execute_someFieldsSpecifiedUnfilteredList_success() {
+            // using last entry in list
+            Index indexLastEntry =
+                    Index.fromOneBased(model.getFilteredEntryList().size());
+            Entry lastEntry = model.getFilteredEntryList()
+                    .get(indexLastEntry.getZeroBased());
+            EntryBuilder entryInList = new EntryBuilder(lastEntry);
+            Entry editedEntry = entryInList
+                    .withTitle(VALID_TITLE_MOVIE)
+                    .withContacts(GEORGE)
+                    .withTags(VALID_TAG_HUSBAND)
+                    .build();
+
+            EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder()
+                    .withTitle(VALID_TITLE_MOVIE)
+                    .withContacts(GEORGE)
+                    .withTags(VALID_TAG_HUSBAND)
+                    .build();
+            EditJournalEntryCommand editJournalEntryCommand =
+                    new EditJournalEntryCommand(indexLastEntry, descriptor);
+
+            String expectedMessage = String.format(
+                    EditJournalEntryCommand.MESSAGE_EDIT_ENTRY_SUCCESS,
+                    editedEntry
+            );
+
+            Model expectedModel =
+                    new ModelManager(new AddressBook(model.getAddressBook()),
+                            new Journal(model.getJournal()),
+                            new UserPrefs()
+                    );
+            expectedModel.setEntry(lastEntry, editedEntry);
+            assertCommandSuccess(
+                    editJournalEntryCommand,
+                    model,
+                    expectedMessage,
+                    expectedModel
+            );
+        }
+
+        @Test
+        @DisplayName("should successfully edit person with no field specified"
+                + " in unfiltered list")
+        public void execute_noFieldSpecifiedUnfilteredList_success() {
+            EditJournalEntryCommand editJournalEntryCommand =
+                    new EditJournalEntryCommand(INDEX_FIRST_PERSON,
+                            new EditEntryDescriptor());
+            Entry editedEntry = model.getFilteredEntryList()
+                    .get(INDEX_FIRST_PERSON.getZeroBased());
+            String expectedMessage = String.format(
+                    EditJournalEntryCommand.MESSAGE_EDIT_ENTRY_SUCCESS,
+                    editedEntry
+            );
+
+            Model expectedModel =
+                    new ModelManager(new AddressBook(model.getAddressBook()),
+                            new Journal(model.getJournal()),
+                            new UserPrefs());
+
+            assertCommandSuccess(
+                    editJournalEntryCommand,
+                    model,
+                    expectedMessage,
+                    expectedModel
+            );
+        }
+
+
+        @Test
+        @DisplayName("should successfully edit an entry in a filtered list")
+        public void execute_filteredList_success() {
+            showEntryAtIndex(model, INDEX_FIRST_PERSON);
+
+            Entry entryInFilteredList =
+                    model.getFilteredEntryList().get(INDEX_FIRST_PERSON.getZeroBased());
+            Entry editedEntry = new EntryBuilder(entryInFilteredList)
+                    .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+                    .build();
+            EditJournalEntryCommand editJournalEntryCommand = new EditJournalEntryCommand(
+                    INDEX_FIRST_PERSON,
+                    new EditEntryDescriptorBuilder()
+                            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+                            .build());
+            String expectedMessage = String.format(
+                    EditJournalEntryCommand.MESSAGE_EDIT_ENTRY_SUCCESS,
+                    editedEntry);
+            Model expectedModel =
+                    new ModelManager(
+                            new AddressBook(model.getAddressBook()),
+                            new Journal(model.getJournal()),
+                            new UserPrefs());
+            expectedModel.setEntry(model.getFilteredEntryList().get(0), editedEntry);
+            assertCommandSuccess(
+                    editJournalEntryCommand,
+                    model,
+                    expectedMessage,
+                    expectedModel);
+
+        }
 
         @Test
         @DisplayName("should not edit an entry if the entry is duplicate")
@@ -47,6 +188,26 @@ public class EditJournalEntryCommandTest {
                     new EditJournalEntryCommand(INDEX_SECOND_PERSON,
                             descriptor);
 
+            assertCommandFailure(
+                    editJournalEntryCommand,
+                    model,
+                    EditJournalEntryCommand.MESSAGE_DUPLICATE_ENTRY
+            );
+        }
+
+        @Test
+        @DisplayName("should not edit an entry if the entry is a duplicate in"
+                + " a filtered list")
+        public void execute_duplicateEntryFilteredList_failure() {
+            showEntryAtIndex(model, INDEX_FIRST_PERSON);
+            Entry entryInList =
+                    model.getJournal()
+                            .getEntryList()
+                            .get(INDEX_SECOND_PERSON.getZeroBased());
+            EditJournalEntryCommand editJournalEntryCommand =
+                    new EditJournalEntryCommand(
+                            INDEX_FIRST_PERSON,
+                            new EditEntryDescriptorBuilder(entryInList).build());
             assertCommandFailure(
                     editJournalEntryCommand,
                     model,
@@ -72,6 +233,7 @@ public class EditJournalEntryCommandTest {
                     Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX
             );
         }
+
     }
 
     @Nested

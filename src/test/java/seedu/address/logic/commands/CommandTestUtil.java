@@ -22,6 +22,8 @@ import seedu.address.logic.commands.EditJournalEntryCommand.EditEntryDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.journal.Entry;
+import seedu.address.model.journal.TitleContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditEntryDescriptorBuilder;
@@ -202,6 +204,20 @@ public class CommandTestUtil {
                 new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    public static void showEntryAtIndex(Model model, Index targetIndex) {
+        assertTrue(
+                targetIndex.getZeroBased() < model.getFilteredPersonList().size()
+        );
+        Entry entry = model.getFilteredEntryList()
+                .get(targetIndex.getZeroBased());
+        final String[] splitTitle = entry.getTitle().title.split("\\s+");
+        model.updateFilteredEntryList(
+                new TitleContainsKeywordsPredicate(Arrays.asList(splitTitle[0])));
+
+        assertEquals(1, model.getFilteredEntryList().size());
+
     }
 
 }
