@@ -119,6 +119,23 @@ public class EditJournalEntryCommand extends Command {
                 .setJournalTab();
     }
 
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof EditJournalEntryCommand)) {
+            return false;
+        }
+
+        EditJournalEntryCommand e = (EditJournalEntryCommand) other;
+        return index.equals(e.index)
+                && editEntryDescriptor.equals(e.editEntryDescriptor);
+    }
+
     public static class EditEntryDescriptor {
         private Title title;
         private Date date;

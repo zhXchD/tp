@@ -14,6 +14,7 @@ import static seedu.address.testutil.TypicalPersons.DANIEL;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.EditJournalEntryCommand.EditEntryDescriptor;
 import seedu.address.testutil.EditEntryDescriptorBuilder;
 

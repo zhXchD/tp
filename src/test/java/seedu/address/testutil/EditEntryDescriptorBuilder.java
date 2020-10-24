@@ -42,21 +42,40 @@ public class EditEntryDescriptorBuilder {
         descriptor.setTags(entry.getTags());
     }
 
+    /**
+     * Sets the {@code Title} of the {@code EditEntryDescriptor} that we are
+     * building.
+     */
     public EditEntryDescriptorBuilder withTitle(String title) {
         descriptor.setTitle(new Title(title));
         return this;
     }
 
+
+    /**
+     * Sets the {@code Description} of the {@code EditEntryDescriptor} that we
+     * are
+     * building.
+     */
     public EditEntryDescriptorBuilder withDescription(String description) {
         descriptor.setDescription(new Description(description));
         return this;
     }
 
+    /**
+     * Sets the {@code Date} of the {@code EditEntryDescriptor} that we are
+     * building.
+     */
     public EditEntryDescriptorBuilder withDate(String date) {
         descriptor.setDate(new Date(date));
         return this;
     }
 
+
+    /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the
+     * {@code EditEntryDescriptor} that we are building.
+     */
     public EditEntryDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags)
                 .map(Tag::new)
@@ -65,6 +84,10 @@ public class EditEntryDescriptorBuilder {
         return this;
     }
 
+    /**
+     * Parses the {@code contacts} into a {@code UniquePersonList} and set
+     * it to the {@code EditEntryDescriptor} that we are building.
+     */
     public EditEntryDescriptorBuilder withContacts(Person... contacts) {
         UniquePersonList contactList = new UniquePersonList();
         Arrays.stream(contacts).forEach(contactList::add);
