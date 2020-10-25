@@ -3,9 +3,12 @@ package seedu.address.logic;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.UUID;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -19,6 +22,8 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.journal.Entry;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
+
+import static java.util.stream.Collectors.toList;
 
 /**
  * The main LogicManager of the app.
@@ -88,12 +93,26 @@ public class LogicManager implements Logic {
 
     @Override
     public ObservableList<Person> getRecentPersonList() {
-        return model.getAddressBook().getPersonList();
+        return model.getAddressBook().getPersonList()
+                .stream()
+                .filter(person -> model.getAddressBook().getPersonList().contains(person))
+                .sorted((p1, p2) -> getLatestDate(p2).compareTo(getLatestDate(p1)))
+                .collect(Collectors.collectingAndThen(toList(), FXCollections::observableArrayList));
     }
 
     @Override
     public ObservableList<Entry> getRecentEntryList() {
         return model.getJournal().getEntryList();
+    }
+
+    private LocalDateTime getLatestDate(Person person) {
+        assert (model.getAddressBook().getPersonList().contains(person));
+        return model.getJournal().getEntryList()
+                .stream()
+                .filter(entry -> entry.isRelatedTo(person))
+                .max(Comparator.comparing(e -> e.getDate().date))
+                .map(entry -> entry.getDate().date)
+                .orElse(LocalDateTime.MIN);
     }
 
     @Override
