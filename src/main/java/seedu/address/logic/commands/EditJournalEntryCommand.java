@@ -164,9 +164,8 @@ public class EditJournalEntryCommand extends Command {
                     title,
                     date,
                     description,
-                    tags,
-                    contactList
-            );
+                    tags)
+                    || contactList.asUnmodifiableObservableList().size() > 0;
         }
 
         public Optional<Title> getTitle() {

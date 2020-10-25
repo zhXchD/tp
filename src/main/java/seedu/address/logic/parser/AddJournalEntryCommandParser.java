@@ -25,8 +25,17 @@ import seedu.address.model.tag.Tag;
 public class AddJournalEntryCommandParser implements Parser<AddJournalEntryCommand> {
 
     /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
      * Parses the given {@code String} of arguments in the context of the AddContactCommand
      * and returns an AddContactCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddJournalEntryCommand parse(String args) throws ParseException {
@@ -46,7 +55,8 @@ public class AddJournalEntryCommandParser implements Parser<AddJournalEntryComma
         }
 
         assert argMultimap.getValue(PREFIX_NAME).isPresent();
-        Title title = new Title(argMultimap.getValue(PREFIX_NAME).get());
+        Title title =
+                ParserUtil.parseTitle(argMultimap.getValue(PREFIX_NAME).get());
         Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE_AND_TIME).orElse(null));
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).orElse(null));
         UniquePersonList personList = ParserUtil.parseContacts(argMultimap.getAllValues(PREFIX_CONTACT));
@@ -55,14 +65,6 @@ public class AddJournalEntryCommandParser implements Parser<AddJournalEntryComma
         Entry entry = new Entry(title, date, description, personList, tagList);
 
         return new AddJournalEntryCommand(entry);
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
 }

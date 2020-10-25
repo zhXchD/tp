@@ -39,7 +39,7 @@ public class EditJournalEntryCommandParserTest {
 
             // TODO: Bug where no fields specified are still accepted
             // no field specified
-//            assertParseFailure(parser, "1", EditJournalEntryCommand.MESSAGE_NOT_EDITED);
+            assertParseFailure(parser, "1", EditJournalEntryCommand.MESSAGE_NOT_EDITED);
 
             // no index and no field specified
             assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
@@ -67,9 +67,6 @@ public class EditJournalEntryCommandParserTest {
             assertParseFailure(parser,
                     "1 i/string",
                     MESSAGE_INVALID_FORMAT);
-
-            
-
 
         }
 

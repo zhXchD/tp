@@ -47,7 +47,7 @@ public class EditJournalEntryCommandParser implements Parser<EditJournalEntryCom
                 new EditJournalEntryCommand.EditEntryDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editEntryDescriptor.setTitle(
-                    new Title(argMultimap.getValue(PREFIX_NAME).get()));
+                    ParserUtil.parseTitle(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_DATE_AND_TIME).isPresent()) {
             editEntryDescriptor.setDate(

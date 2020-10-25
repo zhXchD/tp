@@ -1,6 +1,7 @@
 package seedu.address.model.journal;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class Title {
 
@@ -9,6 +10,8 @@ public class Title {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[a-zA-z].*";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
 
     public final String title;
 
@@ -19,6 +22,7 @@ public class Title {
      */
     public Title(String title) {
         requireNonNull(title);
+        checkArgument(isValidTitle(title), MESSAGE_CONSTRAINTS);
         this.title = title;
     }
 
