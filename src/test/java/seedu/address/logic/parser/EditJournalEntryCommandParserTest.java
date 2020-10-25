@@ -1,21 +1,38 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.CONTACTS_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_OCTOBER;
+import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_STORY;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.TITLE_DESC_MEETING;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_OCTOBER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_STORY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_MEETING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_MOVIE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditJournalEntryCommand;
+import seedu.address.logic.commands.EditJournalEntryCommand.EditEntryDescriptor;
 import seedu.address.model.journal.Date;
 import seedu.address.model.journal.Description;
+import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
+import seedu.address.testutil.EditEntryDescriptorBuilder;
+import seedu.address.testutil.PersonBuilder;
 
 public class EditJournalEntryCommandParserTest {
 
@@ -37,7 +54,6 @@ public class EditJournalEntryCommandParserTest {
             // no index specified
             assertParseFailure(parser, VALID_TITLE_MOVIE, MESSAGE_INVALID_FORMAT);
 
-            // TODO: Bug where no fields specified are still accepted
             // no field specified
             assertParseFailure(parser, "1", EditJournalEntryCommand.MESSAGE_NOT_EDITED);
 
@@ -89,7 +105,33 @@ public class EditJournalEntryCommandParserTest {
                     "1" + INVALID_TAG_DESC,
                     Tag.MESSAGE_CONSTRAINTS);
 
+            // TODO: the valid X followed by invalid X test cases
 
+        }
+
+        @Test
+        @DisplayName("should generate EditJournalEntry Command if all fields "
+                + "are specified in the correct format")
+        public void parse_allFieldsSpecified_success() {
+            // TODO: Add contacts to this test
+            Index targetIndex = INDEX_SECOND_PERSON;
+            String userInput = targetIndex.getOneBased()
+                    + TITLE_DESC_MEETING
+                    + DATE_DESC_OCTOBER
+                    + DESCRIPTION_DESC_STORY
+                    + TAG_DESC_FRIEND;
+            EditEntryDescriptor descriptor =
+                    new EditEntryDescriptorBuilder()
+                            .withTitle(VALID_TITLE_MEETING)
+                            .withDate(VALID_DATE_OCTOBER)
+                            .withDescription(VALID_DESCRIPTION_STORY)
+                            .withTags(VALID_TAG_FRIEND)
+                            .withContacts()
+                            .build();
+            EditJournalEntryCommand expectedCommand =
+                    new EditJournalEntryCommand(targetIndex, descriptor);
+
+            assertParseSuccess(parser, userInput, expectedCommand);
         }
     }
 }

@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -77,6 +78,8 @@ public class CommandTestUtil {
             " " + PREFIX_NAME + VALID_TITLE_MEETING;
     public static final String DESCRIPTION_DESC_STORY =
             " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_STORY;
+    public static final String CONTACTS_DESC_AMY =
+            " " + PREFIX_CONTACT + VALID_NAME_AMY;
 
     public static final String INVALID_NAME_DESC =
             " " + PREFIX_NAME + "James&"; // '&' not allowed in names

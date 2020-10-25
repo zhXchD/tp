@@ -319,7 +319,10 @@ The `editj` command of IntelliJournal allows users to modify the details of prev
 
 Similar to the existing `editc` and `addj` commands, the `EditJournalEntryParser` makes use of `ParserUtils` to split up user input into arguments, which are then used to create an `EditEntryDescriptor` that contains the details of the journal properties to be edited. 
 
-`EditEntryDescriptor` contains setter methods used to add fields that are changed, and getter methods which return `Optional` objects for use in the `createEditedEntry` method of `EditJournalEntryCommand`. If attributes have not been set for an `EditEntryDescriptor`, they are returned as `Optional.empty()` which is used to create the new edited entry with only the specified attributes modified. 
+`EditEntryDescriptor` contains setter methods used to add fields that are changed, and getter methods which return `Optional` objects for use in the `createEditedEntry` method of `EditJournalEntryCommand`. If attributes have not been set for an `EditEntryDescriptor`, they are returned as `Optional.empty()` which is used to create the new edited entry with only the specified attributes modified.
+
+The following sequence diagram shows how the edit command works:
+![EditJournalSequenceDiagram](images/EditJournalSequenceDiagram.png)
 
 
 
