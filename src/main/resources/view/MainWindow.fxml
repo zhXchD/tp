@@ -10,8 +10,9 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.stage.Stage?>
 
 <fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="IntelliJournal" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
@@ -47,6 +48,38 @@
                                     <StackPane fx:id="entryListPanelPlaceholder" prefWidth="250.0" />
                                     <StackPane fx:id="entryContentPlaceholder" HBox.hgrow="ALWAYS" />
                                 </HBox>
+                            </content>
+                        </Tab>
+                        <Tab fx:id="dashBoardTab" text="Dashboard">
+                            <content>
+                                <VBox fx:id="" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <Text text="Hello there, welcome to IntelliJournal!" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title">
+                                            <VBox.margin>
+                                                <Insets left="10.0" bottom="10.0"/>
+                                            </VBox.margin>
+                                        </Text>
+                                        <HBox fx:id="listOfRecentContactAndJournal" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                                            <children>
+                                                <VBox fx:id="vbox" styleClass="pane-with-border" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+                                                    <children>
+                                                        <Text text="Frequent Contacts" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title">
+                                                            <VBox.margin>
+                                                                <Insets left="10.0" bottom="10.0"/>
+                                                            </VBox.margin>
+                                                        </Text>
+                                                        <StackPane fx:id="recentPersonListPanelPlaceholder" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                                                            <HBox.margin>
+                                                                <Insets right="10.0" />
+                                                            </HBox.margin>
+                                                        </StackPane>
+                                                    </children>
+                                                </VBox>
+                                                <StackPane fx:id="recentEntryListPanelPlaceholder" HBox.hgrow="ALWAYS" />
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </VBox>
                             </content>
                         </Tab>
                     </tabs>

@@ -40,6 +40,9 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
+    private PersonListPanel recentPersonListPanel;
+    private EntryListPanel recentEntryListPanel;
+
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -61,6 +64,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane entryListPanelPlaceholder;
+
+    @FXML
+    private StackPane recentPersonListPanelPlaceholder;
+
+    @FXML
+    private StackPane recentEntryListPanelPlaceholder;
 
     @FXML
     private StackPane entryContentPlaceholder;
@@ -139,6 +148,11 @@ public class MainWindow extends UiPart<Stage> {
 
         entryContent = new EntryContent();
         entryContentPlaceholder.getChildren().add(entryContent.getRoot());
+
+        recentPersonListPanel = new PersonListPanel(logic.getRecentPersonList());
+        recentEntryListPanel = new EntryListPanel(logic.getRecentEntryList());
+        recentPersonListPanelPlaceholder.getChildren().add(recentPersonListPanel.getRoot());
+        recentEntryListPanelPlaceholder.getChildren().add(recentEntryListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -258,8 +272,11 @@ public class MainWindow extends UiPart<Stage> {
 
     private void handleSwapTabs() {
         SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
-        int selected = selectionModel.getSelectedIndex();
-        selectionModel.select(1 - selected);
+        if (journalTab.isSelected()) {
+            selectionModel.select(addressBookTab);
+        } else if (addressBookTab.isSelected()) {
+            selectionModel.select(journalTab);
+        }
     }
 
     private void handleViewingJournal() {

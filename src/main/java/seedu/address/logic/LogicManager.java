@@ -2,6 +2,7 @@ package seedu.address.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.UUID;
 import java.util.logging.Logger;
 
@@ -83,6 +84,16 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Entry> getFilteredEntryList() {
         return model.getFilteredEntryList();
+    }
+
+    @Override
+    public ObservableList<Person> getRecentPersonList() {
+        return model.getAddressBook().getPersonList();
+    }
+
+    @Override
+    public ObservableList<Entry> getRecentEntryList() {
+        return model.getJournal().getEntryList();
     }
 
     @Override
