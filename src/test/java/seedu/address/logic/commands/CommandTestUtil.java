@@ -90,6 +90,8 @@ public class CommandTestUtil {
             " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_DATE_DESC =
             " " + PREFIX_DATE_AND_TIME + "2020/10/10 10:00";
+    public static final String INVALID_DESCRIPTION_DESC =
+            " " + PREFIX_DESCRIPTION + " "; // blank string not allowed
 
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
