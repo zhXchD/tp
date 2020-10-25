@@ -17,7 +17,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditJournalEntryCommand;
 import seedu.address.logic.commands.EditJournalEntryCommand.EditEntryDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.journal.Title;
 import seedu.address.model.tag.Tag;
 
 public class EditJournalEntryCommandParser implements Parser<EditJournalEntryCommand> {

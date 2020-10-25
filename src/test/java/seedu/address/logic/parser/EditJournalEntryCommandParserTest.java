@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.CONTACTS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_OCTOBER;
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_STORY;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
@@ -11,7 +10,6 @@ import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TITLE_DESC_MEETING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_OCTOBER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_STORY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_MEETING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_MOVIE;
@@ -29,10 +27,8 @@ import seedu.address.logic.commands.EditJournalEntryCommand;
 import seedu.address.logic.commands.EditJournalEntryCommand.EditEntryDescriptor;
 import seedu.address.model.journal.Date;
 import seedu.address.model.journal.Description;
-import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditEntryDescriptorBuilder;
-import seedu.address.testutil.PersonBuilder;
 
 public class EditJournalEntryCommandParserTest {
 
