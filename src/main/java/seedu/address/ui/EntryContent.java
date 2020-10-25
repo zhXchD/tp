@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
+
 import com.jfoenix.controls.JFXListCell;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextArea;
@@ -16,8 +18,6 @@ import javafx.scene.text.Text;
 import seedu.address.MainApp;
 import seedu.address.model.journal.Entry;
 import seedu.address.model.person.Person;
-
-import java.util.Comparator;
 
 /**
  * An UI component that displays information of a {@code Entry} in detail.

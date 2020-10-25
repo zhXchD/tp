@@ -1,6 +1,9 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
+
 import com.jfoenix.controls.JFXTextField;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -9,8 +12,6 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import seedu.address.MainApp;
 import seedu.address.model.person.Person;
-
-import java.util.Comparator;
 
 public class ContactContent extends UiPart<Region> {
 
