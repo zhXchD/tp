@@ -5,9 +5,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import seedu.address.MainApp;
 import seedu.address.model.person.Person;
+
+import java.util.Comparator;
 
 public class ContactContent extends UiPart<Region> {
 
@@ -25,6 +28,8 @@ public class ContactContent extends UiPart<Region> {
     private JFXTextField addressArea;
     @FXML
     private JFXTextField emailArea;
+    @FXML
+    private FlowPane tags;
 
     /**
      * Creates a {@code ContactContent} containing no {@code Person} temporarily.
@@ -45,6 +50,7 @@ public class ContactContent extends UiPart<Region> {
         phoneArea.setText("");
         addressArea.setText("");
         emailArea.setText("");
+        tags.getChildren().clear();
     }
 
     private void setContent(Person person) {
@@ -52,6 +58,10 @@ public class ContactContent extends UiPart<Region> {
         phoneArea.setText(person.getPhone().value);
         addressArea.setText(person.getAddress().value);
         emailArea.setText(person.getEmail().value);
+        tags.getChildren().clear();
+        person.getTags().stream()
+            .sorted(Comparator.comparing(tag -> tag.tagName))
+            .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     /**
