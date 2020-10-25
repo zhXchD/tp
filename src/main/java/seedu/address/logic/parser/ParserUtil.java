@@ -196,6 +196,7 @@ public class ParserUtil {
      */
     public static UniquePersonList parseContacts(Collection<String> contacts)
             throws ParseException {
+        // TODO: Update this to follow AddJournalEntryCommand's contacts
         requireNonNull(contacts);
         final UniquePersonList personList = new UniquePersonList();
         for (String name : contacts) {

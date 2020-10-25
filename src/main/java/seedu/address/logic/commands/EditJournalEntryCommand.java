@@ -69,7 +69,7 @@ public class EditJournalEntryCommand extends Command {
     }
 
     private static Entry createEditedEntry(Entry entryToEdit,
-                                           EditEntryDescriptor editEntryDescriptor) {
+                                           EditEntryDescriptor editEntryDescriptor, Model model) throws CommandException {
         assert entryToEdit != null;
 
         Title updatedTitle =
@@ -82,7 +82,20 @@ public class EditJournalEntryCommand extends Command {
                 editEntryDescriptor.getContactList().orElse(entryToEdit.getContactList());
 
         UniquePersonList updatedContactList = new UniquePersonList();
-        updatedPersonList.forEach(updatedContactList::add);
+        for (Person person : updatedPersonList) {
+            Optional<Person> personInList = model.getAddressBook()
+                    .getPersonList()
+                    .stream()
+                    .filter(p -> p.getName().equals(person.getName()))
+                    .findFirst();
+            if (personInList.isEmpty()) {
+                throw new CommandException(
+                        "Person named " + person.getName()
+                                + " does not exist in the address book!");
+            } else {
+                updatedContactList.add(personInList.get());
+            }
+        }
 
         Set<Tag> updatedTags =
                 editEntryDescriptor.getTags().orElse(entryToEdit.getTags());
@@ -107,7 +120,7 @@ public class EditJournalEntryCommand extends Command {
         }
         Entry entryToEdit = lastShownList.get(index.getZeroBased());
         Entry editedEntry = createEditedEntry(entryToEdit,
-                editEntryDescriptor);
+                editEntryDescriptor, model);
         if (!entryToEdit.isSameEntry(editedEntry) && model.hasEntry(editedEntry)) {
             throw new CommandException(MESSAGE_DUPLICATE_ENTRY);
         }
