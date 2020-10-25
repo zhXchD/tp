@@ -194,15 +194,21 @@ public class ParserUtil {
     /**
      * Parses {@code Collection<String> names} into a {@code UniquePersonList}
      * that only contains the names of Persons to be filtered for later.
+     * Uses a blank string for UUID to enhance testability, since the UUID
+     * from here does not actually get used anywhere.
      */
     public static UniquePersonList parseContacts(Collection<String> contacts)
             throws ParseException {
-        // TODO: Update this to follow AddJournalEntryCommand's contacts
         requireNonNull(contacts);
         final UniquePersonList personList = new UniquePersonList();
         for (String name : contacts) {
             Person person = new Person(
-                    parseName(name), null, null, null, new HashSet<>(), UUID.randomUUID()
+                    parseName(name),
+                    Phone.EMPTY_PHONE,
+                    Email.EMPTY_EMAIL,
+                    Address.EMPTY_ADDRESS,
+                    new HashSet<>(),
+                    UUID.fromString("e26616c9-c740-4d86-861e-733a4d377a3e")
             );
             personList.add(person);
         }

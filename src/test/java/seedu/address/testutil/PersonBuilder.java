@@ -92,6 +92,17 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets all of the optional fields to null.
+     */
+    public PersonBuilder setBlankFields() {
+        this.phone = Phone.EMPTY_PHONE;
+        this.email = Email.EMPTY_EMAIL;
+        this.address = Address.EMPTY_ADDRESS;
+        this.tags = new HashSet<>();
+        return this;
+    }
+
     public Person build() {
         return new Person(name, phone, email, address, tags, UUID.randomUUID());
     }

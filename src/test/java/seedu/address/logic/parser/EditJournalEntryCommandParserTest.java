@@ -13,6 +13,7 @@ import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TITLE_DESC_MEETING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_OCTOBER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_STORY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_MEETING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_MOVIE;
@@ -20,6 +21,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+
+import java.util.UUID;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -34,6 +37,7 @@ import seedu.address.model.journal.Title;
 import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditEntryDescriptorBuilder;
+import seedu.address.testutil.PersonBuilder;
 
 public class EditJournalEntryCommandParserTest {
 
@@ -160,6 +164,7 @@ public class EditJournalEntryCommandParserTest {
                     + TITLE_DESC_MEETING
                     + DATE_DESC_OCTOBER
                     + DESCRIPTION_DESC_STORY
+                    + CONTACTS_DESC_AMY
                     + TAG_DESC_FRIEND;
             EditEntryDescriptor descriptor =
                     new EditEntryDescriptorBuilder()
@@ -167,7 +172,10 @@ public class EditJournalEntryCommandParserTest {
                             .withDate(VALID_DATE_OCTOBER)
                             .withDescription(VALID_DESCRIPTION_STORY)
                             .withTags(VALID_TAG_FRIEND)
-                            .withContacts()
+                            .withContacts(new PersonBuilder()
+                                    .withName(VALID_NAME_AMY)
+                                    .setBlankFields()
+                                    .build(UUID.fromString("e26616c9-c740-4d86-861e-733a4d377a3e")))
                             .build();
             EditJournalEntryCommand expectedCommand =
                     new EditJournalEntryCommand(targetIndex, descriptor);
