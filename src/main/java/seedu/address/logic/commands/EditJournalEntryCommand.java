@@ -52,6 +52,8 @@ public class EditJournalEntryCommand extends Command {
             + "edit must be provided.";
     public static final String MESSAGE_DUPLICATE_ENTRY = "This person already"
             + " exists in the address book.";
+    public static final String MESSAGE_CONTACT_NOT_IN_ADDRESSBOOK = "Person "
+            + "named %s does not exist in the address book!";
 
     private final Index index;
     private final EditEntryDescriptor editEntryDescriptor;
@@ -90,8 +92,8 @@ public class EditJournalEntryCommand extends Command {
                     .findFirst();
             if (personInList.isEmpty()) {
                 throw new CommandException(
-                        "Person named " + person.getName()
-                                + " does not exist in the address book!");
+                        String.format(MESSAGE_CONTACT_NOT_IN_ADDRESSBOOK,
+                                person.getName()));
             } else {
                 updatedContactList.add(personInList.get());
             }

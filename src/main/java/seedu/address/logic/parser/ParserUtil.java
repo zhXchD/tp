@@ -72,7 +72,7 @@ public class ParserUtil {
     public static Title parseTitle(String title) throws ParseException {
         requireNonNull(title);
         String trimmedTitle = title.trim();
-        if (!Name.isValidName(trimmedTitle)) {
+        if (!Title.isValidTitle(trimmedTitle)) {
             throw new ParseException(Title.MESSAGE_CONSTRAINTS);
         }
         return new Title(trimmedTitle);
@@ -192,7 +192,8 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> names} into a {@code UniquePersonList}.
+     * Parses {@code Collection<String> names} into a {@code UniquePersonList}
+     * that only contains the names of Persons to be filtered for later.
      */
     public static UniquePersonList parseContacts(Collection<String> contacts)
             throws ParseException {

@@ -1,11 +1,14 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.CONTACTS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_OCTOBER;
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_STORY;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_CONTACT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TITLE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TITLE_DESC_MEETING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_OCTOBER;
@@ -27,6 +30,8 @@ import seedu.address.logic.commands.EditJournalEntryCommand;
 import seedu.address.logic.commands.EditJournalEntryCommand.EditEntryDescriptor;
 import seedu.address.model.journal.Date;
 import seedu.address.model.journal.Description;
+import seedu.address.model.journal.Title;
+import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditEntryDescriptorBuilder;
 
@@ -86,30 +91,70 @@ public class EditJournalEntryCommandParserTest {
         @DisplayName("should fail to parse if invalid values passed into "
                 + "each field")
         public void parse_invalidValue_failure() {
+            // invalid title
+            assertParseFailure(parser,
+                    "1" + INVALID_TITLE_DESC,
+                    Title.MESSAGE_CONSTRAINTS);
+
             // invalid description
             assertParseFailure(parser,
                     "1" + INVALID_DESCRIPTION_DESC,
                     Description.MESSAGE_CONSTRAINTS);
+
             // invalid date
             assertParseFailure(parser,
                     "1" + INVALID_DATE_DESC,
                     Date.MESSAGE_CONSTRAINTS);
-            // TODO: Invalid contact test
+
+            // invalid name for a contact
+            assertParseFailure(parser,
+                    "1" + INVALID_CONTACT_DESC,
+                    Name.MESSAGE_CONSTRAINTS);
 
             // invalid tag
             assertParseFailure(parser,
                     "1" + INVALID_TAG_DESC,
                     Tag.MESSAGE_CONSTRAINTS);
 
-            // TODO: the valid X followed by invalid X test cases
+            // valid description followed by invalid description
+            assertParseFailure(parser,
+                    "1" + DESCRIPTION_DESC_STORY + INVALID_DESCRIPTION_DESC,
+                    Description.MESSAGE_CONSTRAINTS);
+
+            // valid contact followed by invalid contact
+            assertParseFailure(parser,
+                    "1" + CONTACTS_DESC_AMY + INVALID_CONTACT_DESC,
+                    Name.MESSAGE_CONSTRAINTS);
+
+            // invalid contact followed by valid contact
+            assertParseFailure(parser,
+                    "1" + INVALID_CONTACT_DESC + CONTACTS_DESC_AMY,
+                    Name.MESSAGE_CONSTRAINTS);
+
+            // valid tag followed by invalid tag
+            assertParseFailure(parser,
+                    "1" + TAG_DESC_FRIEND + INVALID_TAG_DESC,
+                    Tag.MESSAGE_CONSTRAINTS);
+
+
+            // invalid tag followed by valid tag
+            assertParseFailure(parser,
+                    "1" + INVALID_TAG_DESC + TAG_DESC_FRIEND,
+                    Tag.MESSAGE_CONSTRAINTS);
 
         }
+
 
         @Test
         @DisplayName("should generate EditJournalEntry Command if all fields "
                 + "are specified in the correct format")
         public void parse_allFieldsSpecified_success() {
-            // TODO: Add contacts to this test
+            /**
+             * Contacts can't actually be tested here because new Persons are
+             * generated to search for later on.
+             * Possible solution is to change the implementation of
+             * parseContacts to use String instead of Person.
+             */
             Index targetIndex = INDEX_SECOND_PERSON;
             String userInput = targetIndex.getOneBased()
                     + TITLE_DESC_MEETING

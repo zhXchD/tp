@@ -91,10 +91,14 @@ public class CommandTestUtil {
             " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC =
             " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_TITLE_DESC =
+            " " + PREFIX_NAME + "1"; // start with number not allowed
     public static final String INVALID_DATE_DESC =
             " " + PREFIX_DATE_AND_TIME + "2020/10/10 10:00";
     public static final String INVALID_DESCRIPTION_DESC =
             " " + PREFIX_DESCRIPTION + " "; // blank string not allowed
+    public static final String INVALID_CONTACT_DESC =
+            " " + PREFIX_CONTACT + "James&"; // '&' not allowed in name
 
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
