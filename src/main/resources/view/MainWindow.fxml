@@ -39,22 +39,6 @@
                 <JFXTabPane fx:id="tabPane" stylesheets="@DarkTheme.css" tabClosingPolicy="UNAVAILABLE"
                             VBox.vgrow="ALWAYS">
                     <tabs>
-                        <Tab fx:id="addressBookTab" text="AddressBook">
-                            <content>
-                                <HBox HBox.hgrow="ALWAYS">
-                                    <StackPane fx:id="personListPanelPlaceholder" prefWidth="250.0"/>
-                                    <StackPane fx:id="contactContentPlaceholder" HBox.hgrow="ALWAYS"/>
-                                </HBox>
-                            </content>
-                        </Tab>
-                        <Tab fx:id="journalTab" text="Journal">
-                            <content>
-                                <HBox HBox.hgrow="ALWAYS">
-                                    <StackPane fx:id="entryListPanelPlaceholder" prefWidth="250.0"/>
-                                    <StackPane fx:id="entryContentPlaceholder" HBox.hgrow="ALWAYS"/>
-                                </HBox>
-                            </content>
-                        </Tab>
                         <Tab fx:id="dashBoardTab" text="Dashboard">
                             <content>
                                 <VBox fx:id="" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
@@ -90,6 +74,22 @@
                                         </HBox>
                                     </children>
                                 </VBox>
+                            </content>
+                        </Tab>
+                        <Tab fx:id="addressBookTab" text="AddressBook">
+                            <content>
+                                <HBox HBox.hgrow="ALWAYS">
+                                    <StackPane fx:id="personListPanelPlaceholder" prefWidth="250.0"/>
+                                    <StackPane fx:id="contactContentPlaceholder" HBox.hgrow="ALWAYS"/>
+                                </HBox>
+                            </content>
+                        </Tab>
+                        <Tab fx:id="journalTab" text="Journal">
+                            <content>
+                                <HBox HBox.hgrow="ALWAYS">
+                                    <StackPane fx:id="entryListPanelPlaceholder" prefWidth="250.0"/>
+                                    <StackPane fx:id="entryContentPlaceholder" HBox.hgrow="ALWAYS"/>
+                                </HBox>
                             </content>
                         </Tab>
                     </tabs>

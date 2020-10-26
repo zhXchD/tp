@@ -275,11 +275,8 @@ public class MainWindow extends UiPart<Stage> {
 
     private void handleSwapTabs() {
         SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
-        if (journalTab.isSelected()) {
-            selectionModel.select(addressBookTab);
-        } else if (addressBookTab.isSelected()) {
-            selectionModel.select(journalTab);
-        }
+        int selectedIndex = selectionModel.getSelectedIndex();
+        selectionModel.select((selectedIndex + 1) % 3);
     }
 
     private void handleViewingJournal() {
