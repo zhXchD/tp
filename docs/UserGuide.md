@@ -25,7 +25,9 @@ as location information faster than traditional GUI apps.
    IntelliJournal.
 
 1. Double-click the file to start the app. The GUI similar to the below should
-   appear in a few seconds. Note how the app contains some sample data.<br>
+   appear in a few seconds. The app will start with the dashboard tab, which shows
+   you the list of recent contacts (sorted by the latest date you met them) and
+   the list of frequent contacts (sorted by the frequency you met them).<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it.
