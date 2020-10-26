@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyAliasMap;
 import seedu.address.model.ReadOnlyJournal;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
@@ -22,6 +23,7 @@ public class StorageManager implements Storage {
     private final AddressBookStorage addressBookStorage;
     private final UserPrefsStorage userPrefsStorage;
     private final JournalStorage journalStorage;
+    private final AliasMapStorage aliasMapStorage;
 
     /**
      * Creates a {@code StorageManager} with the given
@@ -31,12 +33,14 @@ public class StorageManager implements Storage {
     public StorageManager(
             AddressBookStorage addressBookStorage,
             JournalStorage journalStorage,
-            UserPrefsStorage userPrefsStorage
+            UserPrefsStorage userPrefsStorage,
+            AliasMapStorage aliasMapStorage
     ) {
         super();
         this.addressBookStorage = addressBookStorage;
         this.journalStorage = journalStorage;
         this.userPrefsStorage = userPrefsStorage;
+        this.aliasMapStorage = aliasMapStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -128,6 +132,23 @@ public class StorageManager implements Storage {
         logger.fine("Attempting to write to journal data file: "
                 + filePath);
         journalStorage.saveJournal(journal, filePath);
+    }
+
+    // ================ AliasMap methods ==============================
+
+    @Override
+    public Path getAliasmapFilePath() {
+        return aliasMapStorage.getAliasmapFilePath();
+    }
+
+    @Override
+    public void saveAliasMap(ReadOnlyAliasMap map) throws IOException {
+        aliasMapStorage.saveAliasMap(map);
+    }
+
+    @Override
+    public Optional<ReadOnlyAliasMap> readAliasMap() throws IOException, DataConversionException {
+        return aliasMapStorage.readAliasMap();
     }
 
 }

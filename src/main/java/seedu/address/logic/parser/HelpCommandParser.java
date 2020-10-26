@@ -5,8 +5,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_OF;
 
 import java.util.stream.Stream;
 
+import seedu.address.logic.ValidCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ValidCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 public class HelpCommandParser implements Parser<HelpCommand> {

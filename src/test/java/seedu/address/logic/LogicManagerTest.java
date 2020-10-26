@@ -25,6 +25,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListContactCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.AliasMap;
 import seedu.address.model.Journal;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -32,6 +33,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonAliasMapStorage;
 import seedu.address.storage.JsonJournalStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
@@ -59,10 +61,12 @@ public class LogicManagerTest {
                     temporaryFolder.resolve("journal.json"));
             JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(
                     temporaryFolder.resolve("userPrefs.json"));
+            JsonAliasMapStorage aliasMapStorage = new JsonAliasMapStorage(temporaryFolder.resolve("alias.json"));
             StorageManager storage = new StorageManager(
                     addressBookStorage,
                     journalStorage,
-                    userPrefsStorage
+                    userPrefsStorage,
+                    aliasMapStorage
             );
             logic = new LogicManager(model, storage);
         }
@@ -117,7 +121,7 @@ public class LogicManagerTest {
                 String expectedMessage
         ) {
             Model expectedModel = new ModelManager(
-                    model.getAddressBook(), new Journal(), new UserPrefs());
+                    model.getAddressBook(), new Journal(), new UserPrefs(), new AliasMap());
             assertCommandFailure(
                     inputCommand,
                     expectedException,
@@ -187,10 +191,14 @@ public class LogicManagerTest {
                     temporaryFolder.resolve("ioExceptionJournal.json"));
             JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(
                     temporaryFolder.resolve("ioExceptionUserPrefs.json"));
+            JsonAliasMapStorage aliasMapStorage = new JsonAliasMapStorage(
+                    temporaryFolder.resolve("ioExceptionAliasMap.json"));
+
             StorageManager storage = new StorageManager(
                     addressBookStorage,
                     journalStorage,
-                    userPrefsStorage
+                    userPrefsStorage,
+                    aliasMapStorage
             );
             UUID uuid = UUID.randomUUID();
             logic = new LogicManager(model, storage, uuid);
@@ -231,10 +239,12 @@ public class LogicManagerTest {
                     temporaryFolder.resolve("journal.json"));
             JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(
                     temporaryFolder.resolve("userPrefs.json"));
+            JsonAliasMapStorage aliasMapStorage = new JsonAliasMapStorage(temporaryFolder.resolve("alias.json"));
             StorageManager storage = new StorageManager(
                     addressBookStorage,
                     journalStorage,
-                    userPrefsStorage
+                    userPrefsStorage,
+                    aliasMapStorage
             );
             logic = new LogicManager(model, storage);
         }

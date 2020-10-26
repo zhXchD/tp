@@ -170,7 +170,8 @@ public class ModelManagerTest {
             modelManager = new ModelManager(
                     addressBook,
                     new Journal(),
-                    userPrefs
+                    userPrefs,
+                    new AliasMap()
             );
         }
 
@@ -178,7 +179,7 @@ public class ModelManagerTest {
         @DisplayName("should return true if same value")
         public void equals_sameValues_true() {
             ModelManager modelManagerCopy =
-                    new ModelManager(addressBook, new Journal(), userPrefs);
+                    new ModelManager(addressBook, new Journal(), userPrefs, new AliasMap());
             assertEquals(modelManagerCopy, modelManager);
         }
 
@@ -205,11 +206,12 @@ public class ModelManagerTest {
         public void equals_differentAddressBook_false() {
             System.out.println(modelManager);
             System.out.println(new ModelManager(differentAddressBook,
-                    new Journal(), userPrefs));
+                    new Journal(), userPrefs, new AliasMap()));
             assertNotEquals(new ModelManager(
                     differentAddressBook,
                     new Journal(),
-                    userPrefs
+                    userPrefs,
+                    new AliasMap()
             ), modelManager);
         }
 
@@ -222,7 +224,8 @@ public class ModelManagerTest {
             assertNotEquals(new ModelManager(
                     addressBook,
                     new Journal(),
-                    userPrefs
+                    userPrefs,
+                    new AliasMap()
             ), modelManager);
         }
 
@@ -240,7 +243,8 @@ public class ModelManagerTest {
             assertNotEquals(new ModelManager(
                     addressBook,
                     new Journal(),
-                    differentUserPrefs
+                    differentUserPrefs,
+                    new AliasMap()
             ), modelManager);
         }
     }

@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -6,7 +6,9 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.exceptions.AliasExistsException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.ReadOnlyAliasMap;
 
 
 /**
@@ -28,7 +30,8 @@ public enum ValidCommand {
     LIST_JOURNAL_ENTRY("listj", "lj"),
     SWITCH("switch", "swt"),
     VIEW("view", "v"),
-    CHECK_SCHEDULE("check", "ck");
+    CHECK_SCHEDULE("check", "ck"),
+    ADD_ALIAS("alias", "al");
 
     private static final Logger logger = LogsCenter.getLogger(ValidCommand.class);
 
@@ -61,6 +64,17 @@ public enum ValidCommand {
     }
 
     /**
+     * Update the alias with given readOnlyAliasMap
+     */
+    public static void update(ReadOnlyAliasMap readOnlyAliasMap) {
+        Map<String, ValidCommand> aliasMap = readOnlyAliasMap.getAliasMap();
+
+        for (String alias: aliasMap.keySet()) {
+            ValidCommand.aliasMap.put(alias, aliasMap.get(alias));
+        }
+    }
+
+    /**
      * Give the command type of a valid alias.
      */
     public static ValidCommand commandTypeOf(String alias) throws ParseException {
@@ -79,13 +93,21 @@ public enum ValidCommand {
     /**
      * Add a new {@code alias} to a valid command.
      */
-    public static void addAlias(ValidCommand command, String alias) {
+    public static void addAlias(ValidCommand command, String alias) throws AliasExistsException {
         assert command != null;
         assert alias != null && !alias.equals("");
+
+        if (aliasMap.containsKey(alias)) {
+            throw new AliasExistsException();
+        }
 
         aliasMap.put(alias, command);
 
         logger.info("Map the alias " + alias + " to " + command.toString());
+    }
+
+    public static Map<String, ValidCommand> getAliasMap() {
+        return aliasMap;
     }
 }
 

@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.model.AliasMap;
 import seedu.address.model.Journal;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -28,7 +29,7 @@ import seedu.address.model.person.Person;
 public class DeleteContactCommandTest {
 
     private final Model model = new ModelManager(
-            getTypicalAddressBook(), new Journal(), new UserPrefs());
+            getTypicalAddressBook(), new Journal(), new UserPrefs(), new AliasMap());
 
     /**
      * Updates {@code model}'s filtered list to show no one.
@@ -59,7 +60,8 @@ public class DeleteContactCommandTest {
             ModelManager expectedModel =
                     new ModelManager(model.getAddressBook(),
                             new Journal(),
-                            new UserPrefs()
+                            new UserPrefs(),
+                            new AliasMap()
                     );
             expectedModel.deletePerson(personToDelete);
 
@@ -104,7 +106,8 @@ public class DeleteContactCommandTest {
 
             Model expectedModel = new ModelManager(model.getAddressBook(),
                     new Journal(),
-                    new UserPrefs()
+                    new UserPrefs(),
+                    new AliasMap()
             );
             expectedModel.deletePerson(personToDelete);
             showNoPerson(expectedModel);

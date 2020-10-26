@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.CheckScheduleCommand;
 import seedu.address.model.AddressBook;
+import seedu.address.model.AliasMap;
 import seedu.address.model.Journal;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -27,7 +28,8 @@ class CheckScheduleCommandParserTest {
     private final Model model = new ModelManager(
             new AddressBook(),
             getTypicalJournal(),
-            new UserPrefs()
+            new UserPrefs(),
+            new AliasMap()
     );
 
     @Nested
@@ -46,7 +48,8 @@ class CheckScheduleCommandParserTest {
             Model expectedModel = new ModelManager(
                     new AddressBook(),
                     new Journal(),
-                    new UserPrefs()
+                    new UserPrefs(),
+                    new AliasMap()
             );
 
             assertCommandSuccess(
@@ -73,7 +76,8 @@ class CheckScheduleCommandParserTest {
                             .withEntry(TEST_ENTRY_DIFF_DATE)
                             .withEntry(TEST_ENTRY_DIFF_DESCRIPTION)
                             .build(),
-                    new UserPrefs()
+                    new UserPrefs(),
+                    new AliasMap()
             );
 
             assertCommandSuccess(

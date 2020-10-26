@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.AliasMap;
 import seedu.address.model.Journal;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -32,7 +33,8 @@ public class CheckScheduleCommandTest {
         model = new ModelManager(
                 new AddressBook(),
                 getTypicalJournal(),
-                new UserPrefs()
+                new UserPrefs(),
+                new AliasMap()
         );
     }
 
@@ -74,7 +76,8 @@ public class CheckScheduleCommandTest {
             Model expectedModel = new ModelManager(
                     new AddressBook(),
                     new Journal(),
-                    new UserPrefs()
+                    new UserPrefs(),
+                    new AliasMap()
             );
             expectedModel.addEntry(TEST_ENTRY_DIFF_DATE);
             expectedModel.addEntry(TEST_ENTRY_DIFF_DESCRIPTION);
