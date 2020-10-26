@@ -17,8 +17,15 @@
     -fx-opacity: 1;
 }
 
+.label-grey {
+    -fx-font-size: 11pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: #c2c2c2;
+    -fx-opacity: 1;
+}
+
 .label-header {
-    -fx-font-size: 32pt;
+    -fx-font-size: 26pt;
     -fx-font-family: "Segoe UI Light";
     -fx-text-fill: white;
     -fx-opacity: 1;

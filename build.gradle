@@ -60,6 +60,9 @@ dependencies {
 
     compile 'com.jfoenix:jfoenix:9.0.10'
 
+    compile 'org.kordamp.ikonli:ikonli-javafx:11.5.0'
+    compile 'org.kordamp.ikonli:ikonli-fontawesome5-pack:11.5.0'
+
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'win'
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'mac'
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'linux'
