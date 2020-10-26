@@ -8,6 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.ValidCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 

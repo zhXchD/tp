@@ -7,6 +7,7 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.address.logic.ValidCommand;
 import seedu.address.logic.commands.ClearAddressBookCommand;
 import seedu.address.logic.commands.ClearJournalCommand;
 import seedu.address.logic.commands.Command;
@@ -15,7 +16,6 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListContactCommand;
 import seedu.address.logic.commands.ListJournalEntryCommand;
 import seedu.address.logic.commands.SwitchCommand;
-import seedu.address.logic.commands.ValidCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -73,8 +73,11 @@ public class IntelliJournalParser {
         case ADD_JOURNAL_ENTRY:
             return new AddJournalEntryCommandParser().parse(arguments);
 
-        case EDIT:
-            return new EditCommandParser().parse(arguments);
+        case EDIT_CONTACT:
+            return new EditContactCommandParser().parse(arguments);
+
+        case EDIT_JOURNAL_ENTRY:
+            return new EditJournalEntryCommandParser().parse(arguments);
 
         case DELETE_CONTACT:
             return new DeleteContactCommandParser().parse(arguments);
@@ -111,6 +114,9 @@ public class IntelliJournalParser {
 
         case CHECK_SCHEDULE:
             return new CheckScheduleCommandParser().parse(arguments);
+
+        case ADD_ALIAS:
+            return new AddAliasCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

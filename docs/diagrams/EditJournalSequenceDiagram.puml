@@ -1,0 +1,77 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":IntelliJournalParser" as IntelliJournalParser LOGIC_COLOR
+participant ":EditJournalEntryCommandParser" as EditJournalEntryCommandParser LOGIC_COLOR
+participant ":ParserUtil" as ParserUtil LOGIC_COLOR
+participant ":EditEntryDescriptor" as EditEntryDescriptor LOGIC_COLOR
+participant "c:EditJournalEntryCommand" as EditJournalEntryCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+[-> LogicManager : execute("editj 1 n/Meeting")
+activate LogicManager
+
+LogicManager -> IntelliJournalParser : parseCommand("editj 1 n/Meeting")
+activate IntelliJournalParser
+
+create EditJournalEntryCommandParser
+IntelliJournalParser -> EditJournalEntryCommandParser
+activate EditJournalEntryCommandParser
+
+EditJournalEntryCommandParser --> IntelliJournalParser
+deactivate EditJournalEntryCommandParser
+
+IntelliJournalParser -> EditJournalEntryCommandParser : parse("1 n/Meeting")
+activate EditJournalEntryCommandParser
+
+EditJournalEntryCommandParser -> ParserUtil : parseValidCommand("1 n/Meeting")
+activate ParserUtil
+
+ParserUtil --> EditJournalEntryCommandParser : validCommandType
+deactivate ParserUtil
+
+create EditEntryDescriptor
+EditJournalEntryCommandParser -> EditEntryDescriptor
+activate EditEntryDescriptor
+EditEntryDescriptor --> EditJournalEntryCommandParser
+deactivate EditEntryDescriptor
+
+
+
+create EditJournalEntryCommand
+EditJournalEntryCommandParser -> EditJournalEntryCommand
+activate EditJournalEntryCommand
+
+EditJournalEntryCommand --> EditJournalEntryCommandParser : c
+deactivate EditJournalEntryCommand
+
+EditJournalEntryCommandParser --> IntelliJournalParser : c
+deactivate EditJournalEntryCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditJournalEntryCommandParser -[hidden]-> IntelliJournalParser
+destroy EditJournalEntryCommandParser
+
+IntelliJournalParser --> LogicManager : c
+deactivate IntelliJournalParser
+
+LogicManager -> EditJournalEntryCommand : execute(model)
+activate EditJournalEntryCommand
+
+create CommandResult
+EditJournalEntryCommand -> CommandResult
+activate CommandResult
+
+
+
+CommandResult --> EditJournalEntryCommand
+deactivate CommandResult
+
+EditJournalEntryCommand --> LogicManager : result
+deactivate EditJournalEntryCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

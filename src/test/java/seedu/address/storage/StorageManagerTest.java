@@ -23,6 +23,7 @@ public class StorageManagerTest {
     private JsonAddressBookStorage addressBookStorage;
     private JsonUserPrefsStorage userPrefsStorage;
     private JsonJournalStorage journalStorage;
+    private JsonAliasMapStorage aliasMapStorage;
 
     @Nested
     @DisplayName("miscellaneous operations")
@@ -38,10 +39,12 @@ public class StorageManagerTest {
                     getTempFilePath("prefs"));
             journalStorage = new JsonJournalStorage(
                     getTempFilePath("journals"));
+            aliasMapStorage = new JsonAliasMapStorage(getTempFilePath("aliases"));
             storageManager = new StorageManager(
                     addressBookStorage,
                     journalStorage,
-                    userPrefsStorage
+                    userPrefsStorage,
+                    aliasMapStorage
             );
         }
 
@@ -101,7 +104,8 @@ public class StorageManagerTest {
             storageManager = new StorageManager(
                     addressBookStorage,
                     journalStorage,
-                    userPrefsStorage
+                    userPrefsStorage,
+                    aliasMapStorage
             );
         }
 
