@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import seedu.address.logic.ValidCommand;
 import seedu.address.model.Model;
 
-
 /**
  * Format full help instructions for every command for display.
  */
@@ -56,8 +55,10 @@ public class HelpCommand extends Command {
             return new CommandResult(SHOWING_HELP_MESSAGE + DeleteContactCommand.MESSAGE_USAGE);
         case DELETE_JOURNAL_ENTRY:
             return new CommandResult(SHOWING_HELP_MESSAGE + DeleteJournalEntryCommand.MESSAGE_USAGE);
-        case EDIT:
-            return new CommandResult(SHOWING_HELP_MESSAGE + EditCommand.MESSAGE_USAGE);
+        case EDIT_CONTACT:
+            return new CommandResult(SHOWING_HELP_MESSAGE + EditContactCommand.MESSAGE_USAGE);
+        case EDIT_JOURNAL_ENTRY:
+            return new CommandResult(SHOWING_HELP_MESSAGE + EditJournalEntryCommand.MESSAGE_USAGE);
         case FIND:
             return new CommandResult(SHOWING_HELP_MESSAGE + FindCommand.MESSAGE_USAGE);
         case VIEW:
