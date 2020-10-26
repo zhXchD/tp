@@ -51,6 +51,8 @@ public class CommandTestUtil {
     public static final String VALID_TITLE_MOVIE = "Movie";
     public static final String VALID_DESCRIPTION_STORY = "Brainstorm user stories";
     public static final String VALID_DESCRIPTION_MOVIE = "Watch a movie";
+    public static final String CONTACT_DEFAULT_UUID = "e26616c9-c740-4d86"
+            + "-861e-733a4d377a3e";
 
     public static final String NAME_DESC_AMY =
             " " + PREFIX_NAME + VALID_NAME_AMY;
@@ -74,10 +76,14 @@ public class CommandTestUtil {
             " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String DATE_DESC_OCTOBER =
             " " + PREFIX_DATE_AND_TIME + VALID_DATE_OCTOBER;
+    public static final String DATE_DESC_NOVEMBER =
+            " " + PREFIX_DATE_AND_TIME + VALID_DATE_NOVEMBER;
     public static final String TITLE_DESC_MEETING =
             " " + PREFIX_NAME + VALID_TITLE_MEETING;
     public static final String DESCRIPTION_DESC_STORY =
             " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_STORY;
+    public static final String DESCRIPTION_DESC_MOVIE =
+            " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_MOVIE;
     public static final String CONTACTS_DESC_AMY =
             " " + PREFIX_CONTACT + VALID_NAME_AMY;
 

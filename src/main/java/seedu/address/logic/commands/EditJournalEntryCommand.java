@@ -71,7 +71,8 @@ public class EditJournalEntryCommand extends Command {
     }
 
     private static Entry createEditedEntry(Entry entryToEdit,
-                                           EditEntryDescriptor editEntryDescriptor, Model model) throws CommandException {
+                                           EditEntryDescriptor editEntryDescriptor,
+                                           Model model) throws CommandException {
         assert entryToEdit != null;
 
         Title updatedTitle =

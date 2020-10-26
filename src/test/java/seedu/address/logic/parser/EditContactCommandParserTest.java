@@ -173,7 +173,7 @@ public class EditContactCommandParserTest {
         }
 
         @Test
-        @DisplayName("should generate EditCommand if all fields are specified"
+        @DisplayName("should generate EditContactCommand if all fields are specified"
                 + " in the correct format")
         public void parse_allFieldsSpecified_success() {
             Index targetIndex = INDEX_SECOND_PERSON;
@@ -196,7 +196,7 @@ public class EditContactCommandParserTest {
         }
 
         @Test
-        @DisplayName("should generate EditCommand if some fields are "
+        @DisplayName("should generate EditContactCommand if some fields are "
                 + "specified with valid values")
         public void parse_someFieldsSpecified_success() {
             Index targetIndex = INDEX_FIRST_PERSON;
@@ -213,7 +213,7 @@ public class EditContactCommandParserTest {
         }
 
         @Test
-        @DisplayName("should generate EditCommand with one field specified "
+        @DisplayName("should generate EditContactCommand with one field specified "
                 + "with a valid value")
         public void parse_oneFieldSpecified_success() {
             // name
