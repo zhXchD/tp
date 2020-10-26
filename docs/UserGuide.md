@@ -27,8 +27,12 @@ as location information faster than traditional GUI apps.
 1. Double-click the file to start the app. The GUI similar to the below should
    appear in a few seconds. The app will start with the dashboard tab, which shows
    you the list of recent contacts (sorted by the latest date you met them) and
-   the list of frequent contacts (sorted by the frequency you met them).<br>
-   ![Ui](images/Ui.png)
+   the list of frequent contacts (sorted by the frequency you met them). You can
+   also navigate to the other two tabs, which will look like the second and third
+   screenshots below.<br>
+   ![Ui](images/Ui-dashboard.png)
+   ![Ui](images/Ui-contacts.png)
+   ![Ui](images/Ui-journal.png)
 
 1. Type the command in the command box and press Enter to execute it.
    e.g. typing **`help`** and pressing Enter will open the help window.<br>
