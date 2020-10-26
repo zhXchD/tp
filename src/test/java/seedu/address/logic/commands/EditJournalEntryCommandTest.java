@@ -23,6 +23,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditJournalEntryCommand.EditEntryDescriptor;
 import seedu.address.model.AddressBook;
+import seedu.address.model.AliasMap;
 import seedu.address.model.Journal;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -36,7 +37,8 @@ public class EditJournalEntryCommandTest {
     private final Model model = new ModelManager(
             getTypicalAddressBook(),
             getTypicalJournal(),
-            new UserPrefs()
+            new UserPrefs(),
+            new AliasMap()
     );
 
     @Nested
@@ -62,8 +64,8 @@ public class EditJournalEntryCommandTest {
                     new ModelManager(
                             new AddressBook(model.getAddressBook()),
                             new Journal(model.getJournal()),
-                            new UserPrefs()
-
+                            new UserPrefs(),
+                            new AliasMap()
                     );
             expectedModel.setEntry(originalEntry, editedEntry);
             assertCommandSuccess(
@@ -106,7 +108,8 @@ public class EditJournalEntryCommandTest {
             Model expectedModel =
                     new ModelManager(new AddressBook(model.getAddressBook()),
                             new Journal(model.getJournal()),
-                            new UserPrefs()
+                            new UserPrefs(),
+                            new AliasMap()
                     );
             expectedModel.setEntry(lastEntry, editedEntry);
             assertCommandSuccess(
@@ -134,7 +137,8 @@ public class EditJournalEntryCommandTest {
             Model expectedModel =
                     new ModelManager(new AddressBook(model.getAddressBook()),
                             new Journal(model.getJournal()),
-                            new UserPrefs());
+                            new UserPrefs(),
+                            new AliasMap());
 
             assertCommandSuccess(
                     editJournalEntryCommand,
@@ -167,7 +171,8 @@ public class EditJournalEntryCommandTest {
                     new ModelManager(
                             new AddressBook(model.getAddressBook()),
                             new Journal(model.getJournal()),
-                            new UserPrefs());
+                            new UserPrefs(),
+                            new AliasMap());
             expectedModel.setEntry(model.getFilteredEntryList().get(0), editedEntry);
             assertCommandSuccess(
                     editJournalEntryCommand,

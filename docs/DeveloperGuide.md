@@ -313,11 +313,11 @@ The following sequence diagrams show how the help command works:
 
 ### Edit journal entry feature
 
-The `editj` command of IntelliJournal allows users to modify the details of previously entered journal entries. 
+The `editj` command of IntelliJournal allows users to modify the details of previously entered journal entries.
 
 #### Current Implementation
 
-Similar to the existing `editc` and `addj` commands, the `EditJournalEntryParser` makes use of `ParserUtil` to split up user input into arguments, which are then used to create an `EditEntryDescriptor` that contains the details of the journal properties to be edited. 
+Similar to the existing `editc` and `addj` commands, the `EditJournalEntryParser` makes use of `ParserUtil` to split up user input into arguments, which are then used to create an `EditEntryDescriptor` that contains the details of the journal properties to be edited.
 
 `EditEntryDescriptor` contains setter methods used to add fields that are changed, and getter methods which return `Optional` objects for use in the `createEditedEntry` method of `EditJournalEntryCommand`. If attributes have not been set for an `EditEntryDescriptor`, they are returned as `Optional.empty()` which is used to create the new edited entry with only the specified attributes modified.
 
@@ -405,11 +405,11 @@ command, or get the link to the User Guide for the usage of all commands.
 In the current version of IntelliJournal, the help feature is implemented with
 both `HelpCommand` and `HelpCommandParser`. If the user input starts with `help`,
 the `AddressBookParser` will catch it and pass the rest input into `HelpCommandParser`.
- 
+
 Within the `HelpCommandParser`, there are mainly 3 execution path:
 1. If the argument starts with `of/` prefix, it will parse the argument behind `of/` to a
 `ValidCommand`, and return a HelpCommand with the `ValidCommand`.
-2. If the argument is empty, it will return a `HelpCommand` with the boolean term 
+2. If the argument is empty, it will return a `HelpCommand` with the boolean term
 `isShowHelpWindow` set to be `true`.
 3. Else, it will throw an `ParseException`.
 

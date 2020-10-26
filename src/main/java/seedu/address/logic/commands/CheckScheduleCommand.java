@@ -7,7 +7,6 @@ import java.util.function.Predicate;
 
 import seedu.address.model.Model;
 import seedu.address.model.journal.Date;
-
 import seedu.address.model.journal.Entry;
 
 /**
