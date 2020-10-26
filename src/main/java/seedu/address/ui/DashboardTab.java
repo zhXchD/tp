@@ -30,10 +30,14 @@ public class DashboardTab extends UiPart<Region> {
     @FXML
     private Label message;
 
+    @FXML
+    private Label guide;
+
     public DashboardTab(ObservableList<Person> recent, ObservableList<Person> frequent) {
         super(FXML);
         this.title.setText("Hello there, welcome to IntelliJournal!");
         this.message.setText("IntelliJournal is here to helped you with your contacts and events with them!");
+        this.guide.setText("Type Ksome commands to start. Have no idea? Try typing \"help\"!");
         this.recentPersonList = new PersonListPanel(recent);
         this.frequentPersonList = new PersonListPanel(frequent);
         this.recentPersonListPanelPlaceholder.getChildren().add(recentPersonList.getRoot());

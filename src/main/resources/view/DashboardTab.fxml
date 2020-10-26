@@ -12,6 +12,7 @@
     </padding>
     <Text fx:id="title" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title"/>
     <Label fx:id="message" styleClass="label-subheading"/>
+    <Label fx:id="guide" styleClass="label-subheading"/>
     <HBox fx:id="listOfRecentContactAndJournal" styleClass="pane-without-border" VBox.vgrow="ALWAYS" spacing="20">
         <children>
             <VBox fx:id="vbox_left" styleClass="pane-with-border" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
