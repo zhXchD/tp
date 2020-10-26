@@ -194,7 +194,7 @@ public class ParserUtil {
     /**
      * Parses {@code Collection<String> names} into a {@code UniquePersonList}
      * that only contains the names of Persons to be filtered for later.
-     * Uses a blank string for UUID to enhance testability, since the UUID
+     * Uses a placeholder string for UUID to enhance testability, since the UUID
      * from here does not actually get used anywhere.
      */
     public static UniquePersonList parseContacts(Collection<String> contacts)

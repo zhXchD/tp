@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.journal.exceptions.ContactNotInListException;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.tag.Tag;
@@ -129,9 +130,10 @@ public class Entry {
                 .append(getDescription())
                 .append(" Contacts: ")
                 .append(getContactList()
-                .stream()
-                .map(Person::toString)
-                .collect(Collectors.joining(", ")));
+                        .stream()
+                        .map(Person::getName)
+                        .map(Name::toString)
+                        .collect(Collectors.joining(", ")));
         return builder.toString();
     }
 
