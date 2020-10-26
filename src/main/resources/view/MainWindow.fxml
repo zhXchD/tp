@@ -22,7 +22,7 @@
     <scene>
         <Scene>
             <stylesheets>
-                <URL value="@DarkTheme.css"/>
+                <URL value="@ColorScheme_1.css"/>
                 <URL value="@Extensions.css"/>
             </stylesheets>
 
@@ -35,13 +35,13 @@
                         <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help"/>
                     </Menu>
                 </MenuBar>
-                <JFXTabPane fx:id="tabPane" stylesheets="@DarkTheme.css" tabClosingPolicy="UNAVAILABLE"
+                <JFXTabPane fx:id="tabPane" stylesheets="@ColorScheme_1.css" tabClosingPolicy="UNAVAILABLE"
                             VBox.vgrow="ALWAYS">
                     <tabs>
                         <Tab fx:id="addressBookTab" text="AddressBook">
                             <content>
                                 <HBox HBox.hgrow="ALWAYS">
-                                    <StackPane fx:id="personListPanelPlaceholder" prefWidth="250.0"/>
+                                    <StackPane fx:id="personListPanelPlaceholder" styleClass="stack-pane" prefWidth="250.0"/>
                                     <StackPane fx:id="contactContentPlaceholder" HBox.hgrow="ALWAYS"/>
                                 </HBox>
                             </content>
@@ -49,7 +49,7 @@
                         <Tab fx:id="journalTab" text="Journal">
                             <content>
                                 <HBox HBox.hgrow="ALWAYS">
-                                    <StackPane fx:id="entryListPanelPlaceholder" prefWidth="250.0"/>
+                                    <StackPane fx:id="entryListPanelPlaceholder" styleClass="stack-pane" prefWidth="250.0"/>
                                     <StackPane fx:id="entryContentPlaceholder" HBox.hgrow="ALWAYS"/>
                                 </HBox>
                             </content>
@@ -58,13 +58,13 @@
                 </JFXTabPane>
 
                 <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100"
-                           styleClass="pane-with-border" VBox.vgrow="NEVER">
+                           styleClass="stack-pane" VBox.vgrow="NEVER">
                     <padding>
                         <Insets bottom="5" left="10" right="10" top="5"/>
                     </padding>
                 </StackPane>
 
-                <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
+                <StackPane fx:id="commandBoxPlaceholder" styleClass="stack-pane" VBox.vgrow="NEVER">
                     <padding>
                         <Insets bottom="5" left="10" right="10" top="5"/>
                     </padding>
