@@ -93,26 +93,12 @@ public class LogicManager implements Logic {
 
     @Override
     public ObservableList<Person> getRecentPersonList() {
-        return model.getAddressBook().getPersonList()
-                .stream()
-                .filter(person -> model.getAddressBook().getPersonList().contains(person))
-                .sorted((p1, p2) -> getLatestDate(p2).compareTo(getLatestDate(p1)))
-                .collect(Collectors.collectingAndThen(toList(), FXCollections::observableArrayList));
+        return model.getRecentPersonList();
     }
 
     @Override
     public ObservableList<Entry> getRecentEntryList() {
         return model.getJournal().getEntryList();
-    }
-
-    private LocalDateTime getLatestDate(Person person) {
-        assert (model.getAddressBook().getPersonList().contains(person));
-        return model.getJournal().getEntryList()
-                .stream()
-                .filter(entry -> entry.isRelatedTo(person))
-                .max(Comparator.comparing(e -> e.getDate().date))
-                .map(entry -> entry.getDate().date)
-                .orElse(LocalDateTime.MIN);
     }
 
     @Override

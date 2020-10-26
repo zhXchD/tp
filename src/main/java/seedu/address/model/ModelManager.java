@@ -4,11 +4,15 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.LocalDateTime;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.journal.Entry;
@@ -25,6 +29,9 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Entry> filteredEntries;
+
+    private final FilteredList<Person> metBeforePersons;
+    private final SortedList<Person> frequentPersons;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -44,6 +51,10 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredEntries = new FilteredList<>(this.journal.getEntryList());
+        metBeforePersons = new FilteredList<>(this.addressBook.getPersonList());
+        metBeforePersons.setPredicate(this::hasMetBefore);
+
+        frequentPersons = new SortedList<>(metBeforePersons);
     }
 
     public ModelManager() {
@@ -152,6 +163,7 @@ public class ModelManager implements Model {
     public void addEntry(Entry entry) {
         requireNonNull(entry);
         journal.addEntry(entry);
+        updateFilteredEntryList(e -> true);
     }
 
     @Override
@@ -178,6 +190,14 @@ public class ModelManager implements Model {
         return filteredPersons;
     }
 
+    @Override
+    public ObservableList<Person> getRecentPersonList() {
+        return metBeforePersons.sorted(
+            (person1, person2) ->
+                getLatestDate(person2).compareTo(getLatestDate(person1))
+        );
+    }
+
     /**
      * Returns an unmodifiable view of the list of {@code Journal} backed by the internal list of
      * {@code versionedAddressBook}
@@ -191,12 +211,14 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+        metBeforePersons.setPredicate(this::hasMetBefore);
     }
 
     @Override
     public void updateFilteredEntryList(Predicate<Entry> predicate) {
         requireNonNull(predicate);
         filteredEntries.setPredicate(predicate);
+        metBeforePersons.setPredicate(this::hasMetBefore);
     }
 
     @Override
@@ -217,5 +239,22 @@ public class ModelManager implements Model {
             && userPrefs.equals(other.userPrefs)
             && filteredPersons.equals(other.filteredPersons)
             && filteredEntries.equals(other.filteredEntries);
+    }
+
+    private boolean hasMetBefore(Person person) {
+        assert (addressBook.getPersonList().contains(person));
+        for (Entry entry : journal.getEntryList()) {
+            if (entry.isRelatedTo(person)) return true;
+        }
+        return false;
+    }
+
+    private LocalDateTime getLatestDate(Person person) {
+        assert (getAddressBook().getPersonList().contains(person));
+        return getJournal().getEntryList().stream()
+                .filter(entry -> entry.isRelatedTo(person))
+                .max(Comparator.comparing(e -> e.getDate().date))
+                .map(entry -> entry.getDate().date)
+                .orElse(LocalDateTime.MIN);
     }
 }

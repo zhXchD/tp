@@ -130,6 +130,8 @@ public interface Model {
      */
     ObservableList<Entry> getFilteredEntryList();
 
+    ObservableList<Person> getRecentPersonList();
+
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      *
