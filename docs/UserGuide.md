@@ -8,7 +8,7 @@ title: User Guide
 
 ---
 
-# Introduction
+## Introduction
 
 IntelliJournal is a **desktop app for managing journals as well as contacts,
 optimised for use via a Command Line Interface** (CLI) while still having the
@@ -19,7 +19,7 @@ as well as location information faster than traditional GUI apps.
 
 ---
 
-# Quick start
+## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -57,7 +57,7 @@ as well as location information faster than traditional GUI apps.
 
 ---
 
-# Features
+## Features
 
 The features section will be split up according to the 3 types of features in
 IntelliJournal:
@@ -87,9 +87,9 @@ IntelliJournal:
 
 </div>
 
-## Contacts
+### Contacts
 
-### Adding a contact: `addcontact`
+#### Adding a contact: `addcontact`
 
 Adds a contact to the address book.
 
@@ -108,7 +108,7 @@ Examples:
 * `addcontact n/Betsy Crowe t/client t/important` Adds a contact with the name
    of `Robert` and tags of `client` and `important`.
 
-### Listing all contacts: `listc`
+#### Listing all contacts: `listc`
 
 Lists all the contacts in the address book.
 
@@ -116,7 +116,7 @@ Aliases: `listc`, `lc`
 
 Format: `listc`
 
-### Editing a contact: `editc`
+#### Editing a contact: `editc`
 
 Edits an existing person in the address book.
 
@@ -140,7 +140,7 @@ Examples:
 * `editc 2 n/Betsy Crower t/` Edits the name of the 2nd person to be Betsy
    Crower and clears all existing tags.
 
-### Viewing a contact: `view in/c`
+#### Viewing a contact: `view in/c`
 
 Opens up a contact to show further details.
 
@@ -155,7 +155,7 @@ Examples:
 * `view in/c index/4` Views the 4th contact in the address book.
 * `view in/c index/8` Views the 8th contact in the address book.
 
-### Finding contacts: `find in/c`
+#### Finding contacts: `find in/c`
 
 Finds a list of contacts or journal entries that satisfy the requirements
 on particular fields given by the user.
@@ -177,7 +177,7 @@ Examples:
   (Note that for `TAG`, IntelliJournal searches for the exact same tag instead
   of finding the ones that contain the searched string).
 
-### Deleting a contact: `deletec`
+#### Deleting a contact: `deletec`
 
 Deletes a contact from the address book.
 
@@ -192,7 +192,7 @@ Examples:
 * `deletec 4` Deletes the 4th contact in the address book.
 * `deletec 8` Deletes the 8th contact in the address book.
 
-### Clearing the address book: `clearc`
+#### Clearing the address book: `clearc`
 
 Clears all contacts in the addressbook.
 
@@ -200,9 +200,9 @@ Aliases: `clearc`, `cc`
 
 Format: `clearc`
 
-## Journal Entries
+### Journal Entries
 
-### Adding a journal entry: `addjournal`
+#### Adding a journal entry: `addjournal`
 
 Adds a journal entry to the journal.
 
@@ -226,7 +226,7 @@ Examples:
   entry with the name `Meeting with client`, a date and time of
   `2020-9-20 14:00` and content `Tea`.
 
-### Listing all journal entries: `listj`
+#### Listing all journal entries: `listj`
 
 Lists all journal entries in the journal.
 
@@ -234,7 +234,7 @@ Aliases: `listj`, `lj`
 
 Format: `listj`
 
-### Editing a journal entry: `editj`
+#### Editing a journal entry: `editj`
 
 Edits an existing entry in the journal.
 
@@ -252,7 +252,7 @@ Format: `editj INDEX n/NAME [at/DATE_AND_TIME] [d/DESCRIPTION]
 * You can remove all the entry's tags by typing t/ without specifying any tags
   after it.
 
-### Viewing a journal entry: `view in/j`
+#### Viewing a journal entry: `view in/j`
 
 Opens up a journal entry to show further details.
 
@@ -268,7 +268,7 @@ Examples:
 * `view in/j index/4` Views the 4th journal entry in the journal.
 * `view in/j index/8` Views the 8th journal entry in the journal.
 
-### Finding journal entries: `find in/j`
+#### Finding journal entries: `find in/j`
 
 Finds a list of contacts or journal entries that satisfy the requirements
 on particular fields given by the user.
@@ -287,7 +287,7 @@ Examples:
   description containing "plan for 2021", with a contact whose name contains
   "Alice", tagged "Meeting", and happening on Oct 10, 2020, 3pm.
 
-### Checking schedule: `check`
+#### Checking schedule: `check`
 
 Finds a list of journal entries for a date given by the user.
 
@@ -300,7 +300,7 @@ Examples:
 * `check` Finds a list of journal entries on the current date.
 * `check 2000-03-12` Finds a list of journal entries on the 12th of March, 2000.
 
-### Deleting a journal entry: `deletej`
+#### Deleting a journal entry: `deletej`
 
 Deletes a journal entry from the journal.
 
@@ -315,7 +315,7 @@ Examples:
 * `deletej 4` Deletes the 4th journal entry in the journal.
 * `deletej 8` Deletes the 8th journal entry in the journal.
 
-### Clearing the journal: `clearj`
+#### Clearing the journal: `clearj`
 
 Clears all journal entries in the journal.
 
@@ -323,9 +323,9 @@ Aliases: `clearj`, `cj`
 
 Format: `clearj`
 
-## Miscellaneous
+### Miscellaneous
 
-### Viewing help menu: `help`
+#### Viewing help menu: `help`
 
 Gives the explanation and format of commands in the system and does not change
 the current displaying tab.
@@ -338,7 +338,7 @@ Format: `help [COMMAND]`
   show.
 * If no `COMMAND` argument is supplied, all commands will be shown.
 
-### Switching the display tab: `switch`
+#### Switching the display tab: `switch`
 
 Switches the current displaying tab to the other tab.
 
@@ -346,7 +346,7 @@ Aliases: `switch`, `swt`
 
 Format: `switch`
 
-### Exiting the program: `exit`
+#### Exiting the program: `exit`
 
 Aliases: `exit`, `quit`, `q`
 
@@ -354,42 +354,44 @@ Exits the program.
 
 Format: `exit`
 
-### Create and use shortcut for your frequent use command: `alias`
+#### Adding shortcuts for existing commands: `alias`
 
-*Alias: A shortcut for an existing command*
+Adds your preferred shortcut for existing commands.
 
-Format: `alias TARGET ALIAS` 
+Format: `alias TARGET ALIAS`
 
-`TARGET`: Existing command or alias in the IntelliJournal.
-
-`ALIAS`: The personalized shortcut you want to add into the system.
+* `TARGET`: Existing command or alias in the IntelliJournal.
+* `ALIAS`: The personalized shortcut you want to add into the system.
 
 Example:
 
-- `alias switch st` ---  This will add `st` as a valid shortcut for command `switch`.
-- `alias addj j` --- This will add `j` as a valid shortcut for command `addj`
+* `alias switch st` ---  This will add `st` as a valid shortcut for command
+  `switch`.
+* `alias addj j` --- This will add `j` as a valid shortcut for command `addj`
 
-**Note**: 
+**Note**:
 
-- We have provided some default shortcuts which can be found in [Default Alias Section](#Default alias), you can use 
-`alias` command to add your personalized command alias.
+* We have provided some default shortcuts which can be found in
+  [Command Summary](#Command Summary), you can use `alias` command to add your
+  personalized command alias.
 
-- You can add a shortcut according to existing shortcut. eg. If you have added `st` as a shortcut for `switch`, you can 
-use `alias st si`. You will add `si` as a valid alias for switch as well. 
+* You can add a shortcut according to existing shortcut. eg. If you have added
+  `st` as a shortcut for `switch`, you can use `alias st si`. You will add `si`
+  as a valid alias for switch as well.
 
-- **Warning**: IntelliJournal will not be able to have one alias to two different commands. eg. If `st` has been added 
-to the system, it will confuse the IntelliJournal if you ask it to add `st` as a valid alias for `check` or other command.
+* **Warning**: IntelliJournal will not be able to have a single alias for two
+  different commands.
+  <br>Eg. If `st` has been added to the system, it will confuse IntelliJournal
+  if you ask it to add `st` as a valid alias for `check` or other command.
 
-
-
-### Saving the data
+#### Saving the data
 
 IntelliJournal data is saved in the hard disk automatically after any command
 that changes the data. There is no need to save manually.
 
 ---
 
-# FAQ
+## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file
@@ -397,11 +399,10 @@ it creates with the file that contains the data of your previous
 IntelliJournal home folder.
 
 ---
-## Default alias
 
-# Command Summary
+## Command Summary
 
-## Contacts
+### Contacts
 
 <table>
   <thead>
@@ -493,7 +494,7 @@ IntelliJournal home folder.
     </tbody>
 </table>
 
-## Journal Entries
+### Journal Entries
 
 <table>
   <thead>
@@ -602,7 +603,7 @@ IntelliJournal home folder.
     </tbody>
 </table>
 
-## Miscellaneous
+### Miscellaneous
 
 <table>
   <thead>
