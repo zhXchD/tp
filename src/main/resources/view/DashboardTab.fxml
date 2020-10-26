@@ -4,37 +4,36 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.geometry.Insets?>
 
+<?import javafx.scene.control.Label?>
 <VBox fx:id="dashboard" styleClass="pane-with-border"
-      xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-    <children>
-        <Text text="Hello there, welcome to IntelliJournal!" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title">
-            <VBox.margin>
-                <Insets left="10.0" bottom="10.0"/>
-            </VBox.margin>
-        </Text>
-        <HBox fx:id="listOfRecentContactAndJournal" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-            <children>
-                <VBox fx:id="vbox_left" styleClass="pane-with-border" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
-                    <children>
-                        <Text text="Recent Contacts" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title">
-                            <VBox.margin>
-                                <Insets left="10.0" bottom="10.0"/>
-                            </VBox.margin>
-                        </Text>
-                        <StackPane fx:id="recentPersonListPanelPlaceholder" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS"/>
-                    </children>
-                </VBox>
-                <VBox fx:id="vbox_right" styleClass="pane-with-border" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
-                    <children>
-                        <Text text="Frequent Contacts" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title">
-                            <VBox.margin>
-                                <Insets left="10.0" bottom="10.0"/>
-                            </VBox.margin>
-                        </Text>
-                        <StackPane fx:id="frequentPersonListPanelPlaceholder" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS"/>
-                    </children>
-                </VBox>
-            </children>
-        </HBox>
-    </children>
+      xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" spacing="20">
+    <padding>
+        <Insets top="25" right="20" bottom="20" left="20"/>
+    </padding>
+    <Text fx:id="title" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title"/>
+    <Label fx:id="message" styleClass="label-subheading"/>
+    <HBox fx:id="listOfRecentContactAndJournal" styleClass="pane-without-border" VBox.vgrow="ALWAYS" spacing="20">
+        <children>
+            <VBox fx:id="vbox_left" styleClass="pane-with-border" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+                <children>
+                    <Label text="Contacts you recently meet" styleClass="label-subheading">
+                        <VBox.margin>
+                            <Insets left="10.0" bottom="10.0"/>
+                        </VBox.margin>
+                    </Label>
+                    <StackPane fx:id="recentPersonListPanelPlaceholder" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS"/>
+                </children>
+            </VBox>
+            <VBox fx:id="vbox_right" styleClass="pane-with-border" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+                <children>
+                    <Label text="Contacts you meet the most" styleClass="label-subheading">
+                        <VBox.margin>
+                            <Insets left="10.0" bottom="10.0"/>
+                        </VBox.margin>
+                    </Label>
+                    <StackPane fx:id="frequentPersonListPanelPlaceholder" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS"/>
+                </children>
+            </VBox>
+        </children>
+    </HBox>
 </VBox>

@@ -26,8 +26,15 @@
 
 .label-header {
     -fx-font-size: 26pt;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: white;
+    -fx-opacity: 1;
+}
+
+.label-subheading {
+    -fx-font-size: 15pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: D3D3D3;
     -fx-opacity: 1;
 }
 
