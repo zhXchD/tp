@@ -172,6 +172,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ReadOnlyAliasMap getAliasMap() {
+        return aliasMap;
+    }
+
+    @Override
     public void setEntry(Entry target, Entry editedEntry) {
         requireAllNonNull(target, editedEntry);
 

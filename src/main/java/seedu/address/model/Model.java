@@ -121,6 +121,11 @@ public interface Model {
     void updateAlias(Map<String, ValidCommand> map);
 
     /**
+     * Returns the aliasMap
+     */
+    ReadOnlyAliasMap getAliasMap();
+
+    /**
      * Replaces the given entry {@code target} with {@code description}
      * @param target Target entry to be replaced.
      * @param editedEntry New entry.

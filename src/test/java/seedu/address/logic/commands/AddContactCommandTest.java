@@ -23,6 +23,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyAliasMap;
 import seedu.address.model.ReadOnlyJournal;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.journal.Entry;
@@ -206,6 +207,11 @@ public class AddContactCommandTest {
 
         @Override
         public void updateAlias(Map<String, ValidCommand> map) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyAliasMap getAliasMap() {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -1,11 +1,15 @@
 package seedu.address.storage;
 
+import static java.util.Objects.requireNonNull;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
+import seedu.address.model.AliasMap;
 import seedu.address.model.ReadOnlyAliasMap;
 
 public class JsonAliasMapStorage implements AliasMapStorage {
@@ -24,11 +28,21 @@ public class JsonAliasMapStorage implements AliasMapStorage {
 
     @Override
     public Optional<ReadOnlyAliasMap> readAliasMap() throws DataConversionException {
-        return JsonUtil.readJsonFile(filePath, ReadOnlyAliasMap.class);
+        Optional<JsonAdaptedAliasMap> map = JsonUtil.readJsonFile(filePath, JsonAdaptedAliasMap.class);
+
+        if (map.isEmpty()) {
+            return Optional.of(new AliasMap());
+        }
+
+        return Optional.of(map.get().toModelAliasMap());
     }
 
     @Override
     public void saveAliasMap(ReadOnlyAliasMap userAlias) throws IOException {
+        requireNonNull(userAlias);
+
+        FileUtil.createIfMissing(filePath);
+        JsonUtil.saveJsonFile(new JsonAdaptedAliasMap(userAlias), filePath);
         JsonUtil.saveJsonFile(userAlias, filePath);
     }
 }
