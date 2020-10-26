@@ -37,7 +37,7 @@ public class DashboardTab extends UiPart<Region> {
     public DashboardTab(ObservableList<Person> recent, ObservableList<Person> frequent) {
         super(FXML);
         this.title.setText("Hello there, welcome to IntelliJournal!");
-        this.message.setText("IntelliJournal is here to helped you with your contacts and events with them!");
+        this.message.setText("IntelliJournal is here to help you with your contacts and events with them!");
         this.guide.setText("Type some commands to start. Have no idea? Try typing \"help\"!");
         this.recentPersonList = new PersonListPanel(recent);
         this.frequentPersonList = new PersonListPanel(frequent);
