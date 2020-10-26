@@ -14,6 +14,7 @@ import seedu.address.logic.ValidCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.journal.Date;
 import seedu.address.model.journal.Description;
+import seedu.address.model.journal.Title;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -60,6 +61,21 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code Name}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static Title parseTitle(String title) throws ParseException {
+        requireNonNull(title);
+        String trimmedTitle = title.trim();
+        if (!Title.isValidTitle(trimmedTitle)) {
+            throw new ParseException(Title.MESSAGE_CONSTRAINTS);
+        }
+        return new Title(trimmedTitle);
     }
 
     /**
@@ -176,7 +192,10 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> names} into a {@code UniquePersonList}.
+     * Parses {@code Collection<String> names} into a {@code UniquePersonList}
+     * that only contains the names of Persons to be filtered for later.
+     * Uses a placeholder string for UUID to enhance testability, since the UUID
+     * from here does not actually get used anywhere.
      */
     public static UniquePersonList parseContacts(Collection<String> contacts)
             throws ParseException {
@@ -184,7 +203,12 @@ public class ParserUtil {
         final UniquePersonList personList = new UniquePersonList();
         for (String name : contacts) {
             Person person = new Person(
-                    parseName(name), null, null, null, new HashSet<>(), UUID.randomUUID()
+                    parseName(name),
+                    Phone.EMPTY_PHONE,
+                    Email.EMPTY_EMAIL,
+                    Address.EMPTY_ADDRESS,
+                    new HashSet<>(),
+                    UUID.fromString("e26616c9-c740-4d86-861e-733a4d377a3e")
             );
             personList.add(person);
         }

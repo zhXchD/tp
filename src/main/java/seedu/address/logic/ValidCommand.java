@@ -22,7 +22,8 @@ public enum ValidCommand {
     CLEAR_ADDRESS_BOOK("clearc", "cc"),
     DELETE_CONTACT("deletec", "delc"),
     DELETE_JOURNAL_ENTRY("deletej", "delj"),
-    EDIT("edit", "ed"),
+    EDIT_CONTACT("editc", "edc"),
+    EDIT_JOURNAL_ENTRY("editj", "edj"),
     FIND("find", "f"),
     EXIT("exit", "quit", "q"),
     HELP("help", "h"),
@@ -40,10 +41,19 @@ public enum ValidCommand {
      */
     private static final Map<String, ValidCommand> aliasMap = new HashMap<>();
 
+    static {
+        Arrays.stream(ValidCommand.values()).forEach(command -> Arrays.stream(command.aliases)
+                .forEach(alias -> {
+                    assert aliasMap.get(alias) == null;
+                    aliasMap.put(alias, command);
+                }));
+    }
+
     /**
      * Valid alias for the commands
      */
     private final String[] aliases;
+
 
     /**
      * Creates command alias from aliases list.
@@ -52,15 +62,6 @@ public enum ValidCommand {
      */
     ValidCommand(String... aliases) {
         this.aliases = aliases;
-    }
-
-
-    static {
-        Arrays.stream(ValidCommand.values()).forEach(command -> Arrays.stream(command.aliases)
-                .forEach(alias -> {
-                    assert aliasMap.get(alias) == null;
-                    aliasMap.put(alias, command);
-                }));
     }
 
     /**
@@ -90,6 +91,7 @@ public enum ValidCommand {
     }
 
     //TODO: If we need to support this functionality, we need to find a way to store the user preference of alias.
+
     /**
      * Add a new {@code alias} to a valid command.
      */
