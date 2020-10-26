@@ -35,6 +35,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private ContactContent contactContent;
     private EntryListPanel entryListPanel;
     private EntryContent entryContent;
     private ResultDisplay resultDisplay;
@@ -61,6 +62,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane contactContentPlaceholder;
 
     @FXML
     private StackPane entryListPanelPlaceholder;
@@ -146,6 +150,8 @@ public class MainWindow extends UiPart<Stage> {
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
         entryListPanelPlaceholder.getChildren().add(entryListPanel.getRoot());
 
+        contactContent = new ContactContent();
+        contactContentPlaceholder.getChildren().add(contactContent.getRoot());
         entryContent = new EntryContent();
         entryContentPlaceholder.getChildren().add(entryContent.getRoot());
 
@@ -168,7 +174,8 @@ public class MainWindow extends UiPart<Stage> {
      * Configures all the listeners.
      */
     void configureListener() {
-        entryListPanel.setListenToSelectedChangesAndPassToEntryContent(entryContent);
+        entryListPanel.setListenerToSelectedChangesAndPassToEntryContent(entryContent);
+        personListPanel.setListenerToSelectedChangesAndPassToContactContent(contactContent);
     }
 
     /**
