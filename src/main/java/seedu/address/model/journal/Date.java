@@ -33,7 +33,7 @@ public class Date {
     public Date(LocalDateTime date) {
         requireNonNull(date);
         this.date = date.truncatedTo(ChronoUnit.MINUTES);
-        this.value = date.toString();
+        this.value = date.format(VALID_FORMATTER);
     }
 
     /**
