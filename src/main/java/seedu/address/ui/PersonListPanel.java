@@ -46,4 +46,15 @@ public class PersonListPanel extends UiPart<Region> {
         }
     }
 
+    /**
+     * Sets up the listener listen to the changes of selected person cell and pass the new person's
+     * information to the {@code ContactContent}.
+     * @param contactContent the ContactContent
+     */
+    public void setListenerToSelectedChangesAndPassToContactContent(ContactContent contactContent) {
+        personListView.getSelectionModel().selectedItemProperty().addListener((observableValue, prev, curr) -> {
+            contactContent.setContactContentToUser(curr);
+        });
+    }
+
 }

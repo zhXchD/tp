@@ -28,6 +28,8 @@ public class EntryCard extends UiPart<Region> {
     private Label date;
     @FXML
     private FlowPane tags;
+    @FXML
+    private Label relatedPersons;
 
     /**
      * Creates a {@code JournalCard} with the given {@code Entry} and index to display.
@@ -41,6 +43,21 @@ public class EntryCard extends UiPart<Region> {
         entry.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        relatedPersons.setText(getRelatedPersonString());
+    }
+
+    private String getRelatedPersonString() {
+        StringBuilder relatedPersonString = new StringBuilder();
+        if (this.entry.getContactList().isEmpty()) {
+            relatedPersonString.append("No related contact list.");
+        } else {
+            relatedPersonString.append(this.entry.getContactList().get(0).getName().fullName);
+        }
+        for (int i = 1; i < this.entry.getContactList().size(); i++) {
+            relatedPersonString.append(", ").append(this.entry.getContactList().get(i).getName().fullName);
+        }
+
+        return relatedPersonString.toString();
     }
 
     @Override
