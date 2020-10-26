@@ -16,6 +16,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     private GuiSettings guiSettings = new GuiSettings();
     private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
     private Path journalFilePath = Paths.get("data", "journal.json");
+    private Path customizedAliasPath = Paths.get("data", "useralias.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -52,6 +53,11 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return journalFilePath;
     }
 
+    @Override
+    public Path getCustomizedAliasPath() {
+        return this.customizedAliasPath;
+    }
+
     public void setGuiSettings(GuiSettings guiSettings) {
         requireNonNull(guiSettings);
         this.guiSettings = guiSettings;
@@ -67,6 +73,11 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.journalFilePath = journalFilePath;
     }
 
+    public void setCustomizedAliasPath(Path customizedAliasPath) {
+        requireNonNull(customizedAliasPath);
+        this.customizedAliasPath = customizedAliasPath;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -79,7 +90,9 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && addressBookFilePath.equals(o.addressBookFilePath);
+                && addressBookFilePath.equals(o.addressBookFilePath)
+                && journalFilePath.equals(o.journalFilePath)
+                && customizedAliasPath.equals(o.customizedAliasPath);
     }
 
     @Override
@@ -92,6 +105,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
         sb.append("\nLocal data file location : " + addressBookFilePath);
+        sb.append("\nJournal file location");
+        sb.append("\nUser defined alias location");
         return sb.toString();
     }
 

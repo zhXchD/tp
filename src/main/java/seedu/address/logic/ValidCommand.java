@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -61,6 +61,7 @@ public enum ValidCommand {
                 }));
     }
 
+
     /**
      * Give the command type of a valid alias.
      */
@@ -88,5 +89,6 @@ public enum ValidCommand {
 
         logger.info("Map the alias " + alias + " to " + command.toString());
     }
+
 }
 

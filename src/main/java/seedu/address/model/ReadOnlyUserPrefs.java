@@ -15,4 +15,5 @@ public interface ReadOnlyUserPrefs {
 
     Path getJournalFilePath();
 
+    Path getCustomizedAliasPath();
 }
