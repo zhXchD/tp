@@ -200,7 +200,10 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Person> getFrequentPersonList() {
-        return filteredPersons;
+        return metBeforePersons.sorted(
+                (person1, person2) ->
+                        Long.compare(getFrequency(person2), getFrequency(person1))
+        );
     }
 
     /**
@@ -261,5 +264,12 @@ public class ModelManager implements Model {
                 .max(Comparator.comparing(e -> e.getDate().date))
                 .map(entry -> entry.getDate().date)
                 .orElse(LocalDateTime.MIN);
+    }
+
+    private long getFrequency(Person person) {
+        assert (getAddressBook().getPersonList().contains(person));
+        return getJournal().getEntryList().stream()
+                .filter(entry -> entry.isRelatedTo(person))
+                .count();
     }
 }
