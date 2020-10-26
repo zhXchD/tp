@@ -11,6 +11,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
@@ -41,8 +42,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
-    private PersonListPanel recentPersonListPanel;
-    private PersonListPanel frequentPersonListPanel;
+    private DashboardTab dashboardTab;
 
 
     @FXML
@@ -70,10 +70,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane entryListPanelPlaceholder;
 
     @FXML
-    private StackPane recentPersonListPanelPlaceholder;
-
-    @FXML
-    private StackPane frequentPersonListPanelPlaceholder;
+    private StackPane dashboardTabPlaceHolder;
 
     @FXML
     private StackPane entryContentPlaceholder;
@@ -155,10 +152,8 @@ public class MainWindow extends UiPart<Stage> {
         entryContent = new EntryContent();
         entryContentPlaceholder.getChildren().add(entryContent.getRoot());
 
-        recentPersonListPanel = new PersonListPanel(logic.getRecentPersonList());
-        frequentPersonListPanel = new PersonListPanel(logic.getFrequentPersonList());
-        recentPersonListPanelPlaceholder.getChildren().add(recentPersonListPanel.getRoot());
-        frequentPersonListPanelPlaceholder.getChildren().add(frequentPersonListPanel.getRoot());
+        dashboardTab = new DashboardTab(logic.getRecentPersonList(), logic.getFrequentPersonList());
+        dashboardTabPlaceHolder.getChildren().add(dashboardTab.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());

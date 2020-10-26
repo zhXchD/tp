@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import javafx.geometry.Insets?>
+
+<VBox fx:id="dashboard" styleClass="pane-with-border"
+      xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Text text="Hello there, welcome to IntelliJournal!" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title">
+            <VBox.margin>
+                <Insets left="10.0" bottom="10.0"/>
+            </VBox.margin>
+        </Text>
+        <HBox fx:id="listOfRecentContactAndJournal" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+            <children>
+                <VBox fx:id="vbox_left" styleClass="pane-with-border" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Text text="Recent Contacts" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title">
+                            <VBox.margin>
+                                <Insets left="10.0" bottom="10.0"/>
+                            </VBox.margin>
+                        </Text>
+                        <StackPane fx:id="recentPersonListPanelPlaceholder" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS"/>
+                    </children>
+                </VBox>
+                <VBox fx:id="vbox_right" styleClass="pane-with-border" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Text text="Frequent Contacts" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title">
+                            <VBox.margin>
+                                <Insets left="10.0" bottom="10.0"/>
+                            </VBox.margin>
+                        </Text>
+                        <StackPane fx:id="frequentPersonListPanelPlaceholder" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS"/>
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+    </children>
+</VBox>

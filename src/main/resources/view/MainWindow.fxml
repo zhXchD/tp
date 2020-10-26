@@ -15,6 +15,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.stage.Stage?>
 
+<?import javafx.scene.layout.Pane?>
 <fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="IntelliJournal" type="javafx.stage.Stage"
          xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
@@ -41,39 +42,7 @@
                     <tabs>
                         <Tab fx:id="dashBoardTab" text="Dashboard">
                             <content>
-                                <VBox fx:id="" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
-                                    <children>
-                                        <Text text="Hello there, welcome to IntelliJournal!" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title">
-                                            <VBox.margin>
-                                                <Insets left="10.0" bottom="10.0"/>
-                                            </VBox.margin>
-                                        </Text>
-                                        <HBox fx:id="listOfRecentContactAndJournal" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-                                            <children>
-                                                <VBox fx:id="vbox_left" styleClass="pane-with-border" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
-                                                    <children>
-                                                        <Text text="Recent Contacts" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title">
-                                                            <VBox.margin>
-                                                                <Insets left="10.0" bottom="10.0"/>
-                                                            </VBox.margin>
-                                                        </Text>
-                                                        <StackPane fx:id="recentPersonListPanelPlaceholder" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS"/>
-                                                    </children>
-                                                </VBox>
-                                                <VBox fx:id="vbox_right" styleClass="pane-with-border" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
-                                                    <children>
-                                                        <Text text="Frequent Contacts" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title">
-                                                            <VBox.margin>
-                                                                <Insets left="10.0" bottom="10.0"/>
-                                                            </VBox.margin>
-                                                        </Text>
-                                                        <StackPane fx:id="frequentPersonListPanelPlaceholder" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS"/>
-                                                    </children>
-                                                </VBox>
-                                            </children>
-                                        </HBox>
-                                    </children>
-                                </VBox>
+                                <StackPane fx:id="dashboardTabPlaceHolder"/>
                             </content>
                         </Tab>
                         <Tab fx:id="addressBookTab" text="AddressBook">
