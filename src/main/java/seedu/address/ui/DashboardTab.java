@@ -29,6 +29,11 @@ public class DashboardTab extends UiPart<Region> {
     @FXML
     private Label guide;
 
+    /**
+     * Create the dashboard UI by given recent and frequent person list as {@code ObservableList<Person>}.
+     * @param recent the list of the most recent contacts
+     * @param frequent the list of the most frequent contacts
+     */
     public DashboardTab(ObservableList<Person> recent, ObservableList<Person> frequent) {
         super(FXML);
         this.title.setText("Hello there, welcome to IntelliJournal!");
@@ -38,5 +43,21 @@ public class DashboardTab extends UiPart<Region> {
         this.frequentPersonList = new PersonListPanel(frequent);
         this.recentPersonListPanelPlaceholder.getChildren().add(recentPersonList.getRoot());
         this.frequentPersonListPanelPlaceholder.getChildren().add(frequentPersonList.getRoot());
+    }
+
+    /**
+     * Returns {@code true} if another {@code Object} is the same as the current {@code DashBoardTab}.
+     * @param other the other object to check
+     * @return true if the two objects are the same
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other instanceof DashboardTab) {
+            DashboardTab otherTab = (DashboardTab) other;
+            return otherTab.recentPersonList.equals(this.recentPersonList)
+                    && otherTab.frequentPersonList.equals(this.frequentPersonList);
+        } else {
+            return false;
+        }
     }
 }
