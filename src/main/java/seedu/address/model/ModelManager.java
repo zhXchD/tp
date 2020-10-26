@@ -36,7 +36,7 @@ public class ModelManager implements Model {
             ReadOnlyAddressBook addressBook,
             ReadOnlyJournal journal,
             ReadOnlyUserPrefs userPrefs,
-            AliasMap aliasMap
+            ReadOnlyAliasMap aliasMap
     ) {
         super();
         requireAllNonNull(addressBook, journal, userPrefs);
@@ -46,7 +46,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.journal = new Journal(journal);
         this.userPrefs = new UserPrefs(userPrefs);
-        this.aliasMap = aliasMap;
+        this.aliasMap = new AliasMap(aliasMap);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredEntries = new FilteredList<>(this.journal.getEntryList());
     }

@@ -18,6 +18,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.AliasMap;
 import seedu.address.model.Journal;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -60,9 +61,9 @@ public class FindJournalEntryCommandTest {
             .build();
 
     private final Model model = new ModelManager(
-            getTypicalAddressBook(), new Journal(journal), new UserPrefs());
+            getTypicalAddressBook(), new Journal(journal), new UserPrefs(), new AliasMap());
     private final Model expectedModel = new ModelManager(
-            getTypicalAddressBook(), new Journal(journal), new UserPrefs());
+            getTypicalAddressBook(), new Journal(journal), new UserPrefs(), new AliasMap());
 
     @Nested
     @DisplayName("equals method")

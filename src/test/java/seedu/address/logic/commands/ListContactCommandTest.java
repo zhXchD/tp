@@ -10,6 +10,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.AliasMap;
 import seedu.address.model.Journal;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -26,8 +27,8 @@ public class ListContactCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new Journal(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new Journal(), new UserPrefs());
+        model = new ModelManager(getTypicalAddressBook(), new Journal(), new UserPrefs(), new AliasMap());
+        expectedModel = new ModelManager(model.getAddressBook(), new Journal(), new UserPrefs(), new AliasMap());
     }
 
     @Nested

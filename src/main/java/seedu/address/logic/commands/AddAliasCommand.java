@@ -29,6 +29,8 @@ public class AddAliasCommand extends Command {
             throw new CommandException(MESSAGE_COMMAND_INVALID);
         }
 
+        model.updateAlias(ValidCommand.getAliasMap());
+
         return new CommandResult(String.format(MESSAGE_ADD_ALIAS_SUCCEED, alias, targetCommand));
     }
 

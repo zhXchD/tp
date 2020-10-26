@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.AliasMap;
 import seedu.address.model.Journal;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -38,12 +39,14 @@ public class ClearAddressBookCommandTest {
             Model model = new ModelManager(
                     getTypicalAddressBook(),
                     new Journal(),
-                    new UserPrefs()
+                    new UserPrefs(),
+                    new AliasMap()
             );
             Model expectedModel = new ModelManager(
                     getTypicalAddressBook(),
                     new Journal(),
-                    new UserPrefs()
+                    new UserPrefs(),
+                    new AliasMap()
             );
             expectedModel.setAddressBook(new AddressBook());
 

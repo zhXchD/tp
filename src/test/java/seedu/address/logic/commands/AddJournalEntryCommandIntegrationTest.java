@@ -12,6 +12,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.AliasMap;
 import seedu.address.model.Journal;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -29,7 +30,7 @@ public class AddJournalEntryCommandIntegrationTest {
     @BeforeEach
     public void setUp() {
         model = new ModelManager(
-                getTypicalAddressBook(), new Journal(), new UserPrefs());
+                getTypicalAddressBook(), new Journal(), new UserPrefs(), new AliasMap());
         model.addEntry(
                 new EntryBuilder()
                         .withTitle(VALID_TITLE_MEETING)
@@ -48,7 +49,7 @@ public class AddJournalEntryCommandIntegrationTest {
             Entry validEntry = new EntryBuilder().build();
 
             Model expectedModel = new ModelManager(
-                    model.getAddressBook(), model.getJournal(), new UserPrefs());
+                    model.getAddressBook(), model.getJournal(), new UserPrefs(), new AliasMap());
             expectedModel.addEntry(validEntry);
 
             assertCommandSuccess(

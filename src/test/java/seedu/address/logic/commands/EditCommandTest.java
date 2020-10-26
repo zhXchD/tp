@@ -22,6 +22,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.AddressBook;
+import seedu.address.model.AliasMap;
 import seedu.address.model.Journal;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -39,7 +40,8 @@ public class EditCommandTest {
     private final Model model = new ModelManager(
             getTypicalAddressBook(),
             new Journal(),
-            new UserPrefs()
+            new UserPrefs(),
+            new AliasMap()
     );
 
     @Nested
@@ -64,7 +66,8 @@ public class EditCommandTest {
             Model expectedModel =
                     new ModelManager(new AddressBook(model.getAddressBook()),
                             new Journal(),
-                            new UserPrefs()
+                            new UserPrefs(),
+                            new AliasMap()
                     );
             expectedModel.setPerson(originalPerson, editedPerson);
 
@@ -107,7 +110,8 @@ public class EditCommandTest {
             Model expectedModel =
                     new ModelManager(new AddressBook(model.getAddressBook()),
                             new Journal(),
-                            new UserPrefs()
+                            new UserPrefs(),
+                            new AliasMap()
                     );
             expectedModel.setPerson(lastPerson, editedPerson);
 
@@ -138,7 +142,8 @@ public class EditCommandTest {
             Model expectedModel =
                     new ModelManager(new AddressBook(model.getAddressBook()),
                             new Journal(),
-                            new UserPrefs()
+                            new UserPrefs(),
+                            new AliasMap()
                     );
 
             assertCommandSuccess(
@@ -174,7 +179,8 @@ public class EditCommandTest {
             Model expectedModel =
                     new ModelManager(new AddressBook(model.getAddressBook()),
                             new Journal(),
-                            new UserPrefs()
+                            new UserPrefs(),
+                            new AliasMap()
                     );
             expectedModel.setPerson(
                     model.getFilteredPersonList().get(0),
