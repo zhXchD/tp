@@ -39,6 +39,7 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         intelliJournalParser = new IntelliJournalParser();
+        initCommandAlias();
     }
 
     /**
@@ -49,6 +50,7 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         intelliJournalParser = new IntelliJournalParser(uuid);
+        initCommandAlias();
     }
 
     @Override
@@ -69,6 +71,10 @@ public class LogicManager implements Logic {
         }
 
         return commandResult;
+    }
+
+    private void initCommandAlias() {
+        ValidCommand.update(model.getAliasMap());
     }
 
     @Override

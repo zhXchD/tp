@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.exceptions.AliasExistsException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.ReadOnlyAliasMap;
 
 
 /**
@@ -62,6 +63,16 @@ public enum ValidCommand {
                 }));
     }
 
+    /**
+     * Update the alias with given readOnlyAliasMap
+     */
+    public static void update(ReadOnlyAliasMap readOnlyAliasMap) {
+        Map<String, ValidCommand> aliasMap = readOnlyAliasMap.getAliasMap();
+
+        for (String alias: aliasMap.keySet()) {
+            ValidCommand.aliasMap.put(alias, aliasMap.get(alias));
+        }
+    }
 
     /**
      * Give the command type of a valid alias.

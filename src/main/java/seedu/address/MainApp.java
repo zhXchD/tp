@@ -153,6 +153,7 @@ public class MainApp extends Application {
                     + "file. Will be starting with a default aliases");
             initialAliasMap = new AliasMap();
         }
+
         return new ModelManager(initialAddressBook, initialJournal, userPrefs, initialAliasMap);
     }
 

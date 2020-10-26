@@ -43,6 +43,5 @@ public class JsonAliasMapStorage implements AliasMapStorage {
 
         FileUtil.createIfMissing(filePath);
         JsonUtil.saveJsonFile(new JsonAdaptedAliasMap(userAlias), filePath);
-        JsonUtil.saveJsonFile(userAlias, filePath);
     }
 }
