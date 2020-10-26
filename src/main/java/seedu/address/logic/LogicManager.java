@@ -2,13 +2,9 @@ package seedu.address.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.time.LocalDateTime;
-import java.util.Comparator;
 import java.util.UUID;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -22,8 +18,6 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.journal.Entry;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
-
-import static java.util.stream.Collectors.toList;
 
 /**
  * The main LogicManager of the app.

@@ -207,17 +207,15 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Person> getRecentPersonList() {
-        return metBeforePersons.sorted(
-            (person1, person2) ->
-                getLatestDate(person2).compareTo(getLatestDate(person1))
+        return metBeforePersons.sorted((person1, person2) ->
+            getLatestDate(person2).compareTo(getLatestDate(person1))
         );
     }
 
     @Override
     public ObservableList<Person> getFrequentPersonList() {
-        return metBeforePersons.sorted(
-                (person1, person2) ->
-                        Long.compare(getFrequency(person2), getFrequency(person1))
+        return metBeforePersons.sorted((person1, person2) ->
+            Long.compare(getFrequency(person2), getFrequency(person1))
         );
     }
 
@@ -267,7 +265,9 @@ public class ModelManager implements Model {
     private boolean hasMetBefore(Person person) {
         assert (addressBook.getPersonList().contains(person));
         for (Entry entry : journal.getEntryList()) {
-            if (entry.isRelatedTo(person)) return true;
+            if (entry.isRelatedTo(person)) {
+                return true;
+            }
         }
         return false;
     }
