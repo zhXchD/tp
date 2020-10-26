@@ -16,7 +16,7 @@ public class AddAliasCommand extends Command {
      * Creates a addAlias command.
      */
     public AddAliasCommand(String targetCommand, String alias) {
-        this.targetCommand =targetCommand;
+        this.targetCommand = targetCommand;
         this.alias = alias;
     }
 
