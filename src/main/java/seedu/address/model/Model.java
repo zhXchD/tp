@@ -132,6 +132,8 @@ public interface Model {
 
     ObservableList<Person> getRecentPersonList();
 
+    ObservableList<Person> getFrequentPersonList();
+
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      *

@@ -198,6 +198,11 @@ public class ModelManager implements Model {
         );
     }
 
+    @Override
+    public ObservableList<Person> getFrequentPersonList() {
+        return filteredPersons;
+    }
+
     /**
      * Returns an unmodifiable view of the list of {@code Journal} backed by the internal list of
      * {@code versionedAddressBook}

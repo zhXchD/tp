@@ -97,8 +97,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Entry> getRecentEntryList() {
-        return model.getJournal().getEntryList();
+    public ObservableList<Person> getFrequentPersonList() {
+        return model.getFrequentPersonList();
     }
 
     @Override

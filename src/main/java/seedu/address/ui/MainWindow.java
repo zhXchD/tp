@@ -42,7 +42,7 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
 
     private PersonListPanel recentPersonListPanel;
-    private EntryListPanel recentEntryListPanel;
+    private PersonListPanel frequentPersonListPanel;
 
 
     @FXML
@@ -73,7 +73,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane recentPersonListPanelPlaceholder;
 
     @FXML
-    private StackPane recentEntryListPanelPlaceholder;
+    private StackPane frequentPersonListPanelPlaceholder;
 
     @FXML
     private StackPane entryContentPlaceholder;
@@ -156,9 +156,9 @@ public class MainWindow extends UiPart<Stage> {
         entryContentPlaceholder.getChildren().add(entryContent.getRoot());
 
         recentPersonListPanel = new PersonListPanel(logic.getRecentPersonList());
-        recentEntryListPanel = new EntryListPanel(logic.getRecentEntryList());
+        frequentPersonListPanel = new PersonListPanel(logic.getFrequentPersonList());
         recentPersonListPanelPlaceholder.getChildren().add(recentPersonListPanel.getRoot());
-        recentEntryListPanelPlaceholder.getChildren().add(recentEntryListPanel.getRoot());
+        frequentPersonListPanelPlaceholder.getChildren().add(frequentPersonListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());

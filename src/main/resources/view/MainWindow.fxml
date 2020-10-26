@@ -66,9 +66,9 @@
                                         </Text>
                                         <HBox fx:id="listOfRecentContactAndJournal" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
                                             <children>
-                                                <VBox fx:id="vbox" styleClass="pane-with-border" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+                                                <VBox fx:id="vbox_left" styleClass="pane-with-border" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
                                                     <children>
-                                                        <Text text="Frequent Contacts" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title">
+                                                        <Text text="Recent Contacts" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title">
                                                             <VBox.margin>
                                                                 <Insets left="10.0" bottom="10.0"/>
                                                             </VBox.margin>
@@ -76,7 +76,16 @@
                                                         <StackPane fx:id="recentPersonListPanelPlaceholder" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS"/>
                                                     </children>
                                                 </VBox>
-                                                <StackPane fx:id="recentEntryListPanelPlaceholder" HBox.hgrow="ALWAYS" />
+                                                <VBox fx:id="vbox_right" styleClass="pane-with-border" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+                                                    <children>
+                                                        <Text text="Frequent Contacts" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title">
+                                                            <VBox.margin>
+                                                                <Insets left="10.0" bottom="10.0"/>
+                                                            </VBox.margin>
+                                                        </Text>
+                                                        <StackPane fx:id="frequentPersonListPanelPlaceholder" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS"/>
+                                                    </children>
+                                                </VBox>
                                             </children>
                                         </HBox>
                                     </children>

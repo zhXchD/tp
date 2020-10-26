@@ -39,7 +39,7 @@ public interface Logic {
 
     ObservableList<Person> getRecentPersonList();
 
-    ObservableList<Entry> getRecentEntryList();
+    ObservableList<Person> getFrequentPersonList();
 
     /**
      * Returns the user prefs' address book file path.
