@@ -199,16 +199,17 @@ static {
     }
 ```
 
+
 Step 2: Use a class level initializer to construct the `aliasMap`
 
 Given below is the class diagram of related part of command alias feature:
 
 ![aliasClassDiagram](images/commandAlias/aliasClassDiagram.png)
 
+
 Note:
 
 *`XYZCOMMAND` represents the enumeration element for valid commands that can be used in the system*
-
 *`ValidCommand#commandTypeOf(String commandWord)` takes in a command keyword (eg. addj, addc, findc...) and returns a `ValidCommand` which will be used by `IntelliJournalParser`*
 
 *`IntelliJournalParser#parseCommand(String UserInput)` detect the command word and pass in to the `ValidCommand#commandTypeOf(String commandWord)` to find the valid command and produce the `Command` accordingly*
