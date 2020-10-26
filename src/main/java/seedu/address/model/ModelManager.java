@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Map;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.ValidCommand;
 import seedu.address.model.journal.Entry;
 import seedu.address.model.person.Person;
 
@@ -23,6 +25,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final Journal journal;
     private final UserPrefs userPrefs;
+    private final AliasMap aliasMap;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Entry> filteredEntries;
 
@@ -32,7 +35,8 @@ public class ModelManager implements Model {
     public ModelManager(
             ReadOnlyAddressBook addressBook,
             ReadOnlyJournal journal,
-            ReadOnlyUserPrefs userPrefs
+            ReadOnlyUserPrefs userPrefs,
+            AliasMap aliasMap
     ) {
         super();
         requireAllNonNull(addressBook, journal, userPrefs);
@@ -42,12 +46,13 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.journal = new Journal(journal);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.aliasMap = aliasMap;
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredEntries = new FilteredList<>(this.journal.getEntryList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new Journal(), new UserPrefs());
+        this(new AddressBook(), new Journal(), new UserPrefs(), new AliasMap());
     }
 
     //=========== UserPrefs ====================================================
@@ -158,6 +163,12 @@ public class ModelManager implements Model {
     public void deleteEntry(Entry entry) {
         requireNonNull(entry);
         journal.removeEntry(entry);
+    }
+
+    @Override
+    public void updateAlias(Map<String, ValidCommand> map) {
+        requireNonNull(map);
+        aliasMap.updateMap(map);
     }
 
     @Override

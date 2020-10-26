@@ -3,7 +3,7 @@ package seedu.address.storage;
 import java.io.IOException;
 import java.nio.file.Path;
 
-import seedu.address.model.ReadOnlyUserAlias;
+import seedu.address.model.ReadOnlyAliasMap;
 
 /**
  * Represents the storage for user alias.
@@ -16,17 +16,17 @@ public interface UserAliasStorage {
     Path getUserAliasFilePath();
 
     /**
-     * Saves the given {@link seedu.address.model.ReadOnlyUserAlias} to the storage.
+     * Saves the given {@link ReadOnlyAliasMap} to the storage.
      * @param userAlias cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveUserAlias(ReadOnlyUserAlias userAlias) throws IOException;
+    void saveUserAlias(ReadOnlyAliasMap userAlias) throws IOException;
 
     /**
-     * Saves the {@link seedu.address.model.ReadOnlyUserAlias} to the storage
+     * Saves the {@link ReadOnlyAliasMap} to the storage
      * @param userAlias cannot be null.
      * @throws IOException if there was any problem writing to the file
      */
-    void saveUserAlias(ReadOnlyUserAlias userAlias, Path aliasPath) throws IOException;
+    void saveUserAlias(ReadOnlyAliasMap userAlias, Path aliasPath) throws IOException;
 }
 
