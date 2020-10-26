@@ -39,6 +39,7 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         intelliJournalParser = new IntelliJournalParser();
+        initCommandAlias();
     }
 
     /**
@@ -49,6 +50,7 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         intelliJournalParser = new IntelliJournalParser(uuid);
+        initCommandAlias();
     }
 
     @Override
@@ -63,11 +65,16 @@ public class LogicManager implements Logic {
         try {
             storage.saveAddressBook(model.getAddressBook());
             storage.saveJournal(model.getJournal());
+            storage.saveAliasMap(model.getAliasMap());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
 
         return commandResult;
+    }
+
+    private void initCommandAlias() {
+        ValidCommand.update(model.getAliasMap());
     }
 
     @Override

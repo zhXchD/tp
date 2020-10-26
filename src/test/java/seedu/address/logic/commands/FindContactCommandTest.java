@@ -15,6 +15,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.AliasMap;
 import seedu.address.model.Journal;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -27,9 +28,9 @@ import seedu.address.model.person.Person;
  */
 class FindContactCommandTest {
     private final Model model = new ModelManager(
-            getTypicalAddressBook(), new Journal(), new UserPrefs());
+            getTypicalAddressBook(), new Journal(), new UserPrefs(), new AliasMap());
     private final Model expectedModel = new ModelManager(
-            getTypicalAddressBook(), new Journal(), new UserPrefs());
+            getTypicalAddressBook(), new Journal(), new UserPrefs(), new AliasMap());
     @Nested
     @DisplayName("equals method")
     class Equals {

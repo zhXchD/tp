@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.journal.exceptions.ContactNotInListException;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.tag.Tag;
@@ -121,12 +122,18 @@ public class Entry {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
+        // TODO: Come up with a better way to format contacts
         builder.append(getTitle())
                 .append(" Date and time: ")
                 .append(getDate())
                 .append(" Description: ")
                 .append(getDescription())
-                .append(" Contacts: ");
+                .append(" Contacts: ")
+                .append(getContactList()
+                        .stream()
+                        .map(Person::getName)
+                        .map(Name::toString)
+                        .collect(Collectors.joining(", ")));
         return builder.toString();
     }
 

@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -6,7 +6,9 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.exceptions.AliasExistsException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.ReadOnlyAliasMap;
 
 
 /**
@@ -20,7 +22,8 @@ public enum ValidCommand {
     CLEAR_ADDRESS_BOOK("clearc", "cc"),
     DELETE_CONTACT("deletec", "delc"),
     DELETE_JOURNAL_ENTRY("deletej", "delj"),
-    EDIT("edit", "ed"),
+    EDIT_CONTACT("editc", "edc"),
+    EDIT_JOURNAL_ENTRY("editj", "edj"),
     FIND("find", "f"),
     EXIT("exit", "quit", "q"),
     HELP("help", "h"),
@@ -28,7 +31,8 @@ public enum ValidCommand {
     LIST_JOURNAL_ENTRY("listj", "lj"),
     SWITCH("switch", "swt"),
     VIEW("view", "v"),
-    CHECK_SCHEDULE("check", "ck");
+    CHECK_SCHEDULE("check", "ck"),
+    ADD_ALIAS("alias", "al");
 
     private static final Logger logger = LogsCenter.getLogger(ValidCommand.class);
 
@@ -37,10 +41,19 @@ public enum ValidCommand {
      */
     private static final Map<String, ValidCommand> aliasMap = new HashMap<>();
 
+    static {
+        Arrays.stream(ValidCommand.values()).forEach(command -> Arrays.stream(command.aliases)
+                .forEach(alias -> {
+                    assert aliasMap.get(alias) == null;
+                    aliasMap.put(alias, command);
+                }));
+    }
+
     /**
      * Valid alias for the commands
      */
     private final String[] aliases;
+
 
     /**
      * Creates command alias from aliases list.
@@ -51,13 +64,15 @@ public enum ValidCommand {
         this.aliases = aliases;
     }
 
+    /**
+     * Update the alias with given readOnlyAliasMap
+     */
+    public static void update(ReadOnlyAliasMap readOnlyAliasMap) {
+        Map<String, ValidCommand> aliasMap = readOnlyAliasMap.getAliasMap();
 
-    static {
-        Arrays.stream(ValidCommand.values()).forEach(command -> Arrays.stream(command.aliases)
-                .forEach(alias -> {
-                    assert aliasMap.get(alias) == null;
-                    aliasMap.put(alias, command);
-                }));
+        for (String alias: aliasMap.keySet()) {
+            ValidCommand.aliasMap.put(alias, aliasMap.get(alias));
+        }
     }
 
     /**
@@ -76,16 +91,25 @@ public enum ValidCommand {
     }
 
     //TODO: If we need to support this functionality, we need to find a way to store the user preference of alias.
+
     /**
      * Add a new {@code alias} to a valid command.
      */
-    public static void addAlias(ValidCommand command, String alias) {
+    public static void addAlias(ValidCommand command, String alias) throws AliasExistsException {
         assert command != null;
         assert alias != null && !alias.equals("");
+
+        if (aliasMap.containsKey(alias)) {
+            throw new AliasExistsException();
+        }
 
         aliasMap.put(alias, command);
 
         logger.info("Map the alias " + alias + " to " + command.toString());
+    }
+
+    public static Map<String, ValidCommand> getAliasMap() {
+        return aliasMap;
     }
 }
 

@@ -21,8 +21,8 @@ import seedu.address.logic.commands.ClearJournalCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteContactCommand;
 import seedu.address.logic.commands.DeleteJournalEntryCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditContactCommand;
+import seedu.address.logic.commands.EditContactCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindContactCommand;
 import seedu.address.logic.commands.FindJournalEntryCommand;
@@ -114,13 +114,13 @@ public class IntelliJournalParserTest {
             Person person = new PersonBuilder().build();
             EditPersonDescriptor descriptor =
                     new EditPersonDescriptorBuilder(person).build();
-            EditCommand command = (EditCommand) parser.parseCommand(
-                    EditCommand.COMMAND_WORD + " "
+            EditContactCommand command = (EditContactCommand) parser.parseCommand(
+                    EditContactCommand.COMMAND_WORD + " "
                             + INDEX_FIRST_PERSON.getOneBased() + " "
                             + PersonUtil.getEditPersonDescriptorDetails(
                             descriptor));
             assertEquals(
-                    new EditCommand(INDEX_FIRST_PERSON, descriptor),
+                    new EditContactCommand(INDEX_FIRST_PERSON, descriptor),
                     command
             );
         }

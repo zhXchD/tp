@@ -7,8 +7,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.ValidCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+
 
 public class HelpCommandTest {
     private final Model model = new ModelManager();

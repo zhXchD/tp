@@ -205,10 +205,10 @@ Given below is the class diagram of related part of command alias feature:
 
 ![aliasClassDiagram](images/commandAlias/aliasClassDiagram.png)
 
+
 Note:
 
 *`XYZCOMMAND` represents the enumeration element for valid commands that can be used in the system*
-
 *`ValidCommand#commandTypeOf(String commandWord)` takes in a command keyword (eg. addj, addc, findc...) and returns a `ValidCommand` which will be used by `IntelliJournalParser`*
 
 *`IntelliJournalParser#parseCommand(String UserInput)` detect the command word and pass in to the `ValidCommand#commandTypeOf(String commandWord)` to find the valid command and produce the `Command` accordingly*
@@ -311,7 +311,140 @@ to show the help window if the `isShowHelpWindow` is `true`. Or it will return a
 The following sequence diagrams show how the help command works:
 ![HelpSequenceDiagram](images/HelpSequenceDiagram.png)
 
+### Edit journal entry feature
 
+The `editj` command of IntelliJournal allows users to modify the details of previously entered journal entries.
+
+#### Current Implementation
+
+Similar to the existing `editc` and `addj` commands, the `EditJournalEntryParser` makes use of `ParserUtil` to split up user input into arguments, which are then used to create an `EditEntryDescriptor` that contains the details of the journal properties to be edited.
+
+`EditEntryDescriptor` contains setter methods used to add fields that are changed, and getter methods which return `Optional` objects for use in the `createEditedEntry` method of `EditJournalEntryCommand`. If attributes have not been set for an `EditEntryDescriptor`, they are returned as `Optional.empty()` which is used to create the new edited entry with only the specified attributes modified.
+
+The following sequence diagram shows how the edit command works:
+![EditJournalSequenceDiagram](images/EditJournalSequenceDiagram.png)
+
+
+
+### Tab navigation feature
+
+IntelliJournal has two tabs for different information to display, one tab for `Addressbook`
+and another for `Journal`. The implementation of the tab UI is not the focus in this
+section, under this section, it is described how commands navigates from tab to tab.
+
+#### Current Implementation
+
+The current implementation is to keep track of `boolean` variables under `CommandResult`
+class. In `MainWindow`, when `Logic` executes a command, the returned `CommandResult` will specify the
+tab navigation behaviours of the executed command, and therefore `MainWindow` can
+make `Ui` changes to IntelliJournal and complete the tab navigation.
+
+`CommandResult` implements the following methods to specify tab navigation behaviors.
+* `public boolean isAddressBookTab()` - Returns `true` if the command needs to
+display the `AddressBook` tab, returns `false` is the command needs to display
+the `Journal` tab.
+*  `public boolean isSwitch()` - Returns `true` if the command requires to switch
+the current displaying tab to the other.
+* `public boolean isSameTab()` - Reuturns `true` if the command requires to remain
+the current displaying tab.
+
+In `Command` classes, the `execute(Model model)` method returns a `CommandResult`
+object. We assume the object to return is `commandResult` which does not have any
+specifications on tab navigation behavior. In order to specify the tab navigation
+behavior, one can call methods of `CommandResult` and return the following objects
+instead.
+* `commandResult.setAddressBookTab()` - Specifies the returned `CommandResult` to
+navigate to `AddressBook` tab (i.e. `isAddressBookTab()` of the returned object
+returns `true`).
+* `commandResult.setJournalTab()` - Specifies the returned `CommandResult` to
+navigate to `Journal` tab (i.e. `isAddressBookTab()` of the returned object returns
+`false`).
+* `commandResult.setSwitch()` - Specifies the returned `CommandResult` to switch the
+current displaying tab to the other tab (i.e. `isSwitch()` returns `false`).
+* `commandResult.setSameTab()` - Specifies the returned `CommandResult` to say on
+the same displaying tab as before the execution of the current command (i.e.
+`isSameTab()` returns `true`).
+
+In `MainWindow#executeCommand`, the method will examine the returned `CommandResult`
+object after `Logic` executes the command. The activity diagram below shows how
+`MainWindow#executeCommand` handles tab navigation.
+
+![MainWindowTabNavigationActivity](images/MainWindowTabNavigationActivityDiagram.png)
+
+### Check schedule feature
+
+IntelliJournal allows for users to check all journal entries for a given day,
+allowing them to check their schedule for the given day.
+
+#### Current Implementation
+
+The current implementation makes use of the `CheckScheduleCommandParser` as well
+as the `CheckScheduleCommand` classes. When `AddressBookParser` parses the
+command and finds the `check` command, the rest of the command is passed into
+the `CheckScheduleCommandParser`, where the rest of the command is parsed.
+
+If the rest of the command is empty, the command is parsed as though we are
+using the local date of the machine. Otherwise, if the rest of the command is
+not a valid date, we throw an error.
+
+The activity diagram for the parsing of command is given below.
+
+![CheckScheduleActivityDiagram](images/CheckScheduleActivityDiagram.png)
+
+The following sequence diagrams show how the check schedule command works:
+
+![CheckScheduleSequenceDiagram](images/CheckScheduleSequenceDiagram.png)
+
+In `MainWindow#executeCommand`, the returned `CommandResult` will then set the
+tab back to the journal tab if the user is viewing the AddressBook tab.
+
+### Help feature
+The `help` command of IntelliJournal allows users to check the usage of a specific
+command, or get the link to the User Guide for the usage of all commands.
+#### Current Implementation
+In the current version of IntelliJournal, the help feature is implemented with
+both `HelpCommand` and `HelpCommandParser`. If the user input starts with `help`,
+the `AddressBookParser` will catch it and pass the rest input into `HelpCommandParser`.
+
+Within the `HelpCommandParser`, there are mainly 3 execution path:
+1. If the argument starts with `of/` prefix, it will parse the argument behind `of/` to a
+`ValidCommand`, and return a HelpCommand with the `ValidCommand`.
+2. If the argument is empty, it will return a `HelpCommand` with the boolean term
+`isShowHelpWindow` set to be `true`.
+3. Else, it will throw an `ParseException`.
+
+Back to `HelpCommand`, it will choose return a `CommandResult` which can make `MainWindow`
+to show the help window if the `isShowHelpWindow` is `true`. Or it will return a
+`CommandResult` which could print the usage of a certain valid command into result box.
+
+The following sequence diagrams show how the help command works:
+![HelpSequenceDiagram](images/HelpSequenceDiagram.png)
+
+### Edit journal feature
+#### Current Implementation
+
+The current implementation of editing journal entries follows closely to the same process of editing contacts. Fields supplied as arguments are used to create an `EditJournalEntryDescriptor`, which are used to create a new `Entry` object by taking attributes from the `EditJournalEntryDescriptor` and using the original attributes from the `Entry` being edited in place of any null attributes in the `EditJournalEntryDescriptor`.
+
+```
+Title updatedTitle = editEntryDescriptor.getTitle().orElse(entryToEdit.getTitle());
+```
+In this snippet from `createEditedEntry`, `getTitle()` returns an `Optional<Title>` which is used to determine if the new `Entry` should use the previous' attribute or not. For `Title`, `Date`, and `Description`, this same approach is used.
+
+For the tags and contact list, defensive copies of the tags and contact list are made when creating the
+ `EditJournalDescriptor` object. Similarly to how the list of tags are replaced by the arguments passed when editing `Person` in `EditContactCommand`, the `UniquePersonList` used to store contacts in an `Entry` will also be replaced with the contact list provided when calling `EditJournalEntryCommand`.
+
+The respective setters' implementations are shown below.
+```
+public void setContactList(UniquePersonList contactList) {
+    this.contactList = new UniquePersonList();
+    contactList.forEach(this.contactList::add);
+}
+
+public void setTags(Set<Tag> tags) {
+    this.tags = (tags != null) ? new HashSet<>(tags) : null;
+}
+```
+Note that a new `UniquePersonList` is created whenever `setContactList` is called, rather than to simply check if `contactList` is null like in `setTags`.
 
 ### \[Proposed\] Undo/redo feature
 

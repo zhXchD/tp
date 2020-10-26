@@ -1,14 +1,21 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
+
 import com.jfoenix.controls.JFXListCell;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextArea;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import seedu.address.MainApp;
 import seedu.address.model.journal.Entry;
 import seedu.address.model.person.Person;
 
@@ -34,6 +41,12 @@ public class EntryContent extends UiPart<Region> {
     private JFXTextArea description;
     @FXML
     private JFXListView<Person> relatedPersonListView;
+    @FXML
+    private ImageView calendar;
+    @FXML
+    private Label date;
+    @FXML
+    private FlowPane tags;
 
     /**
      * Creates a {@code EntryContent} containing no {@code Entry} temporarily.
@@ -41,15 +54,22 @@ public class EntryContent extends UiPart<Region> {
     public EntryContent() {
         super(FXML);
         this.entry = null;
+        this.calendar.setImage(getImage("/images/calendar_1.png"));
         emptyRelatedListText.getStyleClass().add("text-empty-list");
         relatedPersonListView.setCellFactory(listView -> new PersonListViewCell());
         setDefaultContent();
+    }
+
+    private Image getImage(String imagePath) {
+        return new Image(MainApp.class.getResourceAsStream(imagePath));
     }
 
     private void setDefaultContent() {
         title.setText("");
         relatedListPane.getChildren().setAll(emptyRelatedListText);
         description.setText("Please select a Journal Entry...");
+        date.setText("");
+        tags.getChildren().clear();
     }
 
     private void setContent(Entry entry) {
@@ -61,6 +81,11 @@ public class EntryContent extends UiPart<Region> {
             relatedListPane.getChildren().setAll(relatedPersonListView);
         }
         description.setText(entry.getDescription().description);
+        date.setText(entry.getDate().value);
+        tags.getChildren().clear();
+        entry.getTags().stream()
+            .sorted(Comparator.comparing(tag -> tag.tagName))
+            .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     /**
@@ -86,7 +111,6 @@ public class EntryContent extends UiPart<Region> {
      */
     class PersonListViewCell extends JFXListCell<Person> {
         {
-            setPrefHeight(50.0);
             setPrefWidth(250.0);
         }
 

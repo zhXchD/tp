@@ -49,6 +49,7 @@ public class EntryBuilder {
         contactList = new UniquePersonList();
         entryToCopy.getContactList()
                 .forEach(contactList::add);
+        tags = new HashSet<>();
         tags.addAll(entryToCopy.getTags());
     }
 
