@@ -124,6 +124,7 @@ public class ModelManager implements Model {
         requireNonNull(target);
         addressBook.removePerson(target);
         journal.removeAssociateEntryContact(target);
+        metBeforePersons.setPredicate(this::hasMetBefore);
     }
 
     @Override
@@ -138,11 +139,13 @@ public class ModelManager implements Model {
     @Override
     public void clearJournalContacts() {
         journal.clearContacts();
+        metBeforePersons.setPredicate(this::hasMetBefore);
     }
 
     @Override
     public void setJournal(ReadOnlyJournal journal) {
         this.journal.resetData(journal);
+        metBeforePersons.setPredicate(this::hasMetBefore);
     }
 
     @Override
@@ -174,6 +177,7 @@ public class ModelManager implements Model {
     public void deleteEntry(Entry entry) {
         requireNonNull(entry);
         journal.removeEntry(entry);
+        metBeforePersons.setPredicate(this::hasMetBefore);
     }
 
     @Override
@@ -192,6 +196,7 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedEntry);
 
         journal.setEntry(target, editedEntry);
+        metBeforePersons.setPredicate(this::hasMetBefore);
     }
 
     //=========== Filtered Person List Accessors =============================================================
