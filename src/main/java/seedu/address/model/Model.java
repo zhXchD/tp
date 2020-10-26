@@ -1,10 +1,12 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Map;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.ValidCommand;
 import seedu.address.model.journal.Entry;
 import seedu.address.model.person.Person;
 
@@ -112,6 +114,16 @@ public interface Model {
      * @param entry Target entry to delete.
      */
     void deleteEntry(Entry entry);
+
+    /**
+     * Update the alias with a given map.
+     */
+    void updateAlias(Map<String, ValidCommand> map);
+
+    /**
+     * Returns the aliasMap
+     */
+    ReadOnlyAliasMap getAliasMap();
 
     /**
      * Replaces the given entry {@code target} with {@code description}
