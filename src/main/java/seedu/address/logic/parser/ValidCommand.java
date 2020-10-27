@@ -1,4 +1,4 @@
-package seedu.address.logic;
+package seedu.address.logic.parser;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.exceptions.AliasExistsException;
+import seedu.address.logic.parser.exceptions.AliasExistsException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAliasMap;
 
