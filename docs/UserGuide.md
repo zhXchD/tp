@@ -346,17 +346,11 @@ Aliases: `switch`, `swt`
 
 Format: `switch`
 
-#### Exiting the program: `exit`
-
-Aliases: `exit`, `quit`, `q`
-
-Exits the program.
-
-Format: `exit`
-
-#### Adding shortcuts for existing commands: `alias`
+#### Adding aliases for existing commands: `alias`
 
 Adds your preferred shortcut for existing commands.
+
+Aliases: `alias`
 
 Format: `alias TARGET ALIAS`
 
@@ -383,6 +377,14 @@ Example:
   different commands.
   <br>Eg. If `st` has been added to the system, it will confuse IntelliJournal
   if you ask it to add `st` as a valid alias for `check` or other command.
+
+#### Exiting the program: `exit`
+
+Aliases: `exit`, `quit`, `q`
+
+Exits the program.
+
+Format: `exit`
 
 #### Saving the data
 
@@ -626,6 +628,10 @@ IntelliJournal home folder.
         </tr>
         <tr>
             <td><code>swt</code></td>
+        </tr>
+        <tr>
+            <td><b>Adding aliases for existing commands</b></td>
+            <td><code>alias TARGET ALIAS</code></td>
         </tr>
         <tr>
             <td rowspan="3"><b>Exiting the program</b></td>
