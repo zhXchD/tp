@@ -1,7 +1,7 @@
 package seedu.address.model;
 
 import javafx.collections.ObservableMap;
-import seedu.address.logic.ValidCommand;
+import seedu.address.logic.parser.ValidCommand;
 
 public interface ReadOnlyAliasMap {
 

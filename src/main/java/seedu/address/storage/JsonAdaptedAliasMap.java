@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.HashMap;
 
-import seedu.address.logic.ValidCommand;
+import seedu.address.logic.parser.ValidCommand;
 import seedu.address.model.AliasMap;
 import seedu.address.model.ReadOnlyAliasMap;
 
