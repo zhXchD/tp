@@ -15,6 +15,7 @@ import seedu.address.model.journal.Entry;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
+//@@author {zhXchD}
 /**
  * Adds a person to the address book.
  */

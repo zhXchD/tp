@@ -10,6 +10,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
+//@@author {zhXchD}
 /**
  * Views a person at specified index in the current list displayed.
  */
