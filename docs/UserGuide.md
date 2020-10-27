@@ -299,6 +299,34 @@ Exits the program.
 
 Format: `exit`
 
+### Create and use shortcut for your frequent use command: `alias`
+
+*Alias: A shortcut for an existing command*
+
+Format: `alias TARGET ALIAS` 
+
+`TARGET`: Existing command or alias in the IntelliJournal.
+
+`ALIAS`: The personalized shortcut you want to add into the system.
+
+Example:
+
+- `alias switch st` ---  This will add `st` as a valid shortcut for command `switch`.
+- `alias addj j` --- This will add `j` as a valid shortcut for command `addj`
+
+**Note**: 
+
+- We have provided some default shortcuts which can be found in [Default Alias Section](#Default alias), you can use 
+`alias` command to add your personalized command alias.
+
+- You can add a shortcut according to existing shortcut. eg. If you have added `st` as a shortcut for `switch`, you can 
+use `alias st si`. You will add `si` as a valid alias for switch as well. 
+
+- **Warning**: IntelliJournal will not be able to have one alias to two different commands. eg. If `st` has been added 
+to the system, it will confuse the IntelliJournal if you ask it to add `st` as a valid alias for `check` or other command.
+
+
+
 ### Saving the data
 
 IntelliJournal data is saved in the hard disk automatically after any command
@@ -314,6 +342,7 @@ it creates with the file that contains the data of your previous
 IntelliJournal home folder.
 
 ---
+## Default alias
 
 ## Command Summary
 

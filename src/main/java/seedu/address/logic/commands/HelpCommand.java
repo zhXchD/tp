@@ -1,6 +1,6 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.ValidCommand;
+import seedu.address.logic.parser.ValidCommand;
 import seedu.address.model.Model;
 
 /**

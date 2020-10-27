@@ -1,4 +1,4 @@
-package seedu.address.logic.exceptions;
+package seedu.address.logic.parser.exceptions;
 
 public class AliasExistsException extends RuntimeException {
     public AliasExistsException() {

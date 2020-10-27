@@ -12,6 +12,7 @@ import seedu.address.logic.commands.ViewJournalEntryCommand;
 import seedu.address.logic.commands.ViewPersonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+//@@author {zhXchD}
 /**
  * Parses input arguments and creates a new ViewCommand object
  */
