@@ -12,6 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.journal.Entry;
 import seedu.address.model.person.Person;
 
+//@@author {zhXchD}
 /**
  * Deletes a person identified using it's displayed index from the address book.
  */

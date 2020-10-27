@@ -19,6 +19,7 @@ import seedu.address.model.journal.Title;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.tag.Tag;
 
+//@@author {zhXchD}
 /**
  * Parses input arguments and creates a new AddContactCommand object
  */
