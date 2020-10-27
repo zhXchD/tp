@@ -45,7 +45,7 @@
                                 <StackPane fx:id="dashboardTabPlaceHolder"/>
                             </content>
                         </Tab>
-                        <Tab fx:id="addressBookTab" text="AddressBook">
+                        <Tab fx:id="addressBookTab" text="Contacts">
                             <content>
                                 <HBox HBox.hgrow="ALWAYS">
                                     <StackPane fx:id="personListPanelPlaceholder" prefWidth="250.0"/>
