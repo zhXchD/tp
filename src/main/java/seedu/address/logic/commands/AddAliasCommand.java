@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.ValidCommand;
 import seedu.address.logic.parser.exceptions.AliasExistsException;
@@ -19,6 +21,7 @@ public class AddAliasCommand extends Command {
      * Creates a addAlias command.
      */
     public AddAliasCommand(String targetCommand, String alias) {
+        requireAllNonNull(targetCommand, alias);
         this.targetCommand = targetCommand;
         this.alias = alias;
     }
