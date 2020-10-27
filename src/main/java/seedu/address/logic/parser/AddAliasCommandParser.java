@@ -14,7 +14,7 @@ public class AddAliasCommandParser implements Parser<AddAliasCommand> {
             throw new ParseException(MESSAGE_WRONG_INPUT_FORMAT);
         }
 
-        String[] commandAliasPair = userInput.substring(1, userInput.length()).split("\\s+");
+        String[] commandAliasPair = userInput.trim().split("\\s+");
 
         if (commandAliasPair.length != 2) {
             throw new ParseException(MESSAGE_WRONG_INPUT_FORMAT);

@@ -57,7 +57,7 @@ public class IntelliJournalParser {
         }
 
         final String commandWord = matcher.group("commandWord");
-        final String arguments = removeSpace(matcher.group("arguments"));
+        final String arguments = matcher.group("arguments");
 
 
         ValidCommand command = ValidCommand.commandTypeOf(commandWord);
@@ -121,19 +121,5 @@ public class IntelliJournalParser {
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
-    }
-
-    /**
-     * Remove the additional space between argument and
-     */
-    private String removeSpace(String s) throws ParseException {
-
-        for (int i = 0; i < s.length() - 1; i++) {
-            if (s.charAt(i) == ' ' && s.charAt(i + 1) != ' ') {
-                return s.substring(i, s.length());
-            }
-        }
-
-        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
     }
 }
