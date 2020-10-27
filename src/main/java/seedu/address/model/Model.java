@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.ValidCommand;
+import seedu.address.logic.parser.ValidCommand;
 import seedu.address.model.journal.Entry;
 import seedu.address.model.person.Person;
 
@@ -147,6 +147,10 @@ public interface Model {
      * Returns an unmodifiable view of the filtered journal list
      */
     ObservableList<Entry> getFilteredEntryList();
+
+    ObservableList<Person> getRecentPersonList();
+
+    ObservableList<Person> getFrequentPersonList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
