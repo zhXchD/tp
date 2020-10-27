@@ -23,7 +23,7 @@ public class Date {
 
     public final String value;
 
-    private final LocalDateTime date;
+    public final LocalDateTime date;
 
     /**
      * Creates an instance of date to represent the date of the entry.
@@ -33,7 +33,7 @@ public class Date {
     public Date(LocalDateTime date) {
         requireNonNull(date);
         this.date = date.truncatedTo(ChronoUnit.MINUTES);
-        this.value = date.toString();
+        this.value = date.format(VALID_FORMATTER);
     }
 
     /**

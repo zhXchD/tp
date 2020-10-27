@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.model.Journal;
 import seedu.address.model.Model;
 
+//@@author {zhXchD}
 /**
  * Clears the address book.
  */

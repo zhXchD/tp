@@ -7,7 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.ValidCommand;
+import seedu.address.logic.parser.ValidCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 
