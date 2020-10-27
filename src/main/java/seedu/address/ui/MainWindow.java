@@ -41,6 +41,8 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
+    private DashboardTab dashboardTab;
+
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -65,6 +67,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane entryListPanelPlaceholder;
+
+    @FXML
+    private StackPane dashboardTabPlaceHolder;
 
     @FXML
     private StackPane entryContentPlaceholder;
@@ -146,6 +151,9 @@ public class MainWindow extends UiPart<Stage> {
         entryContent = new EntryContent();
         entryContentPlaceholder.getChildren().add(entryContent.getRoot());
 
+        dashboardTab = new DashboardTab(logic.getRecentPersonList(), logic.getFrequentPersonList());
+        dashboardTabPlaceHolder.getChildren().add(dashboardTab.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -202,10 +210,6 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
-    }
-
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
     }
 
     /**
@@ -265,8 +269,8 @@ public class MainWindow extends UiPart<Stage> {
 
     private void handleSwapTabs() {
         SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
-        int selected = selectionModel.getSelectedIndex();
-        selectionModel.select(1 - selected);
+        int selectedIndex = selectionModel.getSelectedIndex();
+        selectionModel.select((selectedIndex + 1) % 3);
     }
 
     private void handleViewingJournal() {
