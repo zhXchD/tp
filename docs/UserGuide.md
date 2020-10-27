@@ -31,8 +31,7 @@ as well as location information faster than traditional GUI apps.
 
 1. Double-click the file to start the app. The GUI similar to the below should
    appear in a few seconds. The app will start with the dashboard tab, which shows
-   you the list of recent contacts (sorted by the latest date you met them) and
-   the list of frequent contacts (sorted by the frequency you met them). You can
+   you the list of recent contacts and the list of frequent contacts. You can
    also navigate to the other two tabs, which will look like the second and third
    screenshots below.<br>
    ![Ui](images/Ui-dashboard.png)
@@ -136,9 +135,10 @@ Format: `editc INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 Examples:
 
 * `editc 1 p/91234567 e/johndoe@example.com` Edits the phone number and email
-   address of the 1st person to be 91234567 and johndoe@example.com respectively.
-* `editc 2 n/Betsy Crower t/` Edits the name of the 2nd person to be Betsy
-   Crower and clears all existing tags.
+   address of the 1st person to be `91234567` and `johndoe@example.com`
+   respectively.
+* `editc 2 n/Betsy Crower t/` Edits the name of the 2nd person to be
+  `Betsy Crower` and clears all existing tags.
 
 #### Viewing a contact: `view in/c`
 
@@ -167,13 +167,13 @@ Format: `find in/c [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS] [e/EMAIL_KEYWORDS]
 
 Examples:
 
-* `find in/c n/Alice` Finds all contacts whose name contains "Alice".
-* `find in/n n/Alice p/65` Find all contacts whose name contains "Alice" and
-  phone number contains "65".
+* `find in/c n/Alice` Finds all contacts whose name contains `Alice`.
+* `find in/n n/Alice p/65` Find all contacts whose name contains `Alice` and
+  phone number contains `65`.
 * `find in/c n/Alice p/65 e/@u.nus.edu a/RC4 t/Student`<br>
-  Find all contacts whose name contains "Alice" and phone number contains "65"
-  and email contains "@u.nus.edu" and address name contains "RC4" and tagged
-  "Student"<br>
+  Find all contacts whose name contains `Alice` and phone number contains `65`
+  and email contains `@u.nus.edu` and address name contains `RC4` and tagged
+  `Student`<br>
   (Note that for `TAG`, IntelliJournal searches for the exact same tag instead
   of finding the ones that contain the searched string).
 
@@ -281,11 +281,11 @@ Format: `find in/j [n/TITLE_KEYWORDS] [at/DATE_AND_TIME]
 Examples:
 
 * `find in/j n/Meeting` Finds all journal entries with a title containing
-  "Meeting".
+  `Meeting`.
 * `find in/j n/Meeting d/plan for 2021 with/Alice t/Meeting at/2020-10-10 15:00`
-  <br>Finds all journal entries that have a title containing "Meeting", a
-  description containing "plan for 2021", with a contact whose name contains
-  "Alice", tagged "Meeting", and happening on Oct 10, 2020, 3pm.
+  <br>Finds all journal entries that have a title containing `Meeting`, a
+  description containing `plan for 2021`, with a contact whose name contains
+  `Alice`, tagged `Meeting`, and happening on Oct 10, 2020, 3pm.
 
 #### Checking schedule: `check`
 
