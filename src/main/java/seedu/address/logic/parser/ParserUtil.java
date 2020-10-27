@@ -10,7 +10,6 @@ import java.util.UUID;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.ValidCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.journal.Date;
 import seedu.address.model.journal.Description;
@@ -63,6 +62,7 @@ public class ParserUtil {
         return new Name(trimmedName);
     }
 
+    //@@author {zhXchD}
     /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
@@ -93,6 +93,7 @@ public class ParserUtil {
         return new Phone(trimmedPhone);
     }
 
+    //@@author {zhXchD}
     /**
      * Parses a {@code Optional<String> phone} into an {@code Phone}.
      *
@@ -122,6 +123,7 @@ public class ParserUtil {
         return new Address(trimmedAddress);
     }
 
+    //@@author {zhXchD}
     /**
      * Parses a {@code Optional<String> address} into an {@code Address}.
      *
@@ -150,6 +152,7 @@ public class ParserUtil {
         return new Email(trimmedEmail);
     }
 
+    //@@author {zhXchD}
     /**
      * Parses a {@code Optional<String> email} into an {@code Email}.
      *
@@ -215,6 +218,7 @@ public class ParserUtil {
         return personList;
     }
 
+    //@@author {zhXchD}
     /**
      * Parses {@code String date} into a {@code Date}.
      * @param date a {@String} to be parsed
@@ -228,6 +232,7 @@ public class ParserUtil {
         return new Date(date);
     }
 
+    //@@author {zhXchD}
     /**
      * Parses description string into Description.
      * @param description the string to parse
@@ -241,6 +246,7 @@ public class ParserUtil {
         return new Description(description);
     }
 
+    //@@author {zhXchD}
     /**
      * Parses string into scope.
      * @param scope a string specified a certain scope

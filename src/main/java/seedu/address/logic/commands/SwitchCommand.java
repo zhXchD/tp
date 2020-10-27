@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.model.Model;
 
+//@@author {zhXchD}
 public class SwitchCommand extends Command {
     public static final String COMMAND_WORD = "switch";
 

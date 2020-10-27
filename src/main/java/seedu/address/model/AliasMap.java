@@ -4,7 +4,7 @@ import java.util.Map;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableMap;
-import seedu.address.logic.ValidCommand;
+import seedu.address.logic.parser.ValidCommand;
 
 public class AliasMap implements ReadOnlyAliasMap {
 
