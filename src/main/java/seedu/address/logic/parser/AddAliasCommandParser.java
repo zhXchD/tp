@@ -5,14 +5,11 @@ import seedu.address.logic.parser.exceptions.ParseException;
 
 public class AddAliasCommandParser implements Parser<AddAliasCommand> {
 
-    private static final String MESSAGE_WRONG_INPUT_FORMAT = "Wrong input format. Input format:  "
+    private static final String MESSAGE_WRONG_INPUT_FORMAT = "Your input format is not correct\n. Input format:  "
             + "alias [COMMAND] [CUSTOMIZED_ALIAS]";
 
     @Override
     public AddAliasCommand parse(String userInput) throws ParseException {
-        if (userInput.equals("")) {
-            throw new ParseException(MESSAGE_WRONG_INPUT_FORMAT);
-        }
 
         String[] commandAliasPair = userInput.trim().split("\\s+");
 
