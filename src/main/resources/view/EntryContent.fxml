@@ -38,7 +38,7 @@
                 <Insets left="10.0" right="10.0" />
             </VBox.margin>
         </HBox>
-        <StackPane fx:id="relatedListPane" prefHeight="125.0" styleClass="pane-with-border" VBox.vgrow="NEVER">
+        <StackPane fx:id="relatedListPane" prefHeight="135.0" styleClass="pane-with-border" VBox.vgrow="NEVER">
             <children>
                 <JFXListView fx:id="relatedPersonListView" nodeOrientation="LEFT_TO_RIGHT" orientation="HORIZONTAL" />
             </children>

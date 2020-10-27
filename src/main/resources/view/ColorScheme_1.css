@@ -1,10 +1,3 @@
-*{
-    -background-color: #FFFBE6;
-    -secondary-color: #B9E4C9;
-    -major-text-fill: #37966F;
-    -secondary-text-fill: #356859;
-}
-
 .background {
     -fx-background-color: #FFFBE6;
     background-color: #FFFBE6; /* Used in the default.html file */
@@ -38,6 +31,20 @@
     -fx-opacity: 1;
 }
 
+.label-subheading {
+    -fx-font-size: 15pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: #563635;
+    -fx-opacity: 1;
+}
+
+.label-table-title {
+    -fx-font-size: 15pt;
+    -fx-font-family: "Verdana";
+    -fx-text-fill: #563635;
+    -fx-opacity: 1;
+}
+
 .text-title {
     -fx-font-size: 26pt;
     -fx-font-family: "Segoe UI Semibold";
@@ -58,17 +65,17 @@
 }
 
 .tab {
-    -fx-background-color: #FFFBE6;
+    -fx-background-color: #1768AC;
     -fx-pref-height: 50;
     -fx-pref-width: 150;
 }
 
 .tab-label {
-    -fx-text-fill: #37966F;
+    -fx-text-fill: white;
 }
 
 .tab-header-background {
-    -fx-background-color: #FFFBE6;
+    -fx-background-color: #1768AC;
 }
 
 .tab-pane {
@@ -82,11 +89,11 @@
 }
 
 .jfx-tab-pane .tab-selected-line {
-    -fx-border-color: #37966F;
+    -fx-border-color: white;
 }
 
 .jfx-tab-pane .tab-header-area .jfx-rippler{
-    -jfx-rippler-fill: #37966F;
+    -jfx-rippler-fill: white;
 }
 
 .table-view {
@@ -158,11 +165,11 @@
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #FFEE99;
+    -fx-background-color: derive(#5DAAE9, 20%);
 }
 
 .list-cell:filled:selected #cardPane {
-    -fx-border-color: #FFE45C;
+    -fx-border-color: #5DAAE9;
     -fx-border-width: 1;
 }
 
@@ -207,21 +214,25 @@
     -fx-text-fill: black !important;
 }
 
+.status-bar {
+    -fx-background-color: #1768AC;
+}
+
 .status-bar .label {
     -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: #356859;
+    -fx-text-fill: white;
     -fx-padding: 4px;
     -fx-pref-height: 30px;
 }
 
 .status-bar-with-border {
-    -fx-background-color: derive(#FFFBE6, 30%);
-    -fx-border-color: derive(#FFFBE6, 25%);
+    -fx-background-color: #1768AC;
+    -fx-border-color: derive(#1768AC, 25%);
     -fx-border-width: 1px;
 }
 
 .status-bar-with-border .label {
-    -fx-text-fill: #356859;
+    -fx-text-fill: white;
 }
 
 .grid-pane {
@@ -235,21 +246,21 @@
 }
 
 .context-menu {
-    -fx-background-color: derive(#FFFBE6, 50%);
+    -fx-background-color: derive(#1768AC, 50%);
 }
 
 .context-menu .label {
-    -fx-text-fill: #356859;
+    -fx-text-fill: white;
 }
 
 .menu-bar {
-    -fx-background-color: derive(#FFFBE6, 20%);
+    -fx-background-color: #1768AC;
 }
 
 .menu-bar .label {
     -fx-font-size: 12pt;
-    -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: #356859;
+    -fx-font-family: "Droid Sans";
+    -fx-text-fill: white;
     -fx-opacity: 0.9;
 }
 
@@ -383,8 +394,9 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #FFFBE6, transparent, #FFFBE6;
-    -fx-background-radius: 0;
+    -fx-background-color: transparent, #B9E4C9, transparent, #B9E4C9;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
 }
 
 #tags {
@@ -394,9 +406,16 @@
 
 #tags .label {
     -fx-text-fill: white;
-    -fx-background-color: #FD5523;
+    -fx-background-color: #F05D5E;
     -fx-padding: 1 3 1 3;
-    -fx-border-radius: 2;
-    -fx-background-radius: 2;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
     -fx-font-size: 11;
+}
+
+.description {
+    -fx-font-size: 13pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: #434343;
+    -fx-opacity: 1;
 }
