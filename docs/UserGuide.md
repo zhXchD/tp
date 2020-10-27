@@ -25,8 +25,14 @@ as location information faster than traditional GUI apps.
    IntelliJournal.
 
 1. Double-click the file to start the app. The GUI similar to the below should
-   appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   appear in a few seconds. The app will start with the dashboard tab, which shows
+   you the list of recent contacts (sorted by the latest date you met them) and
+   the list of frequent contacts (sorted by the frequency you met them). You can
+   also navigate to the other two tabs, which will look like the second and third
+   screenshots below.<br>
+   ![Ui](images/Ui-dashboard.png)
+   ![Ui](images/Ui-contacts.png)
+   ![Ui](images/Ui-journal.png)
 
 1. Type the command in the command box and press Enter to execute it.
    e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -293,6 +299,34 @@ Exits the program.
 
 Format: `exit`
 
+### Create and use shortcut for your frequent use command: `alias`
+
+*Alias: A shortcut for an existing command*
+
+Format: `alias TARGET ALIAS` 
+
+`TARGET`: Existing command or alias in the IntelliJournal.
+
+`ALIAS`: The personalized shortcut you want to add into the system.
+
+Example:
+
+- `alias switch st` ---  This will add `st` as a valid shortcut for command `switch`.
+- `alias addj j` --- This will add `j` as a valid shortcut for command `addj`
+
+**Note**: 
+
+- We have provided some default shortcuts which can be found in [Default Alias Section](#Default alias), you can use 
+`alias` command to add your personalized command alias.
+
+- You can add a shortcut according to existing shortcut. eg. If you have added `st` as a shortcut for `switch`, you can 
+use `alias st si`. You will add `si` as a valid alias for switch as well. 
+
+- **Warning**: IntelliJournal will not be able to have one alias to two different commands. eg. If `st` has been added 
+to the system, it will confuse the IntelliJournal if you ask it to add `st` as a valid alias for `check` or other command.
+
+
+
 ### Saving the data
 
 IntelliJournal data is saved in the hard disk automatically after any command
@@ -308,6 +342,7 @@ it creates with the file that contains the data of your previous
 IntelliJournal home folder.
 
 ---
+## Default alias
 
 ## Command Summary
 

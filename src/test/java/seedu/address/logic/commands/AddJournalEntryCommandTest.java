@@ -18,8 +18,8 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.ValidCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.ValidCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -241,6 +241,16 @@ class AddJournalEntryCommandTest {
 
         @Override
         public ObservableList<Entry> getFilteredEntryList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Person> getRecentPersonList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Person> getFrequentPersonList() {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -79,34 +79,65 @@ public class SampleDataUtil {
     }
 
     public static Entry[] getSampleEntries() {
+        Person[] persons = getSamplePersons();
+        UniquePersonList list1 = new UniquePersonList();
+        list1.add(persons[0]);
+        list1.add(persons[1]);
+        list1.add(persons[2]);
+        UniquePersonList list2 = new UniquePersonList();
+        list2.add(persons[0]);
+        list2.add(persons[3]);
+        list2.add(persons[4]);
+        UniquePersonList list3 = new UniquePersonList();
+        list3.add(persons[0]);
+        list3.add(persons[2]);
+        UniquePersonList list4 = new UniquePersonList();
+        list4.add(persons[4]);
+
+        Description dummyDescription = new Description("Lorem ipsum dolor sit amet, ligula suspendisse nulla "
+                + "pretium, rhoncus tempor fermentum, enim integer ad vestibulum volutpat. Nisl rhoncus turpis est"
+                + ", vel elit, congue wisi enim nunc ultricies sit, magna tincidunt. Maecenas aliquam maecenas ligula "
+                + "nostra, accumsan taciti. Sociis mauris in integer, a dolor netus non dui aliquet, sagittis "
+                + "felis sodales, dolor sociis mauris, vel eu libero cras. Faucibus at. Arcu habitasse "
+                + "elementum est, ipsum purus pede porttitor class, ut adipiscing, aliquet sed auctor, "
+                + "imperdiet arcu per diam dapibus libero duis. Enim eros in vel, volutpat nec pellentesque "
+                + "leo, temporibus scelerisque nec.\n\nAc dolor ac adipiscing amet bibendum nullam, lacus molestie ut "
+                + "libero nec, diam et, pharetra sodales, feugiat ullamcorper id tempor id vitae. Mauris pretium "
+                + "aliquet, lectus tincidunt. Porttitor mollis imperdiet libero senectus pulvinar. Etiam molestie "
+                + "mauris ligula laoreet, vehicula eleifend. Repellat orci erat et, sem cum, ultricies sollicitudin "
+                + "amet eleifend dolor nullam erat, malesuada est leo ac. Varius natoque turpis elementum est. Duis "
+                + "montes, tellus lobortis lacus amet arcu et. In vitae vel, wisi at, id praesent bibendum libero "
+                + "faucibus porta egestas, quisque praesent ipsum fermentum tempor. Curabitur auctor, erat mollis "
+                + "sed, turpis vivamus a dictumst congue magnis. Aliquam amet ullamcorper dignissim molestie, mollis. "
+                + "Tortor vitae tortor eros wisi facilisis.");
         return new Entry[] {
             new Entry(
-                    new Title("Sample Journal 1"),
+                    new Title("Weekly staff meeting"),
                     new Date(LocalDateTime.of(2020, 10, 10, 10, 10)),
-                    new Description("Sample Journal 1"),
-                    new UniquePersonList(),
-                    getTagSet("10")
+                    dummyDescription,
+                    list1,
+                    getTagSet("Work", "Project", "Weekly")
             ),
             new Entry(
-                    new Title("Sample Journal 2"),
+                    new Title("Meet with consultants"),
                     new Date(LocalDateTime.of(1990, 1, 1, 0, 0)),
-                    new Description("Sample Journal 2"),
-                    new UniquePersonList(),
-                    getTagSet("11")
+                    dummyDescription,
+                    list2,
+                    getTagSet("Consultation", "Work", "Important")
             ),
             new Entry(
-                    new Title("A Big Event"),
-                    new Date(LocalDateTime.of(2000, 1, 1, 0, 0)),
-                    new Description("A Big Event"),
-                    new UniquePersonList(),
-                    getTagSet("event")
+                    new Title("Financial report"),
+                    new Date(LocalDateTime.of(2001, 1, 1, 0, 0)),
+                    dummyDescription,
+                    list3,
+                    getTagSet("Report", "Important", "Financial")
             ),
             new Entry(
-                    new Title("Meeting"),
+                    new Title("Meet NUS students"),
                     new Date(LocalDateTime.of(2500, 12, 31, 23, 59)),
-                    new Description("I need to meet someone."),
-                    new UniquePersonList(),
-                    getTagSet("meeting")
+                    dummyDescription,
+                    list4,
+                    getTagSet("NUS", "Work", "Clients", "Unimportant")
             )
         };
     }

@@ -12,9 +12,11 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.IntelliJournalParser;
+import seedu.address.logic.parser.ValidCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyJournal;
 import seedu.address.model.journal.Entry;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
@@ -83,6 +85,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ReadOnlyJournal getJournal() {
+        return model.getJournal();
+    }
+
+    @Override
     public ObservableList<Person> getFilteredPersonList() {
         return model.getFilteredPersonList();
     }
@@ -90,6 +97,16 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Entry> getFilteredEntryList() {
         return model.getFilteredEntryList();
+    }
+
+    @Override
+    public ObservableList<Person> getRecentPersonList() {
+        return model.getRecentPersonList();
+    }
+
+    @Override
+    public ObservableList<Person> getFrequentPersonList() {
+        return model.getFrequentPersonList();
     }
 
     @Override
