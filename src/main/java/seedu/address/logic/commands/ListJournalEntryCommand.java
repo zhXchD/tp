@@ -12,6 +12,10 @@ public class ListJournalEntryCommand extends Command {
 
     public static final String COMMAND_WORD = "listj";
 
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Lists all entries in the journal.\n"
+            + "Example: listj";
+
     public static final String MESSAGE_SUCCESS = "Listed all journal entries";
 
 

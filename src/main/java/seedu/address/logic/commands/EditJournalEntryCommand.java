@@ -33,8 +33,8 @@ public class EditJournalEntryCommand extends Command {
     public static final String COMMAND_WORD = "editj";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+            + ": Edits the details of the entry at the index position in the "
+            + "currently displayed entry list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "TITLE] "
@@ -43,8 +43,9 @@ public class EditJournalEntryCommand extends Command {
             + "[" + PREFIX_CONTACT + "CONTACT_NAME] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_NAME + "Meet with client Robert "
-            + PREFIX_DATE_AND_TIME + "2020-10-10 10:00";
+            + PREFIX_NAME + "Meet with client "
+            + PREFIX_DATE_AND_TIME + "2020-10-10 10:00 "
+            + PREFIX_CONTACT + "Robert";
 
     public static final String MESSAGE_EDIT_ENTRY_SUCCESS = "Edited Journal "
             + "Entry: %1$s";

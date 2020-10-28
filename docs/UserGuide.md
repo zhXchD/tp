@@ -123,7 +123,7 @@ Aliases: `editc`, `edc`
 
 Format: `editc INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index 
+* Edits the person at the specified `INDEX`. The index refers to the index
   number shown in the displayed person list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
@@ -332,11 +332,20 @@ the current displaying tab.
 
 Aliases: `help`, `h`
 
-Format: `help [COMMAND]`
+Format: `help [of/COMMAND]`
 
-* The `COMMAND` argument supplied will indicate which command explanation to
+* The `of/COMMAND` argument supplied will indicate which command explanation to
   show.
-* If no `COMMAND` argument is supplied, all commands will be shown.
+* If no `of/COMMAND` argument is supplied, you will see a new window containing
+the link to our User Guide.
+
+Examples:
+
+* Type in `help of/addc`, you will be able to see the usage of `addc` command in
+the result box.
+![Ui](images/HelpExample1.png)
+* Type in `help`, you will be able to see the help window popping up.
+![Ui](images/HelpExample2.png)
 
 #### Switching the display tab: `switch`
 

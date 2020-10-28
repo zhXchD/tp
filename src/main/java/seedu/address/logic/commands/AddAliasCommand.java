@@ -10,9 +10,19 @@ import seedu.address.model.Model;
 
 public class AddAliasCommand extends Command {
 
-    private static final String MESSAGE_ADD_ALIAS_SUCCEED = "Add %s as an alias for %s";
-    private static final String MESSAGE_COMMAND_INVALID = "Your target command is invalid.";
-    private static final String MESSAGE_ALIAS_EXISTS = "This alias has been used.";
+    public static final String COMMAND_WORD = "alias";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Adds a shortcut for an existing alias.\n"
+            + "Parameters: COMMAND CUSTOMISED_ALIAS\n"
+            + "Example: alias sw switch";
+
+    private static final String MESSAGE_ADD_ALIAS_SUCCEED =
+            "Added %s as an alias for %s.";
+    private static final String MESSAGE_COMMAND_INVALID =
+            "Your target command is invalid.";
+    private static final String MESSAGE_ALIAS_EXISTS =
+            "This alias has been used.";
 
     private final String targetCommand;
     private final String alias;
