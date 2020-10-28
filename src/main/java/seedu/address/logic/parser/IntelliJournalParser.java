@@ -59,6 +59,7 @@ public class IntelliJournalParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
 
+
         ValidCommand command = ValidCommand.commandTypeOf(commandWord);
 
         switch (command) {
