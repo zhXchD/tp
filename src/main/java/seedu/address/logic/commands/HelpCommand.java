@@ -27,7 +27,7 @@ public class HelpCommand extends Command {
      */
     public HelpCommand(boolean isShowHelpWindow) {
         this.isShowHelpWindow = isShowHelpWindow;
-        this.validCommandType = null;
+        validCommandType = null;
     }
 
     /**
@@ -35,38 +35,92 @@ public class HelpCommand extends Command {
      * @param validCommandType the valid command of type {@code ValidCommand}
      */
     public HelpCommand(ValidCommand validCommandType) {
-        this.isShowHelpWindow = false;
+        isShowHelpWindow = false;
         this.validCommandType = validCommandType;
     }
 
     @Override
     public CommandResult execute(Model model) {
-        if (this.isShowHelpWindow) {
-            return new CommandResult(SHOWING_HELP_MESSAGE, true, false).setSameTab();
+        if (isShowHelpWindow) {
+            return new CommandResult(SHOWING_HELP_MESSAGE, true, false)
+                    .setSameTab();
         }
-        assert this.validCommandType != null : "The valid command type is null. Please check.";
+        assert validCommandType != null : "The valid command type is null. Please check.";
 
-        switch (this.validCommandType) {
+        switch (validCommandType) {
+        case ADD_ALIAS:
+            return new CommandResult(
+                    SHOWING_HELP_MESSAGE + AddAliasCommand.MESSAGE_USAGE
+            ).setSameTab();
         case ADD_CONTACT:
-            return new CommandResult(SHOWING_HELP_MESSAGE + AddContactCommand.MESSAGE_USAGE).setSameTab();
+            return new CommandResult(
+                    SHOWING_HELP_MESSAGE + AddContactCommand.MESSAGE_USAGE
+            ).setSameTab();
         case ADD_JOURNAL_ENTRY:
-            return new CommandResult(SHOWING_HELP_MESSAGE + AddJournalEntryCommand.MESSAGE_USAGE).setSameTab();
-        case DELETE_CONTACT:
-            return new CommandResult(SHOWING_HELP_MESSAGE + DeleteContactCommand.MESSAGE_USAGE).setSameTab();
-        case DELETE_JOURNAL_ENTRY:
-            return new CommandResult(SHOWING_HELP_MESSAGE + DeleteJournalEntryCommand.MESSAGE_USAGE).setSameTab();
-        case EDIT_CONTACT:
-            return new CommandResult(SHOWING_HELP_MESSAGE + EditContactCommand.MESSAGE_USAGE).setSameTab();
-        case EDIT_JOURNAL_ENTRY:
-            return new CommandResult(SHOWING_HELP_MESSAGE + EditJournalEntryCommand.MESSAGE_USAGE).setSameTab();
-        case FIND:
-            return new CommandResult(SHOWING_HELP_MESSAGE + FindCommand.MESSAGE_USAGE).setSameTab();
-        case VIEW:
-            return new CommandResult(SHOWING_HELP_MESSAGE + ViewCommand.MESSAGE_USAGE).setSameTab();
+            return new CommandResult(
+                    SHOWING_HELP_MESSAGE + AddJournalEntryCommand.MESSAGE_USAGE
+            ).setSameTab();
         case CHECK_SCHEDULE:
-            return new CommandResult(SHOWING_HELP_MESSAGE + CheckScheduleCommand.MESSAGE_USAGE).setSameTab();
+            return new CommandResult(
+                    SHOWING_HELP_MESSAGE + CheckScheduleCommand.MESSAGE_USAGE
+            ).setSameTab();
+        case CLEAR_ADDRESS_BOOK:
+            return new CommandResult(
+                    SHOWING_HELP_MESSAGE + ClearAddressBookCommand.MESSAGE_USAGE
+            ).setSameTab();
+        case CLEAR_JOURNAL:
+            return new CommandResult(
+                    SHOWING_HELP_MESSAGE + ClearJournalCommand.MESSAGE_USAGE
+            ).setSameTab();
+        case DELETE_CONTACT:
+            return new CommandResult(
+                    SHOWING_HELP_MESSAGE + DeleteContactCommand.MESSAGE_USAGE
+            ).setSameTab();
+        case DELETE_JOURNAL_ENTRY:
+            return new CommandResult(
+                    SHOWING_HELP_MESSAGE
+                            + DeleteJournalEntryCommand.MESSAGE_USAGE
+            ).setSameTab();
+        case EDIT_CONTACT:
+            return new CommandResult(
+                    SHOWING_HELP_MESSAGE + EditContactCommand.MESSAGE_USAGE
+            ).setSameTab();
+        case EXIT:
+            return new CommandResult(
+                    SHOWING_HELP_MESSAGE + ExitCommand.MESSAGE_USAGE
+            ).setSameTab();
+        case EDIT_JOURNAL_ENTRY:
+            return new CommandResult(
+                    SHOWING_HELP_MESSAGE + EditJournalEntryCommand.MESSAGE_USAGE
+            ).setSameTab();
+        case FIND:
+            return new CommandResult(
+                    SHOWING_HELP_MESSAGE + FindCommand.MESSAGE_USAGE
+            ).setSameTab();
+        case HELP:
+            return new CommandResult(
+                    SHOWING_HELP_MESSAGE + HelpCommand.MESSAGE_USAGE
+            ).setSameTab();
+        case LIST_CONTACT:
+            return new CommandResult(
+                    SHOWING_HELP_MESSAGE + ListContactCommand.MESSAGE_USAGE
+            ).setSameTab();
+        case LIST_JOURNAL_ENTRY:
+            return new CommandResult(
+                    SHOWING_HELP_MESSAGE + ListJournalEntryCommand.MESSAGE_USAGE
+            ).setSameTab();
+        case SWITCH:
+            return new CommandResult(
+                    SHOWING_HELP_MESSAGE + SwitchCommand.MESSAGE_USAGE
+            ).setSameTab();
+        case VIEW:
+            return new CommandResult(
+                    SHOWING_HELP_MESSAGE + ViewCommand.MESSAGE_USAGE
+            ).setSameTab();
         default:
-            return new CommandResult(SHOWING_HELP_MESSAGE + "This is a direct command to use.").setSameTab();
+            return new CommandResult(
+                    SHOWING_HELP_MESSAGE + "This is a direct command to use."
+            ).setSameTab();
         }
     }
 }
