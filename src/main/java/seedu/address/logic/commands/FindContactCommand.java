@@ -16,7 +16,7 @@ import seedu.address.model.person.Person;
 public class FindContactCommand extends FindCommand {
     public static final String MESSAGE_USAGE = FindCommand.COMMAND_WORD
             + " in/c: Finds all contacts in the address book "
-            + "that contains the fields specified tags.\n"
+            + "that contains the fields specified.\n"
             + "Parameters: [n/NAME] [a/ADDRESS] [e/EMAIL] [p/PHONE] [t/TAG]\n"
             + "Example: find in/c n/Robert a/Paya Lebar";
 
