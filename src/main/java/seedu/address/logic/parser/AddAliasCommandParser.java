@@ -1,20 +1,23 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import seedu.address.logic.commands.AddAliasCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 public class AddAliasCommandParser implements Parser<AddAliasCommand> {
-
-    private static final String MESSAGE_WRONG_INPUT_FORMAT = "Your input format is not correct\n. Input format:  "
-            + "alias [COMMAND] [CUSTOMIZED_ALIAS]";
-
     @Override
     public AddAliasCommand parse(String userInput) throws ParseException {
 
         String[] commandAliasPair = userInput.trim().split("\\s+");
 
         if (commandAliasPair.length != 2) {
-            throw new ParseException(MESSAGE_WRONG_INPUT_FORMAT);
+            throw new ParseException(
+                    String.format(
+                            MESSAGE_INVALID_COMMAND_FORMAT,
+                            AddAliasCommand.MESSAGE_USAGE
+                    )
+            );
         }
 
         String target = commandAliasPair[0];
