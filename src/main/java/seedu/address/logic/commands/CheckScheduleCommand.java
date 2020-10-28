@@ -18,7 +18,7 @@ public class CheckScheduleCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Checks the schedule of a given date.\n"
-            + "Parameters: DATE_AND_TIME\n"
+            + "Parameters: [DATE_AND_TIME]\n"
             + "Example: " + COMMAND_WORD + " 2011-12-03";
 
     public static final String MESSAGE_SUCCESS = "Here is your schedule on %s";

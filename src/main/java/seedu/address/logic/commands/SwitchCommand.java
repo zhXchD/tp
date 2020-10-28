@@ -8,6 +8,10 @@ import seedu.address.model.Model;
 public class SwitchCommand extends Command {
     public static final String COMMAND_WORD = "switch";
 
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": switches the current tab to the next tab.\n"
+            + "Example: switch";
+
     public static final String MESSAGE_SUCCESS = "Switch to the next tab.";
 
     @Override

@@ -67,7 +67,10 @@ public class AddAliasCommandTest {
 
             try {
                 CommandResult result = c.execute(model);
-                assertEquals("Add si as an alias for switch", result.getFeedbackToUser());
+                assertEquals(
+                        "Added si as an alias for switch.",
+                        result.getFeedbackToUser()
+                );
                 assertEquals(ValidCommand.SWITCH, ValidCommand.commandTypeOf("si"));
             } catch (Exception e) {
                 fail();

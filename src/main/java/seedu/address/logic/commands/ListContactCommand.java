@@ -13,6 +13,10 @@ public class ListContactCommand extends Command {
 
     public static final String COMMAND_WORD = "listc";
 
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Lists all contacts in the address book.\n"
+            + "Example: listc";
+
     public static final String MESSAGE_SUCCESS = "Listed all persons";
 
 
