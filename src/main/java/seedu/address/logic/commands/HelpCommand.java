@@ -48,25 +48,25 @@ public class HelpCommand extends Command {
 
         switch (this.validCommandType) {
         case ADD_CONTACT:
-            return new CommandResult(SHOWING_HELP_MESSAGE + AddContactCommand.MESSAGE_USAGE);
+            return new CommandResult(SHOWING_HELP_MESSAGE + AddContactCommand.MESSAGE_USAGE).setSameTab();
         case ADD_JOURNAL_ENTRY:
-            return new CommandResult(SHOWING_HELP_MESSAGE + AddJournalEntryCommand.MESSAGE_USAGE);
+            return new CommandResult(SHOWING_HELP_MESSAGE + AddJournalEntryCommand.MESSAGE_USAGE).setSameTab();
         case DELETE_CONTACT:
-            return new CommandResult(SHOWING_HELP_MESSAGE + DeleteContactCommand.MESSAGE_USAGE);
+            return new CommandResult(SHOWING_HELP_MESSAGE + DeleteContactCommand.MESSAGE_USAGE).setSameTab();
         case DELETE_JOURNAL_ENTRY:
-            return new CommandResult(SHOWING_HELP_MESSAGE + DeleteJournalEntryCommand.MESSAGE_USAGE);
+            return new CommandResult(SHOWING_HELP_MESSAGE + DeleteJournalEntryCommand.MESSAGE_USAGE).setSameTab();
         case EDIT_CONTACT:
-            return new CommandResult(SHOWING_HELP_MESSAGE + EditContactCommand.MESSAGE_USAGE);
+            return new CommandResult(SHOWING_HELP_MESSAGE + EditContactCommand.MESSAGE_USAGE).setSameTab();
         case EDIT_JOURNAL_ENTRY:
-            return new CommandResult(SHOWING_HELP_MESSAGE + EditJournalEntryCommand.MESSAGE_USAGE);
+            return new CommandResult(SHOWING_HELP_MESSAGE + EditJournalEntryCommand.MESSAGE_USAGE).setSameTab();
         case FIND:
-            return new CommandResult(SHOWING_HELP_MESSAGE + FindCommand.MESSAGE_USAGE);
+            return new CommandResult(SHOWING_HELP_MESSAGE + FindCommand.MESSAGE_USAGE).setSameTab();
         case VIEW:
-            return new CommandResult(SHOWING_HELP_MESSAGE + ViewCommand.MESSAGE_USAGE);
+            return new CommandResult(SHOWING_HELP_MESSAGE + ViewCommand.MESSAGE_USAGE).setSameTab();
         case CHECK_SCHEDULE:
-            return new CommandResult(SHOWING_HELP_MESSAGE + CheckScheduleCommand.MESSAGE_USAGE);
+            return new CommandResult(SHOWING_HELP_MESSAGE + CheckScheduleCommand.MESSAGE_USAGE).setSameTab();
         default:
-            return new CommandResult(SHOWING_HELP_MESSAGE + "This is a direct command to use.");
+            return new CommandResult(SHOWING_HELP_MESSAGE + "This is a direct command to use.").setSameTab();
         }
     }
 }
