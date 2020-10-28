@@ -4,7 +4,11 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalEntries.getTypicalJournal;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -21,121 +25,32 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.ValidCommand;
 import seedu.address.model.AddressBook;
+import seedu.address.model.AliasMap;
+import seedu.address.model.Journal;
 import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyAliasMap;
 import seedu.address.model.ReadOnlyJournal;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.journal.Entry;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EntryBuilder;
+import seedu.address.testutil.PersonBuilder;
 
 class AddJournalEntryCommandTest {
-    @Nested
-    @DisplayName("constructor")
-    class Constructor {
-        @Test
-        @DisplayName("should throw NullPointerException if null entry is "
-                + "passed into constructor")
-        public void constructor_nullPerson_throwsNullPointerException() {
-            assertThrows(NullPointerException.class, () ->
-                    new AddJournalEntryCommand(null));
-        }
-    }
-
-    @Nested
-    @DisplayName("execute method")
-    class Execute {
-        @Test
-        @DisplayName("should add entry successfully if entry is valid")
-        public void execute_entryAcceptedByModel_addSuccessful()
-                throws Exception {
-            ModelStubAcceptingEntryAdded modelStub =
-                    new ModelStubAcceptingEntryAdded();
-            Entry validEntry = new EntryBuilder().build();
-
-            CommandResult commandResult =
-                    new AddJournalEntryCommand(validEntry).execute(modelStub);
-
-            assertEquals(
-                    String.format(AddJournalEntryCommand.MESSAGE_SUCCESS, validEntry),
-                    commandResult.getFeedbackToUser()
-            );
-            assertEquals(Arrays.asList(validEntry), modelStub.entriesAdded);
-        }
-
-        @Test
-        @DisplayName("should throw CommandException if entry is already in "
-                + "the list")
-        public void execute_duplicateEntry_throwsCommandException() {
-            Entry validEntry = new EntryBuilder().build();
-            AddJournalEntryCommand addCommand = new AddJournalEntryCommand(validEntry);
-            ModelStub modelStub =
-                    new ModelStubWithEntry(validEntry);
-
-            assertThrows(
-                    CommandException.class,
-                    AddJournalEntryCommand.MESSAGE_DUPLICATE_ENTRY, () ->
-                            addCommand.execute(modelStub)
-            );
-        }
-    }
-
-    @Nested
-    @DisplayName("equals method")
-    class Equals {
-        private final Entry meeting = new EntryBuilder()
-                .withTitle("Meeting").build();
-        private final Entry discussion = new EntryBuilder()
-                .withTitle("Discussion").build();
-        private final AddJournalEntryCommand addMeetingCommand =
-                new AddJournalEntryCommand(meeting);
-        private final AddJournalEntryCommand addDiscussionCommand =
-                new AddJournalEntryCommand(discussion);
-
-        @Test
-        @DisplayName("should return true if same object")
-        public void equals_sameObject_true() {
-            assertTrue(addMeetingCommand.equals(addMeetingCommand));
-        }
-
-        @Test
-        @DisplayName("should return true if same values")
-        public void equals_sameValues_true() {
-            AddJournalEntryCommand addMeetingCommandCopy = new AddJournalEntryCommand(meeting);
-            assertTrue(addMeetingCommand.equals(addMeetingCommandCopy));
-        }
-
-        @Test
-        @DisplayName("should return false if different values")
-        public void equals_differentValues_false() {
-            assertFalse(addMeetingCommand.equals(1));
-        }
-
-        @Test
-        @DisplayName("should return false if null")
-        public void equals_null_false() {
-            assertFalse(addMeetingCommand.equals(null));
-        }
-
-        @Test
-        @DisplayName("should return false if different entry")
-        public void equals_differentPerson_false() {
-            assertFalse(addMeetingCommand.equals(addDiscussionCommand));
-        }
-    }
-
     /**
      * A default model stub that have all of the methods failing.
      */
     private static class ModelStub implements Model {
         @Override
-        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+        public ReadOnlyUserPrefs getUserPrefs() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyUserPrefs getUserPrefs() {
+        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -165,11 +80,6 @@ class AddJournalEntryCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void clearJournalContacts() {
             throw new AssertionError("This method should not be called.");
         }
@@ -180,12 +90,17 @@ class AddJournalEntryCommandTest {
         }
 
         @Override
-        public void setJournal(ReadOnlyJournal newData) {
+        public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public ReadOnlyJournal getJournal() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setJournal(ReadOnlyJournal newData) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -304,6 +219,157 @@ class AddJournalEntryCommandTest {
         @Override
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
+        }
+    }
+
+    @Nested
+    @DisplayName("constructor")
+    class Constructor {
+        @Test
+        @DisplayName("should throw NullPointerException if null entry is "
+                + "passed into constructor")
+        public void constructor_nullPerson_throwsNullPointerException() {
+            assertThrows(NullPointerException.class, () ->
+                    new AddJournalEntryCommand(null));
+        }
+    }
+
+    @Nested
+    @DisplayName("execute method")
+    class Execute {
+        @Test
+        @DisplayName("should add entry successfully if entry is valid")
+        public void execute_entryAcceptedByModel_addSuccessful()
+                throws Exception {
+            ModelStubAcceptingEntryAdded modelStub =
+                    new ModelStubAcceptingEntryAdded();
+            Entry validEntry = new EntryBuilder().build();
+
+            CommandResult commandResult =
+                    new AddJournalEntryCommand(validEntry).execute(modelStub);
+
+            assertEquals(
+                    String.format(AddJournalEntryCommand.MESSAGE_SUCCESS, validEntry),
+                    commandResult.getFeedbackToUser()
+            );
+            assertEquals(Arrays.asList(validEntry), modelStub.entriesAdded);
+        }
+
+        @Test
+        @DisplayName("should add entry with contacts successfully if contacts"
+                + " is in model")
+        public void execute_entryWithContactsAcceptedByModel_addSuccessful()
+                throws CommandException{
+            Model model = new ModelManager(
+                    getTypicalAddressBook(),
+                    new Journal(),
+                    new UserPrefs(),
+                    new AliasMap()
+            );
+            // ALICE is in typicalAddressBook
+            Person toAdd = ALICE;
+            Entry validEntry = new EntryBuilder()
+                    .withContacts(toAdd)
+                    .build();
+            AddJournalEntryCommand addCommand =
+                    new AddJournalEntryCommand(validEntry);
+            CommandResult commandResult =
+                    addCommand.execute(model);
+            assertEquals(
+                    String.format(AddJournalEntryCommand.MESSAGE_SUCCESS,
+                            validEntry),
+                    commandResult.getFeedbackToUser()
+            );
+            assertEquals(Arrays.asList(validEntry), model.getJournal().getEntryList());
+        }
+
+        @Test
+        @DisplayName("should throw CommandException if entry is already in "
+                + "the list")
+        public void execute_duplicateEntry_throwsCommandException() {
+            Entry validEntry = new EntryBuilder().build();
+            AddJournalEntryCommand addCommand = new AddJournalEntryCommand(validEntry);
+            ModelStub modelStub =
+                    new ModelStubWithEntry(validEntry);
+
+            assertThrows(
+                    CommandException.class,
+                    AddJournalEntryCommand.MESSAGE_DUPLICATE_ENTRY, () ->
+                            addCommand.execute(modelStub)
+            );
+        }
+
+        @Test
+        @DisplayName("should throw CommandException if contact specified is "
+                + "not in model")
+        public void execute_contactNotInModel_throwsCommandException() {
+            // default PersonBuilder is Alice Pauline
+            Person toAdd = new PersonBuilder()
+                    .withName(VALID_NAME_AMY)
+                    .build();
+            Entry validEntry = new EntryBuilder()
+                    .withContacts(toAdd)
+                    .build();
+            Model model = new ModelManager(
+                    getTypicalAddressBook(),
+                    getTypicalJournal(),
+                    new UserPrefs(),
+                    new AliasMap()
+            );
+            AddJournalEntryCommand addCommand = new AddJournalEntryCommand(validEntry);
+            String expectedMessage =
+                    String.format(AddJournalEntryCommand.MESSAGE_PERSON_NOT_FOUND,
+                            toAdd.getName());
+
+            assertThrows(CommandException.class,
+                    expectedMessage,
+                    () -> addCommand.execute(model)
+            );
+
+        }
+    }
+
+    @Nested
+    @DisplayName("equals method")
+    class Equals {
+        private final Entry meeting = new EntryBuilder()
+                .withTitle("Meeting").build();
+        private final Entry discussion = new EntryBuilder()
+                .withTitle("Discussion").build();
+        private final AddJournalEntryCommand addMeetingCommand =
+                new AddJournalEntryCommand(meeting);
+        private final AddJournalEntryCommand addDiscussionCommand =
+                new AddJournalEntryCommand(discussion);
+
+        @Test
+        @DisplayName("should return true if same object")
+        public void equals_sameObject_true() {
+            assertTrue(addMeetingCommand.equals(addMeetingCommand));
+        }
+
+        @Test
+        @DisplayName("should return true if same values")
+        public void equals_sameValues_true() {
+            AddJournalEntryCommand addMeetingCommandCopy = new AddJournalEntryCommand(meeting);
+            assertTrue(addMeetingCommand.equals(addMeetingCommandCopy));
+        }
+
+        @Test
+        @DisplayName("should return false if different values")
+        public void equals_differentValues_false() {
+            assertFalse(addMeetingCommand.equals(1));
+        }
+
+        @Test
+        @DisplayName("should return false if null")
+        public void equals_null_false() {
+            assertFalse(addMeetingCommand.equals(null));
+        }
+
+        @Test
+        @DisplayName("should return false if different entry")
+        public void equals_differentPerson_false() {
+            assertFalse(addMeetingCommand.equals(addDiscussionCommand));
         }
     }
 }
