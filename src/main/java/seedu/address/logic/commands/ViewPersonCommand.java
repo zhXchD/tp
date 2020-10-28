@@ -33,8 +33,13 @@ public class ViewPersonCommand extends ViewCommand {
         Person personToView = lastShownList.get(targetIndex.getZeroBased());
         model.updateFilteredPersonList(person -> person.isSamePerson(personToView));
 
-        return new CommandResult(String.format(MESSAGE_VIEW_SUCCESS, "person", personToView.toString()))
-                .setAddressBookTab();
+        return new CommandResult(
+                String.format(
+                        MESSAGE_VIEW_SUCCESS,
+                        "contact",
+                        personToView.toString()
+                )
+        ).setAddressBookTab();
     }
 
     @Override

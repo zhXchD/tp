@@ -12,10 +12,15 @@ public abstract class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = "Usage: find in/c"
-            + " [n/NAME] [a/ADDRESS] [e/EMAIL] [p/PHONE] [t/TAG]"
-            + " or find in/j [t/TITLE] [at/DATE] [d/DESCRIPTION]"
-            + " [with/CONTACT_NAME] [t/TAG]";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Finds all contacts or the journal entries depending on the "
+            + "scope that contains the fields specified.\n"
+            + "Parameters: in/SCOPE (\"c\" or \"j\") [n/NAME_OR_TITLE] "
+            + "[a/ADDRESS] [e/EMAIL] [p/PHONE] [at/DATE] [d/DESCRIPTION] "
+            + "[with/CONTACT_NAME] [t/TAG]...\n"
+            + "Example:\n"
+            + "- find in/c n/Robert a/Paya Lebar\n"
+            + "- find in/j d/Meeting with/Robert";
 
     @Override
     public abstract CommandResult execute(Model model) throws CommandException;

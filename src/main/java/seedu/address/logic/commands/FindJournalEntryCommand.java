@@ -15,9 +15,11 @@ import seedu.address.model.journal.Entry;
  */
 public class FindJournalEntryCommand extends FindCommand {
     public static final String MESSAGE_USAGE = FindCommand.COMMAND_WORD
-            + " in/j: Finds all entries in the journal whose fields contain"
-            + " the specified strings or tags contains specified tags.\n"
-            + "Parameters: [n/TITLE] [at/DATE_AND_TIME] [d/DESCRIPTION] [with/CONTACT_NAME] [t/TAG]";
+            + " in/j: Finds all entries in the journal that contains the "
+            + "fields specified\n"
+            + "Parameters: [n/TITLE] [at/DATE_AND_TIME] [d/DESCRIPTION]"
+            + " [with/CONTACT_NAME] [t/TAG]\n"
+            + "Example: find in/j d/Meeting with/Robert";
 
     private final Predicate<Entry> predicate;
 
