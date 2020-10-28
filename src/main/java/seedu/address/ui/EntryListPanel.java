@@ -11,6 +11,7 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.journal.Entry;
 
+//@@author {Nauw1010}
 /**
  * Panel containing the list of entries.
  */

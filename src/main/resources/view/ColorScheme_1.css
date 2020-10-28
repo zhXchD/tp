@@ -419,3 +419,11 @@
     -fx-text-fill: #434343;
     -fx-opacity: 1;
 }
+
+.icon-card {
+    -fx-icon-color: #356859;
+}
+
+.icon-content {
+    -fx-icon-color: #434343;
+}
