@@ -47,6 +47,7 @@ public class PersonListPanel extends UiPart<Region> {
         }
     }
 
+    //@@author {Nauw1010}
     /**
      * Sets up the listener listen to the changes of selected person cell and pass the new person's
      * information to the {@code ContactContent}.
@@ -57,5 +58,5 @@ public class PersonListPanel extends UiPart<Region> {
             contactContent.setContactContentToUser(curr);
         });
     }
-
+    //@@author
 }

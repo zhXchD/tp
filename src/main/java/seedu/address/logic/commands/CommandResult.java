@@ -22,6 +22,7 @@ public class CommandResult {
     private boolean isSwitchingTab = false;
     private boolean isViewingJournal = false;
     private boolean isCleaningJournalView = false;
+    private boolean isChangingTheme = false;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
@@ -112,6 +113,11 @@ public class CommandResult {
         return this;
     }
 
+    public CommandResult setChangingTheme() {
+        this.isChangingTheme = true;
+        return this;
+    }
+
     public boolean isSwitch() {
         return isSwitchingTab;
     }
@@ -126,5 +132,9 @@ public class CommandResult {
 
     public boolean isCleaningJournalView() {
         return isCleaningJournalView;
+    }
+
+    public boolean isChangingTheme() {
+        return isChangingTheme;
     }
 }

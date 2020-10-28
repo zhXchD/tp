@@ -2,8 +2,10 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.Tab;
@@ -27,6 +29,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static final String THEME_DARK = "view/DarkTheme.css";
+    private static final String THEME_BRIGHT = "view/ColorScheme_1.css";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -43,6 +47,9 @@ public class MainWindow extends UiPart<Stage> {
 
     private DashboardTab dashboardTab;
 
+
+    @FXML
+    private Scene primaryScene;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -164,6 +171,7 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
+    //@@author {Nauw1010}
     /**
      * Configures all the listeners.
      */
@@ -171,6 +179,7 @@ public class MainWindow extends UiPart<Stage> {
         entryListPanel.setListenerToSelectedChangesAndPassToEntryContent(entryContent);
         personListPanel.setListenerToSelectedChangesAndPassToContactContent(contactContent);
     }
+    //@@author
 
     /**
      * Sets the default size based on {@code guiSettings}.
@@ -197,6 +206,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     void show() {
+        primaryScene.getStylesheets().add(THEME_BRIGHT);
         primaryStage.show();
     }
 
@@ -211,6 +221,22 @@ public class MainWindow extends UiPart<Stage> {
         helpWindow.hide();
         primaryStage.hide();
     }
+
+    //@@author {Nauw1010}
+    /**
+     * Changes the color theme.
+     */
+    @FXML
+    private void handleChangeTheme() {
+        ObservableList<String> styleSheetList = primaryScene.getStylesheets();
+
+        if (styleSheetList.get(styleSheetList.size() - 1).equals(THEME_DARK)) {
+            styleSheetList.set(styleSheetList.size() - 1, THEME_BRIGHT);
+        } else {
+            styleSheetList.set(styleSheetList.size() - 1, THEME_DARK);
+        }
+    }
+    //@@author
 
     /**
      * Executes the command and returns the result.
@@ -247,6 +273,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isCleaningJournalView()) {
                 handleCleaningJournalView();
+            }
+
+            if (commandResult.isChangingTheme()) {
+                handleChangeTheme();
             }
 
             return commandResult;
