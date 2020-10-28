@@ -123,7 +123,7 @@ Aliases: `editc`, `edc`
 
 Format: `editc INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index 
+* Edits the person at the specified `INDEX`. The index refers to the index
   number shown in the displayed person list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
