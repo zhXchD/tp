@@ -154,6 +154,7 @@ public class MainWindow extends UiPart<Stage> {
         entryListPanelPlaceholder.getChildren().add(entryListPanel.getRoot());
 
         contactContent = new ContactContent();
+        contactContent.setContactContentToUser(personListPanel.getPersonListItems().get(0));
         contactContentPlaceholder.getChildren().add(contactContent.getRoot());
         entryContent = new EntryContent();
         entryContentPlaceholder.getChildren().add(entryContent.getRoot());

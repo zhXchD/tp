@@ -28,6 +28,9 @@ public class PersonListPanel extends UiPart<Region> {
         super(FXML);
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
+        //@@author {zhXchD}
+        personListView.getSelectionModel().selectFirst();
+        //@@author
     }
 
     /**
@@ -47,6 +50,12 @@ public class PersonListPanel extends UiPart<Region> {
         }
     }
 
+    //@@author {zhXchD}
+    public ObservableList<Person> getPersonListItems() {
+        return personListView.getItems();
+    }
+    //@@author {zhXchD}
+
     //@@author {Nauw1010}
     /**
      * Sets up the listener listen to the changes of selected person cell and pass the new person's
@@ -55,6 +64,12 @@ public class PersonListPanel extends UiPart<Region> {
      */
     public void setListenerToSelectedChangesAndPassToContactContent(ContactContent contactContent) {
         personListView.getSelectionModel().selectedItemProperty().addListener((observableValue, prev, curr) -> {
+            //@@author {zhXchD}
+            if (curr == null) {
+                personListView.getSelectionModel().selectFirst();
+                curr = personListView.getSelectionModel().getSelectedItem();
+            }
+            //@@author
             contactContent.setContactContentToUser(curr);
         });
     }
