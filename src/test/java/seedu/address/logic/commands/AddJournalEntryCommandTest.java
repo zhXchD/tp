@@ -4,11 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalEntries.getTypicalJournal;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -22,22 +18,16 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.ValidCommand;
 import seedu.address.model.AddressBook;
-import seedu.address.model.AliasMap;
-import seedu.address.model.Journal;
 import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyAliasMap;
 import seedu.address.model.ReadOnlyJournal;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.UserPrefs;
 import seedu.address.model.journal.Entry;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EntryBuilder;
-import seedu.address.testutil.PersonBuilder;
 
 class AddJournalEntryCommandTest {
     /**
@@ -255,47 +245,48 @@ class AddJournalEntryCommandTest {
             assertEquals(Arrays.asList(validEntry), modelStub.entriesAdded);
         }
 
-    @Nested
-    @DisplayName("equals method")
-    class Equals {
-        private final Entry meeting = new EntryBuilder()
-                .withTitle("Meeting").build();
-        private final Entry discussion = new EntryBuilder()
-                .withTitle("Discussion").build();
-        private final AddJournalEntryCommand addMeetingCommand =
-                new AddJournalEntryCommand(meeting);
-        private final AddJournalEntryCommand addDiscussionCommand =
-                new AddJournalEntryCommand(discussion);
+        @Nested
+        @DisplayName("equals method")
+        class Equals {
+            private final Entry meeting = new EntryBuilder()
+                    .withTitle("Meeting").build();
+            private final Entry discussion = new EntryBuilder()
+                    .withTitle("Discussion").build();
+            private final AddJournalEntryCommand addMeetingCommand =
+                    new AddJournalEntryCommand(meeting);
+            private final AddJournalEntryCommand addDiscussionCommand =
+                    new AddJournalEntryCommand(discussion);
 
-        @Test
-        @DisplayName("should return true if same object")
-        public void equals_sameObject_true() {
-            assertTrue(addMeetingCommand.equals(addMeetingCommand));
-        }
+            @Test
+            @DisplayName("should return true if same object")
+            public void equals_sameObject_true() {
+                assertTrue(addMeetingCommand.equals(addMeetingCommand));
+            }
 
-        @Test
-        @DisplayName("should return true if same values")
-        public void equals_sameValues_true() {
-            AddJournalEntryCommand addMeetingCommandCopy = new AddJournalEntryCommand(meeting);
-            assertTrue(addMeetingCommand.equals(addMeetingCommandCopy));
-        }
+            @Test
+            @DisplayName("should return true if same values")
+            public void equals_sameValues_true() {
+                AddJournalEntryCommand addMeetingCommandCopy = new AddJournalEntryCommand(meeting);
+                assertTrue(addMeetingCommand.equals(addMeetingCommandCopy));
+            }
 
-        @Test
-        @DisplayName("should return false if different values")
-        public void equals_differentValues_false() {
-            assertFalse(addMeetingCommand.equals(1));
-        }
+            @Test
+            @DisplayName("should return false if different values")
+            public void equals_differentValues_false() {
+                assertFalse(addMeetingCommand.equals(1));
+            }
 
-        @Test
-        @DisplayName("should return false if null")
-        public void equals_null_false() {
-            assertFalse(addMeetingCommand.equals(null));
-        }
+            @Test
+            @DisplayName("should return false if null")
+            public void equals_null_false() {
+                assertFalse(addMeetingCommand.equals(null));
+            }
 
-        @Test
-        @DisplayName("should return false if different entry")
-        public void equals_differentPerson_false() {
-            assertFalse(addMeetingCommand.equals(addDiscussionCommand));
+            @Test
+            @DisplayName("should return false if different entry")
+            public void equals_differentPerson_false() {
+                assertFalse(addMeetingCommand.equals(addDiscussionCommand));
+            }
         }
     }
 }
