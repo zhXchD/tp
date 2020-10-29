@@ -255,6 +255,86 @@ class AddJournalEntryCommandTest {
             assertEquals(Arrays.asList(validEntry), modelStub.entriesAdded);
         }
 
+<<<<<<< HEAD
+=======
+        @Test
+        @DisplayName("should add entry with contacts successfully if contacts"
+                + " is in model")
+        public void execute_entryWithContactsAcceptedByModel_addSuccessful()
+                throws CommandException{
+            Model model = new ModelManager(
+                    getTypicalAddressBook(),
+                    new Journal(),
+                    new UserPrefs(),
+                    new AliasMap()
+            );
+            // ALICE is in typicalAddressBook
+            Person toAdd = ALICE;
+            Entry validEntry = new EntryBuilder()
+                    .withContacts(toAdd)
+                    .build();
+            AddJournalEntryCommand addCommand =
+                    new AddJournalEntryCommand(validEntry);
+            CommandResult commandResult =
+                    addCommand.execute(model);
+            assertEquals(
+                    String.format(AddJournalEntryCommand.MESSAGE_SUCCESS,
+                            validEntry),
+                    commandResult.getFeedbackToUser()
+            );
+            assertEquals(Arrays.asList(validEntry), model.getJournal().getEntryList());
+        }
+>>>>>>> 5eed626c97a94032dce72793b169604936fa55d9
+
+        @Test
+        @DisplayName("should throw CommandException if entry is already in "
+                + "the list")
+        public void execute_duplicateEntry_throwsCommandException() {
+            Entry validEntry = new EntryBuilder().build();
+            AddJournalEntryCommand addCommand = new AddJournalEntryCommand(validEntry);
+            ModelStub modelStub =
+                    new ModelStubWithEntry(validEntry);
+
+            assertThrows(
+                    CommandException.class,
+                    AddJournalEntryCommand.MESSAGE_DUPLICATE_ENTRY, () ->
+                            addCommand.execute(modelStub)
+            );
+        }
+<<<<<<< HEAD
+=======
+
+        @Test
+        @DisplayName("should throw CommandException if contact specified is "
+                + "not in model")
+        public void execute_contactNotInModel_throwsCommandException() {
+            // default PersonBuilder is Alice Pauline
+            Person toAdd = new PersonBuilder()
+                    .withName(VALID_NAME_AMY)
+                    .build();
+            Entry validEntry = new EntryBuilder()
+                    .withContacts(toAdd)
+                    .build();
+            Model model = new ModelManager(
+                    getTypicalAddressBook(),
+                    getTypicalJournal(),
+                    new UserPrefs(),
+                    new AliasMap()
+            );
+            AddJournalEntryCommand addCommand = new AddJournalEntryCommand(validEntry);
+            String expectedMessage =
+                    String.format(AddJournalEntryCommand.MESSAGE_PERSON_NOT_FOUND,
+                            toAdd.getName());
+
+            assertThrows(CommandException.class,
+                    expectedMessage,
+                    () -> addCommand.execute(model)
+            );
+
+        }
+>>>>>>> 5eed626c97a94032dce72793b169604936fa55d9
+    }
+
     @Nested
     @DisplayName("equals method")
     class Equals {
