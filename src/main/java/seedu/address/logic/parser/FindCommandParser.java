@@ -171,7 +171,9 @@ public class FindCommandParser implements Parser<FindCommand> {
                     name -> entry
                         .getContactList().stream()
                             .anyMatch(
-                                person -> person.getName().fullName.contains(name))));
+                                person -> person.getName().fullName
+                                        .toLowerCase()
+                                        .contains(name.toLowerCase()))));
             Set<Tag> tagList1 = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
             entryPredicate = entryPredicate.and(entry -> entry.getTags().containsAll(tagList1));
             return new FindJournalEntryCommand(entryPredicate);
