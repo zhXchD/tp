@@ -54,7 +54,7 @@ public class PersonListPanel extends UiPart<Region> {
     public ObservableList<Person> getPersonListItems() {
         return personListView.getItems();
     }
-    //@@author {zhXchD}
+    //@@author
 
     //@@author {Nauw1010}
     /**
