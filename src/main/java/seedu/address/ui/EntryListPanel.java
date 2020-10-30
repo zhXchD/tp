@@ -53,6 +53,10 @@ public class EntryListPanel extends UiPart<Region> {
         return entryListView.getItems();
     }
 
+    /**
+     * Selects the item in the entry list at specified index.
+     * @param index the index of item to be selected
+     */
     public void select(int index) {
         entryListView.getSelectionModel().select(index);
         entryListView.scrollTo(index);

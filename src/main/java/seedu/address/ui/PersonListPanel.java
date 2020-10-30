@@ -55,6 +55,10 @@ public class PersonListPanel extends UiPart<Region> {
         return personListView.getItems();
     }
 
+    /**
+     * Selects the item in the list of specified index.
+     * @param index the index of the item to be selected
+     */
     public void select(int index) {
         personListView.getSelectionModel().select(index);
         personListView.scrollTo(index);
