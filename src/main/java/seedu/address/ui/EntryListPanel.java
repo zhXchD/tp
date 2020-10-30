@@ -55,6 +55,7 @@ public class EntryListPanel extends UiPart<Region> {
 
     public void select(int index) {
         entryListView.getSelectionModel().select(index);
+        entryListView.scrollTo(index);
     }
     //@@author
 
