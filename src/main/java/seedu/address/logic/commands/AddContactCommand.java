@@ -59,8 +59,8 @@ public class AddContactCommand extends Command {
 
         model.addPerson(toAdd);
 
-        int index = model.getFilteredPersonList().indexOf(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd)).setAddressBookTab().setViewingPerson(index);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd))
+            .setAddressBookTab().setViewingPerson(toAdd);
     }
 
     @Override

@@ -39,7 +39,7 @@ public class ViewPersonCommand extends ViewCommand {
                         "contact",
                         personToView.toString()
                 )
-        ).setAddressBookTab().setViewingPerson(targetIndex.getZeroBased());
+        ).setAddressBookTab().setViewingPerson(personToView);
     }
 
     @Override

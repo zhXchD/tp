@@ -39,7 +39,7 @@ public class ViewJournalEntryCommand extends ViewCommand {
                         "entry",
                         entryToView.toString()
                 )
-        ).setJournalTab().setViewingJournal(targetIndex.getZeroBased());
+        ).setJournalTab().setViewingJournal(entryToView);
     }
 
     @Override

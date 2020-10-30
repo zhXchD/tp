@@ -21,6 +21,8 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.journal.Entry;
+import seedu.address.model.person.Person;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -270,13 +272,13 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isViewingPerson()) {
-                int index = commandResult.getIndexPersonToView();
-                personListPanel.select(index);
+                Person personToView = commandResult.getPersonToView();
+                personListPanel.select(logic.getFilteredPersonList().indexOf(personToView));
             }
 
             if (commandResult.isViewingJournal()) {
-                int index = commandResult.getIndexEntryToView();
-                entryListPanel.select(index);
+                Entry entryToView = commandResult.getEntryToView();
+                entryListPanel.select(logic.getFilteredEntryList().indexOf(entryToView));
             }
 
             if (commandResult.isCleaningJournalView()) {

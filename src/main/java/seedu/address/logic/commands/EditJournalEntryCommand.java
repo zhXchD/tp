@@ -132,7 +132,8 @@ public class EditJournalEntryCommand extends Command {
 
         return new CommandResult(
                 String.format(MESSAGE_EDIT_ENTRY_SUCCESS, editedEntry))
-                .setJournalTab();
+                .setJournalTab()
+                .setViewingJournal(editedEntry);
     }
 
     @Override
