@@ -275,7 +275,8 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isViewingJournal()) {
-                handleViewingJournal();
+                int index = commandResult.getIndexEntryToView();
+                entryListPanel.select(index);
             }
 
             if (commandResult.isCleaningJournalView()) {
@@ -308,10 +309,6 @@ public class MainWindow extends UiPart<Stage> {
         SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
         int selectedIndex = selectionModel.getSelectedIndex();
         selectionModel.select((selectedIndex + 1) % 3);
-    }
-
-    private void handleViewingJournal() {
-        entryContent.setEntryContentToUser(logic.getFilteredEntryList().get(0));
     }
 
     private void handleCleaningJournalView() {

@@ -25,6 +25,7 @@ public class CommandResult {
     private boolean isChangingTheme = false;
     private boolean isViewingPerson = false;
     private int indexPersonToView = 0;
+    private int indexEntryToView = 0;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
@@ -105,8 +106,9 @@ public class CommandResult {
         return this;
     }
 
-    public CommandResult setViewingJournal() {
+    public CommandResult setViewingJournal(int indexEntryToView) {
         this.isViewingJournal = true;
+        this.indexEntryToView = indexEntryToView;
         return this;
     }
 
@@ -145,6 +147,11 @@ public class CommandResult {
     public int getIndexPersonToView() {
         assert (isViewingPerson);
         return indexPersonToView;
+    }
+
+    public int getIndexEntryToView() {
+        assert (isViewingJournal);
+        return indexEntryToView;
     }
 
     public boolean isCleaningJournalView() {

@@ -52,6 +52,10 @@ public class EntryListPanel extends UiPart<Region> {
     public ObservableList<Entry> getEntryListItems() {
         return entryListView.getItems();
     }
+
+    public void select(int index) {
+        entryListView.getSelectionModel().select(index);
+    }
     //@@author
 
     /**
