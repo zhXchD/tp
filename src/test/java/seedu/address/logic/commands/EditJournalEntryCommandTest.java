@@ -173,7 +173,6 @@ public class EditJournalEntryCommandTest {
                             new Journal(model.getJournal()),
                             new UserPrefs(),
                             new AliasMap());
-            showEntryAtIndex(expectedModel, INDEX_FIRST_PERSON);
             expectedModel.setEntry(model.getFilteredEntryList().get(0), editedEntry);
             assertCommandSuccess(
                     editJournalEntryCommand,

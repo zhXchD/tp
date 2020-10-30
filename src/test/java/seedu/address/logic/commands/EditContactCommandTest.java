@@ -182,7 +182,7 @@ public class EditContactCommandTest {
                             new UserPrefs(),
                             new AliasMap()
                     );
-            expectedModel.updateFilteredPersonList(person -> model.getFilteredPersonList().contains(person));
+
             expectedModel.setPerson(
                     model.getFilteredPersonList().get(0),
                     editedPerson
