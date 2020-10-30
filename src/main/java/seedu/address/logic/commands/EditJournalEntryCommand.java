@@ -60,7 +60,7 @@ public class EditJournalEntryCommand extends Command {
     private final EditEntryDescriptor editEntryDescriptor;
 
     /**
-     * @param index
+     * @param index the index of journal entry to edit
      */
     public EditJournalEntryCommand(Index index,
                                    EditEntryDescriptor editEntryDescriptor) {
@@ -129,7 +129,7 @@ public class EditJournalEntryCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_ENTRY);
         }
         model.setEntry(entryToEdit, editedEntry);
-        model.updateFilteredEntryList(PREDICATE_SHOW_ALL_ENTRIES);
+//        model.updateFilteredEntryList(PREDICATE_SHOW_ALL_ENTRIES);
 
         return new CommandResult(
                 String.format(MESSAGE_EDIT_ENTRY_SUCCESS, editedEntry))
