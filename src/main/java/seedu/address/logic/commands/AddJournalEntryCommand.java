@@ -88,8 +88,9 @@ public class AddJournalEntryCommand extends Command {
         }
 
         model.addEntry(validToAdd);
+        int index = model.getFilteredEntryList().indexOf(validToAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, validToAdd))
-                .setJournalTab();
+                .setJournalTab().setViewingJournal(index);
     }
 
     @Override
