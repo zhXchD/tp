@@ -269,6 +269,11 @@ public class MainWindow extends UiPart<Stage> {
                 }
             }
 
+            if (commandResult.isViewingPerson()) {
+                int index = commandResult.getIndexPersonToView();
+                personListPanel.select(index);
+            }
+
             if (commandResult.isViewingJournal()) {
                 handleViewingJournal();
             }

@@ -54,6 +54,10 @@ public class PersonListPanel extends UiPart<Region> {
     public ObservableList<Person> getPersonListItems() {
         return personListView.getItems();
     }
+
+    public void select(int index) {
+        personListView.getSelectionModel().select(index);
+    }
     //@@author
 
     //@@author {Nauw1010}

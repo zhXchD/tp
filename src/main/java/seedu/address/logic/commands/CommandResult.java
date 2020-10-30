@@ -23,6 +23,8 @@ public class CommandResult {
     private boolean isViewingJournal = false;
     private boolean isCleaningJournalView = false;
     private boolean isChangingTheme = false;
+    private boolean isViewingPerson = false;
+    private int indexPersonToView = 0;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
@@ -108,6 +110,12 @@ public class CommandResult {
         return this;
     }
 
+    public CommandResult setViewingPerson(int indexPersonToView) {
+        this.isViewingPerson = true;
+        this.indexPersonToView = indexPersonToView;
+        return this;
+    }
+
     public CommandResult setCleaningJournalView(boolean isCleaningJournalView) {
         this.isCleaningJournalView = isCleaningJournalView;
         return this;
@@ -128,6 +136,15 @@ public class CommandResult {
 
     public boolean isViewingJournal() {
         return isViewingJournal;
+    }
+
+    public boolean isViewingPerson() {
+        return isViewingPerson;
+    }
+
+    public int getIndexPersonToView() {
+        assert (isViewingPerson);
+        return indexPersonToView;
     }
 
     public boolean isCleaningJournalView() {
