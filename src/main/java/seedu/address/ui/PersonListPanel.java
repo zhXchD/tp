@@ -63,6 +63,16 @@ public class PersonListPanel extends UiPart<Region> {
         personListView.getSelectionModel().select(index);
         personListView.scrollTo(index);
     }
+
+    /**
+     * Selects the first item if nothing is being selected.
+     */
+    public void select() {
+        if (personListView.getSelectionModel().getSelectedItems().isEmpty()) {
+            personListView.getSelectionModel().selectFirst();
+            personListView.scrollTo(0);
+        }
+    }
     //@@author
 
     //@@author {Nauw1010}
