@@ -61,6 +61,16 @@ public class EntryListPanel extends UiPart<Region> {
         entryListView.getSelectionModel().select(index);
         entryListView.scrollTo(index);
     }
+
+    /**
+     * Selects the first item if nothing is selected.
+     */
+    public void select() {
+        if (entryListView.getSelectionModel().getSelectedItems().isEmpty()) {
+            entryListView.getSelectionModel().selectFirst();
+            entryListView.scrollTo(0);
+        }
+    }
     //@@author
 
     /**
