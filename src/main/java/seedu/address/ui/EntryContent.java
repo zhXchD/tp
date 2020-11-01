@@ -55,7 +55,7 @@ public class EntryContent extends UiPart<Region> {
     public EntryContent() {
         super(FXML);
         this.entry = null;
-//        this.calendar.setImage(getImage("/images/calendar_1.png"));
+        // this.calendar.setImage(getImage("/images/calendar_1.png"));
         emptyRelatedListText.getStyleClass().add("text-empty-list");
         relatedPersonListView.setCellFactory(listView -> new PersonListViewCell());
         setDefaultContent();
