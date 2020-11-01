@@ -386,12 +386,21 @@ Example:
   different commands.
   <br>Eg. If `st` has been added to the system, it will confuse IntelliJournal
   if you ask it to add `st` as a valid alias for `check` or other command.
+  
+#### Changing the main color theme
+
+You can use this command to choose between two main color scheme of IntelliJournal.
+One is dark theme and the other is bright theme mainly.
+
+Aliases: `changetheme`, `ctheme`
+
+Format: `changetheme`
 
 #### Exiting the program: `exit`
 
-Aliases: `exit`, `quit`, `q`
-
 Exits the program.
+
+Aliases: `exit`, `quit`, `q`
 
 Format: `exit`
 
@@ -641,6 +650,13 @@ IntelliJournal home folder.
         <tr>
             <td><b>Adding aliases for existing commands</b></td>
             <td><code>alias TARGET ALIAS</code></td>
+        </tr>
+        <tr>
+            <td rowspan="2"><b>Changing the color theme</b></td>
+            <td><code>changetheme</code></td>
+        </tr>
+        <tr>
+            <td><code>ctheme</code></td>
         </tr>
         <tr>
             <td rowspan="3"><b>Exiting the program</b></td>

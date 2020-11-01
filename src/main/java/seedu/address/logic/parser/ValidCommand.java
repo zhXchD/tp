@@ -32,7 +32,8 @@ public enum ValidCommand {
     SWITCH("switch", "swt"),
     VIEW("view", "v"),
     CHECK_SCHEDULE("check", "ck"),
-    ADD_ALIAS("alias", "al");
+    ADD_ALIAS("alias", "al"),
+    CHANGE_THEME("changetheme", "ctheme");
 
     private static final Logger logger = LogsCenter.getLogger(ValidCommand.class);
 

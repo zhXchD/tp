@@ -19,6 +19,7 @@ import seedu.address.MainApp;
 import seedu.address.model.journal.Entry;
 import seedu.address.model.person.Person;
 
+//@@author {Nauw1010}
 /**
  * An UI component that displays information of a {@code Entry} in detail.
  */

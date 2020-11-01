@@ -11,6 +11,7 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.journal.Entry;
 
+//@@author {Nauw1010}
 /**
  * Panel containing the list of entries.
  */
@@ -28,6 +29,9 @@ public class EntryListPanel extends UiPart<Region> {
         super(FXML);
         entryListView.setItems(journalList);
         entryListView.setCellFactory(listView -> new EntryListViewCell());
+        //@@author {zhXchD}
+        entryListView.getSelectionModel().selectFirst();
+        //@@author
     }
 
     class EntryListViewCell extends JFXListCell<Entry> {
@@ -44,6 +48,12 @@ public class EntryListPanel extends UiPart<Region> {
         }
     }
 
+    //@@author {zhXchD}
+    public ObservableList<Entry> getEntryListItems() {
+        return entryListView.getItems();
+    }
+    //@@author
+
     /**
      * Sets up the listener listen to the changes of selected entry cell and pass the new entry
      * to the {@code EntryContent}.
@@ -51,6 +61,12 @@ public class EntryListPanel extends UiPart<Region> {
      */
     public void setListenerToSelectedChangesAndPassToEntryContent(EntryContent entryContent) {
         entryListView.getSelectionModel().selectedItemProperty().addListener((observableValue, prev, curr) -> {
+            //@@author {zhXchD}
+            if (curr == null) {
+                entryListView.getSelectionModel().selectFirst();
+                curr = entryListView.getSelectionModel().getSelectedItem();
+            }
+            //@@author
             entryContent.setEntryContentToUser(curr);
         });
     }
