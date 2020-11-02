@@ -90,7 +90,9 @@ IntelliJournal:
 
 #### Adding a contact: `addcontact`
 
-Adds a contact to the address book.
+Adds a contact to the address book, after adding the contact, the app will show the
+`Contacts` tab, and the sidebar will scroll to the new contact you just added,
+displaying contact information on the right.
 
 Aliases: `addcontact`, `addc`
 
@@ -131,6 +133,9 @@ Format: `editc INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
   of tags is not cumulative.
 * You can remove all the person’s tags by typing t/ without specifying any tags
   after it.
+* After editing a contact, the list displayed in the `Contacts` tab will be reset
+to show all existing contacts, because the previous filtering operation may not
+still have the same effects on the edited contact.
 
 Examples:
 
@@ -204,7 +209,9 @@ Format: `clearc`
 
 #### Adding a journal entry: `addjournal`
 
-Adds a journal entry to the journal.
+Adds a journal entry to the journal. After adding the journal entry, the app will
+move to the `Journal` tab, scrolling to the entry you just added, displaying the
+information of that entry on the right.
 
 Aliases: `addjournal`, `addj`
 
@@ -251,6 +258,9 @@ Format: `editj INDEX n/NAME [at/DATE_AND_TIME] [d/DESCRIPTION]
   of tags is not cumulative.
 * You can remove all the entry's tags by typing t/ without specifying any tags
   after it.
+* After editing a journal entry, the list displayed in the `Journal` tab will be
+  reset to show all existing contacts, because the previous filtering operation may
+  not still have the same effects on the edited contact.
 
 #### Viewing a journal entry: `view in/j`
 

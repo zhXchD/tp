@@ -58,7 +58,9 @@ public class AddContactCommand extends Command {
         }
 
         model.addPerson(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd)).setAddressBookTab();
+
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd))
+            .setAddressBookTab().setViewingPerson(toAdd);
     }
 
     @Override

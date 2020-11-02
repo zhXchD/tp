@@ -21,6 +21,8 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.journal.Entry;
+import seedu.address.model.person.Person;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -248,6 +250,8 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
+            personListPanel.select();
+            entryListPanel.select();
             logger.info("Execute result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
@@ -269,8 +273,14 @@ public class MainWindow extends UiPart<Stage> {
                 }
             }
 
+            if (commandResult.isViewingPerson()) {
+                Person personToView = commandResult.getPersonToView();
+                personListPanel.select(logic.getFilteredPersonList().indexOf(personToView));
+            }
+
             if (commandResult.isViewingJournal()) {
-                handleViewingJournal();
+                Entry entryToView = commandResult.getEntryToView();
+                entryListPanel.select(logic.getFilteredEntryList().indexOf(entryToView));
             }
 
             if (commandResult.isCleaningJournalView()) {
@@ -303,10 +313,6 @@ public class MainWindow extends UiPart<Stage> {
         SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
         int selectedIndex = selectionModel.getSelectedIndex();
         selectionModel.select((selectedIndex + 1) % 3);
-    }
-
-    private void handleViewingJournal() {
-        entryContent.setEntryContentToUser(logic.getFilteredEntryList().get(0));
     }
 
     private void handleCleaningJournalView() {

@@ -52,6 +52,25 @@ public class EntryListPanel extends UiPart<Region> {
     public ObservableList<Entry> getEntryListItems() {
         return entryListView.getItems();
     }
+
+    /**
+     * Selects the item in the entry list at specified index.
+     * @param index the index of item to be selected
+     */
+    public void select(int index) {
+        entryListView.getSelectionModel().select(index);
+        entryListView.scrollTo(index);
+    }
+
+    /**
+     * Selects the first item if nothing is selected.
+     */
+    public void select() {
+        if (entryListView.getSelectionModel().getSelectedItems().isEmpty()) {
+            entryListView.getSelectionModel().selectFirst();
+            entryListView.scrollTo(0);
+        }
+    }
     //@@author
 
     /**
