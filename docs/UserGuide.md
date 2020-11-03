@@ -149,9 +149,9 @@ Format: `editc INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * You can remove all the contact’s tags by typing t/ without specifying any tags
   after it.<br>
 
-* After editing a contact, the list displayed in the `Contacts` tab will be reset
-  to show all existing contacts, because the previous filtering operation may not
-  still have the same effects on the edited contact.<br>
+* After editing a contact, the list displayed in the `Contacts` tab will be
+  reset to show all existing contacts, because the previous filtering operation
+  may not still have the same effects on the edited contact.<br>
 
 </div>
 
@@ -281,7 +281,7 @@ Edits an existing entry in the journal.
 
 Aliases: `editj`, `edj`
 
-Format: `editj INDEX n/TITLE [at/DATE_AND_TIME] [d/DESCRIPTION]
+Format: `editj INDEX [n/TITLE] [at/DATE_AND_TIME] [d/DESCRIPTION]
          [with/CONTACT_NAME]…​ [t/TAG]…​`
 
 <div markdown="block" class="alert alert-primary">
@@ -631,7 +631,7 @@ IntelliJournal home folder.
             <td rowspan="2"><b>Editing a journal entry</b></td>
             <td>
                 <code>
-                    editj INDEX n/TITLE [at/DATE_AND_TIME] [d/DESCRIPTION]
+                    editj INDEX [n/TITLE] [at/DATE_AND_TIME] [d/DESCRIPTION]
                     [with/CONTACT_NAME]…​ [t/TAG]…​
                 </code>
             </td>
@@ -639,7 +639,7 @@ IntelliJournal home folder.
         <tr>
             <td>
                 <code>
-                    edj INDEX n/TITLE [at/DATE_AND_TIME] [d/DESCRIPTION]
+                    edj INDEX [n/TITLE] [at/DATE_AND_TIME] [d/DESCRIPTION]
                     [with/CONTACT_NAME]…​ [t/TAG]…​
                 </code>
             </td>
