@@ -7,7 +7,7 @@ title: Zhu Xiaochen's Project Portfolio Page
 
 IntelliJournal is a desktop contacts/journal management application designed for
 businesspersons to keep track of their contacts information as well as their meetings
-with them. The user interacts with it using a CLI, and it has a GUI created with 
+with them. The user interacts with it using a CLI, and it has a GUI created with
 JavaFX. It is written in Java, and has about 15 kLoC. The project is developed based
 on a previous project named AddressBook Level 3.
 
@@ -42,3 +42,4 @@ statistics about the app usage.
   [\#97](https://github.com/AY2021S1-CS2103T-W17-4/tp/pull/97),
   [\#109](https://github.com/AY2021S1-CS2103T-W17-4/tp/pull/109)
   * Reported bugs and suggestions for other teams in the class.
+  
