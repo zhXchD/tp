@@ -42,4 +42,3 @@ statistics about the app usage.
   [\#97](https://github.com/AY2021S1-CS2103T-W17-4/tp/pull/97),
   [\#109](https://github.com/AY2021S1-CS2103T-W17-4/tp/pull/109)
   * Reported bugs and suggestions for other teams in the class.
-  
