@@ -13,7 +13,7 @@ You can reach us through [GitHub](https://github.com/AY2021S1-CS2103T-W17-4).
 
 <img src="images/zhxchd.png" width="200px">
 
-[[github](https://github.com/zhXchD)]
+[[github](https://github.com/zhXchD)][[Portfolio](team/zhxchd.md)]
 
 * Role: Team lead
 * Responsibilities:
