@@ -9,12 +9,12 @@ import seedu.address.model.Model;
 
 public class DeleteAliasCommand extends Command {
 
-    public static final String COMMAND_WORD = "release";
+    public static final String COMMAND_WORD = "deletea";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": delete a shortcut for an existing alias.\n"
             + "Parameters: CUSTOMISED_ALIAS\n"
-            + "Example: release sw ";
+            + "Example: deletea sw ";
 
     private static final String MESSAGE_ALIAS_NOTFOUND =
             "This alias is not in the system.";

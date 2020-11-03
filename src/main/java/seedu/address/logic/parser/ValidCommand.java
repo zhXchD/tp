@@ -37,7 +37,7 @@ public enum ValidCommand {
     CHECK_SCHEDULE("check", "ck"),
     ADD_ALIAS("alias", "al"),
     CHANGE_THEME("changetheme", "ctheme"),
-    DELETE_ALIAS("release", "delal");
+    DELETE_ALIAS("deletea", "dela");
 
     private static final Logger logger = LogsCenter.getLogger(ValidCommand.class);
 
