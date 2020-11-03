@@ -29,28 +29,37 @@ as well as location information faster than traditional GUI apps.
 1. Copy the file to the folder you want to use as the _home folder_ for your
    IntelliJournal.
 
-1. Double-click the file to start the app. The GUI similar to the below should
-   appear in a few seconds. The app will start with the dashboard tab, which shows
-   you the list of recent contacts and the list of frequent contacts. You can
-   also navigate to the other two tabs, which will look like the second and third
-   screenshots below.<br>
+1. Double-click the file to start the app.
+
+1. The GUI similar to the below should appear in a few seconds. The app will
+   start with the dashboard tab, which shows you the list of recent contacts and
+   the list of frequent contacts.<br>
    ![Ui](images/Ui-dashboard.png)
+
+1. You can also navigate to the other two tabs, which will look like the second
+   and third screenshots below. There will be sample contacts and journal
+   entries on your initial start-up of the app.<br>
    ![Ui](images/Ui-contacts.png)
    ![Ui](images/Ui-journal.png)
 
 1. Type the command in the command box and press Enter to execute it.
-   e.g. typing **`help`** and pressing Enter will open the help window.<br>
+   e.g. typing `help` and pressing Enter will open the help window.<br>
+
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * `clearc` : Clear all sample contacts.
 
-   * **`addc`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block
+   * `clearj` : Clear all sample journal entries.
+
+   * `listc` : Lists all contacts.
+
+   * `addc n/John Doe p/98765432 e/johnd@example.com a/John street, block
      123, #01-01` :
      <br>Adds a contact named `John Doe` to the Address Book.
 
-   * **`deletec`**`3` : deletes the 3rd contact shown in the current list.
+   * `deletec 3` : deletes the 3rd contact shown in the current list.
 
-   * **`exit`** : Exits the app.
+   * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -69,20 +78,25 @@ IntelliJournal:
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as
-  `add n/John Doe`.
+  e.g. in `addcontact n/NAME`, `NAME` is a parameter which can be used as
+       `add n/John Doe`.<br>
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.<br>
 
 * Items with `…​` after them can be used multiple times including zero
   times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`,
-  `t/friend t/family` etc.
+       `t/friend t/family` etc.<br>
+
+* If multiple items without `…​` after them are supplied by the user, the
+  last item is used.<br>
+  e.g. `n/NAME p/PHONE` if used as `n/John Doe n/Betsy Crowe p/911 p/999`,
+       `Betsy Crowe` and `999` will be the name and phone numbers used.<br>
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME`
-  is also acceptable.
+       is also acceptable.<br>
 
 </div>
 
@@ -96,18 +110,23 @@ displaying contact information on the right.
 
 Aliases: `addcontact`, `addc`
 
-Format: `addcontact n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]
-         [at/DATE_AND_TIME] [t/TAG]…​`
+Format: `addcontact n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A contact can have any number of tags (including 0)
+<div markdown="block" class="alert alert-primary">
+
+:bulb: **Tip:**<br>
+
+* A contact can have any number of tags (including 0).<br>
+
+* `TAG` must be alphanumeric, without spaces.<br>
+
 </div>
 
 Examples:
 
-* `addcontact n/John Doe` Adds a contact with the name of `Robert`.
+* `addcontact n/John Doe` Adds a contact with the name of `John Doe`.
 * `addcontact n/Betsy Crowe t/client t/important` Adds a contact with the name
-   of `Robert` and tags of `client` and `important`.
+   of `Betsy Crowe` and tags of `client` and `important`.
 
 #### Listing all contacts: `listc`
 
@@ -119,30 +138,43 @@ Format: `listc`
 
 #### Editing a contact: `editc`
 
-Edits an existing person in the address book.
+Edits an existing contact in the address book.
 
 Aliases: `editc`, `edc`
 
 Format: `editc INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index
-  number shown in the displayed person list.
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding
-  of tags is not cumulative.
-* You can remove all the person’s tags by typing t/ without specifying any tags
-  after it.
-* After editing a contact, the list displayed in the `Contacts` tab will be reset
-to show all existing contacts, because the previous filtering operation may not
-still have the same effects on the edited contact.
+<div markdown="block" class="alert alert-primary">
+
+:bulb: **Tip:**<br>
+
+* Edits the contact at the specified `INDEX`. The index refers to the index
+  number shown in the displayed contact list.<br>
+
+* At least one of the optional fields must be provided.<br>
+
+* Existing values will be updated to the input values.<br>
+
+* `TAG` must be alphanumeric, without spaces.<br>
+
+* When editing tags, the existing tags of the contact will be removed
+  i.e adding of tags is not cumulative.<br>
+
+* You can remove all the contact’s tags by typing t/ without specifying any tags
+  after it.<br>
+
+* After editing a contact, the list displayed in the `Contacts` tab will be
+  reset to show all existing contacts, because the previous filtering operation
+  may not still have the same effects on the edited contact.<br>
+
+</div>
 
 Examples:
 
 * `editc 1 p/91234567 e/johndoe@example.com` Edits the phone number and email
-   address of the 1st person to be `91234567` and `johndoe@example.com`
+   address of the 1st contact to be `91234567` and `johndoe@example.com`
    respectively.
-* `editc 2 n/Betsy Crower t/` Edits the name of the 2nd person to be
+* `editc 2 n/Betsy Crower t/` Edits the name of the 2nd contact to be
   `Betsy Crower` and clears all existing tags.
 
 #### Viewing a contact: `view in/c`
@@ -170,17 +202,26 @@ Aliases: `find`, `f`
 Format: `find in/c [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS] [e/EMAIL_KEYWORDS]
         [a/ADDRESS_KEYWORDS] [t/TAG]…​`
 
+<div markdown="block" class="alert alert-primary">
+
+:bulb: **Tip:**<br>
+
+* `TAG` must be alphanumeric, without spaces.<br>
+
+* Note that for `TAG`, IntelliJournal searches for the exact same tag instead of
+  tags containing any part of the searched terms.<br>
+
+</div>
+
 Examples:
 
 * `find in/c n/Alice` Finds all contacts whose name contains `Alice`.
-* `find in/n n/Alice p/65` Find all contacts whose name contains `Alice` and
+* `find in/c n/Alice p/65` Find all contacts whose name contains `Alice` and
   phone number contains `65`.
 * `find in/c n/Alice p/65 e/@u.nus.edu a/RC4 t/Student`<br>
   Find all contacts whose name contains `Alice` and phone number contains `65`
   and email contains `@u.nus.edu` and address name contains `RC4` and tagged
-  `Student`<br>
-  (Note that for `TAG`, IntelliJournal searches for the exact same tag instead
-  of finding the ones that contain the searched string).
+  `Student`.<br>
 
 #### Deleting a contact: `deletec`
 
@@ -215,13 +256,20 @@ information of that entry on the right.
 
 Aliases: `addjournal`, `addj`
 
-Format: `addjournal n/NAME [at/DATE_AND_TIME] [d/DESCRIPTION]
-         [with/CONTACT_NAMES] [t/TAG]…​`
+Format: `addjournal n/TITLE [at/DATE_AND_TIME] [d/DESCRIPTION]
+         [with/CONTACT_NAME]…​ [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A journal entry can have any number of contacts or tags (including 0)
+<div markdown="block" class="alert alert-primary">
 
-`CONTACT_NAME` must be an existing name in the address book.
+:bulb: **Tip:**<br>
+
+* A journal entry can have any number of contacts or tags (including 0)<br>
+
+* `CONTACT_NAME` must be an existing name in the address book.<br>
+
+* `DATE_AND_TIME` must be in the format: "YYYY-MM-DD HH:MM".<br>
+
+* `TAG` must be alphanumeric, without spaces.<br>
 
 </div>
 
@@ -247,20 +295,35 @@ Edits an existing entry in the journal.
 
 Aliases: `editj`, `edj`
 
-Format: `editj INDEX n/NAME [at/DATE_AND_TIME] [d/DESCRIPTION]
-         [with/CONTACT_NAMES] [t/TAG]…​`
+Format: `editj INDEX [n/TITLE] [at/DATE_AND_TIME] [d/DESCRIPTION]
+         [with/CONTACT_NAME]…​ [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index
-  number shown in the displayed person list.
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
+<div markdown="block" class="alert alert-primary">
+
+:bulb: **Tip:**<br>
+
+* Edits the contact at the specified `INDEX`. The index refers to the index
+  number shown in the displayed contact list.<br>
+
+* At least one of the optional fields must be provided.<br>
+
+* Existing values will be updated to the input values.<br>
+
 * When editing tags, the existing tags of the entry will be removed i.e adding
-  of tags is not cumulative.
+  of tags is not cumulative.<br>
+
 * You can remove all the entry's tags by typing t/ without specifying any tags
-  after it.
+  after it.<br>
+
 * After editing a journal entry, the list displayed in the `Journal` tab will be
-  reset to show all existing contacts, because the previous filtering operation may
-  not still have the same effects on the edited contact.
+  reset to show all existing contacts, because the previous filtering operation 
+  may not still have the same effects on the edited contact.<br>
+
+* `DATE_AND_TIME` must be in the format: "YYYY-MM-DD HH:MM"<br>
+
+* `TAG` must be alphanumeric, without spaces.<br>
+
+</div>
 
 #### Viewing a journal entry: `view in/j`
 
@@ -286,7 +349,20 @@ on particular fields given by the user.
 Aliases: `find`, `f`
 
 Format: `find in/j [n/TITLE_KEYWORDS] [at/DATE_AND_TIME]
-         [with/CONTACT_NAME_KEYWORDS] [d/DESCRIPTION_KEYWORDS] [t/TAG]…​`
+         [with/CONTACT_NAME_KEYWORDS]…​ [d/DESCRIPTION_KEYWORDS] [t/TAG]…​`
+
+<div markdown="block" class="alert alert-primary">
+
+:bulb: **Tip:**<br>
+
+* `DATE_AND_TIME` must be in the format: "YYYY-MM-DD HH:MM"
+
+* `TAG` must be alphanumeric, without spaces.<br>
+
+* Note that for `TAG`, IntelliJournal searches for the exact same tag instead of
+  tags containing any part of the searched terms.<br>
+
+</div>
 
 Examples:
 
@@ -396,8 +472,8 @@ Example:
   different commands.
   <br>Eg. If `st` has been added to the system, it will confuse IntelliJournal
   if you ask it to add `st` as a valid alias for `check` or other command.
-  
-#### Changing the main color theme
+
+#### Changing the main color theme: `changetheme`
 
 You can use this command to choose between two main color scheme of IntelliJournal.
 One is dark theme and the other is bright theme mainly.
@@ -447,15 +523,14 @@ IntelliJournal home folder.
             <td>
                 <code>
                     addcontact n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]
-                    [at/DATE_AND_TIME] [t/TAG]…​
+                    [t/TAG]…​
                 </code>
             </td>
         </tr>
         <tr>
             <td>
                 <code>
-                    addc n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]
-                    [at/DATE_AND_TIME] [t/TAG]…​
+                    addc n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​
                 </code>
             </td>
         </tr>
@@ -538,24 +613,24 @@ IntelliJournal home folder.
             <td rowspan="3"><b>Adding a journal entry</b></td>
             <td>
                 <code>
-                    addjournal n/NAME [at/DATE_AND_TIME] [d/DESCRIPTION]
-                    [with/CONTACT_NAME] [t/TAG]…​
+                    addjournal n/TITLE [at/DATE_AND_TIME] [d/DESCRIPTION]
+                    [with/CONTACT_NAME]…​ [t/TAG]…​
                 </code>
             </td>
         </tr>
         <tr>
             <td>
                 <code>
-                    addj n/NAME [at/DATE_AND_TIME] [d/DESCRIPTION]
-                    [with/CONTACT_NAME] [t/TAG]…​
+                    addj n/TITLE [at/DATE_AND_TIME] [d/DESCRIPTION]
+                    [with/CONTACT_NAME]…​ [t/TAG]…​
                 </code>
             </td>
         </tr>
         <tr>
             <td>
                 <code>
-                    adde n/NAME [at/DATE_AND_TIME] [d/DESCRIPTION]
-                    [with/CONTACT_NAME] [t/TAG]…​
+                    adde n/TITLE [at/DATE_AND_TIME] [d/DESCRIPTION]
+                    [with/CONTACT_NAME]…​ [t/TAG]…​
                 </code>
             </td>
         </tr>
@@ -570,16 +645,16 @@ IntelliJournal home folder.
             <td rowspan="2"><b>Editing a journal entry</b></td>
             <td>
                 <code>
-                    editj INDEX n/NAME [at/DATE_AND_TIME] [d/DESCRIPTION]
-                    [with/CONTACT_NAMES] [t/TAG]…​
+                    editj INDEX [n/TITLE] [at/DATE_AND_TIME] [d/DESCRIPTION]
+                    [with/CONTACT_NAME]…​ [t/TAG]…​
                 </code>
             </td>
         </tr>
         <tr>
             <td>
                 <code>
-                    edj INDEX n/NAME [at/DATE_AND_TIME] [d/DESCRIPTION]
-                    [with/CONTACT_NAMES] [t/TAG]…​​
+                    edj INDEX [n/TITLE] [at/DATE_AND_TIME] [d/DESCRIPTION]
+                    [with/CONTACT_NAME]…​ [t/TAG]…​
                 </code>
             </td>
         </tr>
@@ -595,7 +670,7 @@ IntelliJournal home folder.
             <td>
                 <code>
                     find in/j [n/TITLE_KEYWORDS] [at/DATE_AND_TIME]
-                    [with/CONTACT_NAME_KEYWORDS] [d/DESCRIPTION_KEYWORDS]
+                    [with/CONTACT_NAME_KEYWORDS]…​ [d/DESCRIPTION_KEYWORDS]
                     [t/TAG]…​
                 </code>
             </td>
@@ -604,7 +679,7 @@ IntelliJournal home folder.
             <td>
                 <code>
                     f in/j [n/TITLE_KEYWORDS] [at/DATE_AND_TIME]
-                    [with/CONTACT_NAME_KEYWORDS] [d/DESCRIPTION_KEYWORDS]
+                    [with/CONTACT_NAME_KEYWORDS]…​ [d/DESCRIPTION_KEYWORDS]
                     [t/TAG]…​
                 </code>
             </td>
