@@ -85,9 +85,11 @@ public class EditContactCommand extends Command {
                 personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson)
-                && model.hasPerson(editedPerson)) {
+                && (model.hasPerson(editedPerson) || model.hasName(editedPerson))) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
+
+
 
         model.setPerson(personToEdit, editedPerson);
         model.updateJournalContacts(personToEdit, editedPerson);
