@@ -23,7 +23,7 @@ You can reach us through [GitHub](https://github.com/AY2021S1-CS2103T-W17-4).
 
 <img src="images/lingy12.png" width="200px">
 
-[[github](https://github.com/Lingy12)]
+[[github](https://github.com/Lingy12)][[Portfolio](team/lingy12.md)]
 
 * Role: developer
 * Responsibilities:
