@@ -218,6 +218,7 @@ Format: `addjournal n/NAME [at/DATE_AND_TIME] [d/DESCRIPTION]
          [with/CONTACT_NAME]…​ [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">
+
 :bulb: **Tip:**<br>
 
 * A journal entry can have any number of contacts or tags (including 0)<br>
@@ -254,6 +255,7 @@ Format: `editj INDEX n/NAME [at/DATE_AND_TIME] [d/DESCRIPTION]
          [with/CONTACT_NAME]…​ [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">
+
 :bulb: **Tip:**<br>
 
 * Edits the person at the specified `INDEX`. The index refers to the index
