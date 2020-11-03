@@ -24,8 +24,8 @@ Given below are my contributions to the project:
    * What it does: Support methods that logic component needs to use in `Model` interface to maintain a good abstraction.
 
 * **Backend Work**: Support storage for command alias
-    *What it does: Store the preference of user's alias as json so that the system can keep the customized alias for users.
-    *Justification: This work is important because it allows user to use command alias more naturally.
+    * What it does: Store the preference of user's alias as json so that the system can keep the customized alias for users.
+    * Justification: This work is important because it allows user to use command alias more naturally.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=W17&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=Lingy12&tabRepo=AY2021S1-CS2103T-W17-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
 
