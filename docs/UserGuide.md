@@ -29,18 +29,27 @@ as well as location information faster than traditional GUI apps.
 1. Copy the file to the folder you want to use as the _home folder_ for your
    IntelliJournal.
 
-1. Double-click the file to start the app. The GUI similar to the below should
-   appear in a few seconds. The app will start with the dashboard tab, which
-   shows you the list of recent contacts and the list of frequent contacts. You
-   can also navigate to the other two tabs, which will look like the second and
-   third screenshots below.<br>
+1. Double-click the file to start the app.
+
+1. The GUI similar to the below should appear in a few seconds. The app will
+   start with the dashboard tab, which shows you the list of recent contacts and
+   the list of frequent contacts.<br>
    ![Ui](images/Ui-dashboard.png)
+
+1. You can also navigate to the other two tabs, which will look like the second
+   and third screenshots below. There will be sample contacts and journal
+   entries on your initial start-up of the app.<br>
    ![Ui](images/Ui-contacts.png)
    ![Ui](images/Ui-journal.png)
 
 1. Type the command in the command box and press Enter to execute it.
    e.g. typing `help` and pressing Enter will open the help window.<br>
+
    Some example commands you can try:
+
+   * `clearc` : Clear all sample contacts.
+
+   * `clearj` : Clear all sample journal entries.
 
    * `listc` : Lists all contacts.
 
