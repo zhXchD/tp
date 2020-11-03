@@ -303,6 +303,12 @@ public class AddContactCommandTest {
         }
 
         @Override
+        public boolean hasName(Person person) {
+            requireNonNull(person);
+            return personsAdded.stream().anyMatch(person::hasSameName);
+        }
+
+        @Override
         public void addPerson(Person person) {
             requireNonNull(person);
             personsAdded.add(person);

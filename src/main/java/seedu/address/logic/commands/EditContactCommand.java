@@ -54,8 +54,6 @@ public class EditContactCommand extends Command {
             "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON =
             "This person already exists in the address book.";
-    public static final String MESSAGE_DUPLICATE_NAME =
-            "This name already exists in the address book.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -88,9 +86,6 @@ public class EditContactCommand extends Command {
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
-        }
-        if (model.hasName(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_NAME);
         }
 
 
