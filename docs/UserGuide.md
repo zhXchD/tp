@@ -207,7 +207,7 @@ Format: `find in/c [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS] [e/EMAIL_KEYWORDS]
 Examples:
 
 * `find in/c n/Alice` Finds all contacts whose name contains `Alice`.
-* `find in/n n/Alice p/65` Find all contacts whose name contains `Alice` and
+* `find in/c n/Alice p/65` Find all contacts whose name contains `Alice` and
   phone number contains `65`.
 * `find in/c n/Alice p/65 e/@u.nus.edu a/RC4 t/Student`<br>
   Find all contacts whose name contains `Alice` and phone number contains `65`
