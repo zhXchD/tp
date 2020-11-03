@@ -49,10 +49,11 @@ public class UniquePersonList implements Iterable<Person> {
     /**
      * Adds a person to the list.
      * The person must not already exist in the list.
+     * The name must also not already exist in the list.
      */
     public void add(Person toAdd) {
         requireNonNull(toAdd);
-        if (contains(toAdd)) {
+        if (contains(toAdd) || containsName(toAdd)) {
             throw new DuplicatePersonException();
         }
         internalList.add(toAdd);
