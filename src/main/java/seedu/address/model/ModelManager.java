@@ -127,6 +127,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasName(Person person) {
+        requireNonNull(person);
+        return addressBook.hasName(person);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         requireNonNull(target);
         addressBook.removePerson(target);
