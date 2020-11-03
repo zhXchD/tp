@@ -122,6 +122,9 @@ public class IntelliJournalParser {
         case CHANGE_THEME:
             return new ChangeThemeCommand();
 
+        case DELETE_ALIAS:
+            return new DeleteAliasCommandParser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

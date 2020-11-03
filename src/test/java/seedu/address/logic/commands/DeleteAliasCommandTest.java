@@ -1,14 +1,11 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Map;
 import java.util.function.Predicate;
 
@@ -20,7 +17,6 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.ValidCommand;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyAliasMap;
@@ -28,101 +24,87 @@ import seedu.address.model.ReadOnlyJournal;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.journal.Entry;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
 
-public class AddContactCommandTest {
+public class DeleteAliasCommandTest {
 
     @Nested
     @DisplayName("constructor")
-    class Constructor {
+    class DeleteAliasCommandConstructor {
+
         @Test
-        @DisplayName("should throw NullPointerException if null person is "
-                + "passed into constructor")
-        public void constructor_nullPerson_throwsNullPointerException() {
-            assertThrows(NullPointerException.class, () ->
-                    new AddContactCommand(null));
+        @DisplayName("Should throw null pointer exception if pass in a null object")
+        public void constructor_null_throwsNullPointerException() {
+            assertThrows(NullPointerException.class, () -> new DeleteAliasCommand(null));
         }
     }
+
 
     @Nested
     @DisplayName("execute method")
     class Execute {
+
         @Test
-        @DisplayName("should add person successfully if person is valid")
-        public void execute_personAcceptedByModel_addSuccessful()
-                throws Exception {
-            ModelStubAcceptingPersonAdded modelStub =
-                    new ModelStubAcceptingPersonAdded();
-            Person validPerson = new PersonBuilder().build();
-
-            CommandResult commandResult =
-                    new AddContactCommand(validPerson).execute(modelStub);
-
-            assertEquals(
-                    String.format(AddContactCommand.MESSAGE_SUCCESS, validPerson),
-                    commandResult.getFeedbackToUser()
-            );
-            assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        @DisplayName("Should throw CommandException if the alias not in system")
+        public void execute_notFoundAlias_throwsCommandException() {
+            Command c = new DeleteAliasCommand("dummy");
+            Model model = new ModelStub();
+            assertThrows(CommandException.class, () -> c.execute(model));
         }
 
         @Test
-        @DisplayName("should throw CommandException if person is already in "
-                + "the list")
-        public void execute_duplicatePerson_throwsCommandException() {
-            Person validPerson = new PersonBuilder().build();
-            AddContactCommand addCommand = new AddContactCommand(validPerson);
-            ModelStub modelStub = new ModelStubWithPerson(validPerson);
+        @DisplayName("Delete successfully")
+        public void execute_validAlias_deletesuccess() {
+            Model model = new ModelStub();
 
-            assertThrows(
-                    CommandException.class,
-                    AddContactCommand.MESSAGE_DUPLICATE_PERSON, () ->
-                            addCommand.execute(modelStub)
-            );
+            try {
+                ValidCommand.addAlias(ValidCommand.SWITCH, "dummy");
+                Command c1 = new DeleteAliasCommand("dummy");
+                CommandResult result = c1.execute(model);
+                assertEquals("Delete alias dummy.", result.getFeedbackToUser());
+            } catch (Exception e) {
+                fail();
+            }
         }
     }
 
     @Nested
-    @DisplayName("equals method")
-    class Equals {
-        private Person alice = new PersonBuilder().withName("Alice").build();
-        private Person bob = new PersonBuilder().withName("Bob").build();
-        private AddContactCommand addAliceCommand = new AddContactCommand(alice);
-        private AddContactCommand addBobCommand = new AddContactCommand(bob);
+    @DisplayName("Equals method")
+    class Equal {
 
         @Test
-        @DisplayName("should return true if same object")
-        public void equals_sameObject_true() {
-            assertTrue(addAliceCommand.equals(addAliceCommand));
+        @DisplayName("Should be true if they are the same object")
+        public void equals_sameObj_true() {
+            Command c = new DeleteAliasCommand("si");
+            assertEquals(c, c);
         }
 
         @Test
-        @DisplayName("should return true if same values")
-        public void equals_sameValues_true() {
-            AddContactCommand addAliceCommandCopy = new AddContactCommand(alice);
-            assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        @DisplayName("Should be true if same target")
+        public void equals_diffTarget_false() {
+            Command c1 = new DeleteAliasCommand("si");
+            Command c2 = new DeleteAliasCommand("si");
+            assertEquals(c1, c2);
         }
 
         @Test
-        @DisplayName("should return false if different values")
-        public void equals_differentValues_false() {
-            assertFalse(addAliceCommand.equals(1));
+        @DisplayName("Should be false if different alias")
+        public void equals_diffAlias_false() {
+            Command c1 = new DeleteAliasCommand("j");
+            Command c2 = new DeleteAliasCommand("dj");
+            assertNotEquals(c1, c2);
         }
 
         @Test
-        @DisplayName("should return false if null")
-        public void equals_null_false() {
-            assertFalse(addAliceCommand.equals(null));
-        }
-
-        @Test
-        @DisplayName("should return false if different person")
-        public void equals_differentPerson_false() {
-            assertFalse(addAliceCommand.equals(addBobCommand));
+        @DisplayName("Should be true if same target and alias")
+        public void equals_sameTargetAlias_true() {
+            Command c1 = new AddAliasCommand("delete", "del");
+            Command c2 = new AddAliasCommand("delete", "del");
+            assertEquals(c1, c2);
         }
     }
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A default model stub that have all of the methods failing except update alias map.
      */
     private class ModelStub implements Model {
         @Override
@@ -181,6 +163,12 @@ public class AddContactCommandTest {
         }
 
         @Override
+        public void updateJournalContacts(
+                Person originalPerson, Person updatedPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ReadOnlyJournal getJournal() {
             throw new AssertionError("This method should not be called.");
         }
@@ -206,14 +194,8 @@ public class AddContactCommandTest {
         }
 
         @Override
-        public void updateJournalContacts(
-                Person originalPerson, Person updatedPerson) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void updateAlias(Map<String, ValidCommand> map) {
-            throw new AssertionError("This method should not be called.");
+
         }
 
         @Override
@@ -257,55 +239,13 @@ public class AddContactCommandTest {
         }
 
         @Override
-        public ObservableList<Person> getRecentPersonList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public ObservableList<Person> getFrequentPersonList() {
             throw new AssertionError("This method should not be called.");
         }
-    }
-
-    /**
-     * A Model stub that contains a single person.
-     */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
-
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
-        }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
-        }
-    }
-
-    /**
-     * A Model stub that always accept the person being added.
-     */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
-
-        @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
-        }
-
-        @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
-        }
-
-        @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ObservableList<Person> getRecentPersonList() {
+            throw new AssertionError("This method should not be called.");
         }
     }
 }
