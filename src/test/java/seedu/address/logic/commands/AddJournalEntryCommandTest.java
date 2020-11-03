@@ -115,6 +115,12 @@ class AddJournalEntryCommandTest {
         }
 
         @Override
+        public void updateJournalContacts(
+                Person originalPerson, Person updatedPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateAlias(Map<String, ValidCommand> map) {
             throw new AssertionError("This method should not be called.");
         }
