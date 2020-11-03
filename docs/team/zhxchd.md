@@ -15,7 +15,7 @@ Given below are my contributions to the project.
 
 * **Team role**: TechLead of the team.
 * **New feature**: Added the feature to add journal entries to the application.
-* **New feature**: Added the feature to delete journal entries to the application.
+* **New feature**: Added the feature to delete journal entries from the application.
 * **New feature**: Added the feature to find or filter contacts or journal entries
 based on keywords from particular fields.
 * **New feature**: Added the feature to switch among tabs in the application.
