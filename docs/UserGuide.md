@@ -98,7 +98,7 @@ Aliases: `addcontact`, `addc`
 
 Format: `addcontact n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 :bulb: **Tip:** A contact can have any number of tags (including 0)
 </div>
 
@@ -217,7 +217,7 @@ Aliases: `addjournal`, `addj`
 Format: `addjournal n/NAME [at/DATE_AND_TIME] [d/DESCRIPTION]
          [with/CONTACT_NAME]…​ [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 
 :bulb: **Tip:**<br>
 
@@ -254,7 +254,7 @@ Aliases: `editj`, `edj`
 Format: `editj INDEX n/NAME [at/DATE_AND_TIME] [d/DESCRIPTION]
          [with/CONTACT_NAME]…​ [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 
 :bulb: **Tip:**<br>
 
@@ -305,7 +305,7 @@ Aliases: `find`, `f`
 Format: `find in/j [n/TITLE_KEYWORDS] [at/DATE_AND_TIME]
          [with/CONTACT_NAME_KEYWORDS]…​ [d/DESCRIPTION_KEYWORDS] [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 :bulb: **Tip:** `DATE_AND_TIME` must be in the format: "YYYY-MM-DD HH:MM"
 </div>
 
