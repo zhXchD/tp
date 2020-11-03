@@ -269,7 +269,7 @@ public class EditContactCommandTest {
             assertCommandFailure(
                     editContactCommand,
                     model,
-                    EditContactCommand.MESSAGE_DUPLICATE_PERSON
+                    EditContactCommand.MESSAGE_DUPLICATE_NAME
             );
         }
 
@@ -291,7 +291,7 @@ public class EditContactCommandTest {
             assertCommandFailure(
                     editContactCommand,
                     model,
-                    EditContactCommand.MESSAGE_DUPLICATE_PERSON
+                    EditContactCommand.MESSAGE_DUPLICATE_NAME
             );
         }
 
