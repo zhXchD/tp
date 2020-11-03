@@ -98,8 +98,8 @@ Aliases: `addcontact`, `addc`
 
 Format: `addcontact n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A contact can have any number of tags (including 0)
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:** A contact can have any number of tags (including 0)
 </div>
 
 Examples:
@@ -218,11 +218,14 @@ Format: `addjournal n/NAME [at/DATE_AND_TIME] [d/DESCRIPTION]
          [with/CONTACT_NAME]…​ [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">
-:bulb: **Tip:**
+:bulb: **Tip:**<br>
 
-* A journal entry can have any number of contacts or tags (including 0)
-* `CONTACT_NAME` must be an existing name in the address book.
-* `DATE_AND_TIME` must be in the format: "YYYY-MM-DD HH:MM"
+* A journal entry can have any number of contacts or tags (including 0)<br>
+
+* `CONTACT_NAME` must be an existing name in the address book.<br>
+
+* `DATE_AND_TIME` must be in the format: "YYYY-MM-DD HH:MM"<br>
+
 </div>
 
 Examples:
@@ -251,20 +254,27 @@ Format: `editj INDEX n/NAME [at/DATE_AND_TIME] [d/DESCRIPTION]
          [with/CONTACT_NAME]…​ [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">
-:bulb: **Tip:**
+:bulb: **Tip:**<br>
 
 * Edits the person at the specified `INDEX`. The index refers to the index
-  number shown in the displayed person list.
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
+  number shown in the displayed person list.<br>
+
+* At least one of the optional fields must be provided.<br>
+
+* Existing values will be updated to the input values.<br>
+
 * When editing tags, the existing tags of the entry will be removed i.e adding
-  of tags is not cumulative.
+  of tags is not cumulative.<br>
+
 * You can remove all the entry's tags by typing t/ without specifying any tags
-  after it.
+  after it.<br>
+
 * After editing a journal entry, the list displayed in the `Journal` tab will be
-  reset to show all existing contacts, because the previous filtering operation may
-  not still have the same effects on the edited contact.
-* `DATE_AND_TIME` must be in the format: "YYYY-MM-DD HH:MM"
+  reset to show all existing contacts, because the previous filtering operation 
+  may not still have the same effects on the edited contact.<br>
+
+* `DATE_AND_TIME` must be in the format: "YYYY-MM-DD HH:MM"<br>
+
 </div>
 
 #### Viewing a journal entry: `view in/j`
