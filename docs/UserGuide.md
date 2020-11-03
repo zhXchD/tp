@@ -39,7 +39,7 @@ as well as location information faster than traditional GUI apps.
    ![Ui](images/Ui-journal.png)
 
 1. Type the command in the command box and press Enter to execute it.
-   e.g. typing **`help`** and pressing Enter will open the help window.<br>
+   e.g. typing `help` and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `listc` : Lists all contacts.
@@ -406,7 +406,7 @@ Example:
   <br>Eg. If `st` has been added to the system, it will confuse IntelliJournal
   if you ask it to add `st` as a valid alias for `check` or other command.
   
-#### Changing the main color theme
+#### Changing the main color theme: `changetheme`
 
 You can use this command to choose between two main color scheme of IntelliJournal.
 One is dark theme and the other is bright theme mainly.
