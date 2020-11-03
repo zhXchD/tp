@@ -1,5 +1,7 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,8 +12,6 @@ import seedu.address.logic.parser.exceptions.AliasExistsException;
 import seedu.address.logic.parser.exceptions.AliasNotFoundException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAliasMap;
-
-import static java.util.Objects.requireNonNull;
 
 
 /**

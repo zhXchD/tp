@@ -7,7 +7,15 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.*;
+import seedu.address.logic.commands.ChangeThemeCommand;
+import seedu.address.logic.commands.ClearAddressBookCommand;
+import seedu.address.logic.commands.ClearJournalCommand;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListContactCommand;
+import seedu.address.logic.commands.ListJournalEntryCommand;
+import seedu.address.logic.commands.SwitchCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**

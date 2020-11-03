@@ -1,13 +1,11 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.ValidCommand;
-import seedu.address.logic.parser.exceptions.AliasExistsException;
 import seedu.address.logic.parser.exceptions.AliasNotFoundException;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-
-import static java.util.Objects.requireNonNull;
 
 public class DeleteAliasCommand extends Command {
 
@@ -25,6 +23,11 @@ public class DeleteAliasCommand extends Command {
 
     private final String target;
 
+    /**
+     * Creates a command to delete alias.
+     *
+     * @param target Target alias to delete.
+     */
     public DeleteAliasCommand(String target) {
         requireNonNull(target);
 
@@ -44,5 +47,12 @@ public class DeleteAliasCommand extends Command {
 
         return new CommandResult(String.format(MESSAGE_ADD_ALIAS_SUCCEED, target))
                 .setSameTab();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this || (other instanceof DeleteAliasCommand
+                && target.equals(((DeleteAliasCommand) other).target));
+
     }
 }
