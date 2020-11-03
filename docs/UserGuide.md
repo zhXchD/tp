@@ -96,8 +96,7 @@ displaying contact information on the right.
 
 Aliases: `addcontact`, `addc`
 
-Format: `addcontact n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]
-         [at/DATE_AND_TIME] [t/TAG]…​`
+Format: `addcontact n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A contact can have any number of tags (including 0)
@@ -216,13 +215,14 @@ information of that entry on the right.
 Aliases: `addjournal`, `addj`
 
 Format: `addjournal n/NAME [at/DATE_AND_TIME] [d/DESCRIPTION]
-         [with/CONTACT_NAMES] [t/TAG]…​`
+         [with/CONTACT_NAME]…​ [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A journal entry can have any number of contacts or tags (including 0)
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:**
 
-`CONTACT_NAME` must be an existing name in the address book.
-
+* A journal entry can have any number of contacts or tags (including 0)
+* `CONTACT_NAME` must be an existing name in the address book.
+* `DATE_AND_TIME` must be in the format: "YYYY-MM-DD HH:MM"
 </div>
 
 Examples:
@@ -248,7 +248,10 @@ Edits an existing entry in the journal.
 Aliases: `editj`, `edj`
 
 Format: `editj INDEX n/NAME [at/DATE_AND_TIME] [d/DESCRIPTION]
-         [with/CONTACT_NAMES] [t/TAG]…​`
+         [with/CONTACT_NAME]…​ [t/TAG]…​`
+
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:**
 
 * Edits the person at the specified `INDEX`. The index refers to the index
   number shown in the displayed person list.
@@ -261,6 +264,8 @@ Format: `editj INDEX n/NAME [at/DATE_AND_TIME] [d/DESCRIPTION]
 * After editing a journal entry, the list displayed in the `Journal` tab will be
   reset to show all existing contacts, because the previous filtering operation may
   not still have the same effects on the edited contact.
+* `DATE_AND_TIME` must be in the format: "YYYY-MM-DD HH:MM"
+</div>
 
 #### Viewing a journal entry: `view in/j`
 
@@ -286,7 +291,11 @@ on particular fields given by the user.
 Aliases: `find`, `f`
 
 Format: `find in/j [n/TITLE_KEYWORDS] [at/DATE_AND_TIME]
-         [with/CONTACT_NAME_KEYWORDS] [d/DESCRIPTION_KEYWORDS] [t/TAG]…​`
+         [with/CONTACT_NAME_KEYWORDS]…​ [d/DESCRIPTION_KEYWORDS] [t/TAG]…​`
+
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:** `DATE_AND_TIME` must be in the format: "YYYY-MM-DD HH:MM"
+</div>
 
 Examples:
 
@@ -447,15 +456,14 @@ IntelliJournal home folder.
             <td>
                 <code>
                     addcontact n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]
-                    [at/DATE_AND_TIME] [t/TAG]…​
+                    [t/TAG]…​
                 </code>
             </td>
         </tr>
         <tr>
             <td>
                 <code>
-                    addc n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]
-                    [at/DATE_AND_TIME] [t/TAG]…​
+                    addc n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​
                 </code>
             </td>
         </tr>
@@ -539,7 +547,7 @@ IntelliJournal home folder.
             <td>
                 <code>
                     addjournal n/NAME [at/DATE_AND_TIME] [d/DESCRIPTION]
-                    [with/CONTACT_NAME] [t/TAG]…​
+                    [with/CONTACT_NAME]…​ [t/TAG]…​
                 </code>
             </td>
         </tr>
@@ -547,7 +555,7 @@ IntelliJournal home folder.
             <td>
                 <code>
                     addj n/NAME [at/DATE_AND_TIME] [d/DESCRIPTION]
-                    [with/CONTACT_NAME] [t/TAG]…​
+                    [with/CONTACT_NAME]…​ [t/TAG]…​
                 </code>
             </td>
         </tr>
@@ -555,7 +563,7 @@ IntelliJournal home folder.
             <td>
                 <code>
                     adde n/NAME [at/DATE_AND_TIME] [d/DESCRIPTION]
-                    [with/CONTACT_NAME] [t/TAG]…​
+                    [with/CONTACT_NAME]…​ [t/TAG]…​
                 </code>
             </td>
         </tr>
@@ -571,7 +579,7 @@ IntelliJournal home folder.
             <td>
                 <code>
                     editj INDEX n/NAME [at/DATE_AND_TIME] [d/DESCRIPTION]
-                    [with/CONTACT_NAMES] [t/TAG]…​
+                    [with/CONTACT_NAME]…​ [t/TAG]…​
                 </code>
             </td>
         </tr>
@@ -579,7 +587,7 @@ IntelliJournal home folder.
             <td>
                 <code>
                     edj INDEX n/NAME [at/DATE_AND_TIME] [d/DESCRIPTION]
-                    [with/CONTACT_NAMES] [t/TAG]…​​
+                    [with/CONTACT_NAME]…​ [t/TAG]…​
                 </code>
             </td>
         </tr>
@@ -595,7 +603,7 @@ IntelliJournal home folder.
             <td>
                 <code>
                     find in/j [n/TITLE_KEYWORDS] [at/DATE_AND_TIME]
-                    [with/CONTACT_NAME_KEYWORDS] [d/DESCRIPTION_KEYWORDS]
+                    [with/CONTACT_NAME_KEYWORDS]…​ [d/DESCRIPTION_KEYWORDS]
                     [t/TAG]…​
                 </code>
             </td>
@@ -604,7 +612,7 @@ IntelliJournal home folder.
             <td>
                 <code>
                     f in/j [n/TITLE_KEYWORDS] [at/DATE_AND_TIME]
-                    [with/CONTACT_NAME_KEYWORDS] [d/DESCRIPTION_KEYWORDS]
+                    [with/CONTACT_NAME_KEYWORDS]…​ [d/DESCRIPTION_KEYWORDS]
                     [t/TAG]…​
                 </code>
             </td>
