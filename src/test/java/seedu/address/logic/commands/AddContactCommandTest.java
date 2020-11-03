@@ -191,6 +191,11 @@ public class AddContactCommandTest {
         }
 
         @Override
+        public boolean hasName(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deletePerson(Person target) {
             throw new AssertionError("This method should not be called.");
         }

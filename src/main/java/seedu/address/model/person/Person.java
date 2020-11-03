@@ -78,7 +78,7 @@ public class Person {
     /**
      * Returns true if both persons have the same name.
      */
-    public boolean hasSameName(Person otherPerson)  {
+    public boolean hasSameName(Person otherPerson) {
         if (otherPerson == this) {
             return true;
         }
