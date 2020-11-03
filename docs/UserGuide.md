@@ -30,10 +30,10 @@ as well as location information faster than traditional GUI apps.
    IntelliJournal.
 
 1. Double-click the file to start the app. The GUI similar to the below should
-   appear in a few seconds. The app will start with the dashboard tab, which shows
-   you the list of recent contacts and the list of frequent contacts. You can
-   also navigate to the other two tabs, which will look like the second and third
-   screenshots below.<br>
+   appear in a few seconds. The app will start with the dashboard tab, which
+   shows you the list of recent contacts and the list of frequent contacts. You
+   can also navigate to the other two tabs, which will look like the second and
+   third screenshots below.<br>
    ![Ui](images/Ui-dashboard.png)
    ![Ui](images/Ui-contacts.png)
    ![Ui](images/Ui-journal.png)
@@ -70,19 +70,24 @@ IntelliJournal:
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `addcontact n/NAME`, `NAME` is a parameter which can be used as
-  `add n/John Doe`.
+       `add n/John Doe`.<br>
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.<br>
 
 * Items with `…​` after them can be used multiple times including zero
   times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`,
-  `t/friend t/family` etc.
+       `t/friend t/family` etc.<br>
+
+* If multiple items without `…​` after them are supplied by the user, the
+  last item is used.<br>
+  e.g. `n/NAME p/PHONE` if used as `n/John Doe n/Betsy Crowe p/911 p/999`,
+       `Betsy Crowe` and `999` will be the name and phone numbers used.<br>
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME`
-  is also acceptable.
+       is also acceptable.<br>
 
 </div>
 
