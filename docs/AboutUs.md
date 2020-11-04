@@ -13,7 +13,7 @@ You can reach us through [GitHub](https://github.com/AY2021S1-CS2103T-W17-4).
 
 <img src="images/zhxchd.png" width="200px">
 
-[[Github](https://github.com/zhXchD)][[Portfolio](team/zhxchd.md)]
+[[GitHub](https://github.com/zhXchD)][[Portfolio](team/zhxchd.md)]
 
 * Role: Team lead
 * Responsibilities:
@@ -34,7 +34,7 @@ You can reach us through [GitHub](https://github.com/AY2021S1-CS2103T-W17-4).
 
 <img src="images/nauw1010.png" width="200px">
 
-[[Github](https://github.com/Nauw1010)]
+[[GitHub](https://github.com/Nauw1010)]
 
 * Role: developer
 * Responsibilities:
@@ -45,7 +45,7 @@ You can reach us through [GitHub](https://github.com/AY2021S1-CS2103T-W17-4).
 
 <img src="images/jazerler.png" width="200px">
 
-[[Github](https://github.com/jazerler)]
+[[GitHub](https://github.com/jazerler)]
 
 * Role: developer
 * Responsibilities:
@@ -55,7 +55,7 @@ You can reach us through [GitHub](https://github.com/AY2021S1-CS2103T-W17-4).
 
 <img src="images/joshualiangxy.png" width="200px">
 
-[[Github](https://github.com/joshualiangxy)][[Portfolio](team/joshualiangxy.md)]
+[[GitHub](https://github.com/joshualiangxy)][[Portfolio](team/joshualiangxy.md)]
 
 * Role: developer
 * Responsibilities:
