@@ -47,10 +47,6 @@ as well as location information faster than traditional GUI apps.
 
    Some example commands you can try:
 
-   * `clearc` : Clear all sample contacts.
-
-   * `clearj` : Clear all sample journal entries.
-
    * `listc` : Lists all contacts.
 
    * `addc n/John Doe p/98765432 e/johnd@example.com a/John street, block
@@ -58,6 +54,10 @@ as well as location information faster than traditional GUI apps.
      <br>Adds a contact named `John Doe` to the Address Book.
 
    * `deletec 3` : deletes the 3rd contact shown in the current list.
+
+   * `clearc` : Clear all sample contacts.
+
+   * `clearj` : Clear all sample journal entries.
 
    * `exit` : Exits the app.
 
@@ -91,8 +91,8 @@ IntelliJournal:
 
 * If multiple items without `…​` after them are supplied by the user, the
   last item is used.<br>
-  e.g. `n/NAME p/PHONE` if used as `n/John Doe n/Betsy Crowe p/911 p/999`,
-       `Betsy Crowe` and `999` will be the name and phone numbers used.<br>
+  e.g. `n/NAME p/PHONE` if used as `n/John Doe n/Betsy Crowe p/91111111 p/99988877`,
+       `Betsy Crowe` and `99988877` will be the name and phone numbers used.<br>
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME`
@@ -114,11 +114,10 @@ Format: `addcontact n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 <div markdown="block" class="alert alert-primary">
 
-:bulb: **Tip:**<br>
+:bulb: **Tips:**<br>
 
-* A contact can have any number of tags (including 0).<br>
-
-* `TAG` must be alphanumeric, without spaces.<br>
+* A contact can have any number of tags (including 0).
+* `TAG` must be alphanumeric, without spaces.
 
 </div>
 
@@ -146,26 +145,20 @@ Format: `editc INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 <div markdown="block" class="alert alert-primary">
 
-:bulb: **Tip:**<br>
+:bulb: **Tips:**<br>
 
 * Edits the contact at the specified `INDEX`. The index refers to the index
-  number shown in the displayed contact list.<br>
-
-* At least one of the optional fields must be provided.<br>
-
-* Existing values will be updated to the input values.<br>
-
-* `TAG` must be alphanumeric, without spaces.<br>
-
+  number shown in the displayed contact list.
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* `TAG` must be alphanumeric, without spaces.
 * When editing tags, the existing tags of the contact will be removed
-  i.e adding of tags is not cumulative.<br>
-
+  i.e adding of tags is not cumulative.
 * You can remove all the contact’s tags by typing t/ without specifying any tags
-  after it.<br>
-
+  after it.
 * After editing a contact, the list displayed in the `Contacts` tab will be
   reset to show all existing contacts, because the previous filtering operation
-  may not still have the same effects on the edited contact.<br>
+  may not still have the same effects on the edited contact.
 
 </div>
 
@@ -204,12 +197,11 @@ Format: `find in/c [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS] [e/EMAIL_KEYWORDS]
 
 <div markdown="block" class="alert alert-primary">
 
-:bulb: **Tip:**<br>
+:bulb: **Tips:**<br>
 
-* `TAG` must be alphanumeric, without spaces.<br>
-
+* `TAG` must be alphanumeric, without spaces.
 * Note that for `TAG`, IntelliJournal searches for the exact same tag instead of
-  tags containing any part of the searched terms.<br>
+  tags containing any part of the searched terms.
 
 </div>
 
@@ -261,15 +253,12 @@ Format: `addjournal n/TITLE [at/DATE_AND_TIME] [d/DESCRIPTION]
 
 <div markdown="block" class="alert alert-primary">
 
-:bulb: **Tip:**<br>
+:bulb: **Tips:**<br>
 
-* A journal entry can have any number of contacts or tags (including 0)<br>
-
-* `CONTACT_NAME` must be an existing name in the address book.<br>
-
-* `DATE_AND_TIME` must be in the format: "YYYY-MM-DD HH:MM".<br>
-
-* `TAG` must be alphanumeric, without spaces.<br>
+* A journal entry can have any number of contacts or tags (including 0)
+* `CONTACT_NAME` must be an existing name in the address book.
+* `DATE_AND_TIME` must be in the format: "YYYY-MM-DD HH:MM".
+* `TAG` must be alphanumeric, without spaces.
 
 </div>
 
@@ -300,28 +289,21 @@ Format: `editj INDEX [n/TITLE] [at/DATE_AND_TIME] [d/DESCRIPTION]
 
 <div markdown="block" class="alert alert-primary">
 
-:bulb: **Tip:**<br>
+:bulb: **Tips:**<br>
 
 * Edits the contact at the specified `INDEX`. The index refers to the index
-  number shown in the displayed contact list.<br>
-
-* At least one of the optional fields must be provided.<br>
-
-* Existing values will be updated to the input values.<br>
-
+  number shown in the displayed contact list.
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
 * When editing tags, the existing tags of the entry will be removed i.e adding
-  of tags is not cumulative.<br>
-
+  of tags is not cumulative.
 * You can remove all the entry's tags by typing t/ without specifying any tags
-  after it.<br>
-
+  after it.
 * After editing a journal entry, the list displayed in the `Journal` tab will be
   reset to show all existing contacts, because the previous filtering operation
-  may not still have the same effects on the edited contact.<br>
-
-* `DATE_AND_TIME` must be in the format: "YYYY-MM-DD HH:MM"<br>
-
-* `TAG` must be alphanumeric, without spaces.<br>
+  may not still have the same effects on the edited contact.
+* `DATE_AND_TIME` must be in the format: "YYYY-MM-DD HH:MM"
+* `TAG` must be alphanumeric, without spaces.
 
 </div>
 
@@ -353,14 +335,12 @@ Format: `find in/j [n/TITLE_KEYWORDS] [at/DATE_AND_TIME]
 
 <div markdown="block" class="alert alert-primary">
 
-:bulb: **Tip:**<br>
+:bulb: **Tips:**<br>
 
 * `DATE_AND_TIME` must be in the format: "YYYY-MM-DD HH:MM"
-
-* `TAG` must be alphanumeric, without spaces.<br>
-
+* `TAG` must be alphanumeric, without spaces.
 * Note that for `TAG`, IntelliJournal searches for the exact same tag instead of
-  tags containing any part of the searched terms.<br>
+  tags containing any part of the searched terms.
 
 </div>
 
