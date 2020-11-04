@@ -50,11 +50,17 @@ public class PersonListPanel extends UiPart<Region> {
         }
     }
 
-    //@@author {zhXchD}
-    public ObservableList<Person> getPersonListItems() {
-        return personListView.getItems();
+    //@@author {Nauw1010}
+    public Person getFirstPerson() {
+        if (personListView.getItems().isEmpty()) {
+            return null;
+        } else {
+            return personListView.getItems().get(0);
+        }
     }
+    //@@author
 
+    //@@author {zhXchD}
     /**
      * Selects the item in the list of specified index.
      * @param index the index of the item to be selected
