@@ -351,11 +351,11 @@ public void setTags(Set<Tag> tags) {
 ```
 Note that a new `UniquePersonList` is created whenever `setContactList` is called, rather than to simply check if `contactList` is null like in `setTags`.
 The resulting `EditJournalDescriptor` object is used along with the `Index` specified to create an
- `EditJournalEntryCommand`, which contains methods to search through and add valid contacts to a resulting `Entry`. 
- 
+ `EditJournalEntryCommand`, which contains methods to search through and add valid contacts to a resulting `Entry`.
+
  The following sequence diagram shows how the Edit Journal Entry command works:
 ![EditJournalSequenceDiagram](images/EditJournalSequenceDiagram.png)
- 
+
 
 ### \[Proposed\] Undo/redo feature
 

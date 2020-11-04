@@ -16,7 +16,7 @@ Given below are my contributions to the project:
 * **New Feature**: Support command alias (`alias` command)
    * What it does: Allow user to type faster after being familiar with the system with an alias to existing command.
    * Justification: This feature improves the user experience by not forcing user to type out the full command when they are familiar with the system.
-   
+
 * **New Feature**: Support delete alias (`release` command)
    * What it does: Allow user to delete an alias that is set previously.
 
@@ -41,7 +41,7 @@ Given below are my contributions to the project:
   * Do regular user testing to ensure the product quality.
   * Contribute user stories to start the project.
   * Report bug or design issue to teammates to ensure code quality.
-  
+
 * **Documentation**:
   * User Guide:
     * Added documentation for the features `alias` and `release` (Delete alias).
