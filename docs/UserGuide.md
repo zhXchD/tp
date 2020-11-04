@@ -262,14 +262,14 @@ Format: `addjournal n/TITLE [at/DATE_AND_TIME] [d/DESCRIPTION]
 
 </div>
 
-Examples:
+Example:
 
 1. Type `addjournal n/Meeting with client at/2020-09-20 14:00 d/Tea` into the
-  command box and press Enter.
+  command box and press enter.
 
 ![addjournal example](images/UGExamples/addjournalExample1.png)
 
-2. You will be directed to the journal tab with the new journal entry on the
+2. You will be directed to the journal tab, with the new journal entry on the
   screen
 
 ![addjournal example 2](images/UGExamples/addjournalExample2.png)
@@ -281,6 +281,17 @@ Lists all journal entries in the journal.
 Aliases: `listj`, `lj`
 
 Format: `listj`
+
+Example:
+
+1. Type `listj` into the command box and press enter.
+
+![listj example](images/UGExamples/listjExample1.png)
+
+2. You will be directed to the journal tab, with all the journal entries listed
+   on the sidebar.
+
+![listj example 2](images/UGExamples/listjExample2.png)
 
 #### Editing a journal entry: `editj`
 
