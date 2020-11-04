@@ -408,7 +408,7 @@ Format: `deletej INDEX`
 
 * `INDEX` refers to the index number of the journal shown in the list.
 
-Examples:
+Example:
 
 1. Type `deletej 5` into the command box and press enter. 
 
@@ -425,6 +425,16 @@ Clears all journal entries in the journal.
 Aliases: `clearj`, `cj`
 
 Format: `clearj`
+
+Example:
+
+1. Type `clearj` into the command box and press enter.
+
+![clearj example 1](images/UGExamples/clearjExample1.png)
+
+2. This removes all journal entries in the journal.
+
+![clearj example 2](images/UGExamples/clearjExample2.png)
 
 ### Miscellaneous
 
