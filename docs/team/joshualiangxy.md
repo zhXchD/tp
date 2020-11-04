@@ -3,7 +3,7 @@ layout: page
 title: Joshua Liang's Project Portfolio Page
 ---
 
-## Project: AddressBook Level 3
+## Project: IntelliJournal
 
 IntelliJournal is a desktop contacts/journal management application designed for
 businesspersons to keep track of their contacts information as well as their
