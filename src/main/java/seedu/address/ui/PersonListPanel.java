@@ -54,6 +54,25 @@ public class PersonListPanel extends UiPart<Region> {
     public ObservableList<Person> getPersonListItems() {
         return personListView.getItems();
     }
+
+    /**
+     * Selects the item in the list of specified index.
+     * @param index the index of the item to be selected
+     */
+    public void select(int index) {
+        personListView.getSelectionModel().select(index);
+        personListView.scrollTo(index);
+    }
+
+    /**
+     * Selects the first item if nothing is being selected.
+     */
+    public void select() {
+        if (personListView.getSelectionModel().getSelectedItems().isEmpty()) {
+            personListView.getSelectionModel().selectFirst();
+            personListView.scrollTo(0);
+        }
+    }
     //@@author
 
     //@@author {Nauw1010}

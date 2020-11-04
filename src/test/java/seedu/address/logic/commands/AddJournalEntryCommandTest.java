@@ -100,6 +100,11 @@ class AddJournalEntryCommandTest {
         }
 
         @Override
+        public boolean hasName(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deletePerson(Person target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -111,6 +116,12 @@ class AddJournalEntryCommandTest {
 
         @Override
         public void deleteEntry(Entry entry) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateJournalContacts(
+                Person originalPerson, Person updatedPerson) {
             throw new AssertionError("This method should not be called.");
         }
 
