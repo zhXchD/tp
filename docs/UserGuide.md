@@ -492,26 +492,28 @@ Format: `alias TARGET ALIAS`
 * `TARGET`: Existing command or alias in the IntelliJournal.
 * `ALIAS`: The personalized shortcut you want to add into the system.
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+
+* We have provided some default shortcuts which can be found in
+  [Command Summary](#command-summary), you can use `alias` command to add your
+  personalized command alias.
+* You can add a shortcut according to existing shortcut. eg. If you have added
+  `st` as a shortcut for `switch`, you can use `alias st si`. You will add `si`
+  as a valid alias for switch as well.
+* **Warning**: IntelliJournal will not be able to have a single alias for two
+  different commands.
+  <br>Eg. If `st` has been added to the system, it will confuse IntelliJournal
+  if you ask it to add `st` as a valid alias for `check` or other command.
+
+</div>
+
 Example:
 
 * `alias switch st` ---  This will add `st` as a valid shortcut for command
   `switch`.
 * `alias addj j` --- This will add `j` as a valid shortcut for command `addj`
-
-**Note**:
-
-* We have provided some default shortcuts which can be found in
-  [Command Summary](#Command Summary), you can use `alias` command to add your
-  personalized command alias.
-
-* You can add a shortcut according to existing shortcut. eg. If you have added
-  `st` as a shortcut for `switch`, you can use `alias st si`. You will add `si`
-  as a valid alias for switch as well.
-
-* **Warning**: IntelliJournal will not be able to have a single alias for two
-  different commands.
-  <br>Eg. If `st` has been added to the system, it will confuse IntelliJournal
-  if you ask it to add `st` as a valid alias for `check` or other command.
 
 #### Changing the main color theme: `changetheme`
 
