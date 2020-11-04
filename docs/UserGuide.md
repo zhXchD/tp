@@ -264,11 +264,15 @@ Format: `addjournal n/TITLE [at/DATE_AND_TIME] [d/DESCRIPTION]
 
 Examples:
 
-* `addjournal n/Meeting with client` Adds a journal entry with the name
-  `Meeting with client`.
-* `addjournal n/Meeting with client at/2020-9-20 14:00 d/Tea` Adds a journal
-  entry with the name `Meeting with client`, a date and time of
-  `2020-9-20 14:00` and content `Tea`.
+1. Type `addjournal n/Meeting with client at/2020-09-20 14:00 d/Tea` into the
+  command box and press Enter.
+
+![addjournal example](images/UGExamples/addjournalExample1.png)
+
+2. You will be directed to the journal tab with the new journal entry on the
+  screen
+
+![addjournal example 2](images/UGExamples/addjournalExample2.png)
 
 #### Listing all journal entries: `listj`
 
@@ -407,11 +411,15 @@ the link to our User Guide.
 
 Examples:
 
-* Type in `help of/addc`, you will be able to see the usage of `addc` command in
-the result box.
-![Ui](images/HelpExample1.png)
-* Type in `help`, you will be able to see the help window popping up.
-![Ui](images/HelpExample2.png)
+* Type `help of/addc` in the command box, you will be able to see the usage
+  of `addc` command in the result box.
+
+![Ui](images/UGExamples/HelpExample1.png)
+
+* Type `help` in the command box, you will be able to see the help window
+  popping up.
+
+![Ui](images/UGExamples/HelpExample2.png)
 
 #### Switching the display tab: `switch`
 
