@@ -410,8 +410,13 @@ Format: `deletej INDEX`
 
 Examples:
 
-* `deletej 4` Deletes the 4th journal entry in the journal.
-* `deletej 8` Deletes the 8th journal entry in the journal.
+1. Type `deletej 5` into the command box and press enter. 
+
+![deletej example 1](images/UGExamples/deletejExample1.png)
+
+2. This deletes the 5th journal entry in the journal.
+
+![deletej example 1](images/UGExamples/deletejExample1.png)
 
 #### Clearing the journal: `clearj`
 
