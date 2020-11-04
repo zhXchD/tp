@@ -54,19 +54,19 @@ public class TypicalPersons {
             .build(UUID.fromString("5f5df00a-60f6-43ad-aad5-77b17847c20a"));
     public static final Person ELLE = new PersonBuilder()
             .withName("Elle Meyer")
-            .withPhone("9482224")
+            .withPhone("94822244")
             .withEmail("werner@example.com")
             .withAddress("michegan ave")
             .build(UUID.fromString("3f40a181-8153-4616-a69a-3362664f5a50"));
     public static final Person FIONA = new PersonBuilder()
             .withName("Fiona Kunz")
-            .withPhone("9482427")
+            .withPhone("94824277")
             .withEmail("lydia@example.com")
             .withAddress("little tokyo")
             .build(UUID.fromString("bfac8b18-3103-43a3-bd98-3de9d3375655"));
     public static final Person GEORGE = new PersonBuilder()
             .withName("George Best")
-            .withPhone("9482442")
+            .withPhone("94824422")
             .withEmail("anna@example.com")
             .withAddress("4th street")
             .build(UUID.fromString("6d07561e-3230-49a1-85e8-226e588fffdf"));
@@ -74,13 +74,13 @@ public class TypicalPersons {
     // Manually added
     public static final Person HOON = new PersonBuilder()
             .withName("Hoon Meier")
-            .withPhone("8482424")
+            .withPhone("84824244")
             .withEmail("stefan@example.com")
             .withAddress("little india")
             .build();
     public static final Person IDA = new PersonBuilder()
             .withName("Ida Mueller")
-            .withPhone("8482131")
+            .withPhone("84821311")
             .withEmail("hans@example.com")
             .withAddress("chicago ave")
             .build();
