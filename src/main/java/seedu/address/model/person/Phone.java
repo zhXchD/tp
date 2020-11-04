@@ -11,8 +11,9 @@ public class Phone {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers, and it should be at least 3 digits long";
-    public static final String VALIDATION_REGEX = "\\d{3,}";
+            "Phone numbers should only contain numbers, and be valid "
+                    + "Singapore phone numbers.";
+    public static final String VALIDATION_REGEX = "^(\\+65)?(6|8|9)\\d{7}$";
     public static final Phone EMPTY_PHONE = new Phone(Phone.EMPTY_MESSAGE);
     private static final String EMPTY_MESSAGE = "No phone number found!";
     public final String value;
