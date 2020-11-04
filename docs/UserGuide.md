@@ -485,7 +485,7 @@ Format: `switch`
 
 Adds your preferred shortcut for existing commands.
 
-Aliases: `alias`
+Aliases: `alias`, `al`
 
 Format: `alias TARGET ALIAS`
 
@@ -514,6 +514,30 @@ Example:
 * `alias switch st` ---  This will add `st` as a valid shortcut for command
   `switch`.
 * `alias addj j` --- This will add `j` as a valid shortcut for command `addj`
+
+#### Deleting custom aliases: `deletea`
+
+Removes the custom alias from IntelliJournal.
+
+Aliases: `deletea`, `dela`
+
+Format: `deletea ALIAS`
+
+Example:
+
+1. Assuming you have added `st` as an alias for `switch`, type `deletea sw` into
+   the command box and press enter.
+
+    ![deletea example](images/UGExamples/deleteaExample1.png)
+
+1. This removes `st` from IntelliJournal.
+
+    ![deletea example 2](images/UGExamples/deleteaExample2.png)
+
+1. If you try to use `st` again, IntelliJournal will tell you that the command
+   is not recognised.
+
+    ![deletea example 3](images/UGExamples/deleteaExample3.png)
 
 #### Changing the main color theme: `changetheme`
 
@@ -775,8 +799,18 @@ IntelliJournal home folder.
             <td><code>swt</code></td>
         </tr>
         <tr>
-            <td><b>Adding aliases for existing commands</b></td>
+            <td rowspan="2"><b>Adding aliases for existing commands</b></td>
             <td><code>alias TARGET ALIAS</code></td>
+        </tr>
+        <tr>
+            <td><code>al TARGET ALIAS</code></td>
+        </tr>
+        <tr>
+            <td rowspan="2"><b>Deleting custom aliases</b></td>
+            <td><code>deletea ALIAS</code></td>
+        </tr>
+        <tr>
+            <td><code>dela ALIAS</code></td>
         </tr>
         <tr>
             <td rowspan="2"><b>Changing the color theme</b></td>
