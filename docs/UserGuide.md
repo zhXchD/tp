@@ -316,7 +316,7 @@ Format: `editj INDEX [n/TITLE] [at/DATE_AND_TIME] [d/DESCRIPTION]
   after it.<br>
 
 * After editing a journal entry, the list displayed in the `Journal` tab will be
-  reset to show all existing contacts, because the previous filtering operation 
+  reset to show all existing contacts, because the previous filtering operation
   may not still have the same effects on the edited contact.<br>
 
 * `DATE_AND_TIME` must be in the format: "YYYY-MM-DD HH:MM"<br>
