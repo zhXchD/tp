@@ -267,12 +267,12 @@ Example:
 1. Type `addjournal n/Meeting with client at/2020-09-20 14:00 d/Tea` into the
   command box and press enter.
 
-![addjournal example](images/UGExamples/addjournalExample1.png)
+    ![addjournal example](images/UGExamples/addjournalExample1.png)
 
-2. You will be directed to the journal tab, with the new journal entry on the
+1. You will be directed to the journal tab, with the new journal entry on the
   screen
 
-![addjournal example 2](images/UGExamples/addjournalExample2.png)
+    ![addjournal example 2](images/UGExamples/addjournalExample2.png)
 
 #### Listing all journal entries: `listj`
 
@@ -286,12 +286,12 @@ Example:
 
 1. Type `listj` into the command box and press enter.
 
-![listj example](images/UGExamples/listjExample1.png)
+    ![listj example](images/UGExamples/listjExample1.png)
 
-2. You will be directed to the journal tab, with all the journal entries listed
+1. You will be directed to the journal tab, with all the journal entries listed
    on the sidebar.
 
-![listj example 2](images/UGExamples/listjExample2.png)
+    ![listj example 2](images/UGExamples/listjExample2.png)
 
 #### Editing a journal entry: `editj`
 
@@ -380,23 +380,23 @@ Example 1:
 
 1. Type `check 2020-09-20` into the command box and press enter.
 
-![check example](images/UGExamples/checkExample1.png)
+    ![check example](images/UGExamples/checkExample1.png)
 
-2. This finds a list of journal entries on the date 2020-09-20.
+1. This finds a list of journal entries on the date 2020-09-20.
 
-![check example 2](images/UGExamples/checkExample2.png)
+    ![check example 2](images/UGExamples/checkExample2.png)
 
 Example 2:
 
 1. Type `check` into the command box and press enter. This finds a list of
    journal entries on the current date.
 
-![check example 3](images/UGExamples/checkExample3.png)
+    ![check example 3](images/UGExamples/checkExample3.png)
 
-2. This finds a list of journal entries on the current date
+1. This finds a list of journal entries on the current date
    (2020-11-04 in the example).
 
-![check example 4](images/UGExamples/checkExample4.png)
+    ![check example 4](images/UGExamples/checkExample4.png)
 
 #### Deleting a journal entry: `deletej`
 
@@ -412,11 +412,11 @@ Example:
 
 1. Type `deletej 5` into the command box and press enter. 
 
-![deletej example 1](images/UGExamples/deletejExample1.png)
+    ![deletej example 1](images/UGExamples/deletejExample1.png)
 
-2. This deletes the 5th journal entry in the journal.
+1. This deletes the 5th journal entry in the journal.
 
-![deletej example 1](images/UGExamples/deletejExample1.png)
+    ![deletej example 1](images/UGExamples/deletejExample1.png)
 
 #### Clearing the journal: `clearj`
 
@@ -430,11 +430,11 @@ Example:
 
 1. Type `clearj` into the command box and press enter.
 
-![clearj example 1](images/UGExamples/clearjExample1.png)
+    ![clearj example 1](images/UGExamples/clearjExample1.png)
 
-2. This removes all journal entries in the journal.
+1. This removes all journal entries in the journal.
 
-![clearj example 2](images/UGExamples/clearjExample2.png)
+    ![clearj example 2](images/UGExamples/clearjExample2.png)
 
 ### Miscellaneous
 
@@ -452,17 +452,26 @@ Format: `help [of/COMMAND]`
 * If no `of/COMMAND` argument is supplied, you will see a new window containing
 the link to our User Guide.
 
-Examples:
+Example 1:
 
-* Type `help of/addc` in the command box, you will be able to see the usage
-  of `addc` command in the result box.
+1. Type `help of/addc` in the command box and press enter.
 
-![Ui](images/UGExamples/HelpExample1.png)
+    ![Ui](images/UGExamples/helpExample1.png)
 
-* Type `help` in the command box, you will be able to see the help window
-  popping up.
+1. The information pane should give you information on how to use the `addc`
+   command.
 
-![Ui](images/UGExamples/HelpExample2.png)
+   ![help example 2](images/UGExamples/helpExample2.png)
+
+Example 2:
+
+1. Type `help` in the command box and press enter.
+
+    ![help example 3](images/UGExamples/helpExample3.png)
+
+1. There should be a pop-up with a link to this user guide.
+
+    ![help example 4](images/UGExamples/helpExample4.png)
 
 #### Switching the display tab: `switch`
 
