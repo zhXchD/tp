@@ -376,10 +376,27 @@ Aliases: `check`, `ck`
 
 Format: `check [DATE]`
 
-Examples:
+Example 1:
 
-* `check` Finds a list of journal entries on the current date.
-* `check 2000-03-12` Finds a list of journal entries on the 12th of March, 2000.
+1. Type `check 2020-09-20` into the command box and press enter.
+
+![check example](images/UGExamples/checkExample1.png)
+
+2. This finds a list of journal entries on the date 2020-09-20.
+
+![check example 2](images/UGExamples/checkExample2.png)
+
+Example 2:
+
+1. Type `check` into the command box and press enter. This finds a list of
+   journal entries on the current date.
+
+![check example 3](images/UGExamples/checkExample3.png)
+
+2. This finds a list of journal entries on the current date
+   (2020-11-04 in the example).
+
+![check example 4](images/UGExamples/checkExample4.png)
 
 #### Deleting a journal entry: `deletej`
 
