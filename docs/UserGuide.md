@@ -47,10 +47,6 @@ as well as location information faster than traditional GUI apps.
 
    Some example commands you can try:
 
-   * `clearc` : Clear all sample contacts.
-
-   * `clearj` : Clear all sample journal entries.
-
    * `listc` : Lists all contacts.
 
    * `addc n/John Doe p/98765432 e/johnd@example.com a/John street, block
@@ -58,6 +54,10 @@ as well as location information faster than traditional GUI apps.
      <br>Adds a contact named `John Doe` to the Address Book.
 
    * `deletec 3` : deletes the 3rd contact shown in the current list.
+
+   * `clearc` : Clear all sample contacts.
+
+   * `clearj` : Clear all sample journal entries.
 
    * `exit` : Exits the app.
 
@@ -91,8 +91,8 @@ IntelliJournal:
 
 * If multiple items without `…​` after them are supplied by the user, the
   last item is used.<br>
-  e.g. `n/NAME p/PHONE` if used as `n/John Doe n/Betsy Crowe p/911 p/999`,
-       `Betsy Crowe` and `999` will be the name and phone numbers used.<br>
+  e.g. `n/NAME p/PHONE` if used as `n/John Doe n/Betsy Crowe p/91111111 p/99988877`,
+       `Betsy Crowe` and `99988877` will be the name and phone numbers used.<br>
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME`
@@ -114,11 +114,10 @@ Format: `addcontact n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 <div markdown="block" class="alert alert-primary">
 
-:bulb: **Tip:**<br>
+:bulb: **Tips:**<br>
 
-* A contact can have any number of tags (including 0).<br>
-
-* `TAG` must be alphanumeric, without spaces.<br>
+* A contact can have any number of tags (including 0).
+* `TAG` must be alphanumeric, without spaces.
 
 </div>
 
@@ -146,26 +145,20 @@ Format: `editc INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 <div markdown="block" class="alert alert-primary">
 
-:bulb: **Tip:**<br>
+:bulb: **Tips:**<br>
 
 * Edits the contact at the specified `INDEX`. The index refers to the index
-  number shown in the displayed contact list.<br>
-
-* At least one of the optional fields must be provided.<br>
-
-* Existing values will be updated to the input values.<br>
-
-* `TAG` must be alphanumeric, without spaces.<br>
-
+  number shown in the displayed contact list.
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* `TAG` must be alphanumeric, without spaces.
 * When editing tags, the existing tags of the contact will be removed
-  i.e adding of tags is not cumulative.<br>
-
+  i.e adding of tags is not cumulative.
 * You can remove all the contact’s tags by typing t/ without specifying any tags
-  after it.<br>
-
+  after it.
 * After editing a contact, the list displayed in the `Contacts` tab will be
   reset to show all existing contacts, because the previous filtering operation
-  may not still have the same effects on the edited contact.<br>
+  may not still have the same effects on the edited contact.
 
 </div>
 
@@ -204,12 +197,11 @@ Format: `find in/c [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS] [e/EMAIL_KEYWORDS]
 
 <div markdown="block" class="alert alert-primary">
 
-:bulb: **Tip:**<br>
+:bulb: **Tips:**<br>
 
-* `TAG` must be alphanumeric, without spaces.<br>
-
+* `TAG` must be alphanumeric, without spaces.
 * Note that for `TAG`, IntelliJournal searches for the exact same tag instead of
-  tags containing any part of the searched terms.<br>
+  tags containing any part of the searched terms.
 
 </div>
 
@@ -261,25 +253,26 @@ Format: `addjournal n/TITLE [at/DATE_AND_TIME] [d/DESCRIPTION]
 
 <div markdown="block" class="alert alert-primary">
 
-:bulb: **Tip:**<br>
+:bulb: **Tips:**<br>
 
-* A journal entry can have any number of contacts or tags (including 0)<br>
-
-* `CONTACT_NAME` must be an existing name in the address book.<br>
-
-* `DATE_AND_TIME` must be in the format: "YYYY-MM-DD HH:MM".<br>
-
-* `TAG` must be alphanumeric, without spaces.<br>
+* A journal entry can have any number of contacts or tags (including 0)
+* `CONTACT_NAME` must be an existing name in the address book.
+* `DATE_AND_TIME` must be in the format: "YYYY-MM-DD HH:MM".
+* `TAG` must be alphanumeric, without spaces.
 
 </div>
 
-Examples:
+Example:
 
-* `addjournal n/Meeting with client` Adds a journal entry with the name
-  `Meeting with client`.
-* `addjournal n/Meeting with client at/2020-9-20 14:00 d/Tea` Adds a journal
-  entry with the name `Meeting with client`, a date and time of
-  `2020-9-20 14:00` and content `Tea`.
+1. Type `addjournal n/Meeting with client at/2020-09-20 14:00 d/Tea` into the
+  command box and press enter.
+
+    ![addjournal example](images/UGExamples/addjournalExample1.png)
+
+1. You will be directed to the journal tab, with the new journal entry on the
+  screen
+
+    ![addjournal example 2](images/UGExamples/addjournalExample2.png)
 
 #### Listing all journal entries: `listj`
 
@@ -288,6 +281,17 @@ Lists all journal entries in the journal.
 Aliases: `listj`, `lj`
 
 Format: `listj`
+
+Example:
+
+1. Type `listj` into the command box and press enter.
+
+    ![listj example](images/UGExamples/listjExample1.png)
+
+1. You will be directed to the journal tab, with all the journal entries listed
+   on the sidebar.
+
+    ![listj example 2](images/UGExamples/listjExample2.png)
 
 #### Editing a journal entry: `editj`
 
@@ -300,28 +304,21 @@ Format: `editj INDEX [n/TITLE] [at/DATE_AND_TIME] [d/DESCRIPTION]
 
 <div markdown="block" class="alert alert-primary">
 
-:bulb: **Tip:**<br>
+:bulb: **Tips:**<br>
 
 * Edits the contact at the specified `INDEX`. The index refers to the index
-  number shown in the displayed contact list.<br>
-
-* At least one of the optional fields must be provided.<br>
-
-* Existing values will be updated to the input values.<br>
-
+  number shown in the displayed contact list.
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
 * When editing tags, the existing tags of the entry will be removed i.e adding
-  of tags is not cumulative.<br>
-
+  of tags is not cumulative.
 * You can remove all the entry's tags by typing t/ without specifying any tags
-  after it.<br>
-
+  after it.
 * After editing a journal entry, the list displayed in the `Journal` tab will be
   reset to show all existing contacts, because the previous filtering operation
-  may not still have the same effects on the edited contact.<br>
-
-* `DATE_AND_TIME` must be in the format: "YYYY-MM-DD HH:MM"<br>
-
-* `TAG` must be alphanumeric, without spaces.<br>
+  may not still have the same effects on the edited contact.
+* `DATE_AND_TIME` must be in the format: "YYYY-MM-DD HH:MM"
+* `TAG` must be alphanumeric, without spaces.
 
 </div>
 
@@ -353,14 +350,12 @@ Format: `find in/j [n/TITLE_KEYWORDS] [at/DATE_AND_TIME]
 
 <div markdown="block" class="alert alert-primary">
 
-:bulb: **Tip:**<br>
+:bulb: **Tips:**<br>
 
 * `DATE_AND_TIME` must be in the format: "YYYY-MM-DD HH:MM"
-
-* `TAG` must be alphanumeric, without spaces.<br>
-
+* `TAG` must be alphanumeric, without spaces.
 * Note that for `TAG`, IntelliJournal searches for the exact same tag instead of
-  tags containing any part of the searched terms.<br>
+  tags containing any part of the searched terms.
 
 </div>
 
@@ -381,10 +376,27 @@ Aliases: `check`, `ck`
 
 Format: `check [DATE]`
 
-Examples:
+Example 1:
 
-* `check` Finds a list of journal entries on the current date.
-* `check 2000-03-12` Finds a list of journal entries on the 12th of March, 2000.
+1. Type `check 2020-09-20` into the command box and press enter.
+
+    ![check example](images/UGExamples/checkExample1.png)
+
+1. This finds a list of journal entries on the date 2020-09-20.
+
+    ![check example 2](images/UGExamples/checkExample2.png)
+
+Example 2:
+
+1. Type `check` into the command box and press enter. This finds a list of
+   journal entries on the current date.
+
+    ![check example 3](images/UGExamples/checkExample3.png)
+
+1. This finds a list of journal entries on the current date
+   (2020-11-04 in the example).
+
+    ![check example 4](images/UGExamples/checkExample4.png)
 
 #### Deleting a journal entry: `deletej`
 
@@ -396,10 +408,15 @@ Format: `deletej INDEX`
 
 * `INDEX` refers to the index number of the journal shown in the list.
 
-Examples:
+Example:
 
-* `deletej 4` Deletes the 4th journal entry in the journal.
-* `deletej 8` Deletes the 8th journal entry in the journal.
+1. Type `deletej 5` into the command box and press enter.
+
+    ![deletej example 1](images/UGExamples/deletejExample1.png)
+
+1. This deletes the 5th journal entry in the journal.
+
+    ![deletej example 1](images/UGExamples/deletejExample1.png)
 
 #### Clearing the journal: `clearj`
 
@@ -408,6 +425,16 @@ Clears all journal entries in the journal.
 Aliases: `clearj`, `cj`
 
 Format: `clearj`
+
+Example:
+
+1. Type `clearj` into the command box and press enter.
+
+    ![clearj example 1](images/UGExamples/clearjExample1.png)
+
+1. This removes all journal entries in the journal.
+
+    ![clearj example 2](images/UGExamples/clearjExample2.png)
 
 ### Miscellaneous
 
@@ -425,13 +452,26 @@ Format: `help [of/COMMAND]`
 * If no `of/COMMAND` argument is supplied, you will see a new window containing
 the link to our User Guide.
 
-Examples:
+Example 1:
 
-* Type in `help of/addc`, you will be able to see the usage of `addc` command in
-the result box.
-![Ui](images/HelpExample1.png)
-* Type in `help`, you will be able to see the help window popping up.
-![Ui](images/HelpExample2.png)
+1. Type `help of/addc` in the command box and press enter.
+
+    ![Ui](images/UGExamples/helpExample1.png)
+
+1. The information pane should give you information on how to use the `addc`
+   command.
+
+   ![help example 2](images/UGExamples/helpExample2.png)
+
+Example 2:
+
+1. Type `help` in the command box and press enter.
+
+    ![help example 3](images/UGExamples/helpExample3.png)
+
+1. There should be a pop-up with a link to this user guide.
+
+    ![help example 4](images/UGExamples/helpExample4.png)
 
 #### Switching the display tab: `switch`
 
@@ -445,12 +485,29 @@ Format: `switch`
 
 Adds your preferred shortcut for existing commands.
 
-Aliases: `alias`
+Aliases: `alias`, `al`
 
 Format: `alias TARGET ALIAS`
 
 * `TARGET`: Existing command or alias in the IntelliJournal.
 * `ALIAS`: The personalized shortcut you want to add into the system.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+
+* We have provided some default shortcuts which can be found in
+  [Command Summary](#command-summary), you can use `alias` command to add your
+  personalized command alias.
+* You can add a shortcut according to existing shortcut. eg. If you have added
+  `st` as a shortcut for `switch`, you can use `alias st si`. You will add `si`
+  as a valid alias for switch as well.
+* **Warning**: IntelliJournal will not be able to have a single alias for two
+  different commands.
+  <br>Eg. If `st` has been added to the system, it will confuse IntelliJournal
+  if you ask it to add `st` as a valid alias for `check` or other command.
+
+</div>
 
 Example:
 
@@ -458,20 +515,29 @@ Example:
   `switch`.
 * `alias addj j` --- This will add `j` as a valid shortcut for command `addj`
 
-**Note**:
+#### Deleting custom aliases: `deletea`
 
-* We have provided some default shortcuts which can be found in
-  [Command Summary](#Command Summary), you can use `alias` command to add your
-  personalized command alias.
+Removes the custom alias from IntelliJournal.
 
-* You can add a shortcut according to existing shortcut. eg. If you have added
-  `st` as a shortcut for `switch`, you can use `alias st si`. You will add `si`
-  as a valid alias for switch as well.
+Aliases: `deletea`, `dela`
 
-* **Warning**: IntelliJournal will not be able to have a single alias for two
-  different commands.
-  <br>Eg. If `st` has been added to the system, it will confuse IntelliJournal
-  if you ask it to add `st` as a valid alias for `check` or other command.
+Format: `deletea ALIAS`
+
+Example:
+
+1. Assuming you have added `st` as an alias for `switch`, type `deletea sw` into
+   the command box and press enter.
+
+    ![deletea example](images/UGExamples/deleteaExample1.png)
+
+1. This removes `st` from IntelliJournal.
+
+    ![deletea example 2](images/UGExamples/deleteaExample2.png)
+
+1. If you try to use `st` again, IntelliJournal will tell you that the command
+   is not recognised.
+
+    ![deletea example 3](images/UGExamples/deleteaExample3.png)
 
 #### Changing the main color theme: `changetheme`
 
@@ -733,8 +799,18 @@ IntelliJournal home folder.
             <td><code>swt</code></td>
         </tr>
         <tr>
-            <td><b>Adding aliases for existing commands</b></td>
+            <td rowspan="2"><b>Adding aliases for existing commands</b></td>
             <td><code>alias TARGET ALIAS</code></td>
+        </tr>
+        <tr>
+            <td><code>al TARGET ALIAS</code></td>
+        </tr>
+        <tr>
+            <td rowspan="2"><b>Deleting custom aliases</b></td>
+            <td><code>deletea ALIAS</code></td>
+        </tr>
+        <tr>
+            <td><code>dela ALIAS</code></td>
         </tr>
         <tr>
             <td rowspan="2"><b>Changing the color theme</b></td>
