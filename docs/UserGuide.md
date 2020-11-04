@@ -410,7 +410,7 @@ Format: `deletej INDEX`
 
 Example:
 
-1. Type `deletej 5` into the command box and press enter. 
+1. Type `deletej 5` into the command box and press enter.
 
     ![deletej example 1](images/UGExamples/deletejExample1.png)
 
