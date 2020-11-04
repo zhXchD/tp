@@ -156,10 +156,10 @@ public class MainWindow extends UiPart<Stage> {
         entryListPanelPlaceholder.getChildren().add(entryListPanel.getRoot());
 
         contactContent = new ContactContent();
-        contactContent.setContactContentToUser(personListPanel.getPersonListItems().get(0));
+        contactContent.setContactContentToUser(personListPanel.getFirstPerson());
         contactContentPlaceholder.getChildren().add(contactContent.getRoot());
         entryContent = new EntryContent();
-        entryContent.setEntryContentToUser(entryListPanel.getEntryListItems().get(0));
+        entryContent.setEntryContentToUser(entryListPanel.getFirstEntry());
         entryContentPlaceholder.getChildren().add(entryContent.getRoot());
 
         dashboardTab = new DashboardTab(logic.getRecentPersonList(), logic.getFrequentPersonList());

@@ -3,6 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -100,7 +101,8 @@ public class Journal implements ReadOnlyJournal {
      */
     public void clearContacts() {
         for (Entry entry : entryList) {
-            for (Person person: entry.getContactList()) {
+            List<Person> contactList = new ArrayList<>(entry.getContactList());
+            for (Person person: contactList) {
                 entry.removeContact(person);
             }
         }

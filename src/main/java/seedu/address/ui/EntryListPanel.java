@@ -48,10 +48,15 @@ public class EntryListPanel extends UiPart<Region> {
         }
     }
 
-    //@@author {zhXchD}
-    public ObservableList<Entry> getEntryListItems() {
-        return entryListView.getItems();
+    //@@author {Nauw1010}
+    public Entry getFirstEntry() {
+        if (entryListView.getItems().isEmpty()) {
+            return null;
+        } else {
+            return entryListView.getItems().get(0);
+        }
     }
+    //@@author
 
     /**
      * Selects the item in the entry list at specified index.
