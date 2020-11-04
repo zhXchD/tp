@@ -13,11 +13,13 @@ Class HelpWindow
 Class ResultDisplay
 Class PersonListPanel
 Class PersonCard
+Class ContactContent
 Class EntryListPanel
 Class EntryCard
 Class EntryContent
 Class StatusBarFooter
 Class CommandBox
+Class DashboardTab
 }
 
 package Model <<Rectangle>> {
@@ -40,10 +42,13 @@ MainWindow *-down-> PersonListPanel
 MainWindow *-down-> StatusBarFooter
 MainWindow *-down-> EntryListPanel
 MainWindow *-down-> EntryContent
+MainWindow *-down-> ContactContent
+MainWindow *-down-> DashboardTab
 
-PersonListPanel --down-> PersonCard
+DashboardTab -down-> PersonListPanel
+PersonListPanel -down-> PersonCard
 EntryListPanel -down-> EntryCard
-EntryContent --down-> PersonCard
+EntryContent ..down.> PersonCard
 
 MainWindow -left-|> UiPart
 
@@ -56,6 +61,7 @@ HelpWindow --|> UiPart
 EntryListPanel --|> UiPart
 EntryCard --|> UiPart
 EntryContent --|> UiPart
+ContactContent --|> UiPart
 
 PersonCard .right.> Model
 EntryCard .right.> Model
