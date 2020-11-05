@@ -10,6 +10,8 @@ import seedu.address.logic.parser.ValidCommand;
 import seedu.address.model.journal.Entry;
 import seedu.address.model.person.Person;
 
+//@@author {Lingy12}
+
 /**
  * The API of the Model component.
  */
