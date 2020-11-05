@@ -154,6 +154,8 @@ Format: `editc INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…�
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * `TAG` must be alphanumeric, without spaces.
+* `PHONE_NUMBER` must be a valid Singaporean number, 8 digits long and starting with either 6, 8, or 9.
+* The country code +65 is also accepted at the start of `PHONE_NUMBER`.
 * When editing tags, the existing tags of the contact will be removed
   i.e adding of tags is not cumulative.
 * You can remove all the contact’s tags by typing t/ without specifying any tags
