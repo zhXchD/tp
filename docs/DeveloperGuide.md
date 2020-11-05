@@ -176,7 +176,6 @@ Note: *alias1, alias2, alias3* are system's default aliases. Aliases can be exte
 Given below is the implementation of constructing the `aliasMap`:
 
 ```java_holder_method_tree
-
 /**
    * Creates command alias from aliases list.
    *
