@@ -5,6 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import seedu.address.logic.commands.DeleteAliasCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+//@@author {Lingy12}
 public class DeleteAliasCommandParser implements Parser<DeleteAliasCommand> {
 
     @Override
