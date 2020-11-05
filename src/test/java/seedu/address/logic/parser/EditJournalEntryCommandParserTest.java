@@ -39,7 +39,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditJournalEntryCommand;
 import seedu.address.logic.commands.EditJournalEntryCommand.EditEntryDescriptor;
 import seedu.address.model.journal.Date;
-import seedu.address.model.journal.Description;
 import seedu.address.model.journal.Title;
 import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
@@ -107,11 +106,6 @@ public class EditJournalEntryCommandParserTest {
                     "1" + INVALID_TITLE_DESC,
                     Title.MESSAGE_CONSTRAINTS);
 
-            // invalid description
-            assertParseFailure(parser,
-                    "1" + INVALID_DESCRIPTION_DESC,
-                    Description.MESSAGE_CONSTRAINTS);
-
             // invalid date
             assertParseFailure(parser,
                     "1" + INVALID_DATE_DESC,
@@ -126,11 +120,6 @@ public class EditJournalEntryCommandParserTest {
             assertParseFailure(parser,
                     "1" + INVALID_TAG_DESC,
                     Tag.MESSAGE_CONSTRAINTS);
-
-            // valid description followed by invalid description
-            assertParseFailure(parser,
-                    "1" + DESCRIPTION_DESC_STORY + INVALID_DESCRIPTION_DESC,
-                    Description.MESSAGE_CONSTRAINTS);
 
             // valid contact followed by invalid contact
             assertParseFailure(parser,

@@ -4,7 +4,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_OCTOBER;
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_STORY;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TITLE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
@@ -23,7 +22,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddJournalEntryCommand;
 import seedu.address.model.journal.Date;
-import seedu.address.model.journal.Description;
 import seedu.address.model.journal.Entry;
 import seedu.address.model.journal.Title;
 import seedu.address.model.tag.Tag;
@@ -91,13 +89,6 @@ public class AddJournalEntryCommandParserTest {
                     parser,
                     TITLE_DESC_MEETING + INVALID_DATE_DESC + DESCRIPTION_DESC_STORY,
                     Date.MESSAGE_CONSTRAINTS
-            );
-
-            // invalid description
-            assertParseFailure(
-                    parser,
-                    TITLE_DESC_MEETING + VALID_DATE_OCTOBER + INVALID_DESCRIPTION_DESC,
-                    Description.MESSAGE_CONSTRAINTS
             );
 
             // invalid tag

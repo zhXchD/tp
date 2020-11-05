@@ -237,12 +237,8 @@ public class ParserUtil {
      * Parses description string into Description.
      * @param description the string to parse
      * @return a new Description specified by the string
-     * @throws ParseException if the string is present by invalid
      */
-    public static Description parseDescription(String description) throws ParseException {
-        if (description != null && !Description.isValidDescription(description)) {
-            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
-        }
+    public static Description parseDescription(String description) {
         return new Description(description);
     }
 
