@@ -1,13 +1,13 @@
 package seedu.address.model.journal;
 
+import static java.util.Objects.requireNonNullElse;
+
 public class Description {
 
     /*
      * The first character of the address must not be a whitespace and non-letter
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[a-zA-z].*";
-    public static final String MESSAGE_CONSTRAINTS = "This is not a valid description!";
     public static final Description EMPTY_DESCRIPTION = new Description(null);
     private static final String EMPTY_MESSAGE = "No description found!";
 
@@ -19,15 +19,12 @@ public class Description {
      * @param description Description of an entry.
      */
     public Description(String description) {
-        if (description == null) {
+        description = requireNonNullElse(description, "").trim();
+        if (description.equals("")) {
             this.description = EMPTY_MESSAGE;
         } else {
             this.description = description;
         }
-    }
-
-    public static boolean isValidDescription(String test) {
-        return test.matches(VALIDATION_REGEX) || test.equals(EMPTY_MESSAGE);
     }
 
     @Override
