@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.ValidCommand;
 import seedu.address.logic.parser.exceptions.AliasException;
-import seedu.address.logic.parser.exceptions.AliasNotFoundException;
 import seedu.address.model.Model;
 
 //@@author {Lingy12}
