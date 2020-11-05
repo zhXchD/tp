@@ -124,7 +124,7 @@ public class NameContainsKeywordsPredicateTest {
                     "Street"
             ));
             assertFalse(predicate.test(new PersonBuilder().withName("Alice")
-                    .withPhone("12345")
+                    .withPhone("91234567")
                     .withEmail("alice@email.com")
                     .withAddress("Main Street")
                     .build()));

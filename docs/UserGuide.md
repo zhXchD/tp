@@ -91,7 +91,7 @@ IntelliJournal:
 
 * If multiple items without `…​` after them are supplied by the user, the
   last item is used.<br>
-  e.g. `n/NAME p/PHONE` if used as `n/John Doe n/Betsy Crowe p/91111111 p/99988877`,
+  e.g. `n/NAME p/PHONE_NUMBER` if used as `n/John Doe n/Betsy Crowe p/91111111 p/99988877`,
        `Betsy Crowe` and `99988877` will be the name and phone numbers used.<br>
 
 * Parameters can be in any order.<br>
@@ -118,6 +118,8 @@ Format: `addcontact n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 * A contact can have any number of tags (including 0).
 * `TAG` must be alphanumeric, without spaces.
+* `PHONE_NUMBER` must be a valid Singaporean number, 8 digits long and starting with either 6, 8, or 9.
+* The country code +65 is also accepted at the start of `PHONE_NUMBER`.
 
 </div>
 
@@ -141,7 +143,7 @@ Edits an existing contact in the address book.
 
 Aliases: `editc`, `edc`
 
-Format: `editc INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `editc INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 <div markdown="block" class="alert alert-primary">
 
@@ -152,6 +154,8 @@ Format: `editc INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * `TAG` must be alphanumeric, without spaces.
+* `PHONE_NUMBER` must be a valid Singaporean number, 8 digits long and starting with either 6, 8, or 9.
+* The country code +65 is also accepted at the start of `PHONE_NUMBER`.
 * When editing tags, the existing tags of the contact will be removed
   i.e adding of tags is not cumulative.
 * You can remove all the contact’s tags by typing t/ without specifying any tags
@@ -611,7 +615,7 @@ IntelliJournal home folder.
             <td rowspan="2"><b>Editing a contact</b></td>
             <td>
                 <code>
-                    editc INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]
+                    editc INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]
                     [t/TAG]…​
                 </code>
             </td>
@@ -619,7 +623,7 @@ IntelliJournal home folder.
         <tr>
             <td>
                 <code>
-                    edc INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]
+                    edc INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]
                     [t/TAG]…​
                 </code>
             </td>
