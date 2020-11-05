@@ -12,6 +12,8 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteAliasCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+//@@author {Lingy12}
+
 public class DeleteAliasCommandParserTest {
 
     @Nested

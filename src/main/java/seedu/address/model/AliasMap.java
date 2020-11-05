@@ -6,6 +6,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableMap;
 import seedu.address.logic.parser.ValidCommand;
 
+//@@author {Lingy12}
+
 public class AliasMap implements ReadOnlyAliasMap {
 
     private final ObservableMap<String, ValidCommand> internalMap = FXCollections.observableHashMap();
@@ -28,6 +30,7 @@ public class AliasMap implements ReadOnlyAliasMap {
      * Update the internalMap with a map.
      */
     public void updateMap(Map<String, ValidCommand> map) {
+        internalMap.clear();
         for (String alias: map.keySet()) {
             internalMap.put(alias, map.get(alias));
         }

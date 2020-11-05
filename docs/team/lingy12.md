@@ -2,6 +2,7 @@
 layout: page
 title: Lin Geyu's Project Portfolio Page
 ---
+<!---@@author {Lingy12}-->
 
 ## Project: IntelliJournal
 
@@ -48,4 +49,3 @@ Given below are my contributions to the project:
   * Developer Guide:
     * Added implementation details of the `alias` feature.
     * Write sample use cases in appendix.
-
