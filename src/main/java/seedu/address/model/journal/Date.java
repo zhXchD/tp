@@ -6,6 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+//import java.time.format.ResolverStyle;
 import java.time.format.ResolverStyle;
 import java.time.temporal.ChronoUnit;
 
@@ -19,7 +20,7 @@ public class Date {
     public static final String MESSAGE_CONSTRAINTS =
             "Dates should be in the format: \"YYYY-MM-DD HH:MM\", and make sure that it is a valid date.";
 
-    public static final String VALID_DATE_FORMAT = "yyyy-MM-dd HH:mm";
+    public static final String VALID_DATE_FORMAT = "uuuu-MM-dd HH:mm";
 
     public static final DateTimeFormatter VALID_FORMATTER =
             DateTimeFormatter.ofPattern(VALID_DATE_FORMAT).withResolverStyle(ResolverStyle.STRICT);
