@@ -1,0 +1,25 @@
+@startuml
+!include ../style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+interface Model <<interface>>
+
+skinparam classAttributeIconSize 0
+class ModelManager {
+     +void updateAlias(Map<String, ValidCommand> map)
+}
+show method
+
+class AliasMap {
+    +void updateAlias(Map<String, ValidCommand> map)
+}
+
+
+
+ModelManager ..up|> Model
+ModelManager *--> AliasMap
+
+
+@enduml

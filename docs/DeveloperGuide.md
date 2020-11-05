@@ -216,6 +216,9 @@ Given below is the sequence diagram of command alias feature (This change only r
 
 ![aliasSequenceDiagram](images/commandAlias/aliasSequenceDiagram.png)
 
+## Handling storage for *AliasMap*
+
+
 ### Tab navigation feature
 
 IntelliJournal has two tabs for different information to display, one tab for
