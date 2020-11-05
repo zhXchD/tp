@@ -99,7 +99,7 @@ public class SampleDataUtil {
         list5.add(persons[5]);
 
         Description dummyDescription = new Description("Lorem ipsum dolor sit amet, ligula suspendisse nulla "
-                + "pretium, rhoncus tempor fermentum, enim integer ad vestibulum volutpat. Nisl rhoncus turpis est"
+                + "pretium, a rhoncus tempor fermentum, enim integer ad vestibulum volutpat. Nisl rhoncus turpis est"
                 + ", vel elit, congue wisi enim nunc ultricies sit, magna tincidunt. Maecenas aliquam maecenas ligula "
                 + "nostra, accumsan taciti. Sociis mauris in integer, a dolor netus non dui aliquet, sagittis "
                 + "felis sodales, dolor sociis mauris, vel eu libero cras. Faucibus at. Arcu habitasse "
