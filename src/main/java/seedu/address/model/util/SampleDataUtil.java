@@ -93,6 +93,10 @@ public class SampleDataUtil {
         list3.add(persons[2]);
         UniquePersonList list4 = new UniquePersonList();
         list4.add(persons[4]);
+        UniquePersonList list5 = new UniquePersonList();
+        list5.add(persons[1]);
+        list5.add(persons[3]);
+        list5.add(persons[5]);
 
         Description dummyDescription = new Description("Lorem ipsum dolor sit amet, ligula suspendisse nulla "
                 + "pretium, rhoncus tempor fermentum, enim integer ad vestibulum volutpat. Nisl rhoncus turpis est"
@@ -110,6 +114,27 @@ public class SampleDataUtil {
                 + "faucibus porta egestas, quisque praesent ipsum fermentum tempor. Curabitur auctor, erat mollis "
                 + "sed, turpis vivamus a dictumst congue magnis. Aliquam amet ullamcorper dignissim molestie, mollis. "
                 + "Tortor vitae tortor eros wisi facilisis.");
+
+        Description dummyDescription1 = new Description("Consectetuer arcu ipsum ornare pellentesque vehicula, in "
+                + "vehicula diam, ornare magna erat felis wisi a risus. Justo fermentum id. Malesuada eleifend, tortor "
+                + "molestie, a a vel et. Mauris at suspendisse, neque aliquam faucibus adipiscing, vivamus in. Wisi "
+                + "mattis leo suscipit nec amet, nisl fermentum tempor ac a, augue in eleifend in venenatis, cras sit "
+                + "id in vestibulum felis in, sed ligula. In sodales suspendisse mauris quam etiam erat, quia tellus "
+                + "convallis eros rhoncus diam orci, porta lectus esse adipiscing posuere et, nisl arcu vitae laoreet. "
+                + "Morbi integer molestie, amet suspendisse morbi, amet maecenas, a maecenas mauris neque proin nisl "
+                + "mollis. Suscipit nec ligula ipsum orci nulla, in posuere ut quis ultrices, lectus primis vehicula "
+                + "velit hasellus lectus, vestibulum orci laoreet inceptos vitae, at consectetuer et consectetuer. "
+                + "Congue porta scelerisque praesent at, lacus vestibulum et at dignissim cras urna, ante convallis "
+                + "turpis duis lectus sed aliquet, at et ultricies. Eros sociis nec hamenaeos dignissimos imperdiet, "
+                + "luctus ac eros sed vestibulum, lobortis adipiscing praesent. Nec eros eu ridiculus libero felis.\n\n"
+                + "Donec arcu risus diam amet sit. Congue tortor risus vestibulum commodo nisl, luctus augue amet quis "
+                + "aenean maecenas sit, donec velit iusto, morbi felis elit et nibh. Vestibulum volutpat dui lacus "
+                + "consectetuer, mauris at suspendisse, eu wisi rhoncus nibh velit, posuere sem in sit. Sociosqu netus "
+                + "semper aenean suspendisse dictum, arcu enim conubia le nulla ac nibh, purus hendrerit ut mattis nec "
+                + "maecenas, quo ac, vivamus praesent metus viverra ante. Natoque sed sit hendrerit, dapibus velit "
+                + "molestiae leo a, ut lorem sit et lacus aliquam. Sodales nulla ante auctor excepturi wisi, dolor "
+                + "lacinia dignissim eros condimentum dis pellentesque, sodales lacus nunc, feugiat at. In orci ligula "
+                + "suscipit luctus, sed dolor eleifend aliquam dui, ut diam mauris, sollicitudin sed nisl lacus.");
         return new Entry[] {
             new Entry(
                     new Title("Weekly staff meeting"),
@@ -119,9 +144,9 @@ public class SampleDataUtil {
                     getTagSet("Work", "Project", "Weekly")
             ),
             new Entry(
-                    new Title("Meet with consultants"),
+                    new Title("Meeting with consultants"),
                     new Date(LocalDateTime.of(1990, 1, 1, 0, 0)),
-                    dummyDescription,
+                    dummyDescription1,
                     list2,
                     getTagSet("Consultation", "Work", "Important")
             ),
@@ -134,10 +159,24 @@ public class SampleDataUtil {
             ),
             new Entry(
                     new Title("Meet NUS students"),
-                    new Date(LocalDateTime.of(2500, 12, 31, 23, 59)),
-                    dummyDescription,
+                    new Date(LocalDateTime.of(2019, 11, 4, 18, 30)),
+                    dummyDescription1,
                     list4,
                     getTagSet("NUS", "Work", "Clients", "Unimportant")
+            ),
+            new Entry(
+                    new Title("Meeting with SAE clients"),
+                    new Date(LocalDateTime.of(2020, 11, 6, 10, 0)),
+                    dummyDescription,
+                    list5,
+                    getTagSet("Clients", "SAE", "Important", "Work")
+            ),
+            new Entry(
+                    new Title("Medical appointment"),
+                    new Date(LocalDateTime.of(2020, 11, 7, 14, 0)),
+                    dummyDescription1,
+                    new UniquePersonList(),
+                    getTagSet("Life", "Important", "Med")
             )
         };
     }
