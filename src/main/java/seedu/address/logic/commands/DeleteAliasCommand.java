@@ -7,6 +7,11 @@ import seedu.address.logic.parser.ValidCommand;
 import seedu.address.logic.parser.exceptions.AliasNotFoundException;
 import seedu.address.model.Model;
 
+//@@author {Lingy12}
+
+/**
+ * Remove existing alias.
+ */
 public class DeleteAliasCommand extends Command {
 
     public static final String COMMAND_WORD = "deletea";
