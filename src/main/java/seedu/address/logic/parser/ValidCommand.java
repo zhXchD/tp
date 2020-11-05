@@ -15,6 +15,7 @@ import seedu.address.logic.parser.exceptions.ModifyDefaultAliasException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAliasMap;
 
+//@author {Lingy12}
 
 /**
  * ValidCommand enum represents the possible command type.
