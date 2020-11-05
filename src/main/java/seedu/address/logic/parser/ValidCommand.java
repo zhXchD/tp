@@ -45,12 +45,14 @@ public enum ValidCommand {
      * Map that match alias with valid command
      */
     private static final Map<String, ValidCommand> aliasMap = new HashMap<>();
+    private static final Map<String, ValidCommand> defaultAliasMap = new HashMap<>();
 
     static {
         Arrays.stream(ValidCommand.values()).forEach(command -> Arrays.stream(command.aliases)
                 .forEach(alias -> {
                     assert aliasMap.get(alias) == null;
                     aliasMap.put(alias, command);
+                    defaultAliasMap.put(alias, command);
                 }));
     }
 
