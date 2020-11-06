@@ -174,20 +174,43 @@ Examples:
 * `editc 2 n/Betsy Crower t/` Edits the name of the 2nd contact to be
   `Betsy Crower` and clears all existing tags.
 
-#### Viewing a contact: `view in/c`
+#### Viewing a contact: `viewc`
 
-Opens up a contact to show further details.
+Opens up a contact in the current displayed list to show further details.
 
-Aliases: `view`, `v`
+Aliases: `viewc`, `vc`
 
-Format: `view in/c index/INDEX`
+Format: `viewc INDEX`
 
-* `INDEX` refers to the index number of the contact shown in the list.
+* If you type a `viewc` command when IntelliJournal displays `Contact` tab,
+IntelliJournal will select the contact at the specified index and display
+its details on the right.
+* If a `viewc` command is executed when IntelliJournal displays another tab
+(i.e. `Journal` tab or `Dashboard` tab), IntelliJournal will automatically
+navigate to the `Contact` tab, select the contact at the specified index,
+and display its details on the right.
 
-Examples:
+<div markdown="block" class="alert alert-primary">
 
-* `view in/c index/4` Views the 4th contact in the address book.
-* `view in/c index/8` Views the 8th contact in the address book.
+:bulb: **Tips:**<br>
+
+* `INDEX` refers to the index number of the contact in the **current displayed list**, instead of the index number of the contact in the full unfiltered list.
+* `INDEX` must be a positive integer, which does not exceed the number of contacts in the current displayed list.
+
+</div>
+
+Example:
+
+1. Open the `Contacts` tab, IntelliJournal should display a list of contacts on
+the left with detailed content on the right. If no contact has been selected to
+display, Intellijournal will automatically selects the first contact to show its
+details.
+
+   ![View contact example 1](images/viewc-eg-1.png)
+   
+2. Type command `vc 4`, or equivalently, `viewc 4`, IntelliJournal will select
+the 4th contact in the list, and display its details on the right.
+   ![View contact example 2](images/viewc-eg-2.png)
 
 #### Finding contacts: `find in/c`
 
@@ -269,12 +292,12 @@ Format: `addjournal n/TITLE [at/DATE_AND_TIME] [d/DESCRIPTION]
 Example:
 
 1. Type `addjournal n/Meeting with client at/2020-09-20 14:00 d/Tea` into the
-  command box and press enter.
+    command box and press enter.
 
     ![addjournal example](images/UGExamples/addjournalExample1.png)
 
 1. You will be directed to the journal tab, with the new journal entry on the
-  screen
+    screen
 
     ![addjournal example 2](images/UGExamples/addjournalExample2.png)
 
