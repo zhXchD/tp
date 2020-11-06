@@ -1,5 +1,20 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+
+import java.util.List;
+import java.util.Set;
+import java.util.function.Predicate;
+import java.util.stream.Stream;
+
 import seedu.address.logic.commands.FindContactCommand;
 import seedu.address.logic.commands.FindJournalEntryCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -8,16 +23,16 @@ import seedu.address.model.journal.Description;
 import seedu.address.model.journal.Entry;
 import seedu.address.model.tag.Tag;
 
-import java.util.List;
-import java.util.Set;
-import java.util.function.Predicate;
-import java.util.stream.Stream;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
-
+/**
+ * Parse input arguments and return a FindJournalEntryCommand.
+ */
 public class FindJournalEntryCommandParser implements Parser<FindJournalEntryCommand> {
+    /**
+     * Parse input argument string and return a FindJournalEntryCommand.
+     * @param args the input argument string
+     * @return FindJournalEntryCommand to with a predicate
+     * @throws ParseException throws exception if invalid arguments are parsed
+     */
     public FindJournalEntryCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(
                 args,
@@ -54,8 +69,8 @@ public class FindJournalEntryCommandParser implements Parser<FindJournalEntryCom
                     argMultimap.getValue(PREFIX_NAME).get().trim().toLowerCase();
             entryPredicate =
                     entryPredicate.and(entry -> entry.getTitle().title
-                            .toLowerCase()
-                            .contains(titleKeyWord));
+                        .toLowerCase()
+                        .contains(titleKeyWord));
         }
         if (arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)) {
             assert argMultimap.getValue(PREFIX_DESCRIPTION).isPresent();
@@ -67,8 +82,8 @@ public class FindJournalEntryCommandParser implements Parser<FindJournalEntryCom
                             return false;
                         } else {
                             return entry.getDescription().description
-                                    .toLowerCase()
-                                    .contains(descriptionKeyWord);
+                                .toLowerCase()
+                                .contains(descriptionKeyWord);
                         }
                     });
         }
@@ -79,13 +94,13 @@ public class FindJournalEntryCommandParser implements Parser<FindJournalEntryCom
         }
         List<String> names = argMultimap.getAllValues(PREFIX_CONTACT);
         entryPredicate = entryPredicate.and(
-                entry -> names.stream().allMatch(
-                        name -> entry
-                                .getContactList().stream()
-                                .anyMatch(
-                                        person -> person.getName().fullName
-                                                .toLowerCase()
-                                                .contains(name.toLowerCase()))));
+            entry -> names.stream().allMatch(
+                name -> entry
+                    .getContactList().stream()
+                    .anyMatch(
+                        person -> person.getName().fullName
+                            .toLowerCase()
+                            .contains(name.toLowerCase()))));
         Set<Tag> tagList1 = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         entryPredicate = entryPredicate.and(entry -> entry.getTags().containsAll(tagList1));
         return new FindJournalEntryCommand(entryPredicate);
