@@ -92,8 +92,8 @@ public class IntelliJournalParser {
         case CLEAR_JOURNAL:
             return new ClearJournalCommand();
 
-        case FIND:
-            return new FindCommandParser().parse(arguments);
+        case FIND_JOURNAL_ENTRY:
+            return new FindJournalEntryCommandParser().parse(arguments);
 
         case FIND_CONTACT:
             return new FindContactCommandParser().parse(arguments);

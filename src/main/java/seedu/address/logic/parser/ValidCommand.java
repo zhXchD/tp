@@ -30,7 +30,7 @@ public enum ValidCommand {
     DELETE_JOURNAL_ENTRY("deletej", "delj"),
     EDIT_CONTACT("editc", "edc"),
     EDIT_JOURNAL_ENTRY("editj", "edj"),
-    FIND("find", "f"),
+    FIND_JOURNAL_ENTRY("findj", "fj"),
     FIND_CONTACT("findc", "fc"),
     EXIT("exit", "quit", "q"),
     HELP("help", "h"),
