@@ -67,69 +67,69 @@ public class FindCommandParser implements Parser<FindCommand> {
                 argMultimap.getValue(PREFIX_SCOPE).get());
 
         switch (scope) {
-        case "c":
-            Predicate<Person> personPredicate = person -> true;
-            if (!arePrefixesEmpty(argMultimap, PREFIX_DATE_AND_TIME, PREFIX_DESCRIPTION, PREFIX_CONTACT)) {
-                throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindContactCommand.MESSAGE_USAGE));
-            }
-            if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
-                assert argMultimap.getValue(PREFIX_NAME).isPresent();
-                String nameKeyWord =
-                        argMultimap.getValue(PREFIX_NAME).get().trim().toLowerCase();
-                personPredicate =
-                        personPredicate.and(person -> person.getName().fullName
-                                .toLowerCase()
-                                .contains(nameKeyWord));
-            }
-            if (arePrefixesPresent(argMultimap, PREFIX_EMAIL)) {
-                assert argMultimap.getValue(PREFIX_EMAIL).isPresent();
-                String emailKeyWord =
-                        argMultimap.getValue(PREFIX_EMAIL).get().trim().toLowerCase();
-                personPredicate =
-                        personPredicate.and(person -> {
-                            if (person.getEmail().equals(Email.EMPTY_EMAIL)) {
-                                return false;
-                            } else {
-                                return person.getEmail().value
-                                        .toLowerCase()
-                                        .contains(emailKeyWord);
-                            }
-                        });
-            }
-            if (arePrefixesPresent(argMultimap, PREFIX_ADDRESS)) {
-                assert argMultimap.getValue(PREFIX_ADDRESS).isPresent();
-                String addressKeyWord =
-                        argMultimap.getValue(PREFIX_ADDRESS).get().trim().toLowerCase();
-                personPredicate =
-                        personPredicate.and(person -> {
-                            if (person.getAddress().equals(Address.EMPTY_ADDRESS)) {
-                                return false;
-                            } else {
-                                return person.getAddress().value
-                                        .toLowerCase()
-                                        .contains(addressKeyWord);
-                            }
-                        });
-            }
-            if (arePrefixesPresent(argMultimap, PREFIX_PHONE)) {
-                assert argMultimap.getValue(PREFIX_PHONE).isPresent();
-                String phoneKeyWord =
-                        argMultimap.getValue(PREFIX_PHONE).get().trim().toLowerCase();
-                personPredicate =
-                        personPredicate.and(person -> {
-                            if (person.getPhone().equals(Phone.EMPTY_PHONE)) {
-                                return false;
-                            } else {
-                                return person.getPhone().value
-                                        .toLowerCase()
-                                        .contains(phoneKeyWord);
-                            }
-                        });
-            }
-            Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-            personPredicate = personPredicate.and(person -> person.getTags().containsAll(tagList));
-            return new FindContactCommand(personPredicate);
+//        case "c":
+//            Predicate<Person> personPredicate = person -> true;
+//            if (!arePrefixesEmpty(argMultimap, PREFIX_DATE_AND_TIME, PREFIX_DESCRIPTION, PREFIX_CONTACT)) {
+//                throw new ParseException(
+//                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindContactCommand.MESSAGE_USAGE));
+//            }
+//            if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
+//                assert argMultimap.getValue(PREFIX_NAME).isPresent();
+//                String nameKeyWord =
+//                        argMultimap.getValue(PREFIX_NAME).get().trim().toLowerCase();
+//                personPredicate =
+//                        personPredicate.and(person -> person.getName().fullName
+//                                .toLowerCase()
+//                                .contains(nameKeyWord));
+//            }
+//            if (arePrefixesPresent(argMultimap, PREFIX_EMAIL)) {
+//                assert argMultimap.getValue(PREFIX_EMAIL).isPresent();
+//                String emailKeyWord =
+//                        argMultimap.getValue(PREFIX_EMAIL).get().trim().toLowerCase();
+//                personPredicate =
+//                        personPredicate.and(person -> {
+//                            if (person.getEmail().equals(Email.EMPTY_EMAIL)) {
+//                                return false;
+//                            } else {
+//                                return person.getEmail().value
+//                                        .toLowerCase()
+//                                        .contains(emailKeyWord);
+//                            }
+//                        });
+//            }
+//            if (arePrefixesPresent(argMultimap, PREFIX_ADDRESS)) {
+//                assert argMultimap.getValue(PREFIX_ADDRESS).isPresent();
+//                String addressKeyWord =
+//                        argMultimap.getValue(PREFIX_ADDRESS).get().trim().toLowerCase();
+//                personPredicate =
+//                        personPredicate.and(person -> {
+//                            if (person.getAddress().equals(Address.EMPTY_ADDRESS)) {
+//                                return false;
+//                            } else {
+//                                return person.getAddress().value
+//                                        .toLowerCase()
+//                                        .contains(addressKeyWord);
+//                            }
+//                        });
+//            }
+//            if (arePrefixesPresent(argMultimap, PREFIX_PHONE)) {
+//                assert argMultimap.getValue(PREFIX_PHONE).isPresent();
+//                String phoneKeyWord =
+//                        argMultimap.getValue(PREFIX_PHONE).get().trim().toLowerCase();
+//                personPredicate =
+//                        personPredicate.and(person -> {
+//                            if (person.getPhone().equals(Phone.EMPTY_PHONE)) {
+//                                return false;
+//                            } else {
+//                                return person.getPhone().value
+//                                        .toLowerCase()
+//                                        .contains(phoneKeyWord);
+//                            }
+//                        });
+//            }
+//            Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+//            personPredicate = personPredicate.and(person -> person.getTags().containsAll(tagList));
+//            return new FindContactCommand(personPredicate);
         case "j":
             Predicate<Entry> entryPredicate = entry -> true;
             if (!arePrefixesEmpty(argMultimap, PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_PHONE)) {

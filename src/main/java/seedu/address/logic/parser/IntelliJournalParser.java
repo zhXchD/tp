@@ -95,6 +95,9 @@ public class IntelliJournalParser {
         case FIND:
             return new FindCommandParser().parse(arguments);
 
+        case FIND_CONTACT:
+            return new FindContactCommandParser().parse(arguments);
+
         case LIST_CONTACT:
             return new ListContactCommand();
 

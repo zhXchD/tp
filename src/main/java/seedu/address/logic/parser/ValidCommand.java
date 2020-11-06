@@ -31,6 +31,7 @@ public enum ValidCommand {
     EDIT_CONTACT("editc", "edc"),
     EDIT_JOURNAL_ENTRY("editj", "edj"),
     FIND("find", "f"),
+    FIND_CONTACT("findc", "fc"),
     EXIT("exit", "quit", "q"),
     HELP("help", "h"),
     LIST_CONTACT("listc", "lc"),
