@@ -25,6 +25,8 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.journal.Entry;
 import seedu.address.model.person.Person;
 
+//@@author {Lingy12}
+
 public class DeleteAliasCommandTest {
 
     @Nested

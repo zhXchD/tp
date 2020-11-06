@@ -4,9 +4,14 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.ValidCommand;
-import seedu.address.logic.parser.exceptions.AliasNotFoundException;
+import seedu.address.logic.parser.exceptions.AliasException;
 import seedu.address.model.Model;
 
+//@@author {Lingy12}
+
+/**
+ * Remove existing alias.
+ */
 public class DeleteAliasCommand extends Command {
 
     public static final String COMMAND_WORD = "deletea";
@@ -39,8 +44,8 @@ public class DeleteAliasCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         try {
             ValidCommand.deleteAlias(target);
-        } catch (AliasNotFoundException e) {
-            throw new CommandException(MESSAGE_ALIAS_NOTFOUND);
+        } catch (AliasException e) {
+            throw new CommandException(e.getMessage());
         }
 
         model.updateAlias(ValidCommand.getAliasMap());
