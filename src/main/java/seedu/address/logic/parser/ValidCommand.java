@@ -36,7 +36,6 @@ public enum ValidCommand {
     LIST_CONTACT("listc", "lc"),
     LIST_JOURNAL_ENTRY("listj", "lj"),
     SWITCH("switch", "swt"),
-//    VIEW("view", "v"),
     VIEW_CONTACT("viewc", "vc"),
     VIEW_JOURNAL_ENTRY("viewj", "vj"),
     CHECK_SCHEDULE("check", "ck"),
