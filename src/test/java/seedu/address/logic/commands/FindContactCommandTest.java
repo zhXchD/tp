@@ -53,7 +53,7 @@ class FindContactCommandTest {
         @Test
         @DisplayName("should return true if same values")
         public void equals_sameValues_true() {
-            FindCommand findFirstCommandCopy = new FindContactCommand(firstPredicate);
+            FindContactCommand findFirstCommandCopy = new FindContactCommand(firstPredicate);
             assertTrue(findFirstCommand.equals(findFirstCommandCopy));
         }
 
@@ -82,7 +82,7 @@ class FindContactCommandTest {
         String expectedMessage =
                 String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
         Predicate<Person> predicate = person -> person.getName().fullName.contains("Kurz");
-        FindCommand command = new FindContactCommand(predicate);
+        FindContactCommand command = new FindContactCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(
                 command,
