@@ -114,9 +114,13 @@ public class HelpCommand extends Command {
             return new CommandResult(
                     SHOWING_HELP_MESSAGE + SwitchCommand.MESSAGE_USAGE
             ).setSameTab();
-        case VIEW:
+        case VIEW_CONTACT:
             return new CommandResult(
-                    SHOWING_HELP_MESSAGE + ViewCommand.MESSAGE_USAGE
+                    SHOWING_HELP_MESSAGE + ViewPersonCommand.MESSAGE_USAGE
+            ).setSameTab();
+        case VIEW_JOURNAL_ENTRY:
+            return new CommandResult(
+                    SHOWING_HELP_MESSAGE + ViewJournalEntryCommand.MESSAGE_USAGE
             ).setSameTab();
         case CHANGE_THEME:
             return new CommandResult(

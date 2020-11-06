@@ -107,8 +107,11 @@ public class IntelliJournalParser {
         case HELP:
             return new HelpCommandParser().parse(arguments);
 
-        case VIEW:
-            return new ViewCommandParser().parse(arguments);
+        case VIEW_CONTACT:
+            return new ViewPersonCommandParser().parse(arguments);
+
+        case VIEW_JOURNAL_ENTRY:
+            return new ViewJournalEntryCommandParser().parse(arguments);
 
         case SWITCH:
             return new SwitchCommand();
