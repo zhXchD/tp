@@ -221,17 +221,17 @@ Given below is the sequence diagram of command alias feature (This change only r
 
  **1. Model component**
 
-* `ModelManager` contains a `AliasMap` 
+* `ModelManager` contains a `AliasMap`
 
-* `Model#updateAlias(Map<String, ValidCommand> map)` update the model with a `Map` 
-   
+* `Model#updateAlias(Map<String, ValidCommand> map)` update the model with a `Map`
+
  **2. Storage component**
 
 * `StorageManager` contains a `AliasMapStorage`
 
 * `AliasMapStorage` is implemented by `JsonAliasMapStorage` which stores `AliasMap` as a Json file
 
-Given below is the class diagram of related part in `Storage` component:  
+Given below is the class diagram of related part in `Storage` component:
 
    ![aliasStorageClassDiagram](images/commandAlias/aliasStorageClassDiagram.png)
 
