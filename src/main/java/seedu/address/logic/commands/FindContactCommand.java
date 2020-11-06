@@ -19,7 +19,8 @@ public class FindContactCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Finds all contacts in the address book "
             + "that contains the fields specified.\n"
-            + "Parameters: [n/NAME] [a/ADDRESS] [e/EMAIL] [p/PHONE] [t/TAG]\n"
+            + "Parameters: [n/NAME] [a/ADDRESS] [e/EMAIL] [p/PHONE] [t/TAG], "
+            + "there must be at least one parameter\n"
             + "Example: findc n/Robert a/Paya Lebar";
 
     private final Predicate<Person> predicate;

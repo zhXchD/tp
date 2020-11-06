@@ -42,6 +42,12 @@ public class FindJournalEntryCommandParser implements Parser<FindJournalEntryCom
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindJournalEntryCommand.MESSAGE_USAGE));
         }
+        // if all fields are empty
+        if (arePrefixesEmpty(argMultimap, PREFIX_NAME, PREFIX_CONTACT, PREFIX_DATE_AND_TIME,
+                PREFIX_DESCRIPTION, PREFIX_TAG)) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindJournalEntryCommand.MESSAGE_USAGE));
+        }
         if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
             assert argMultimap.getValue(PREFIX_NAME).isPresent();
             String titleKeyWord =

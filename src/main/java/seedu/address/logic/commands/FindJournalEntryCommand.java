@@ -20,7 +20,8 @@ public class FindJournalEntryCommand extends Command {
             + ": Finds all entries in the journal that contains the "
             + "fields specified\n"
             + "Parameters: [n/TITLE] [at/DATE_AND_TIME] [d/DESCRIPTION]"
-            + " [with/CONTACT_NAME] [t/TAG]\n"
+            + " [with/CONTACT_NAME] [t/TAG], "
+            + "there must be at least one parameter\n"
             + "Example: findj d/Meeting with/Robert";
 
     private final Predicate<Entry> predicate;

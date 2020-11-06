@@ -44,6 +44,11 @@ public class FindContactCommandParser implements Parser<FindContactCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindContactCommand.MESSAGE_USAGE));
         }
+        // if all fields are empty
+        if (arePrefixesEmpty(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_TAG)) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindContactCommand.MESSAGE_USAGE));
+        }
         if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
             assert argMultimap.getValue(PREFIX_NAME).isPresent();
             String nameKeyWord =
