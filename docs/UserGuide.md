@@ -117,6 +117,7 @@ Format: `addcontact n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 :bulb: **Tips:**<br>
 
 * A contact can have any number of tags (including 0).
+* `NAME` must not be a name that is already used in the address book, even if it has different case letters.
 * `TAG` must be alphanumeric, without spaces.
 * `PHONE_NUMBER` must be a valid Singaporean number, 8 digits long and starting with either 6, 8, or 9.
 * The country code +65 is also accepted at the start of `PHONE_NUMBER`.
@@ -151,6 +152,7 @@ Format: `editc INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…�
 
 * Edits the contact at the specified `INDEX`. The index refers to the index
   number shown in the displayed contact list.
+* `NAME` must not be a name that is already used in the address book, even if it has different case letters.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * `TAG` must be alphanumeric, without spaces.
@@ -291,6 +293,7 @@ Format: `addjournal n/TITLE [at/DATE_AND_TIME] [d/DESCRIPTION]
 
 * A journal entry can have any number of contacts or tags (including 0)
 * `CONTACT_NAME` must be an existing name in the address book.
+* `CONTACT_NAME` is case-insensitive, and does not need to be capitalised to find contacts required.
 * `DATE_AND_TIME` must be in the format: "YYYY-MM-DD HH:MM".
 * `TAG` must be alphanumeric, without spaces.
 
@@ -342,6 +345,7 @@ Format: `editj INDEX [n/TITLE] [at/DATE_AND_TIME] [d/DESCRIPTION]
 
 * Edits the contact at the specified `INDEX`. The index refers to the index
   number shown in the displayed contact list.
+* `CONTACT_NAME` is case-insensitive, and does not need to be capitalised to find contacts required.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the entry will be removed i.e adding

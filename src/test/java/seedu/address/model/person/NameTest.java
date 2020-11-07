@@ -61,7 +61,7 @@ public class NameTest {
 
     @Nested
     @DisplayName("equals method")
-    class equals {
+    class Equals {
         @Test
         @DisplayName("should return true if same object")
         public void equals_sameObject_true() {
