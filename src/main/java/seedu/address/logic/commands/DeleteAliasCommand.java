@@ -16,7 +16,7 @@ public class DeleteAliasCommand extends Command {
 
     public static final String COMMAND_WORD = "deletea";
 
-    public static final String MESSAGE_USAGE = "%s: delete a shortcut for an "
+    public static final String MESSAGE_USAGE = "%s: Delete a shortcut for an "
             + "existing alias.\n"
             + "Parameters: CUSTOMISED_ALIAS\n"
             + "Example: %s sw ";
