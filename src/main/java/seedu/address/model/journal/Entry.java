@@ -85,7 +85,8 @@ public class Entry {
 
     /**
      * Removes the original contact and replaces them with the edited contact.
-     * @param target the original contact.
+     *
+     * @param target       the original contact.
      * @param editedPerson the edited contact.
      */
     public void setContact(Person target, Person editedPerson) {
@@ -101,6 +102,22 @@ public class Entry {
      */
     public boolean isRelatedTo(Person person) {
         return contactList.contains(person);
+    }
+
+
+    /**
+     * Returns the String representation of contacts separated by commas.
+     * @return A String containing each contact in this Entry's contact list.
+     */
+    private String contactsToString() {
+        if (getContactList().size() > 0) {
+            return getContactList()
+                    .stream()
+                    .map(Person::getName)
+                    .map(Name::toString)
+                    .collect(Collectors.joining(", "));
+        }
+        return "No related contact list.";
     }
 
     @Override
@@ -134,18 +151,13 @@ public class Entry {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        // TODO: Come up with a better way to format contacts
         builder.append(getTitle())
-                .append(" Date and time: ")
+                .append("\nDate and time: ")
                 .append(getDate())
-                .append(" Description: ")
-                .append(getDescription())
-                .append(" Contacts: ")
-                .append(getContactList()
-                        .stream()
-                        .map(Person::getName)
-                        .map(Name::toString)
-                        .collect(Collectors.joining(", ")));
+                .append("\nContacts: ")
+                .append(contactsToString())
+                .append("\nDescription: ")
+                .append(getDescription());
         return builder.toString();
     }
 
