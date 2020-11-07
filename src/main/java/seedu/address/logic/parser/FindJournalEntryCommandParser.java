@@ -1,12 +1,14 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PREFIX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OF;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -43,7 +45,8 @@ public class FindJournalEntryCommandParser implements Parser<FindJournalEntryCom
                 PREFIX_TAG,
                 PREFIX_DATE_AND_TIME,
                 PREFIX_DESCRIPTION,
-                PREFIX_CONTACT
+                PREFIX_CONTACT,
+                PREFIX_OF
         );
 
         if (!argMultimap.getPreamble().isEmpty()) {
@@ -53,9 +56,9 @@ public class FindJournalEntryCommandParser implements Parser<FindJournalEntryCom
             );
         }
         Predicate<Entry> entryPredicate = entry -> true;
-        if (!arePrefixesEmpty(argMultimap, PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_PHONE)) {
+        if (!arePrefixesEmpty(argMultimap, PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_PHONE, PREFIX_OF)) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindJournalEntryCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_PREFIX, FindJournalEntryCommand.MESSAGE_USAGE));
         }
         // if all fields are empty
         if (arePrefixesEmpty(argMultimap, PREFIX_NAME, PREFIX_CONTACT, PREFIX_DATE_AND_TIME,
