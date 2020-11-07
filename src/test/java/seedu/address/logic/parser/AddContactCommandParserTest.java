@@ -46,6 +46,7 @@ import seedu.address.testutil.PersonBuilder;
 
 public class AddContactCommandParserTest {
     private final AddContactCommandParser parser = new AddContactCommandParser();
+    private final String commandWord = "addcontact";
 
     @Nested
     @DisplayName("parse method")
@@ -67,7 +68,8 @@ public class AddContactCommandParserTest {
                     PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB
                             + EMAIL_DESC_BOB
                             + ADDRESS_DESC_BOB + TAG_DESC_FRIEND,
-                    new AddContactCommand(expectedPerson)
+                    new AddContactCommand(expectedPerson),
+                    commandWord
             );
 
             // multiple names - last name accepted
@@ -76,7 +78,8 @@ public class AddContactCommandParserTest {
                     NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB
                             + EMAIL_DESC_BOB
                             + ADDRESS_DESC_BOB + TAG_DESC_FRIEND,
-                    new AddContactCommand(expectedPerson)
+                    new AddContactCommand(expectedPerson),
+                    commandWord
             );
 
             // multiple phones - last phone accepted
@@ -85,7 +88,8 @@ public class AddContactCommandParserTest {
                     NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB
                             + EMAIL_DESC_BOB
                             + ADDRESS_DESC_BOB + TAG_DESC_FRIEND,
-                    new AddContactCommand(expectedPerson)
+                    new AddContactCommand(expectedPerson),
+                    commandWord
             );
 
             // multiple emails - last email accepted
@@ -94,7 +98,8 @@ public class AddContactCommandParserTest {
                     NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY
                             + EMAIL_DESC_BOB
                             + ADDRESS_DESC_BOB + TAG_DESC_FRIEND,
-                    new AddContactCommand(expectedPerson)
+                    new AddContactCommand(expectedPerson),
+                    commandWord
             );
 
             // multiple addresses - last address accepted
@@ -103,7 +108,8 @@ public class AddContactCommandParserTest {
                     NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                             + ADDRESS_DESC_AMY
                             + ADDRESS_DESC_BOB + TAG_DESC_FRIEND,
-                    new AddContactCommand(expectedPerson)
+                    new AddContactCommand(expectedPerson),
+                    commandWord
             );
 
             // multiple tags - all accepted
@@ -118,7 +124,8 @@ public class AddContactCommandParserTest {
                     NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                             + ADDRESS_DESC_BOB
                             + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-                    new AddContactCommand(expectedPersonMultipleTags)
+                    new AddContactCommand(expectedPersonMultipleTags),
+                    commandWord
             );
         }
 
@@ -139,7 +146,8 @@ public class AddContactCommandParserTest {
                             + PHONE_DESC_AMY
                             + EMAIL_DESC_AMY
                             + ADDRESS_DESC_AMY,
-                    new AddContactCommand(expectedPerson)
+                    new AddContactCommand(expectedPerson),
+                    commandWord
             );
         }
 
@@ -149,23 +157,24 @@ public class AddContactCommandParserTest {
         public void parse_compulsoryFieldMissing_failure() {
             String expectedMessage = String.format(
                     MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddContactCommand.MESSAGE_USAGE
+                    AddContactCommand.getMessageUsage(commandWord)
             );
 
             // missing name prefix
             assertParseFailure(parser,
                     VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                             + ADDRESS_DESC_BOB,
-                    expectedMessage
+                    expectedMessage,
+                    commandWord
             );
 
             // all prefixes missing
             assertParseFailure(parser,
                     VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB
                             + VALID_ADDRESS_BOB,
-                    expectedMessage
+                    expectedMessage,
+                    commandWord
             );
-
         }
 
         @Test
@@ -178,7 +187,8 @@ public class AddContactCommandParserTest {
                     INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB
                             + ADDRESS_DESC_BOB
                             + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-                    Name.MESSAGE_CONSTRAINTS
+                    Name.MESSAGE_CONSTRAINTS,
+                    commandWord
             );
 
             // invalid phone
@@ -187,7 +197,8 @@ public class AddContactCommandParserTest {
                     NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB
                             + ADDRESS_DESC_BOB
                             + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-                    Phone.MESSAGE_CONSTRAINTS
+                    Phone.MESSAGE_CONSTRAINTS,
+                    commandWord
             );
 
             // invalid email
@@ -196,7 +207,8 @@ public class AddContactCommandParserTest {
                     NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC
                             + ADDRESS_DESC_BOB
                             + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-                    Email.MESSAGE_CONSTRAINTS
+                    Email.MESSAGE_CONSTRAINTS,
+                    commandWord
             );
 
             // invalid address
@@ -205,7 +217,8 @@ public class AddContactCommandParserTest {
                     NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                             + INVALID_ADDRESS_DESC
                             + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-                    Address.MESSAGE_CONSTRAINTS
+                    Address.MESSAGE_CONSTRAINTS,
+                    commandWord
             );
 
             // invalid tag
@@ -214,14 +227,16 @@ public class AddContactCommandParserTest {
                     NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                             + ADDRESS_DESC_BOB
                             + INVALID_TAG_DESC + VALID_TAG_FRIEND,
-                    Tag.MESSAGE_CONSTRAINTS
+                    Tag.MESSAGE_CONSTRAINTS,
+                    commandWord
             );
 
             // two invalid values, only first invalid value reported
             assertParseFailure(parser,
                     INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB
                             + INVALID_ADDRESS_DESC,
-                    Name.MESSAGE_CONSTRAINTS
+                    Name.MESSAGE_CONSTRAINTS,
+                    commandWord
             );
 
             // non-empty preamble
@@ -232,8 +247,9 @@ public class AddContactCommandParserTest {
                             + TAG_DESC_FRIEND,
                     String.format(
                             MESSAGE_INVALID_COMMAND_FORMAT,
-                            AddContactCommand.MESSAGE_USAGE
-                    )
+                            AddContactCommand.getMessageUsage(commandWord)
+                    ),
+                    commandWord
             );
         }
     }

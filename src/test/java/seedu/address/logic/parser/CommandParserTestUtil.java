@@ -15,9 +15,13 @@ public class CommandParserTestUtil {
      * successful and the command created equals to {@code expectedCommand}.
      */
     public static void assertParseSuccess(
-            Parser parser, String userInput, Command expectedCommand) {
+            Parser parser,
+            String userInput,
+            Command expectedCommand,
+            String commandWord
+    ) {
         try {
-            Command command = parser.parse(userInput);
+            Command command = parser.parse(commandWord, userInput);
             assertEquals(expectedCommand, command);
         } catch (ParseException pe) {
             throw new IllegalArgumentException("Invalid userInput.", pe);
@@ -29,9 +33,13 @@ public class CommandParserTestUtil {
      * unsuccessful and the error message equals to {@code expectedMessage}.
      */
     public static void assertParseFailure(
-            Parser parser, String userInput, String expectedMessage) {
+            Parser parser,
+            String userInput,
+            String expectedMessage,
+            String commandWord
+    ) {
         try {
-            parser.parse(userInput);
+            parser.parse(commandWord, userInput);
             throw new AssertionError(
                     "The expected ParseException was not thrown.");
         } catch (ParseException pe) {

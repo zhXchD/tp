@@ -54,18 +54,30 @@ public class AddContactCommandParser implements Parser<AddContactCommand> {
      * and returns an AddContactCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddContactCommand parse(String args) throws ParseException {
+    public AddContactCommand parse(String commandWord, String args)
+            throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, ALL_PREFIXES);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddContactCommand.MESSAGE_USAGE));
+            throw new ParseException(
+                    String.format(
+                            MESSAGE_INVALID_COMMAND_FORMAT,
+                            AddContactCommand.getMessageUsage(commandWord)
+                    )
+            );
         }
 
         // if any of the invalid prefixes shows up, throw an exception
-        if (!arePrefixesEmpty(argMultimap, PREFIX_DATE_AND_TIME, PREFIX_DESCRIPTION, PREFIX_CONTACT, PREFIX_OF)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_PREFIX, AddContactCommand.MESSAGE_USAGE));
+        if (!arePrefixesEmpty(argMultimap, PREFIX_DATE_AND_TIME,
+                PREFIX_DESCRIPTION, PREFIX_CONTACT, PREFIX_OF)) {
+            throw new ParseException(
+                    String.format(
+                            MESSAGE_INVALID_PREFIX,
+                            AddContactCommand.getMessageUsage(commandWord)
+                    )
+            );
         }
 
         assert argMultimap.getValue(PREFIX_NAME).isPresent();

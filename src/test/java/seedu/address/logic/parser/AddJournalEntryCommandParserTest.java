@@ -47,7 +47,8 @@ public class AddJournalEntryCommandParserTest {
                     parser,
                     PREAMBLE_WHITESPACE + TITLE_DESC_MEETING
                             + DATE_DESC_OCTOBER + DESCRIPTION_DESC_STORY,
-                    new AddJournalEntryCommand(expectedEntry)
+                    new AddJournalEntryCommand(expectedEntry),
+                    "addj"
             );
         }
 
@@ -57,19 +58,21 @@ public class AddJournalEntryCommandParserTest {
         public void parse_compulsoryFieldMissing_failure() {
             String expectedMessage = String.format(
                     MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddJournalEntryCommand.MESSAGE_USAGE
+                    AddJournalEntryCommand.getMessageUsage("addjournal")
             );
 
             // missing title prefix
             assertParseFailure(parser,
                     VALID_TITLE_MEETING + DATE_DESC_OCTOBER + DESCRIPTION_DESC_STORY,
-                    expectedMessage
+                    expectedMessage,
+                    "addjournal"
             );
 
             // all prefixes missing
             assertParseFailure(parser,
                     VALID_TITLE_MEETING + VALID_DATE_OCTOBER + VALID_DESCRIPTION_STORY,
-                    expectedMessage
+                    expectedMessage,
+                    "addjournal"
             );
         }
 
@@ -81,32 +84,39 @@ public class AddJournalEntryCommandParserTest {
             assertParseFailure(
                     parser,
                     INVALID_TITLE_DESC + VALID_DATE_OCTOBER + VALID_DESCRIPTION_MOVIE,
-                    Title.MESSAGE_CONSTRAINTS
+                    Title.MESSAGE_CONSTRAINTS,
+                    "addjournal"
             );
 
             // invalid date
             assertParseFailure(
                     parser,
                     TITLE_DESC_MEETING + INVALID_DATE_DESC + DESCRIPTION_DESC_STORY,
-                    Date.MESSAGE_CONSTRAINTS
+                    Date.MESSAGE_CONSTRAINTS,
+                    "addjournal"
             );
 
             // invalid tag
-            assertParseFailure(parser,
+            assertParseFailure(
+                    parser,
                     TITLE_DESC_MEETING
                             + VALID_DATE_OCTOBER
                             + DESCRIPTION_DESC_STORY
                             + INVALID_TAG_DESC,
-                    Tag.MESSAGE_CONSTRAINTS);
+                    Tag.MESSAGE_CONSTRAINTS,
+                    "addjournal"
+            );
 
             // non-empty preamble
-            assertParseFailure(parser,
+            assertParseFailure(
+                    parser,
                     PREAMBLE_NON_EMPTY + TITLE_DESC_MEETING + DATE_DESC_OCTOBER
                             + DESCRIPTION_DESC_STORY,
                     String.format(
                             MESSAGE_INVALID_COMMAND_FORMAT,
-                            AddJournalEntryCommand.MESSAGE_USAGE
-                    )
+                            AddJournalEntryCommand.getMessageUsage("addjournal")
+                    ),
+                    "addjournal"
             );
         }
     }

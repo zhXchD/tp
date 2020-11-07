@@ -34,15 +34,15 @@ public class HelpCommandTest {
 
         @Test
         @DisplayName("should execute help command successfully")
-        public void execute_help_withAddcCommand() {
+        public void execute_help_withAddCommand() {
             ValidCommand validCommandType = ValidCommand.ADD_CONTACT;
             CommandResult expectedCommandResult = new CommandResult(
-                SHOWING_HELP_MESSAGE + AddContactCommand.MESSAGE_USAGE);
+                    AddContactCommand.getMessageUsage("addc"));
             assertCommandSuccess(
-                new HelpCommand(validCommandType),
-                model,
-                expectedCommandResult,
-                expectedModel
+                    new HelpCommand(validCommandType, "addc"),
+                    model,
+                    expectedCommandResult,
+                    expectedModel
             );
         }
     }

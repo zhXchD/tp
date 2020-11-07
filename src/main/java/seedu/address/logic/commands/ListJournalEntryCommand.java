@@ -12,12 +12,15 @@ public class ListJournalEntryCommand extends Command {
 
     public static final String COMMAND_WORD = "listj";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Lists all entries in the journal.\n"
-            + "Example: listj";
+    public static final String MESSAGE_USAGE = "%s: Lists all entries in the "
+            + "journal.\n"
+            + "Example: %s";
 
     public static final String MESSAGE_SUCCESS = "Listed all journal entries";
 
+    public static String getMessageUsage(String commandWord) {
+        return String.format(MESSAGE_USAGE, commandWord, commandWord);
+    }
 
     @Override
     public CommandResult execute(Model model) {

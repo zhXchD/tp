@@ -24,7 +24,8 @@ class DeleteJournalEntryCommandParserTest {
             assertParseSuccess(
                     parser,
                     "1",
-                    new DeleteJournalEntryCommand(INDEX_FIRST_PERSON)
+                    new DeleteJournalEntryCommand(INDEX_FIRST_PERSON),
+                    "delj"
             );
         }
 
@@ -36,8 +37,9 @@ class DeleteJournalEntryCommandParserTest {
                     "a",
                     String.format(
                             MESSAGE_INVALID_COMMAND_FORMAT,
-                            DeleteJournalEntryCommand.MESSAGE_USAGE
-                    )
+                            DeleteJournalEntryCommand.getMessageUsage("delj")
+                    ),
+                    "delj"
             );
         }
     }

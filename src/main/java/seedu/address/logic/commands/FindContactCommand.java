@@ -16,12 +16,12 @@ import seedu.address.model.person.Person;
 public class FindContactCommand extends Command {
     public static final String COMMAND_WORD = "findc";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Finds all contacts in the address book "
+    public static final String MESSAGE_USAGE = "%s: Finds all contacts in the "
+            + "address book "
             + "that contains the fields specified.\n"
             + "Parameters: [n/NAME] [a/ADDRESS] [e/EMAIL] [p/PHONE] [t/TAG], "
             + "there must be at least one parameter\n"
-            + "Example: findc n/Robert a/Paya Lebar";
+            + "Example: %s n/Robert a/Paya Lebar";
 
     private final Predicate<Person> predicate;
 
@@ -32,6 +32,10 @@ public class FindContactCommand extends Command {
     public FindContactCommand(Predicate<Person> predicate) {
         assert predicate != null;
         this.predicate = predicate;
+    }
+
+    public static String getMessageUsage(String commandWord) {
+        return String.format(MESSAGE_USAGE, commandWord, commandWord);
     }
 
     @Override

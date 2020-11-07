@@ -37,7 +37,8 @@ public class EditContactCommandParser implements Parser<EditContactCommand> {
      *
      * @throws ParseException if the user input does not conform the expected format
      */
-    public EditContactCommand parse(String args) throws ParseException {
+    public EditContactCommand parse(String commandWord, String args)
+            throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, ALL_PREFIXES);
@@ -47,15 +48,23 @@ public class EditContactCommandParser implements Parser<EditContactCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(
-                    MESSAGE_INVALID_COMMAND_FORMAT,
-                    EditContactCommand.MESSAGE_USAGE),
-                    pe);
+            throw new ParseException(
+                    String.format(
+                            MESSAGE_INVALID_COMMAND_FORMAT,
+                            EditContactCommand.getMessageUsage(commandWord)
+                    ),
+                    pe
+            );
         }
 
         // if any of the invalid prefixes shows up, throw an exception
         if (!arePrefixesEmpty(argMultimap, PREFIX_DATE_AND_TIME, PREFIX_DESCRIPTION, PREFIX_CONTACT, PREFIX_OF)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_PREFIX, EditContactCommand.MESSAGE_USAGE));
+            throw new ParseException(
+                    String.format(
+                            MESSAGE_INVALID_PREFIX,
+                            EditContactCommand.getMessageUsage(commandWord)
+                    )
+            );
         }
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
@@ -102,5 +111,4 @@ public class EditContactCommandParser implements Parser<EditContactCommand> {
     private static boolean arePrefixesEmpty(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isEmpty());
     }
-
 }

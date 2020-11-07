@@ -16,10 +16,10 @@ public class DeleteAliasCommand extends Command {
 
     public static final String COMMAND_WORD = "deletea";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": delete a shortcut for an existing alias.\n"
+    public static final String MESSAGE_USAGE = "%s: delete a shortcut for an "
+            + "existing alias.\n"
             + "Parameters: CUSTOMISED_ALIAS\n"
-            + "Example: deletea sw ";
+            + "Example: %s sw ";
 
     private static final String MESSAGE_ALIAS_NOTFOUND =
             "This alias is not in the system.";
@@ -39,6 +39,9 @@ public class DeleteAliasCommand extends Command {
         this.target = target;
     }
 
+    public static String getMessageUsage(String commandWord) {
+        return String.format(MESSAGE_USAGE, commandWord, commandWord);
+    }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {

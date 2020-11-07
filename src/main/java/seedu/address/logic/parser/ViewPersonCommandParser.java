@@ -12,13 +12,19 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class ViewPersonCommandParser implements Parser<ViewPersonCommand> {
     @Override
-    public ViewPersonCommand parse(String args) throws ParseException {
+    public ViewPersonCommand parse(String commandWord, String args)
+            throws ParseException {
         try {
             Index index = ParserUtil.parseIndex(args);
             return new ViewPersonCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewPersonCommand.MESSAGE_USAGE), pe);
+                    String.format(
+                            MESSAGE_INVALID_COMMAND_FORMAT,
+                            ViewPersonCommand.getMessageUsage(commandWord)
+                    ),
+                    pe
+            );
         }
     }
 }

@@ -16,13 +16,13 @@ import seedu.address.model.journal.Entry;
 public class FindJournalEntryCommand extends Command {
     public static final String COMMAND_WORD = "findc";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Finds all entries in the journal that contains the "
+    public static final String MESSAGE_USAGE = "%s: Finds all entries in the "
+            + "journal that contains the "
             + "fields specified\n"
             + "Parameters: [n/TITLE] [at/DATE_AND_TIME] [d/DESCRIPTION]"
             + " [with/CONTACT_NAME] [t/TAG], "
             + "there must be at least one parameter\n"
-            + "Example: findj d/Meeting with/Robert";
+            + "Example: %s d/Meeting with/Robert";
 
     private final Predicate<Entry> predicate;
 
@@ -33,6 +33,10 @@ public class FindJournalEntryCommand extends Command {
     public FindJournalEntryCommand(Predicate<Entry> predicate) {
         requireNonNull(predicate);
         this.predicate = predicate;
+    }
+
+    public static String getMessageUsage(String commandWord) {
+        return String.format(MESSAGE_USAGE, commandWord, commandWord);
     }
 
     @Override

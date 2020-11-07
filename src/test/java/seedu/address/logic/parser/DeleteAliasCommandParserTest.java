@@ -26,13 +26,15 @@ public class DeleteAliasCommandParserTest {
         @Test
         @DisplayName("Should throw NullPointerException if pass in a null")
         public void parse_null_throwsNullPointerException() {
-            assertThrows(NullPointerException.class, () -> parser.parse(null));
+            assertThrows(NullPointerException.class, () ->
+                    parser.parse("deletea", null));
         }
 
         @Test
         @DisplayName("Should throw ParseException if the argument is wrong")
         public void parse_invalidArgs_throwsParseException() {
-            assertThrows(ParseException.class, () -> parser.parse(noArgsInput));
+            assertThrows(ParseException.class, () ->
+                    parser.parse("deletea", noArgsInput));
         }
 
         @Test
@@ -42,7 +44,7 @@ public class DeleteAliasCommandParserTest {
 
             try {
                 String validInput = " si";
-                Command command = parser.parse(validInput);
+                Command command = parser.parse("deletea", validInput);
                 assertEquals(expectedCommand, command);
             } catch (Exception e) {
                 fail();

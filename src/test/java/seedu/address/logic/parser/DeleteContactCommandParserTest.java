@@ -31,7 +31,8 @@ public class DeleteContactCommandParserTest {
             assertParseSuccess(
                     parser,
                     "1",
-                    new DeleteContactCommand(INDEX_FIRST_PERSON)
+                    new DeleteContactCommand(INDEX_FIRST_PERSON),
+                    "delc"
             );
         }
 
@@ -43,8 +44,9 @@ public class DeleteContactCommandParserTest {
                     "a",
                     String.format(
                             MESSAGE_INVALID_COMMAND_FORMAT,
-                            DeleteContactCommand.MESSAGE_USAGE
-                    )
+                            DeleteContactCommand.getMessageUsage("delc")
+                    ),
+                    "delc"
             );
         }
     }
