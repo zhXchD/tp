@@ -16,6 +16,7 @@ Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
+Class AliasMap
 
 Package Person {
 Class Person
@@ -52,6 +53,7 @@ ModelManager o--> "1" AddressBook
 ModelManager o-left-> "1" UserPrefs
 ModelManager o--> "1" Journal
 UserPrefs .up.|> ReadOnlyUserPrefs
+ModelManager *--down> AliasMap
 
 AddressBook *--> "1" UniquePersonList
 UniquePersonList o--> "*" Person

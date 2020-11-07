@@ -8,6 +8,7 @@ Interface Storage <<Interface>>
 Interface UserPrefsStorage <<Interface>>
 Interface AddressBookStorage <<Interface>>
 Interface JournalStorage <<Interface>>
+Interface AliasMapStorage <<Interface>>
 
 Class StorageManager
 Class JsonUserPrefsStorage
@@ -20,6 +21,7 @@ StorageManager .left.|> Storage
 StorageManager o-right-> UserPrefsStorage
 StorageManager o-up-> JournalStorage
 StorageManager o--> AddressBookStorage
+StorageManager *--> AliasMapStorage
 
 JsonUserPrefsStorage .left.|> UserPrefsStorage
 
@@ -27,7 +29,7 @@ JsonJournalStorage .left.|> JournalStorage
 JsonJournalStorage .up.> JsonSerializableJournal
 JsonSerializableJournal .right.> JsonAdaptedEntry
 JsonAdaptedEntry ....> JsonAdaptedTag
-
+JsonAliasMapStorage ..left> AliasMapStorage
 
 JsonAddressBookStorage .left.|> AddressBookStorage
 JsonAddressBookStorage .down.> JsonSerializableAddressBook
