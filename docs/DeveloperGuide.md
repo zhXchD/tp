@@ -223,7 +223,7 @@ Given below is the sequence diagram of command alias feature (This change only r
 
 * `ModelManager` contains a `AliasMap`
 
-* `Model#updateAlias(Map<String, ValidCommand> map)` update the model with a `Map`
+* `Model#updateAlias(Map<String, ValidCommand> map)` updates the model with a `Map`
 
  **2. Storage component**
 

@@ -516,12 +516,11 @@ Format: `alias TARGET ALIAS`
 
 Example:
 
-1. Assuming you want to add `st` as an alias for `switch`, type `alias switch st` 
-into the command box and press enter.
+1. Type `alias switch st` into the command box and press enter.
 
    ![alias example](images/UGExamples/aliasExample1.png)
    
-2. If you enter a valid alias, you can see the message from IntelliJournal which tells you the operation is successful.
+2. This adds `st` as a valid shortcut for `switch`
 
    ![alias example](images/UGExamples/aliasExample2.png)
    
@@ -541,6 +540,14 @@ Removes the custom alias from IntelliJournal.
 Aliases: `deletea`, `dela`
 
 Format: `deletea ALIAS`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+
+* Default alias cannot be removed.
+
+</div>
 
 Example:
 
