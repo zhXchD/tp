@@ -23,7 +23,8 @@ class ViewPersonCommandParserTest {
             assertParseSuccess(
                     parser,
                     "1",
-                    new ViewPersonCommand(INDEX_FIRST_PERSON)
+                    new ViewPersonCommand(INDEX_FIRST_PERSON),
+                    "viewc"
             );
         }
 
@@ -35,8 +36,9 @@ class ViewPersonCommandParserTest {
                     "a",
                     String.format(
                             MESSAGE_INVALID_COMMAND_FORMAT,
-                            ViewPersonCommand.MESSAGE_USAGE
-                    )
+                            ViewPersonCommand.getMessageUsage("viewc")
+                    ),
+                    "viewc"
             );
         }
     }

@@ -25,14 +25,17 @@ public class AddAliasCommandParserTest {
         @Test
         @DisplayName("Should throw NullPointerException if pass in a null")
         public void parse_null_throwsNullPointerException() {
-            assertThrows(NullPointerException.class, () -> parser.parse(null));
+            assertThrows(NullPointerException.class, () ->
+                    parser.parse("alias", null));
         }
 
         @Test
         @DisplayName("Should throw ParseException if the argument is wrong")
         public void parse_invalidArgs_throwsParseException() {
-            assertThrows(ParseException.class, () -> parser.parse(noArgsInput));
-            assertThrows(ParseException.class, () -> parser.parse(oneArgInput));
+            assertThrows(ParseException.class, () ->
+                    parser.parse("alias", noArgsInput));
+            assertThrows(ParseException.class, () ->
+                    parser.parse("alias", oneArgInput));
         }
 
         @Test
@@ -42,7 +45,7 @@ public class AddAliasCommandParserTest {
 
             try {
                 String validInput = " switch si";
-                Command command = parser.parse(validInput);
+                Command command = parser.parse("alias", validInput);
                 assertEquals(expectedCommand, command);
             } catch (Exception e) {
                 fail();

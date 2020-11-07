@@ -76,8 +76,9 @@ public class FindCommandParserTest {
                     "     ",
                     String.format(
                             MESSAGE_INVALID_COMMAND_FORMAT,
-                            FindContactCommand.MESSAGE_USAGE
-                    )
+                            FindContactCommand.getMessageUsage("findc")
+                    ),
+                    "findc"
             );
         }
 
@@ -89,8 +90,9 @@ public class FindCommandParserTest {
                     "     ",
                     String.format(
                             MESSAGE_INVALID_COMMAND_FORMAT,
-                            FindJournalEntryCommand.MESSAGE_USAGE
-                    )
+                            FindJournalEntryCommand.getMessageUsage("findj")
+                    ),
+                    "findj"
             );
         }
 
@@ -101,7 +103,8 @@ public class FindCommandParserTest {
                 throws Exception {
             // no leading and trailing whitespaces
             FindContactCommand actualFindCommand =
-                    contactParser.parse(" n/Alice e/test a/test p/000 t/tes");
+                    contactParser.parse(
+                            "findc", " n/Alice e/test a/test p/000 t/tes");
             String expectedMessage = String.format(
                     MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
             expectedModel.updateFilteredPersonList(person -> false);
@@ -120,7 +123,9 @@ public class FindCommandParserTest {
             // no leading and trailing whitespaces
 
             FindJournalEntryCommand actualFindCommand = journalParser.parse(
-                    " n/test d/test at/2020-10-10 10:00 with/test t/tes");
+                    "findj",
+                    " n/test d/test at/2020-10-10 10:00 with/test t/tes"
+            );
 
             String expectedMessage =
                     String.format(MESSAGE_ENTRIES_LISTED_OVERVIEW, 0);

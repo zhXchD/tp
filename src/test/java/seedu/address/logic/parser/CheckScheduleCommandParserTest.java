@@ -40,7 +40,8 @@ class CheckScheduleCommandParserTest {
                 + "empty")
         void parse_emptyArg_returnsCheckScheduleCommand() throws Exception {
             Date date = new Date("");
-            CheckScheduleCommand checkScheduleCommand = parser.parse("     ");
+            CheckScheduleCommand checkScheduleCommand = parser.parse(
+                    "check", "     ");
             String expectedMessage = String.format(
                     CheckScheduleCommand.MESSAGE_SUCCESS,
                     date.getDateString()
@@ -65,7 +66,7 @@ class CheckScheduleCommandParserTest {
         void parse_validDate_returnsCheckScheduleCommand() throws Exception {
             Date date = new Date("2000-12-21 00:00");
             CheckScheduleCommand checkScheduleCommand = parser.parse(
-                    "  2000-12-21    ");
+                    "check", "  2000-12-21    ");
             String expectedMessage = String.format(
                     CheckScheduleCommand.MESSAGE_SUCCESS,
                     date.getDateString()
@@ -96,8 +97,9 @@ class CheckScheduleCommandParserTest {
                     "   abc123      ",
                     String.format(
                             MESSAGE_INVALID_COMMAND_FORMAT,
-                            CheckScheduleCommand.MESSAGE_USAGE
-                    )
+                            CheckScheduleCommand.getMessageUsage("check")
+                    ),
+                    "check"
             );
         }
     }

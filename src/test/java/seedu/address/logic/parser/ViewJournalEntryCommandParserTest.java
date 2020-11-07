@@ -23,7 +23,8 @@ class ViewJournalEntryCommandParserTest {
             assertParseSuccess(
                     parser,
                     "1",
-                    new ViewJournalEntryCommand(INDEX_FIRST_PERSON)
+                    new ViewJournalEntryCommand(INDEX_FIRST_PERSON),
+                    "viewj"
             );
         }
 
@@ -35,8 +36,9 @@ class ViewJournalEntryCommandParserTest {
                     "a",
                     String.format(
                             MESSAGE_INVALID_COMMAND_FORMAT,
-                            ViewJournalEntryCommand.MESSAGE_USAGE
-                    )
+                            ViewJournalEntryCommand.getMessageUsage("viewj")
+                    ),
+                    "viewj"
             );
         }
     }

@@ -28,7 +28,8 @@ import seedu.address.model.tag.Tag;
 public class EditJournalEntryCommandParser implements Parser<EditJournalEntryCommand> {
 
     @Override
-    public EditJournalEntryCommand parse(String args) throws ParseException {
+    public EditJournalEntryCommand parse(String commandWord, String args)
+            throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, ALL_PREFIXES);
         Index index;
@@ -36,15 +37,23 @@ public class EditJournalEntryCommandParser implements Parser<EditJournalEntryCom
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(
-                    MESSAGE_INVALID_COMMAND_FORMAT,
-                    EditJournalEntryCommand.MESSAGE_USAGE),
-                    pe);
+            throw new ParseException(
+                    String.format(
+                            MESSAGE_INVALID_COMMAND_FORMAT,
+                            EditJournalEntryCommand.getMessageUsage(commandWord)
+                    ),
+                    pe
+            );
         }
 
         // if any of the invalid prefixes shows up, throw an exception
         if (!arePrefixesEmpty(argMultimap, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_OF)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_PREFIX, EditJournalEntryCommand.MESSAGE_USAGE));
+            throw new ParseException(
+                    String.format(
+                            MESSAGE_INVALID_PREFIX,
+                            EditJournalEntryCommand.getMessageUsage(commandWord)
+                    )
+            );
         }
 
         EditEntryDescriptor editEntryDescriptor =

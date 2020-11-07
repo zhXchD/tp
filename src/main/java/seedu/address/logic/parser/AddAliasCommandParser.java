@@ -7,7 +7,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 
 public class AddAliasCommandParser implements Parser<AddAliasCommand> {
     @Override
-    public AddAliasCommand parse(String userInput) throws ParseException {
+    public AddAliasCommand parse(String commandWord, String userInput)
+            throws ParseException {
 
         String[] commandAliasPair = userInput.trim().split("\\s+");
 
@@ -15,7 +16,7 @@ public class AddAliasCommandParser implements Parser<AddAliasCommand> {
             throw new ParseException(
                     String.format(
                             MESSAGE_INVALID_COMMAND_FORMAT,
-                            AddAliasCommand.MESSAGE_USAGE
+                            AddAliasCommand.getMessageUsage(commandWord)
                     )
             );
         }

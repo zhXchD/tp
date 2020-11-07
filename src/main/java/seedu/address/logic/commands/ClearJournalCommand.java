@@ -13,13 +13,16 @@ public class ClearJournalCommand extends Command {
 
     public static final String COMMAND_WORD = "clearj";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Clears all entries in the journal.\n"
-            + "Example: clearj";
+    public static final String MESSAGE_USAGE = "%s: Clears all entries in the "
+            + "journal.\n"
+            + "Example: %s";
 
     public static final String MESSAGE_SUCCESS =
             "Journal has been cleared!";
 
+    public static String getMessageUsage(String commandWord) {
+        return String.format(MESSAGE_USAGE, commandWord, commandWord);
+    }
 
     @Override
     public CommandResult execute(Model model) {

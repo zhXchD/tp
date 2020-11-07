@@ -203,7 +203,7 @@ public class IntelliJournalParserTest {
                     ParseException.class,
                     String.format(
                             MESSAGE_INVALID_COMMAND_FORMAT,
-                            HelpCommand.MESSAGE_USAGE
+                            HelpCommand.getMessageUsage("help")
                     ), () -> parser.parseCommand("")
             );
         }

@@ -20,15 +20,15 @@ public class AddContactCommand extends Command {
 
     public static final String COMMAND_WORD = "addc";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds a person to the address book.\n"
+    public static final String MESSAGE_USAGE = "%s: Adds a person to the "
+            + "address book.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " "
+            + "Example: %s "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
@@ -50,6 +50,10 @@ public class AddContactCommand extends Command {
     public AddContactCommand(Person person) {
         requireNonNull(person);
         toAdd = person;
+    }
+
+    public static String getMessageUsage(String commandWord) {
+        return String.format(MESSAGE_USAGE, commandWord, commandWord);
     }
 
     @Override

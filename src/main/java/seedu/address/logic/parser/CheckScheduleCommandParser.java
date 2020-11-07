@@ -17,7 +17,8 @@ public class CheckScheduleCommandParser
      *                        format.
      */
     @Override
-    public CheckScheduleCommand parse(String userInput) throws ParseException {
+    public CheckScheduleCommand parse(String commandWord, String userInput)
+            throws ParseException {
         try {
             String trimmedInput = userInput.trim();
             Date date;
@@ -34,7 +35,7 @@ public class CheckScheduleCommandParser
             throw new ParseException(
                     String.format(
                             MESSAGE_INVALID_COMMAND_FORMAT,
-                            CheckScheduleCommand.MESSAGE_USAGE
+                            CheckScheduleCommand.getMessageUsage(commandWord)
                     ),
                     parseException
             );

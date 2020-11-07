@@ -20,13 +20,19 @@ import seedu.address.logic.parser.exceptions.ParseException;
 
 public class HelpCommandParser implements Parser<HelpCommand> {
     @Override
-    public HelpCommand parse(String args) throws ParseException {
+    public HelpCommand parse(String commandWord, String args)
+            throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, ALL_PREFIXES);
 
         // if any of the invalid prefixes shows up, throw an exception
         if (!arePrefixesEmpty(argMultimap, PREFIX_DATE_AND_TIME, PREFIX_DESCRIPTION, PREFIX_CONTACT, PREFIX_NAME,
                 PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_PREFIX, HelpCommand.MESSAGE_USAGE));
+            throw new ParseException(
+                    String.format(
+                            MESSAGE_INVALID_PREFIX,
+                            HelpCommand.getMessageUsage(commandWord)
+                    )
+            );
         }
 
         if (!arePrefixesPresent(argMultimap, PREFIX_OF) && argMultimap.getPreamble().isEmpty()) {
@@ -34,12 +40,19 @@ public class HelpCommandParser implements Parser<HelpCommand> {
         }
 
         if (!arePrefixesPresent(argMultimap, PREFIX_OF) || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            throw new ParseException(
+                    String.format(
+                            MESSAGE_INVALID_COMMAND_FORMAT,
+                            HelpCommand.getMessageUsage(commandWord)
+                    )
+            );
         }
 
         assert argMultimap.getValue(PREFIX_OF).isPresent() : "Help command argument not present, please check.";
-        ValidCommand validCommandType = ParserUtil.parseValidCommand(argMultimap.getValue(PREFIX_OF).get());
-        return new HelpCommand(validCommandType);
+        String commandAlias = argMultimap.getValue(PREFIX_OF).get();
+        ValidCommand validCommandType =
+                ParserUtil.parseValidCommand(commandAlias);
+        return new HelpCommand(validCommandType, commandAlias);
     }
 
     /**

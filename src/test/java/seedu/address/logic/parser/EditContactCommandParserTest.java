@@ -51,7 +51,7 @@ public class EditContactCommandParserTest {
 
     private static final String MESSAGE_INVALID_FORMAT = String.format(
             MESSAGE_INVALID_COMMAND_FORMAT,
-            EditContactCommand.MESSAGE_USAGE
+            EditContactCommand.getMessageUsage("edc")
     );
 
     private final EditContactCommandParser parser = new EditContactCommandParser();
@@ -63,13 +63,15 @@ public class EditContactCommandParserTest {
         @DisplayName("should fail to parse if there are missing fields")
         public void parse_missingParts_failure() {
             // no index specified
-            assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
+            assertParseFailure(
+                    parser, VALID_NAME_AMY, MESSAGE_INVALID_FORMAT, "edc");
 
             // no field specified
-            assertParseFailure(parser, "1", EditContactCommand.MESSAGE_NOT_EDITED);
+            assertParseFailure(
+                    parser, "1", EditContactCommand.MESSAGE_NOT_EDITED, "edc");
 
             // no index and no field specified
-            assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
+            assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT, "edc");
         }
 
         @Test
@@ -80,25 +82,29 @@ public class EditContactCommandParserTest {
             assertParseFailure(
                     parser,
                     "-5" + NAME_DESC_AMY,
-                    MESSAGE_INVALID_FORMAT
+                    MESSAGE_INVALID_FORMAT,
+                    "edc"
             );
 
             // zero index
             assertParseFailure(
                     parser,
                     "0" + NAME_DESC_AMY,
-                    MESSAGE_INVALID_FORMAT
+                    MESSAGE_INVALID_FORMAT,
+                    "edc"
             );
 
             // invalid arguments being parsed as preamble
             assertParseFailure(
                     parser,
                     "1 some random string",
-                    MESSAGE_INVALID_FORMAT
+                    MESSAGE_INVALID_FORMAT,
+                    "edc"
             );
 
             // invalid prefix being parsed as preamble
-            assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
+            assertParseFailure(
+                    parser, "1 i/ string", MESSAGE_INVALID_FORMAT, "edc");
         }
 
         @Test
@@ -108,34 +114,40 @@ public class EditContactCommandParserTest {
             assertParseFailure(
                     parser,
                     "1" + INVALID_NAME_DESC,
-                    Name.MESSAGE_CONSTRAINTS
+                    Name.MESSAGE_CONSTRAINTS,
+                    "edc"
             ); // invalid name
             assertParseFailure(
                     parser,
                     "1" + INVALID_PHONE_DESC,
-                    Phone.MESSAGE_CONSTRAINTS
+                    Phone.MESSAGE_CONSTRAINTS,
+                    "edc"
             ); // invalid phone
             assertParseFailure(
                     parser,
                     "1" + INVALID_EMAIL_DESC,
-                    Email.MESSAGE_CONSTRAINTS
+                    Email.MESSAGE_CONSTRAINTS,
+                    "edc"
             ); // invalid email
             assertParseFailure(
                     parser,
                     "1" + INVALID_ADDRESS_DESC,
-                    Address.MESSAGE_CONSTRAINTS
+                    Address.MESSAGE_CONSTRAINTS,
+                    "edc"
             ); // invalid address
             assertParseFailure(
                     parser,
                     "1" + INVALID_TAG_DESC,
-                    Tag.MESSAGE_CONSTRAINTS
+                    Tag.MESSAGE_CONSTRAINTS,
+                    "edc"
             ); // invalid tag
 
             // invalid phone followed by valid email
             assertParseFailure(
                     parser,
                     "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY,
-                    Phone.MESSAGE_CONSTRAINTS
+                    Phone.MESSAGE_CONSTRAINTS,
+                    "edc"
             );
 
             // valid phone followed by invalid phone. The test case for invalid phone followed by valid phone
@@ -143,7 +155,8 @@ public class EditContactCommandParserTest {
             assertParseFailure(
                     parser,
                     "1" + PHONE_DESC_BOB + INVALID_PHONE_DESC,
-                    Phone.MESSAGE_CONSTRAINTS
+                    Phone.MESSAGE_CONSTRAINTS,
+                    "edc"
             );
 
             // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
@@ -151,24 +164,28 @@ public class EditContactCommandParserTest {
             assertParseFailure(
                     parser,
                     "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY,
-                    Tag.MESSAGE_CONSTRAINTS
+                    Tag.MESSAGE_CONSTRAINTS,
+                    "edc"
             );
             assertParseFailure(
                     parser,
                     "1" + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND,
-                    Tag.MESSAGE_CONSTRAINTS
+                    Tag.MESSAGE_CONSTRAINTS,
+                    "edc"
             );
             assertParseFailure(
                     parser,
                     "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND,
-                    Tag.MESSAGE_CONSTRAINTS
+                    Tag.MESSAGE_CONSTRAINTS,
+                    "edc"
             );
 
             // multiple invalid values, but only the first invalid value is captured
             assertParseFailure(parser,
                     "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC
                             + VALID_ADDRESS_AMY + VALID_PHONE_AMY,
-                    Name.MESSAGE_CONSTRAINTS
+                    Name.MESSAGE_CONSTRAINTS,
+                    "edc"
             );
         }
 
@@ -192,7 +209,7 @@ public class EditContactCommandParserTest {
             EditContactCommand expectedCommand =
                     new EditContactCommand(targetIndex, descriptor);
 
-            assertParseSuccess(parser, userInput, expectedCommand);
+            assertParseSuccess(parser, userInput, expectedCommand, "edc");
         }
 
         @Test
@@ -209,7 +226,7 @@ public class EditContactCommandParserTest {
             EditContactCommand expectedCommand =
                     new EditContactCommand(targetIndex, descriptor);
 
-            assertParseSuccess(parser, userInput, expectedCommand);
+            assertParseSuccess(parser, userInput, expectedCommand, "edc");
         }
 
         @Test
@@ -224,7 +241,7 @@ public class EditContactCommandParserTest {
                             .build();
             EditContactCommand expectedCommand =
                     new EditContactCommand(targetIndex, descriptor);
-            assertParseSuccess(parser, userInput, expectedCommand);
+            assertParseSuccess(parser, userInput, expectedCommand, "edc");
 
             // phone
             userInput = targetIndex.getOneBased() + PHONE_DESC_AMY;
@@ -232,7 +249,7 @@ public class EditContactCommandParserTest {
                     new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_AMY)
                             .build();
             expectedCommand = new EditContactCommand(targetIndex, descriptor);
-            assertParseSuccess(parser, userInput, expectedCommand);
+            assertParseSuccess(parser, userInput, expectedCommand, "edc");
 
             // email
             userInput = targetIndex.getOneBased() + EMAIL_DESC_AMY;
@@ -240,14 +257,14 @@ public class EditContactCommandParserTest {
                     new EditPersonDescriptorBuilder().withEmail(VALID_EMAIL_AMY)
                             .build();
             expectedCommand = new EditContactCommand(targetIndex, descriptor);
-            assertParseSuccess(parser, userInput, expectedCommand);
+            assertParseSuccess(parser, userInput, expectedCommand, "edc");
 
             // address
             userInput = targetIndex.getOneBased() + ADDRESS_DESC_AMY;
             descriptor = new EditPersonDescriptorBuilder().withAddress(
                     VALID_ADDRESS_AMY).build();
             expectedCommand = new EditContactCommand(targetIndex, descriptor);
-            assertParseSuccess(parser, userInput, expectedCommand);
+            assertParseSuccess(parser, userInput, expectedCommand, "edc");
 
             // tags
             userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
@@ -255,7 +272,7 @@ public class EditContactCommandParserTest {
                     new EditPersonDescriptorBuilder().withTags(VALID_TAG_FRIEND)
                             .build();
             expectedCommand = new EditContactCommand(targetIndex, descriptor);
-            assertParseSuccess(parser, userInput, expectedCommand);
+            assertParseSuccess(parser, userInput, expectedCommand, "edc");
         }
 
         @Test
@@ -279,7 +296,7 @@ public class EditContactCommandParserTest {
             EditContactCommand expectedCommand =
                     new EditContactCommand(targetIndex, descriptor);
 
-            assertParseSuccess(parser, userInput, expectedCommand);
+            assertParseSuccess(parser, userInput, expectedCommand, "edc");
         }
 
         @Test
@@ -295,7 +312,7 @@ public class EditContactCommandParserTest {
                             .build();
             EditContactCommand expectedCommand =
                     new EditContactCommand(targetIndex, descriptor);
-            assertParseSuccess(parser, userInput, expectedCommand);
+            assertParseSuccess(parser, userInput, expectedCommand, "edc");
 
             // other valid values specified
             userInput = targetIndex.getOneBased() + EMAIL_DESC_BOB
@@ -307,7 +324,7 @@ public class EditContactCommandParserTest {
                             .withAddress(VALID_ADDRESS_BOB)
                             .build();
             expectedCommand = new EditContactCommand(targetIndex, descriptor);
-            assertParseSuccess(parser, userInput, expectedCommand);
+            assertParseSuccess(parser, userInput, expectedCommand, "edc");
         }
 
         @Test
@@ -322,7 +339,7 @@ public class EditContactCommandParserTest {
             EditContactCommand expectedCommand =
                     new EditContactCommand(targetIndex, descriptor);
 
-            assertParseSuccess(parser, userInput, expectedCommand);
+            assertParseSuccess(parser, userInput, expectedCommand, "edc");
         }
     }
 }

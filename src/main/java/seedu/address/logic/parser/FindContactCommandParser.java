@@ -36,25 +36,30 @@ public class FindContactCommandParser implements Parser<FindContactCommand> {
      * @return a FindContactCommand with a predicate
      * @throws ParseException throw exception if taking in an invalid parser
      */
-    public FindContactCommand parse(String args) throws ParseException {
+    public FindContactCommand parse(String commandWord, String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, ALL_PREFIXES);
 
-        if (!argMultimap.getPreamble().isEmpty()) {
+        // if has preamble or prefixes are empty
+        if (!argMultimap.getPreamble().isEmpty()
+                || arePrefixesEmpty(argMultimap, PREFIX_NAME, PREFIX_ADDRESS,
+                PREFIX_EMAIL, PREFIX_TAG)) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                            FindContactCommand.MESSAGE_USAGE)
+                    String.format(
+                            MESSAGE_INVALID_COMMAND_FORMAT,
+                            FindContactCommand.getMessageUsage(commandWord)
+                    )
             );
         }
         Predicate<Person> personPredicate = person -> true;
         // if not all invalid fields are empty
-        if (!arePrefixesEmpty(argMultimap, PREFIX_DATE_AND_TIME, PREFIX_DESCRIPTION, PREFIX_CONTACT, PREFIX_OF)) {
+        if (!arePrefixesEmpty(argMultimap, PREFIX_DATE_AND_TIME,
+                PREFIX_DESCRIPTION, PREFIX_CONTACT, PREFIX_OF)) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_PREFIX, FindContactCommand.MESSAGE_USAGE));
-        }
-        // if all fields are empty
-        if (arePrefixesEmpty(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_TAG)) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindContactCommand.MESSAGE_USAGE));
+                    String.format(
+                            MESSAGE_INVALID_PREFIX,
+                            FindContactCommand.getMessageUsage(commandWord)
+                    )
+            );
         }
         if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
             assert argMultimap.getValue(PREFIX_NAME).isPresent();

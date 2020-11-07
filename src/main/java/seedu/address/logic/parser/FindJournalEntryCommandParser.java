@@ -18,7 +18,6 @@ import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.FindContactCommand;
 import seedu.address.logic.commands.FindJournalEntryCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.journal.Date;
@@ -37,21 +36,29 @@ public class FindJournalEntryCommandParser implements Parser<FindJournalEntryCom
      * @return FindJournalEntryCommand to with a predicate
      * @throws ParseException throws exception if invalid arguments are parsed
      */
-    public FindJournalEntryCommand parse(String args) throws ParseException {
+    public FindJournalEntryCommand parse(String commandWord, String args)
+            throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, ALL_PREFIXES);
 
-        if (!argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindContactCommand.MESSAGE_USAGE));
+        // if has preamble or prefixes are empty
+        if (!argMultimap.getPreamble().isEmpty()
+                || arePrefixesEmpty(argMultimap, PREFIX_NAME, PREFIX_CONTACT,
+                PREFIX_DATE_AND_TIME, PREFIX_DESCRIPTION, PREFIX_TAG)) {
+            throw new ParseException(
+                    String.format(
+                            MESSAGE_INVALID_COMMAND_FORMAT,
+                            FindJournalEntryCommand.getMessageUsage(commandWord)
+                    )
+            );
         }
         Predicate<Entry> entryPredicate = entry -> true;
         if (!arePrefixesEmpty(argMultimap, PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_PHONE, PREFIX_OF)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_PREFIX, FindJournalEntryCommand.MESSAGE_USAGE));
-        }
-        // if all fields are empty
-        if (arePrefixesEmpty(argMultimap, PREFIX_NAME, PREFIX_CONTACT, PREFIX_DATE_AND_TIME,
-                PREFIX_DESCRIPTION, PREFIX_TAG)) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindJournalEntryCommand.MESSAGE_USAGE));
+                    String.format(
+                            MESSAGE_INVALID_PREFIX,
+                            FindJournalEntryCommand.getMessageUsage(commandWord)
+                    )
+            );
         }
         if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
             assert argMultimap.getValue(PREFIX_NAME).isPresent();

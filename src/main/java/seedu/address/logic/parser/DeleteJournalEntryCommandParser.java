@@ -18,7 +18,8 @@ public class DeleteJournalEntryCommandParser implements Parser<DeleteJournalEntr
      * @throws ParseException if the user input does not conform the expected
      *                        format
      */
-    public DeleteJournalEntryCommand parse(String args) throws ParseException {
+    public DeleteJournalEntryCommand parse(String commandWord, String args)
+            throws ParseException {
         try {
             Index index = ParserUtil.parseIndex(args);
             return new DeleteJournalEntryCommand(index);
@@ -26,7 +27,8 @@ public class DeleteJournalEntryCommandParser implements Parser<DeleteJournalEntr
             throw new ParseException(
                     String.format(
                             MESSAGE_INVALID_COMMAND_FORMAT,
-                            DeleteJournalEntryCommand.MESSAGE_USAGE
+                            DeleteJournalEntryCommand
+                                    .getMessageUsage(commandWord)
                     ),
                     pe
             );

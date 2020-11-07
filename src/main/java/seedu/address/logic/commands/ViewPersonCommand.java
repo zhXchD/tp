@@ -19,17 +19,20 @@ public class ViewPersonCommand extends Command {
 
     public static final String MESSAGE_VIEW_SUCCESS = "View contact: %1$s";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Views the "
-            + "contact at the index position in the currently "
-            + "displayed list.\n"
+    public static final String MESSAGE_USAGE = "%s: Views the contact at the "
+            + "index position in the currently displayed list.\n"
             + "Parameters: INDEX "
             + "(must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Example: %s 1";
 
     protected final Index targetIndex;
 
     public ViewPersonCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
+    }
+
+    public static String getMessageUsage(String commandWord) {
+        return String.format(MESSAGE_USAGE, commandWord, commandWord);
     }
 
     @Override

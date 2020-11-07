@@ -16,10 +16,10 @@ public class CheckScheduleCommand extends Command {
 
     public static final String COMMAND_WORD = "check";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Checks the schedule of a given date.\n"
+    public static final String MESSAGE_USAGE = "%s: Checks the schedule of a "
+            + "given date.\n"
             + "Parameters: [DATE_AND_TIME]\n"
-            + "Example: " + COMMAND_WORD + " 2011-12-03";
+            + "Example: %s 2011-12-03";
 
     public static final String MESSAGE_SUCCESS = "Here is your schedule on %s";
 
@@ -35,6 +35,10 @@ public class CheckScheduleCommand extends Command {
     public CheckScheduleCommand(Predicate<Entry> predicate, Date date) {
         this.predicate = requireNonNull(predicate);
         this.date = requireNonNullElse(date, new Date(""));
+    }
+
+    public static String getMessageUsage(String commandWord) {
+        return String.format(MESSAGE_USAGE, commandWord, commandWord);
     }
 
     @Override

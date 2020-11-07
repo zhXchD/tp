@@ -50,7 +50,7 @@ public class EditJournalEntryCommandParserTest {
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
     private static final String MESSAGE_INVALID_FORMAT = String.format(
             MESSAGE_INVALID_COMMAND_FORMAT,
-            EditJournalEntryCommand.MESSAGE_USAGE
+            EditJournalEntryCommand.getMessageUsage("edj")
     );
 
     private final EditJournalEntryCommandParser parser =
@@ -63,38 +63,51 @@ public class EditJournalEntryCommandParserTest {
         @DisplayName("should fail to parse if there are missing fields")
         public void parse_missingParts_failure() {
             // no index specified
-            assertParseFailure(parser, VALID_TITLE_MOVIE, MESSAGE_INVALID_FORMAT);
+            assertParseFailure(
+                    parser, VALID_TITLE_MOVIE, MESSAGE_INVALID_FORMAT, "edj");
 
             // no field specified
-            assertParseFailure(parser, "1", EditJournalEntryCommand.MESSAGE_NOT_EDITED);
+            assertParseFailure(parser, "1",
+                    EditJournalEntryCommand.MESSAGE_NOT_EDITED, "edj");
 
             // no index and no field specified
-            assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
+            assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT, "edj");
         }
 
         @Test
         @DisplayName("should fail to parse if preamble passed in is invalid")
         public void parse_invalidPreamble_failure() {
             //negative index
-            assertParseFailure(parser,
+            assertParseFailure(
+                    parser,
                     "-5" + VALID_TITLE_MOVIE,
-                    MESSAGE_INVALID_FORMAT);
+                    MESSAGE_INVALID_FORMAT,
+                    "edj"
+            );
 
             // zero index
-            assertParseFailure(parser,
+            assertParseFailure(
+                    parser,
                     "0" + VALID_TITLE_MOVIE,
-                    MESSAGE_INVALID_FORMAT);
+                    MESSAGE_INVALID_FORMAT,
+                    "edj"
+            );
 
             // invalid arguments as preamble
-            assertParseFailure(parser,
+            assertParseFailure(
+                    parser,
                     "1 some random string",
-                    MESSAGE_INVALID_FORMAT);
+                    MESSAGE_INVALID_FORMAT,
+                    "edj"
+            );
 
             // invalid prefix parsed as preamble
-            assertParseFailure(parser,
+            assertParseFailure(
+                    parser,
                     "1 i/string",
-                    MESSAGE_INVALID_FORMAT);
-
+                    MESSAGE_INVALID_FORMAT,
+                    "edj"
+            );
         }
 
         @Test
@@ -102,45 +115,69 @@ public class EditJournalEntryCommandParserTest {
                 + "each field")
         public void parse_invalidValue_failure() {
             // invalid title
-            assertParseFailure(parser,
+            assertParseFailure(
+                    parser,
                     "1" + INVALID_TITLE_DESC,
-                    Title.MESSAGE_CONSTRAINTS);
+                    Title.MESSAGE_CONSTRAINTS,
+                    "edj"
+            );
 
             // invalid date
-            assertParseFailure(parser,
+            assertParseFailure(
+                    parser,
                     "1" + INVALID_DATE_DESC,
-                    Date.MESSAGE_CONSTRAINTS);
+                    Date.MESSAGE_CONSTRAINTS,
+                    "edj"
+            );
 
             // invalid name for a contact
-            assertParseFailure(parser,
+            assertParseFailure(
+                    parser,
                     "1" + INVALID_CONTACT_DESC,
-                    Name.MESSAGE_CONSTRAINTS);
+                    Name.MESSAGE_CONSTRAINTS,
+                    "edj"
+            );
 
             // invalid tag
-            assertParseFailure(parser,
+            assertParseFailure(
+                    parser,
                     "1" + INVALID_TAG_DESC,
-                    Tag.MESSAGE_CONSTRAINTS);
+                    Tag.MESSAGE_CONSTRAINTS,
+                    "edj"
+            );
 
             // valid contact followed by invalid contact
-            assertParseFailure(parser,
+            assertParseFailure(
+                    parser,
                     "1" + CONTACTS_DESC_AMY + INVALID_CONTACT_DESC,
-                    Name.MESSAGE_CONSTRAINTS);
+                    Name.MESSAGE_CONSTRAINTS,
+                    "edj"
+            );
 
             // invalid contact followed by valid contact
-            assertParseFailure(parser,
+            assertParseFailure(
+                    parser,
                     "1" + INVALID_CONTACT_DESC + CONTACTS_DESC_AMY,
-                    Name.MESSAGE_CONSTRAINTS);
+                    Name.MESSAGE_CONSTRAINTS,
+                    "edj"
+            );
 
             // valid tag followed by invalid tag
-            assertParseFailure(parser,
+            assertParseFailure(
+                    parser,
                     "1" + TAG_DESC_FRIEND + INVALID_TAG_DESC,
-                    Tag.MESSAGE_CONSTRAINTS);
+                    Tag.MESSAGE_CONSTRAINTS,
+                    "edj"
+            );
 
 
             // invalid tag followed by valid tag
-            assertParseFailure(parser,
+            assertParseFailure(
+                    parser,
                     "1" + INVALID_TAG_DESC + TAG_DESC_FRIEND,
-                    Tag.MESSAGE_CONSTRAINTS);
+                    Tag.MESSAGE_CONSTRAINTS,
+                    "edj"
+            );
 
         }
 
@@ -170,7 +207,7 @@ public class EditJournalEntryCommandParserTest {
             EditJournalEntryCommand expectedCommand =
                     new EditJournalEntryCommand(targetIndex, descriptor);
 
-            assertParseSuccess(parser, userInput, expectedCommand);
+            assertParseSuccess(parser, userInput, expectedCommand, "edj");
         }
 
         @Test
@@ -187,7 +224,7 @@ public class EditJournalEntryCommandParserTest {
                             .build();
             EditJournalEntryCommand expectedCommand =
                     new EditJournalEntryCommand(targetIndex, descriptor);
-            assertParseSuccess(parser, userInput, expectedCommand);
+            assertParseSuccess(parser, userInput, expectedCommand, "edj");
 
             // description
             userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_STORY;
@@ -198,7 +235,7 @@ public class EditJournalEntryCommandParserTest {
                             .build();
             expectedCommand = new EditJournalEntryCommand(targetIndex,
                     descriptor);
-            assertParseSuccess(parser, userInput, expectedCommand);
+            assertParseSuccess(parser, userInput, expectedCommand, "edj");
 
             // date
             userInput = targetIndex.getOneBased() + DATE_DESC_OCTOBER;
@@ -209,7 +246,7 @@ public class EditJournalEntryCommandParserTest {
                             .build();
             expectedCommand = new EditJournalEntryCommand(targetIndex,
                     descriptor);
-            assertParseSuccess(parser, userInput, expectedCommand);
+            assertParseSuccess(parser, userInput, expectedCommand, "edj");
 
             // contact
             userInput = targetIndex.getOneBased() + CONTACTS_DESC_AMY;
@@ -222,7 +259,7 @@ public class EditJournalEntryCommandParserTest {
                             .build();
             expectedCommand = new EditJournalEntryCommand(targetIndex,
                     descriptor);
-            assertParseSuccess(parser, userInput, expectedCommand);
+            assertParseSuccess(parser, userInput, expectedCommand, "edj");
 
             //tag
             userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
@@ -233,8 +270,7 @@ public class EditJournalEntryCommandParserTest {
                             .build();
             expectedCommand = new EditJournalEntryCommand(targetIndex,
                     descriptor);
-            assertParseSuccess(parser, userInput, expectedCommand);
-
+            assertParseSuccess(parser, userInput, expectedCommand, "edj");
         }
 
         @Test
@@ -257,7 +293,7 @@ public class EditJournalEntryCommandParserTest {
             EditJournalEntryCommand expectedCommand =
                     new EditJournalEntryCommand(targetIndex, descriptor);
 
-            assertParseSuccess(parser, userInput, expectedCommand);
+            assertParseSuccess(parser, userInput, expectedCommand, "edj");
         }
 
         @Test
@@ -279,7 +315,7 @@ public class EditJournalEntryCommandParserTest {
                             .build();
             EditJournalEntryCommand expectedCommand =
                     new EditJournalEntryCommand(targetIndex, descriptor);
-            assertParseSuccess(parser, userInput, expectedCommand);
+            assertParseSuccess(parser, userInput, expectedCommand, "edj");
         }
 
         @Test
@@ -297,7 +333,7 @@ public class EditJournalEntryCommandParserTest {
             EditJournalEntryCommand expectedCommand =
                     new EditJournalEntryCommand(targetIndex, descriptor);
 
-            assertParseSuccess(parser, userInput, expectedCommand);
+            assertParseSuccess(parser, userInput, expectedCommand, "edj");
         }
     }
 }

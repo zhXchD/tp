@@ -44,18 +44,28 @@ public class AddJournalEntryCommandParser implements Parser<AddJournalEntryComma
      *
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddJournalEntryCommand parse(String args) throws ParseException {
+    public AddJournalEntryCommand parse(String commandWord, String args)
+            throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, ALL_PREFIXES);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddJournalEntryCommand.MESSAGE_USAGE));
+                    String.format(
+                            MESSAGE_INVALID_COMMAND_FORMAT,
+                            AddJournalEntryCommand.getMessageUsage(commandWord)
+                    )
+            );
         }
 
         // if any of the invalid prefixes shows up, throw an exception
         if (!arePrefixesEmpty(argMultimap, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_OF)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_PREFIX, AddJournalEntryCommand.MESSAGE_USAGE));
+            throw new ParseException(
+                    String.format(
+                            MESSAGE_INVALID_PREFIX,
+                            AddJournalEntryCommand.getMessageUsage(commandWord)
+                    )
+            );
         }
 
         assert argMultimap.getValue(PREFIX_NAME).isPresent();

@@ -12,10 +12,10 @@ public class AddAliasCommand extends Command {
 
     public static final String COMMAND_WORD = "alias";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds a shortcut for an existing alias.\n"
+    public static final String MESSAGE_USAGE = "%s: Adds a shortcut for an "
+            + "existing alias.\n"
             + "Parameters: COMMAND CUSTOMISED_ALIAS\n"
-            + "Example: alias sw switch";
+            + "Example: %s sw switch";
 
     private static final String MESSAGE_ADD_ALIAS_SUCCEED =
             "Added %s as an alias for %s.";
@@ -34,6 +34,10 @@ public class AddAliasCommand extends Command {
         requireAllNonNull(targetCommand, alias);
         this.targetCommand = targetCommand;
         this.alias = alias;
+    }
+
+    public static String getMessageUsage(String commandWord) {
+        return String.format(MESSAGE_USAGE, commandWord, commandWord);
     }
 
     @Override

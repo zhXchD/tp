@@ -18,7 +18,8 @@ public class DeleteContactCommandParser implements Parser<DeleteContactCommand> 
      * @throws ParseException if the user input does not conform the expected
      *                        format
      */
-    public DeleteContactCommand parse(String args) throws ParseException {
+    public DeleteContactCommand parse(String commandWord, String args)
+            throws ParseException {
         try {
             Index index = ParserUtil.parseIndex(args);
             return new DeleteContactCommand(index);
@@ -26,7 +27,7 @@ public class DeleteContactCommandParser implements Parser<DeleteContactCommand> 
             throw new ParseException(
                     String.format(
                             MESSAGE_INVALID_COMMAND_FORMAT,
-                            DeleteContactCommand.MESSAGE_USAGE
+                            DeleteContactCommand.getMessageUsage(commandWord)
                     ),
                     pe
             );
