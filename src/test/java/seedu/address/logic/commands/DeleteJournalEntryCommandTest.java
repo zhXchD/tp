@@ -12,6 +12,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.AliasMap;
 import seedu.address.model.Journal;
@@ -56,11 +57,11 @@ class DeleteJournalEntryCommandTest {
     @Nested
     @DisplayName("equals method")
     class Equals {
-        Index firstIndex = Index.fromOneBased(1);
-        Index secondIndex = Index.fromOneBased(2);
+        private Index firstIndex = Index.fromOneBased(1);
+        private Index secondIndex = Index.fromOneBased(2);
 
-        DeleteJournalEntryCommand firstCommand = new DeleteJournalEntryCommand(firstIndex);
-        DeleteJournalEntryCommand secondCommand = new DeleteJournalEntryCommand(secondIndex);
+        private DeleteJournalEntryCommand firstCommand = new DeleteJournalEntryCommand(firstIndex);
+        private DeleteJournalEntryCommand secondCommand = new DeleteJournalEntryCommand(secondIndex);
 
         @Test
         @DisplayName("should return true if same object")
@@ -99,7 +100,7 @@ class DeleteJournalEntryCommandTest {
     class Execute {
         @Test
         @DisplayName("should delete the first entry")
-        public void execute_delete_first_entry() {
+        public void execute_deleteFirst_successfullyDeleted() {
             String expectedMessage = String.format(
                     DeleteJournalEntryCommand.MESSAGE_DELETE_ENTRY_SUCCESS,
                     new EntryBuilder()
@@ -127,5 +128,4 @@ class DeleteJournalEntryCommandTest {
             );
         }
     }
-
 }
