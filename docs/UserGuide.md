@@ -174,29 +174,59 @@ Examples:
 * `editc 2 n/Betsy Crower t/` Edits the name of the 2nd contact to be
   `Betsy Crower` and clears all existing tags.
 
-#### Viewing a contact: `view in/c`
+#### Viewing a contact: `viewc`
 
-Opens up a contact to show further details.
+Opens up a contact in the current displayed list to show further details.
 
-Aliases: `view`, `v`
+Aliases: `viewc`, `vc`
 
-Format: `view in/c index/INDEX`
+Format: `viewc INDEX`
 
-* `INDEX` refers to the index number of the contact shown in the list.
+* If you type a `viewc` command when IntelliJournal displays `Contact` tab,
+IntelliJournal will select the contact at the specified index and display
+its details on the right.
+* If a `viewc` command is executed when IntelliJournal displays another tab
+(i.e. `Journal` tab or `Dashboard` tab), IntelliJournal will automatically
+navigate to the `Contact` tab, select the contact at the specified index,
+and display its details on the right.
 
-Examples:
+<div markdown="block" class="alert alert-primary">
 
-* `view in/c index/4` Views the 4th contact in the address book.
-* `view in/c index/8` Views the 8th contact in the address book.
+:bulb: **Tips:**<br>
 
-#### Finding contacts: `find in/c`
+* `INDEX` refers to the index number of the contact in the **current displayed
+list**, instead of the index number of the contact in the full unfiltered list,
+which, for example, may have been filtered using a `findc` command. More details
+about a filtered contact list can be found under the
+[Finding contacts: `findc`](#finding-contacts-findc) section.
 
-Finds a list of contacts or journal entries that satisfy the requirements
+* `INDEX` must be a positive integer, which does not exceed the number of contacts in the current displayed list.
+
+</div>
+
+Example:
+
+1. Open the `Contacts` tab, IntelliJournal should display a list of contacts on
+the left with detailed content on the right. If no contact has been selected to
+display, Intellijournal will automatically select the first contact to show its
+details.
+
+   ![View contact example 1](images/viewc-eg-1.png)
+   
+2. Type command `vc 4`, or equivalently, `viewc 4`, IntelliJournal will select
+the 4th contact in the list, and display its details on the right. Note that the
+red rectangle is for demonstration purpose instead of being part of the application
+interface.
+   ![View contact example 2](images/viewc-eg-2.png)
+
+#### Finding contacts: `findc`
+
+Finds a list of contacts that satisfy the requirements
 on particular fields given by the user.
 
-Aliases: `find`, `f`
+Aliases: `findc`, `fc`
 
-Format: `find in/c [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS] [e/EMAIL_KEYWORDS]
+Format: `findc [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS] [e/EMAIL_KEYWORDS]
         [a/ADDRESS_KEYWORDS] [t/TAG]…​`
 
 <div markdown="block" class="alert alert-primary">
@@ -211,10 +241,10 @@ Format: `find in/c [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS] [e/EMAIL_KEYWORDS]
 
 Examples:
 
-* `find in/c n/Alice` Finds all contacts whose name contains `Alice`.
-* `find in/c n/Alice p/65` Find all contacts whose name contains `Alice` and
+* `findc n/Alice` Finds all contacts whose name contains `Alice`.
+* `findc n/Alice p/65` Find all contacts whose name contains `Alice` and
   phone number contains `65`.
-* `find in/c n/Alice p/65 e/@u.nus.edu a/RC4 t/Student`<br>
+* `findc n/Alice p/65 e/@u.nus.edu a/RC4 t/Student`<br>
   Find all contacts whose name contains `Alice` and phone number contains `65`
   and email contains `@u.nus.edu` and address name contains `RC4` and tagged
   `Student`.<br>
@@ -269,12 +299,12 @@ Format: `addjournal n/TITLE [at/DATE_AND_TIME] [d/DESCRIPTION]
 Example:
 
 1. Type `addjournal n/Meeting with client at/2020-09-20 14:00 d/Tea` into the
-  command box and press enter.
+    command box and press enter.
 
     ![addjournal example](images/UGExamples/addjournalExample1.png)
 
 1. You will be directed to the journal tab, with the new journal entry on the
-  screen
+    screen
 
     ![addjournal example 2](images/UGExamples/addjournalExample2.png)
 
@@ -326,30 +356,60 @@ Format: `editj INDEX [n/TITLE] [at/DATE_AND_TIME] [d/DESCRIPTION]
 
 </div>
 
-#### Viewing a journal entry: `view in/j`
+#### Viewing a journal entry: `viewj`
 
-Opens up a journal entry to show further details.
+Opens up a journal entry in the current displayed list to show further details.
 
-Aliases: `view`, `v`
+Aliases: `viewj`, `vj`
 
-Format: `view in/j index/INDEX`
+Format: `viewj INDEX`
 
-* `INDEX` refers to the index number of the contact shown in the list.
-* `SCOPE` must be `c` (refers to contact) or `j` (refers to journal entry).
+* If you type a `viewj` command when IntelliJournal displays `Journal` tab,
+IntelliJournal will select the journal entry at the specified index and display
+its details on the right.
+* If a `viewj` command is executed when IntelliJournal displays another tab
+(i.e. `Contacts` tab or `Dashboard` tab), IntelliJournal will automatically
+navigate to the `Journal` tab, select the journal entry at the specified index,
+and display its details on the right.
 
-Examples:
+<div markdown="block" class="alert alert-primary">
 
-* `view in/j index/4` Views the 4th journal entry in the journal.
-* `view in/j index/8` Views the 8th journal entry in the journal.
+:bulb: **Tips:**<br>
 
-#### Finding journal entries: `find in/j`
+* `INDEX` refers to the index number of the journal entry in the **current displayed
+list**, instead of the index number of the journal entry in the full unfiltered list,
+which, for example, may have been filtered using a `findj` command. More details
+about a filtered journal entry list can be found under the
+[Finding journal entries: `findj`](#finding-journal-entries-findj) section.
 
-Finds a list of contacts or journal entries that satisfy the requirements
+* `INDEX` must be a positive integer, which does not exceed the number of journal entries
+in the current displayed list.
+
+</div>
+
+Example:
+
+1. Open the `Journal` tab, IntelliJournal should display a list of journal entries on
+the left with detailed content on the right. If no entry has been selected to
+display, Intellijournal will automatically select the first entry to show its
+details.
+
+   ![View entry example 1](images/viewj-eg-1.png)
+   
+2. Type command `vj 4`, or equivalently, `viewj 4`, IntelliJournal will select
+the 4th entry in the list, and display its details on the right. Note that the
+red rectangle is for demonstration purpose instead of being part of the application
+interface.
+   ![View entry example 2](images/viewj-eg-2.png)
+
+#### Finding journal entries: `findj`
+
+Finds a list of journal entries that satisfy the requirements
 on particular fields given by the user.
 
-Aliases: `find`, `f`
+Aliases: `findj`, `fj`
 
-Format: `find in/j [n/TITLE_KEYWORDS] [at/DATE_AND_TIME]
+Format: `findj [n/TITLE_KEYWORDS] [at/DATE_AND_TIME]
          [with/CONTACT_NAME_KEYWORDS]…​ [d/DESCRIPTION_KEYWORDS] [t/TAG]…​`
 
 <div markdown="block" class="alert alert-primary">
@@ -365,9 +425,9 @@ Format: `find in/j [n/TITLE_KEYWORDS] [at/DATE_AND_TIME]
 
 Examples:
 
-* `find in/j n/Meeting` Finds all journal entries with a title containing
+* `findj n/Meeting` Finds all journal entries with a title containing
   `Meeting`.
-* `find in/j n/Meeting d/plan for 2021 with/Alice t/Meeting at/2020-10-10 15:00`
+* `findj n/Meeting d/plan for 2021 with/Alice t/Meeting at/2020-10-10 15:00`
   <br>Finds all journal entries that have a title containing `Meeting`, a
   description containing `plan for 2021`, with a contact whose name contains
   `Alice`, tagged `Meeting`, and happening on Oct 10, 2020, 3pm.
@@ -630,16 +690,16 @@ IntelliJournal home folder.
         </tr>
         <tr>
             <td rowspan="2"><b>Viewing a contact</b></td>
-            <td><code>view in/c index/INDEX</code></td>
+            <td><code>viewc INDEX</code></td>
         </tr>
         <tr>
-            <td><code>v in/c index/INDEX</code></td>
+            <td><code>vc INDEX</code></td>
         </tr>
         <tr>
             <td rowspan="2"><b>Finding contacts</b></td>
             <td>
                 <code>
-                    find in/c [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS]
+                    findc [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS]
                     [e/EMAIL_KEYWORDS] [a/ADDRESS_KEYWORDS] [t/TAG]…​
                 </code>
             </td>
@@ -647,7 +707,7 @@ IntelliJournal home folder.
         <tr>
             <td>
                 <code>
-                    f in/c [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS]
+                    fc [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS]
                     [e/EMAIL_KEYWORDS] [a/ADDRESS_KEYWORDS] [t/TAG]…​
                 </code>
             </td>
@@ -730,16 +790,16 @@ IntelliJournal home folder.
         </tr>
         <tr>
             <td rowspan="2"><b>Viewing a journal entry</b></td>
-            <td><code>view in/j index/INDEX</code></td>
+            <td><code>viewj INDEX</code></td>
         </tr>
         <tr>
-            <td><code>v in/j index/INDEX</code></td>
+            <td><code>vj INDEX</code></td>
         </tr>
         <tr>
             <td rowspan="2"><b>Finding journal entries</b></td>
             <td>
                 <code>
-                    find in/j [n/TITLE_KEYWORDS] [at/DATE_AND_TIME]
+                    findj [n/TITLE_KEYWORDS] [at/DATE_AND_TIME]
                     [with/CONTACT_NAME_KEYWORDS]…​ [d/DESCRIPTION_KEYWORDS]
                     [t/TAG]…​
                 </code>
@@ -748,7 +808,7 @@ IntelliJournal home folder.
         <tr>
             <td>
                 <code>
-                    f in/j [n/TITLE_KEYWORDS] [at/DATE_AND_TIME]
+                    fj [n/TITLE_KEYWORDS] [at/DATE_AND_TIME]
                     [with/CONTACT_NAME_KEYWORDS]…​ [d/DESCRIPTION_KEYWORDS]
                     [t/TAG]…​
                 </code>

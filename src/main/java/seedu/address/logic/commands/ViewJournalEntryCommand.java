@@ -14,10 +14,23 @@ import seedu.address.model.journal.Entry;
 /**
  * Views journal entry at specified index of the list currently displayed.
  */
-public class ViewJournalEntryCommand extends ViewCommand {
+public class ViewJournalEntryCommand extends Command {
+
+    public static final String COMMAND_WORD = "viewj";
+
+    public static final String MESSAGE_VIEW_SUCCESS = "View journal entry: %1$s";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Views the "
+            + "journal entry at the index position in the currently "
+            + "displayed list.\n"
+            + "Parameters: INDEX "
+            + "(must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " 1";
+
+    protected final Index targetIndex;
 
     public ViewJournalEntryCommand(Index targetIndex) {
-        super(targetIndex);
+        this.targetIndex = targetIndex;
     }
 
     @Override
@@ -36,7 +49,6 @@ public class ViewJournalEntryCommand extends ViewCommand {
         return new CommandResult(
                 String.format(
                         MESSAGE_VIEW_SUCCESS,
-                        "entry",
                         entryToView.toString()
                 )
         ).setJournalTab().setViewingJournal(entryToView);

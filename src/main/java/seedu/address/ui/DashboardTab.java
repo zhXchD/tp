@@ -8,7 +8,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import seedu.address.model.person.Person;
 
-
+//@@author {zhXchD}
 public class DashboardTab extends UiPart<Region> {
     private static final String FXML = "DashboardTab.fxml";
     private PersonListPanel recentPersonList;

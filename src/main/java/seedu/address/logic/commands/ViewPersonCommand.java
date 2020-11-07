@@ -14,10 +14,22 @@ import seedu.address.model.person.Person;
 /**
  * Views a person at specified index in the current list displayed.
  */
-public class ViewPersonCommand extends ViewCommand {
+public class ViewPersonCommand extends Command {
+    public static final String COMMAND_WORD = "viewc";
+
+    public static final String MESSAGE_VIEW_SUCCESS = "View contact: %1$s";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Views the "
+            + "contact at the index position in the currently "
+            + "displayed list.\n"
+            + "Parameters: INDEX "
+            + "(must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " 1";
+
+    protected final Index targetIndex;
 
     public ViewPersonCommand(Index targetIndex) {
-        super(targetIndex);
+        this.targetIndex = targetIndex;
     }
 
     @Override
@@ -36,7 +48,6 @@ public class ViewPersonCommand extends ViewCommand {
         return new CommandResult(
                 String.format(
                         MESSAGE_VIEW_SUCCESS,
-                        "contact",
                         personToView.toString()
                 )
         ).setAddressBookTab().setViewingPerson(personToView);
