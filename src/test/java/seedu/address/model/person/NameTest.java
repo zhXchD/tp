@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.DisplayName;
@@ -55,6 +56,32 @@ public class NameTest {
             assertTrue(Name.isValidName("peter the 2nd")); // alphanumeric characters
             assertTrue(Name.isValidName("Capital Tan")); // with capital letters
             assertTrue(Name.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
+        }
+    }
+
+    @Nested
+    @DisplayName("equals method")
+    class equals {
+        @Test
+        @DisplayName("should return true if same object")
+        public void equals_sameObject_true() {
+            Name amy = new Name(VALID_NAME_AMY);
+            assertTrue(amy.equals(amy));
+        }
+
+        @Test
+        @DisplayName("should return true if different case")
+        public void equals_differentCase_true() {
+            Name amy = new Name(VALID_NAME_AMY);
+            Name lowerAmy = new Name(VALID_NAME_AMY.toLowerCase());
+            assertTrue(amy.equals(lowerAmy));
+        }
+
+        @Test
+        @DisplayName("should return false if null")
+        public void equals_null_false() {
+            Name amy = new Name(VALID_NAME_AMY);
+            assertFalse(amy.equals(null));
         }
     }
 }
