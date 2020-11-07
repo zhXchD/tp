@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PREFIX;
+import static seedu.address.logic.parser.CliSyntax.ALL_PREFIXES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_TIME;
@@ -36,18 +37,7 @@ public class FindContactCommandParser implements Parser<FindContactCommand> {
      * @throws ParseException throw exception if taking in an invalid parser
      */
     public FindContactCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(
-                args,
-                PREFIX_NAME,
-                PREFIX_ADDRESS,
-                PREFIX_PHONE,
-                PREFIX_EMAIL,
-                PREFIX_TAG,
-                PREFIX_DATE_AND_TIME,
-                PREFIX_DESCRIPTION,
-                PREFIX_CONTACT,
-                PREFIX_OF
-        );
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, ALL_PREFIXES);
 
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
@@ -56,6 +46,7 @@ public class FindContactCommandParser implements Parser<FindContactCommand> {
             );
         }
         Predicate<Person> personPredicate = person -> true;
+        // if not all invalid fields are empty
         if (!arePrefixesEmpty(argMultimap, PREFIX_DATE_AND_TIME, PREFIX_DESCRIPTION, PREFIX_CONTACT, PREFIX_OF)) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_PREFIX, FindContactCommand.MESSAGE_USAGE));
@@ -67,62 +58,69 @@ public class FindContactCommandParser implements Parser<FindContactCommand> {
         }
         if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
             assert argMultimap.getValue(PREFIX_NAME).isPresent();
-            String nameKeyWord =
-                    argMultimap.getValue(PREFIX_NAME).get().trim().toLowerCase();
-            personPredicate =
-                    personPredicate.and(person -> person.getName().fullName
-                            .toLowerCase()
-                            .contains(nameKeyWord));
+            String nameKeyWord = argMultimap.getValue(PREFIX_NAME).get().trim().toLowerCase();
+            personPredicate = personPredicate.and(parseName(nameKeyWord));
         }
         if (arePrefixesPresent(argMultimap, PREFIX_EMAIL)) {
             assert argMultimap.getValue(PREFIX_EMAIL).isPresent();
-            String emailKeyWord =
-                    argMultimap.getValue(PREFIX_EMAIL).get().trim().toLowerCase();
-            personPredicate =
-                    personPredicate.and(person -> {
-                        if (person.getEmail().equals(Email.EMPTY_EMAIL)) {
-                            return false;
-                        } else {
-                            return person.getEmail().value
-                                    .toLowerCase()
-                                    .contains(emailKeyWord);
-                        }
-                    });
+            String emailKeyWord = argMultimap.getValue(PREFIX_EMAIL).get().trim().toLowerCase();
+            personPredicate = personPredicate.and(parseEmail(emailKeyWord));
         }
         if (arePrefixesPresent(argMultimap, PREFIX_ADDRESS)) {
             assert argMultimap.getValue(PREFIX_ADDRESS).isPresent();
             String addressKeyWord =
                     argMultimap.getValue(PREFIX_ADDRESS).get().trim().toLowerCase();
-            personPredicate =
-                    personPredicate.and(person -> {
-                        if (person.getAddress().equals(Address.EMPTY_ADDRESS)) {
-                            return false;
-                        } else {
-                            return person.getAddress().value
-                                    .toLowerCase()
-                                    .contains(addressKeyWord);
-                        }
-                    });
+            personPredicate = personPredicate.and(parseAddress(addressKeyWord));
         }
         if (arePrefixesPresent(argMultimap, PREFIX_PHONE)) {
             assert argMultimap.getValue(PREFIX_PHONE).isPresent();
-            String phoneKeyWord =
-                    argMultimap.getValue(PREFIX_PHONE).get().trim().toLowerCase();
-            personPredicate =
-                    personPredicate.and(person -> {
-                        if (person.getPhone().equals(Phone.EMPTY_PHONE)) {
-                            return false;
-                        } else {
-                            return person.getPhone().value
-                                    .toLowerCase()
-                                    .contains(phoneKeyWord);
-                        }
-                    });
+            String phoneKeyWord = argMultimap.getValue(PREFIX_PHONE).get().trim().toLowerCase();
+            personPredicate = personPredicate.and(parsePhone(phoneKeyWord));
         }
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         personPredicate = personPredicate.and(person -> person.getTags().containsAll(tagList));
         return new FindContactCommand(personPredicate);
 
+    }
+
+    private Predicate<Person> parseName(String nameKeyWord) {
+        return person -> person.getName().fullName.toLowerCase().contains(nameKeyWord);
+    }
+
+    private Predicate<Person> parseEmail(String emailKeyWord) {
+        return person -> {
+            if (person.getEmail().equals(Email.EMPTY_EMAIL)) {
+                return false;
+            } else {
+                return person.getEmail().value
+                        .toLowerCase()
+                        .contains(emailKeyWord);
+            }
+        };
+    }
+
+    private Predicate<Person> parseAddress(String addressKeyWord) {
+        return person -> {
+            if (person.getAddress().equals(Address.EMPTY_ADDRESS)) {
+                return false;
+            } else {
+                return person.getAddress().value
+                        .toLowerCase()
+                        .contains(addressKeyWord);
+            }
+        };
+    }
+
+    private Predicate<Person> parsePhone(String phoneKeyWord) {
+        return person -> {
+            if (person.getPhone().equals(Phone.EMPTY_PHONE)) {
+                return false;
+            } else {
+                return person.getPhone().value
+                        .toLowerCase()
+                        .contains(phoneKeyWord);
+            }
+        };
     }
 
     /**
