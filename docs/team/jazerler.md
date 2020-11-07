@@ -25,12 +25,13 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=jazerler&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Enhancements to existing features**:
-  * Make find command case insensitive.
+  * Made find command case insensitive.
     (Pull request [\#173](https://github.com/AY2021S1-CS2103T-W17-4/tp/pull/173))
-  * Added tags to Entry
+  * Added tags to Entry.
     (Pull request [\#70](https://github.com/AY2021S1-CS2103T-W17-4/tp/pull/70))
-  * Fix bugs with Persons with duplicated names
+  * Fix bugs with Persons with duplicated names.
     (Pull request [\#216](https://github.com/AY2021S1-CS2103T-W17-4/tp/pull/216)) 
+  * Wrote additional tests to increase coverage.  
 
 * **Documentation**:
   * User Guide:
@@ -39,6 +40,8 @@ Given below are my contributions to the project.
     * Added implementation details of the `editjournal` feature.
 
 * **Community**:
+  * Contributed user stories for project planning.
+  * User testing and bug reports to ensure product quality.
   * PRs reviewed (with non-trivial review comments):
     [\#66](https://github.com/AY2021S1-CS2103T-W17-4/tp/pull/66),
     [\#94](https://github.com/AY2021S1-CS2103T-W17-4/tp/pull/94),
