@@ -356,6 +356,12 @@ Format: `editj INDEX [n/TITLE] [at/DATE_AND_TIME] [d/DESCRIPTION]
 
 </div>
 
+Example: 
+* `editj 1 n/Meeting with client at/2020-09-20 14:00 d/Tea`: Edits the title,  date, and description of the first
+ journal entry to be `Meeting with client`, `2020-09-20 14:00` and `Tea` respectively. 
+* `editj 2 with/Betsy Crower t/tea`: Edits the related contact list and tags of the second journal entry to have
+ `Betsy Crower` and `Tea`.
+
 #### Viewing a journal entry: `viewj`
 
 Opens up a journal entry in the current displayed list to show further details.
