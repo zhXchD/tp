@@ -138,6 +138,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+<!--@@author {Lingy12}-->
 ### Command alias feature
 #### Current Implementation
 
@@ -176,7 +177,6 @@ Note: *alias1, alias2, alias3* are system's default aliases. Aliases can be exte
 Given below is the implementation of constructing the `aliasMap`:
 
 ```java_holder_method_tree
-
 /**
    * Creates command alias from aliases list.
    *
@@ -217,6 +217,26 @@ Given below is the sequence diagram of command alias feature (This change only r
 
 ![aliasSequenceDiagram](images/commandAlias/aliasSequenceDiagram.png)
 
+#### Handling storage for *AliasMap*
+
+ **1. Model component**
+
+* `ModelManager` contains a `AliasMap`
+
+* `Model#updateAlias(Map<String, ValidCommand> map)` updates the model with a `Map`
+
+ **2. Storage component**
+
+* `StorageManager` contains a `AliasMapStorage`
+
+* `AliasMapStorage` is implemented by `JsonAliasMapStorage` which stores `AliasMap` as a Json file
+
+Given below is the class diagram of related part in `Storage` component:
+
+   ![aliasStorageClassDiagram](images/commandAlias/aliasStorageClassDiagram.png)
+
+
+<!--@@author -->
 ### Tab navigation feature
 
 IntelliJournal has two tabs for different information to display, one tab for

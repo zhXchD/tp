@@ -1,0 +1,45 @@
+@startuml
+!include ../style.puml
+!include <office/Concepts/globe_internet>
+!include <office/Concepts/documents>
+!include <office/Users/user>
+
+
+Package Model {
+    Class Model MODEL_COLOR
+    Class ModelManager MODEL_COLOR
+    Class AliasMap MODEL_COLOR
+}
+
+Package Storage {
+    Class AliasMapStorage <<interface>>STORAGE_COLOR
+    Class JsonAliasMapStorage STORAGE_COLOR
+    Class StorageManager STORAGE_COLOR
+    Class Storage <<interface>>STORAGE_COLOR
+}
+
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+interface Model <<interface>>
+
+skinparam classAttributeIconSize 0
+class ModelManager {
+     +void updateAlias(Map<String, ValidCommand> map)
+}
+show method
+
+class AliasMap {
+    +void updateAlias(Map<String, ValidCommand> map)
+}
+
+
+ModelManager ..up|> Model
+ModelManager *--> AliasMap
+StorageManager ..right|> Storage
+StorageManager *--down> AliasMapStorage
+JsonAliasMapStorage ..up|> AliasMapStorage
+
+
+@enduml

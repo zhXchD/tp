@@ -549,6 +549,7 @@ Aliases: `switch`, `swt`
 
 Format: `switch`
 
+<!--@@author {Lingy12}-->
 #### Adding aliases for existing commands: `alias`
 
 Adds your preferred shortcut for existing commands.
@@ -579,10 +580,23 @@ Format: `alias TARGET ALIAS`
 
 Example:
 
-* `alias switch st` ---  This will add `st` as a valid shortcut for command
-  `switch`.
-* `alias addj j` --- This will add `j` as a valid shortcut for command `addj`
+1. Type `alias switch st` into the command box and press enter.
 
+   ![alias example](images/UGExamples/aliasExample1.png)
+   
+2. This adds `st` as a valid shortcut for `switch`
+
+   ![alias example](images/UGExamples/aliasExample2.png)
+   
+3. Then you can type `st` into the command box and press enter.
+
+   ![alias example](images/UGExamples/aliasExample3.png)
+   
+4. IntelliJournal will switch the tab which is what `switch` command does
+
+   ![alias example](images/UGExamples/aliasExample4.png)
+
+<!-- @@author -->
 #### Deleting custom aliases: `deletea`
 
 Removes the custom alias from IntelliJournal.
@@ -591,9 +605,17 @@ Aliases: `deletea`, `dela`
 
 Format: `deletea ALIAS`
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+
+* Default alias cannot be removed.
+
+</div>
+
 Example:
 
-1. Assuming you have added `st` as an alias for `switch`, type `deletea sw` into
+1. Assuming you have added `st` as an alias for `switch`, type `deletea st` into
    the command box and press enter.
 
     ![deletea example](images/UGExamples/deleteaExample1.png)

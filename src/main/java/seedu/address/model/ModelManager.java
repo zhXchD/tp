@@ -235,14 +235,14 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Person> getRecentPersonList() {
         return metBeforePersons.sorted((person1, person2) ->
-            getLatestDate(person2).compareTo(getLatestDate(person1))
+                getLatestDate(person2).compareTo(getLatestDate(person1))
         );
     }
 
     @Override
     public ObservableList<Person> getFrequentPersonList() {
         return metBeforePersons.sorted((person1, person2) ->
-            Long.compare(getFrequency(person2), getFrequency(person1))
+                Long.compare(getFrequency(person2), getFrequency(person1))
         );
     }
 
@@ -284,9 +284,9 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
-            && userPrefs.equals(other.userPrefs)
-            && filteredPersons.equals(other.filteredPersons)
-            && filteredEntries.equals(other.filteredEntries);
+                && userPrefs.equals(other.userPrefs)
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredEntries.equals(other.filteredEntries);
     }
 
     private boolean hasMetBefore(Person person) {
