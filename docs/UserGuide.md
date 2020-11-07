@@ -404,7 +404,7 @@ Format: `editj INDEX [n/TITLE] [at/DATE_AND_TIME] [d/DESCRIPTION]
 
 </div>
 
-Example: 
+Example:
 
 1. Type `editj 1 n/Meeting with client at/2020-09-20 14:00 d/Tea` into the
    command box and press enter.
@@ -480,7 +480,7 @@ Format: `findj [n/TITLE_KEYWORDS] [at/DATE_AND_TIME]
 * `DATE_AND_TIME` must be in the format: "YYYY-MM-DD HH:MM"
 * `TAG` must be alphanumeric, without spaces.
 * Note that for `TAG`, IntelliJournal searches for the exact same tag instead of
-  tags containing any part of the searched terms, so tags are case-sensitive. 
+  tags containing any part of the searched terms, so tags are case-sensitive.
 
 </div>
 
