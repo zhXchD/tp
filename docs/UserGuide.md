@@ -221,7 +221,7 @@ interface.
 
 #### Finding contacts: `findc`
 
-Finds a list of contacts or journal entries that satisfy the requirements
+Finds a list of contacts that satisfy the requirements
 on particular fields given by the user.
 
 Aliases: `findc`, `fc`
@@ -241,10 +241,10 @@ Format: `findc [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS] [e/EMAIL_KEYWORDS]
 
 Examples:
 
-* `find in/c n/Alice` Finds all contacts whose name contains `Alice`.
-* `find in/c n/Alice p/65` Find all contacts whose name contains `Alice` and
+* `findc n/Alice` Finds all contacts whose name contains `Alice`.
+* `findc n/Alice p/65` Find all contacts whose name contains `Alice` and
   phone number contains `65`.
-* `find in/c n/Alice p/65 e/@u.nus.edu a/RC4 t/Student`<br>
+* `findc n/Alice p/65 e/@u.nus.edu a/RC4 t/Student`<br>
   Find all contacts whose name contains `Alice` and phone number contains `65`
   and email contains `@u.nus.edu` and address name contains `RC4` and tagged
   `Student`.<br>
@@ -404,7 +404,7 @@ interface.
 
 #### Finding journal entries: `findj`
 
-Finds a list of contacts or journal entries that satisfy the requirements
+Finds a list of journal entries that satisfy the requirements
 on particular fields given by the user.
 
 Aliases: `findj`, `fj`
@@ -425,9 +425,9 @@ Format: `findj [n/TITLE_KEYWORDS] [at/DATE_AND_TIME]
 
 Examples:
 
-* `find in/j n/Meeting` Finds all journal entries with a title containing
+* `findj n/Meeting` Finds all journal entries with a title containing
   `Meeting`.
-* `find in/j n/Meeting d/plan for 2021 with/Alice t/Meeting at/2020-10-10 15:00`
+* `findj n/Meeting d/plan for 2021 with/Alice t/Meeting at/2020-10-10 15:00`
   <br>Finds all journal entries that have a title containing `Meeting`, a
   description containing `plan for 2021`, with a contact whose name contains
   `Alice`, tagged `Meeting`, and happening on Oct 10, 2020, 3pm.
