@@ -235,7 +235,7 @@ Format: `findc [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS] [e/EMAIL_KEYWORDS]
 
 * `TAG` must be alphanumeric, without spaces.
 * Note that for `TAG`, IntelliJournal searches for the exact same tag instead of
-  tags containing any part of the searched terms.
+  tags containing any part of the searched terms, so tags are case-sensitive.
 
 </div>
 
@@ -425,7 +425,7 @@ Format: `findj [n/TITLE_KEYWORDS] [at/DATE_AND_TIME]
 * `DATE_AND_TIME` must be in the format: "YYYY-MM-DD HH:MM"
 * `TAG` must be alphanumeric, without spaces.
 * Note that for `TAG`, IntelliJournal searches for the exact same tag instead of
-  tags containing any part of the searched terms.
+  tags containing any part of the searched terms, so tags are case-sensitive. 
 
 </div>
 
