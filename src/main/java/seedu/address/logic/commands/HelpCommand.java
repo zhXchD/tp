@@ -94,9 +94,13 @@ public class HelpCommand extends Command {
             return new CommandResult(
                     SHOWING_HELP_MESSAGE + EditJournalEntryCommand.MESSAGE_USAGE
             ).setSameTab();
-        case FIND:
+        case FIND_CONTACT:
             return new CommandResult(
-                    SHOWING_HELP_MESSAGE + FindCommand.MESSAGE_USAGE
+                    SHOWING_HELP_MESSAGE + FindContactCommand.MESSAGE_USAGE
+            ).setSameTab();
+        case FIND_JOURNAL_ENTRY:
+            return new CommandResult(
+                    SHOWING_HELP_MESSAGE + FindJournalEntryCommand.MESSAGE_USAGE
             ).setSameTab();
         case HELP:
             return new CommandResult(
@@ -114,9 +118,13 @@ public class HelpCommand extends Command {
             return new CommandResult(
                     SHOWING_HELP_MESSAGE + SwitchCommand.MESSAGE_USAGE
             ).setSameTab();
-        case VIEW:
+        case VIEW_CONTACT:
             return new CommandResult(
-                    SHOWING_HELP_MESSAGE + ViewCommand.MESSAGE_USAGE
+                    SHOWING_HELP_MESSAGE + ViewPersonCommand.MESSAGE_USAGE
+            ).setSameTab();
+        case VIEW_JOURNAL_ENTRY:
+            return new CommandResult(
+                    SHOWING_HELP_MESSAGE + ViewJournalEntryCommand.MESSAGE_USAGE
             ).setSameTab();
         case CHANGE_THEME:
             return new CommandResult(

@@ -92,8 +92,11 @@ public class IntelliJournalParser {
         case CLEAR_JOURNAL:
             return new ClearJournalCommand();
 
-        case FIND:
-            return new FindCommandParser().parse(arguments);
+        case FIND_JOURNAL_ENTRY:
+            return new FindJournalEntryCommandParser().parse(arguments);
+
+        case FIND_CONTACT:
+            return new FindContactCommandParser().parse(arguments);
 
         case LIST_CONTACT:
             return new ListContactCommand();
@@ -107,8 +110,11 @@ public class IntelliJournalParser {
         case HELP:
             return new HelpCommandParser().parse(arguments);
 
-        case VIEW:
-            return new ViewCommandParser().parse(arguments);
+        case VIEW_CONTACT:
+            return new ViewPersonCommandParser().parse(arguments);
+
+        case VIEW_JOURNAL_ENTRY:
+            return new ViewJournalEntryCommandParser().parse(arguments);
 
         case SWITCH:
             return new SwitchCommand();

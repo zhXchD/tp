@@ -1,10 +1,15 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PREFIX;
+import static seedu.address.logic.parser.CliSyntax.ALL_PREFIXES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OF;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -40,14 +45,7 @@ public class AddJournalEntryCommandParser implements Parser<AddJournalEntryComma
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddJournalEntryCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args,
-                        PREFIX_NAME,
-                        PREFIX_DATE_AND_TIME,
-                        PREFIX_DESCRIPTION,
-                        PREFIX_TAG,
-                        PREFIX_CONTACT
-                );
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, ALL_PREFIXES);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -55,9 +53,13 @@ public class AddJournalEntryCommandParser implements Parser<AddJournalEntryComma
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddJournalEntryCommand.MESSAGE_USAGE));
         }
 
+        // if any of the invalid prefixes shows up, throw an exception
+        if (!arePrefixesEmpty(argMultimap, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_OF)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_PREFIX, AddJournalEntryCommand.MESSAGE_USAGE));
+        }
+
         assert argMultimap.getValue(PREFIX_NAME).isPresent();
-        Title title =
-                ParserUtil.parseTitle(argMultimap.getValue(PREFIX_NAME).get());
+        Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_NAME).get());
         Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE_AND_TIME).orElse(null));
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).orElse(null));
         UniquePersonList personList = ParserUtil.parseContacts(argMultimap.getAllValues(PREFIX_CONTACT));
@@ -66,6 +68,14 @@ public class AddJournalEntryCommandParser implements Parser<AddJournalEntryComma
         Entry entry = new Entry(title, date, description, personList, tagList);
 
         return new AddJournalEntryCommand(entry);
+    }
+
+    /**
+     * Returns true if none of the prefixes contains present {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesEmpty(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isEmpty());
     }
 
 }
