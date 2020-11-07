@@ -350,8 +350,8 @@ Example:
 
     ![addjournal example](images/UGExamples/addjournalExample1.png)
 
-1. You will be directed to the journal tab, with the new journal entry on the
-    screen
+1. This creates a journal entry with the title `Meeting with client`, occurring
+   at `2020-09-20 14:00` and with description `Tea`.
 
     ![addjournal example 2](images/UGExamples/addjournalExample2.png)
 
