@@ -53,7 +53,6 @@ public class EditContactCommandParser implements Parser<EditContactCommand> {
                     pe);
         }
 
-
         // if any of the invalid prefixes shows up, throw an exception
         if (!arePrefixesEmpty(argMultimap, PREFIX_DATE_AND_TIME, PREFIX_DESCRIPTION, PREFIX_CONTACT, PREFIX_OF)) {
             throw new ParseException(String.format(MESSAGE_INVALID_PREFIX, EditContactCommand.MESSAGE_USAGE));

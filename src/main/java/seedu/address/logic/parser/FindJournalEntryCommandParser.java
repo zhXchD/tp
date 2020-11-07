@@ -25,6 +25,7 @@ import seedu.address.model.journal.Description;
 import seedu.address.model.journal.Entry;
 import seedu.address.model.tag.Tag;
 
+//@@author {zhXchD}
 /**
  * Parse input arguments and return a FindJournalEntryCommand.
  */
