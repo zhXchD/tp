@@ -13,12 +13,15 @@ public class ListContactCommand extends Command {
 
     public static final String COMMAND_WORD = "listc";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Lists all contacts in the address book.\n"
-            + "Example: listc";
+    public static final String MESSAGE_USAGE = "%s: Lists all contacts in the "
+            + "address book.\n"
+            + "Example: %s";
 
     public static final String MESSAGE_SUCCESS = "Listed all persons";
 
+    public static String getMessageUsage(String commandWord) {
+        return String.format(MESSAGE_USAGE, commandWord, commandWord);
+    }
 
     @Override
     public CommandResult execute(Model model) {

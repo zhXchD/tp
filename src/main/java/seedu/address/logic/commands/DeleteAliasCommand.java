@@ -4,17 +4,22 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.ValidCommand;
-import seedu.address.logic.parser.exceptions.AliasNotFoundException;
+import seedu.address.logic.parser.exceptions.AliasException;
 import seedu.address.model.Model;
 
+//@@author {Lingy12}
+
+/**
+ * Remove existing alias.
+ */
 public class DeleteAliasCommand extends Command {
 
     public static final String COMMAND_WORD = "deletea";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": delete a shortcut for an existing alias.\n"
+    public static final String MESSAGE_USAGE = "%s: Delete a shortcut for an "
+            + "existing alias.\n"
             + "Parameters: CUSTOMISED_ALIAS\n"
-            + "Example: deletea sw ";
+            + "Example: %s sw ";
 
     private static final String MESSAGE_ALIAS_NOTFOUND =
             "This alias is not in the system.";
@@ -34,13 +39,16 @@ public class DeleteAliasCommand extends Command {
         this.target = target;
     }
 
+    public static String getMessageUsage(String commandWord) {
+        return String.format(MESSAGE_USAGE, commandWord, commandWord);
+    }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         try {
             ValidCommand.deleteAlias(target);
-        } catch (AliasNotFoundException e) {
-            throw new CommandException(MESSAGE_ALIAS_NOTFOUND);
+        } catch (AliasException e) {
+            throw new CommandException(e.getMessage());
         }
 
         model.updateAlias(ValidCommand.getAliasMap());

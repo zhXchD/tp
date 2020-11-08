@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.HelpCommand.SHOWING_HELP_MESSAGE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 
 import org.junit.jupiter.api.DisplayName;
@@ -29,29 +28,31 @@ public class HelpCommandParserTest {
         @DisplayName("should throw ParseException if the command is not valid")
         public void parse_notValidCommand_throwsParseException() {
             assertParseFailure(
-                parser,
-                " of/",
-                "This is not a valid command."
+                    parser,
+                    " of/",
+                    "This is not a valid command.",
+                    "help"
             );
 
             assertParseFailure(
-                parser,
-                " of/haha",
-                "This is not a valid command."
+                    parser,
+                    " of/haha",
+                    "This is not a valid command.",
+                    "help"
             );
         }
 
         @Test
         @DisplayName("should throw ParseException if the command is not valid")
         public void parse_isValidCommand_returnsHelpCommand() throws ParseException {
-            HelpCommand helpCommandOfAddc = parser.parse(" of/addc");
-            HelpCommand helpCommandOfDelc = parser.parse(" of/delc");
+            HelpCommand helpCommandOfAddc = parser.parse("help", " of/addc");
+            HelpCommand helpCommandOfDelc = parser.parse("help", " of/delc");
 
             CommandResult expectedCommandResultOfAddc = new CommandResult(
-                SHOWING_HELP_MESSAGE + AddContactCommand.MESSAGE_USAGE);
+                    AddContactCommand.getMessageUsage("addc"));
 
             CommandResult expectedCommandResultOfDelc = new CommandResult(
-                SHOWING_HELP_MESSAGE + DeleteContactCommand.MESSAGE_USAGE);
+                    DeleteContactCommand.getMessageUsage("delc"));
 
             assertCommandSuccess(
                 helpCommandOfAddc,

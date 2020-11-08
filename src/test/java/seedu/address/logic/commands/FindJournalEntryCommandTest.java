@@ -71,9 +71,9 @@ public class FindJournalEntryCommandTest {
         private final Predicate<Entry> firstPredicate = entry -> entry.getTitle().title.contains("first");
         private final Predicate<Entry> secondPredicate = entry -> entry.getTitle().title.contains("second");
 
-        private final FindCommand findFirstCommand =
+        private final FindJournalEntryCommand findFirstCommand =
                 new FindJournalEntryCommand(firstPredicate);
-        private final FindCommand findSecondCommand =
+        private final FindJournalEntryCommand findSecondCommand =
                 new FindJournalEntryCommand(secondPredicate);
 
         @Test
@@ -85,7 +85,7 @@ public class FindJournalEntryCommandTest {
         @Test
         @DisplayName("should return true if same values")
         public void equals_sameValues_true() {
-            FindCommand findFirstCommandCopy = new FindJournalEntryCommand(firstPredicate);
+            FindJournalEntryCommand findFirstCommandCopy = new FindJournalEntryCommand(firstPredicate);
             assertTrue(findFirstCommand.equals(findFirstCommandCopy));
         }
 
@@ -117,7 +117,7 @@ public class FindJournalEntryCommandTest {
             String expectedMessage =
                     String.format(MESSAGE_ENTRIES_LISTED_OVERVIEW, 0);
             Predicate<Entry> predicate = entry -> false;
-            FindCommand command = new FindJournalEntryCommand(predicate);
+            FindJournalEntryCommand command = new FindJournalEntryCommand(predicate);
             expectedModel.updateFilteredEntryList(predicate);
             assertCommandSuccess(
                     command,
@@ -137,7 +137,7 @@ public class FindJournalEntryCommandTest {
             String expectedMessage =
                     String.format(MESSAGE_ENTRIES_LISTED_OVERVIEW, 3);
             Predicate<Entry> predicate = entry -> entry.getTitle().title.contains("entry");
-            FindCommand command = new FindJournalEntryCommand(predicate);
+            FindJournalEntryCommand command = new FindJournalEntryCommand(predicate);
             expectedModel.updateFilteredEntryList(predicate);
             assertCommandSuccess(
                     command,

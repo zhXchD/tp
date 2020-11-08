@@ -91,7 +91,7 @@ IntelliJournal:
 
 * If multiple items without `…​` after them are supplied by the user, the
   last item is used.<br>
-  e.g. `n/NAME p/PHONE` if used as `n/John Doe n/Betsy Crowe p/91111111 p/99988877`,
+  e.g. `n/NAME p/PHONE_NUMBER` if used as `n/John Doe n/Betsy Crowe p/91111111 p/99988877`,
        `Betsy Crowe` and `99988877` will be the name and phone numbers used.<br>
 
 * Parameters can be in any order.<br>
@@ -117,15 +117,25 @@ Format: `addcontact n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 :bulb: **Tips:**<br>
 
 * A contact can have any number of tags (including 0).
+* `NAME` must not be a name that is already used in the address book, even if it has different case letters.
 * `TAG` must be alphanumeric, without spaces.
+* `PHONE_NUMBER` must be a valid Singaporean number, 8 digits long and starting
+  with either 6, 8, or 9.
+* The country code +65 is also accepted at the start of `PHONE_NUMBER`.
 
 </div>
 
-Examples:
+Example:
 
-* `addcontact n/John Doe` Adds a contact with the name of `John Doe`.
-* `addcontact n/Betsy Crowe t/client t/important` Adds a contact with the name
-   of `Betsy Crowe` and tags of `client` and `important`.
+1. Type `addcontact n/Betsy Crowe t/client t/important` into the command box and
+   press enter.
+
+   ![addcontact example](images/UGExamples/addcontactExample1.png)
+
+1. This adds a contact with the name of `Betsy Crowe` and tags of `client` and
+   `important`.
+
+   ![addcontact example 2](images/UGExamples/addcontactExample2.png)
 
 #### Listing all contacts: `listc`
 
@@ -135,13 +145,24 @@ Aliases: `listc`, `lc`
 
 Format: `listc`
 
+Example:
+
+1. Type `listc` into the command box and press enter.
+
+   ![listc example](images/UGExamples/listcExample1.png)
+
+1. You will be directed to the address book tab, with all the contacts listed
+   on the sidebar.
+
+   ![listc example](images/UGExamples/listcExample2.png)
+
 #### Editing a contact: `editc`
 
 Edits an existing contact in the address book.
 
 Aliases: `editc`, `edc`
 
-Format: `editc INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `editc INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 <div markdown="block" class="alert alert-primary">
 
@@ -149,9 +170,12 @@ Format: `editc INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 * Edits the contact at the specified `INDEX`. The index refers to the index
   number shown in the displayed contact list.
+* `NAME` must not be a name that is already used in the address book, even if it has different case letters.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * `TAG` must be alphanumeric, without spaces.
+* `PHONE_NUMBER` must be a valid Singaporean number, 8 digits long and starting with either 6, 8, or 9.
+* The country code +65 is also accepted at the start of `PHONE_NUMBER`.
 * When editing tags, the existing tags of the contact will be removed
   i.e adding of tags is not cumulative.
 * You can remove all the contact’s tags by typing t/ without specifying any tags
@@ -162,37 +186,73 @@ Format: `editc INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 </div>
 
-Examples:
+Example:
 
-* `editc 1 p/91234567 e/johndoe@example.com` Edits the phone number and email
-   address of the 1st contact to be `91234567` and `johndoe@example.com`
-   respectively.
-* `editc 2 n/Betsy Crower t/` Edits the name of the 2nd contact to be
-  `Betsy Crower` and clears all existing tags.
+1. Type `editc 2 n/Betsy Crowe t/ e/betsycrowe@example.com` into the command
+   box and press enter.
 
-#### Viewing a contact: `view in/c`
+   ![editc example](images/UGExamples/editcExample1.png)
 
-Opens up a contact to show further details.
+1. This edits the name and email of the 2nd contact to `Betsy Crowe` and
+   `betsycrowe@example.com` respectively, while removing all tags.
 
-Aliases: `view`, `v`
+   ![editc example 2](images/UGExamples/editcExample2.png)
 
-Format: `view in/c index/INDEX`
+#### Viewing a contact: `viewc`
 
-* `INDEX` refers to the index number of the contact shown in the list.
+Opens up a contact in the current displayed list to show further details.
 
-Examples:
+Aliases: `viewc`, `vc`
 
-* `view in/c index/4` Views the 4th contact in the address book.
-* `view in/c index/8` Views the 8th contact in the address book.
+Format: `viewc INDEX`
 
-#### Finding contacts: `find in/c`
+* If you type a `viewc` command when IntelliJournal displays `Contact` tab,
+  IntelliJournal will select the contact at the specified index and display
+  its details on the right.
+* If a `viewc` command is executed when IntelliJournal displays another tab
+  (i.e. `Journal` tab or `Dashboard` tab), IntelliJournal will automatically
+  navigate to the `Contact` tab, select the contact at the specified index,
+  and display its details on the right.
 
-Finds a list of contacts or journal entries that satisfy the requirements
+<div markdown="block" class="alert alert-primary">
+
+:bulb: **Tips:**<br>
+
+* `INDEX` refers to the index number of the contact in the **current displayed
+  list**, instead of the index number of the contact in the full unfiltered
+  list, which, for example, may have been filtered using a `findc` command. More
+  details about a filtered contact list can be found under the
+  [Finding contacts: `findc`](#finding-contacts-findc) section.
+
+* `INDEX` must be a positive integer, which does not exceed the number of
+  contacts in the current displayed list.
+
+</div>
+
+Example:
+
+1. Open the `Contacts` tab, IntelliJournal should display a list of contacts on
+   the left with detailed content on the right. If no contact has been selected
+   to display, IntelliJournal will automatically select the first contact to
+   show its details.
+
+   ![View contact example 1](images/viewc-eg-1.png)
+
+1. Type command `vc 4`, or equivalently, `viewc 4`, IntelliJournal will select
+   the 4th contact in the list, and display its details on the right. Note that
+   the red rectangle is for demonstration purpose instead of being part of the
+   application interface.
+
+   ![View contact example 2](images/viewc-eg-2.png)
+
+#### Finding contacts: `findc`
+
+Finds a list of contacts that satisfy the requirements
 on particular fields given by the user.
 
-Aliases: `find`, `f`
+Aliases: `findc`, `fc`
 
-Format: `find in/c [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS] [e/EMAIL_KEYWORDS]
+Format: `findc [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS] [e/EMAIL_KEYWORDS]
         [a/ADDRESS_KEYWORDS] [t/TAG]…​`
 
 <div markdown="block" class="alert alert-primary">
@@ -201,19 +261,20 @@ Format: `find in/c [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS] [e/EMAIL_KEYWORDS]
 
 * `TAG` must be alphanumeric, without spaces.
 * Note that for `TAG`, IntelliJournal searches for the exact same tag instead of
-  tags containing any part of the searched terms.
+  tags containing any part of the searched terms, so tags are case-sensitive.
 
 </div>
 
-Examples:
+Example:
 
-* `find in/c n/Alice` Finds all contacts whose name contains `Alice`.
-* `find in/c n/Alice p/65` Find all contacts whose name contains `Alice` and
-  phone number contains `65`.
-* `find in/c n/Alice p/65 e/@u.nus.edu a/RC4 t/Student`<br>
-  Find all contacts whose name contains `Alice` and phone number contains `65`
-  and email contains `@u.nus.edu` and address name contains `RC4` and tagged
-  `Student`.<br>
+1. Type `findc n/Charlotte a/Ang Mo Kio` into the command box and press enter.
+
+   ![findc example](images/UGExamples/findcExample1.png)
+
+1. This finds all contacts whose name contains `Charlotte` and with an address
+   containing `Ang Mo Kio`.
+
+   ![findc example 2](images/UGExamples/findcExample2.png)
 
 #### Deleting a contact: `deletec`
 
@@ -223,12 +284,21 @@ Aliases: `deletec`, `delc`
 
 Format: `deletec INDEX`
 
-* `INDEX` refers to the index number of the contact in the list.
+<div markdown="block" class="alert alert-primary">
 
-Examples:
+:bulb: **Tip:** `INDEX` refers to the index number of the contact in the list.
 
-* `deletec 4` Deletes the 4th contact in the address book.
-* `deletec 8` Deletes the 8th contact in the address book.
+</div>
+
+Example:
+
+1. Type `deletec 2` into the command box and press enter.
+
+   ![deletec example](images/UGExamples/deletecExample1.png)
+
+1. This deletes the 2nd contact in the address book.
+
+   ![deletec example 2](images/UGExamples/deletecExample2.png)
 
 #### Clearing the address book: `clearc`
 
@@ -237,6 +307,16 @@ Clears all contacts in the addressbook.
 Aliases: `clearc`, `cc`
 
 Format: `clearc`
+
+Example:
+
+1. Type `clearc` into the command box and press enter.
+
+   ![clearc example](images/UGExamples/clearcExample1.png)
+
+1. This removes all contacts in the address book.
+
+   ![clearc example 2](images/UGExamples/clearcExample2.png)
 
 ### Journal Entries
 
@@ -257,6 +337,7 @@ Format: `addjournal n/TITLE [at/DATE_AND_TIME] [d/DESCRIPTION]
 
 * A journal entry can have any number of contacts or tags (including 0)
 * `CONTACT_NAME` must be an existing name in the address book.
+* `CONTACT_NAME` is case-insensitive, and does not need to be capitalised to find contacts required.
 * `DATE_AND_TIME` must be in the format: "YYYY-MM-DD HH:MM".
 * `TAG` must be alphanumeric, without spaces.
 
@@ -265,12 +346,12 @@ Format: `addjournal n/TITLE [at/DATE_AND_TIME] [d/DESCRIPTION]
 Example:
 
 1. Type `addjournal n/Meeting with client at/2020-09-20 14:00 d/Tea` into the
-  command box and press enter.
+    command box and press enter.
 
     ![addjournal example](images/UGExamples/addjournalExample1.png)
 
-1. You will be directed to the journal tab, with the new journal entry on the
-  screen
+1. This creates a journal entry with the title `Meeting with client`, occurring
+   at `2020-09-20 14:00` and with description `Tea`.
 
     ![addjournal example 2](images/UGExamples/addjournalExample2.png)
 
@@ -308,6 +389,7 @@ Format: `editj INDEX [n/TITLE] [at/DATE_AND_TIME] [d/DESCRIPTION]
 
 * Edits the contact at the specified `INDEX`. The index refers to the index
   number shown in the displayed contact list.
+* `CONTACT_NAME` is case-insensitive, and does not need to be capitalised to find contacts required.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the entry will be removed i.e adding
@@ -322,30 +404,73 @@ Format: `editj INDEX [n/TITLE] [at/DATE_AND_TIME] [d/DESCRIPTION]
 
 </div>
 
-#### Viewing a journal entry: `view in/j`
+Example:
 
-Opens up a journal entry to show further details.
+1. Type `editj 1 n/Meeting with client at/2020-09-20 14:00 d/Tea` into the
+   command box and press enter.
 
-Aliases: `view`, `v`
+   ![editj example](images/UGExamples/editjExample1.png)
 
-Format: `view in/j index/INDEX`
+2. This edits the title, date and description of the first journal entry to be
+   `Meeting with client`, `2020-09-20 14:00` and `Tea` respectively.
 
-* `INDEX` refers to the index number of the contact shown in the list.
-* `SCOPE` must be `c` (refers to contact) or `j` (refers to journal entry).
+   ![editj example 2](images/UGExamples/editjExample2.png)
 
-Examples:
+#### Viewing a journal entry: `viewj`
 
-* `view in/j index/4` Views the 4th journal entry in the journal.
-* `view in/j index/8` Views the 8th journal entry in the journal.
+Opens up a journal entry in the current displayed list to show further details.
 
-#### Finding journal entries: `find in/j`
+Aliases: `viewj`, `vj`
 
-Finds a list of contacts or journal entries that satisfy the requirements
+Format: `viewj INDEX`
+
+* If you type a `viewj` command when IntelliJournal displays `Journal` tab,
+IntelliJournal will select the journal entry at the specified index and display
+its details on the right.
+* If a `viewj` command is executed when IntelliJournal displays another tab
+(i.e. `Contacts` tab or `Dashboard` tab), IntelliJournal will automatically
+navigate to the `Journal` tab, select the journal entry at the specified index,
+and display its details on the right.
+
+<div markdown="block" class="alert alert-primary">
+
+:bulb: **Tips:**<br>
+
+* `INDEX` refers to the index number of the journal entry in the **current displayed
+list**, instead of the index number of the journal entry in the full unfiltered list,
+which, for example, may have been filtered using a `findj` command. More details
+about a filtered journal entry list can be found under the
+[Finding journal entries: `findj`](#finding-journal-entries-findj) section.
+
+* `INDEX` must be a positive integer, which does not exceed the number of journal entries
+in the current displayed list.
+
+</div>
+
+Example:
+
+1. Open the `Journal` tab, IntelliJournal should display a list of journal
+   entries on the left with detailed content on the right. If no entry has been
+   selected to display, IntelliJournal will automatically select the first entry
+   to show its details.
+
+   ![View entry example 1](images/viewj-eg-1.png)
+
+1. Type command `vj 4`, or equivalently, `viewj 4`, IntelliJournal will select
+   the 4th entry in the list, and display its details on the right. Note that
+   the red rectangle is for demonstration purpose instead of being part of the
+   application interface.
+
+   ![View entry example 2](images/viewj-eg-2.png)
+
+#### Finding journal entries: `findj`
+
+Finds a list of journal entries that satisfy the requirements
 on particular fields given by the user.
 
-Aliases: `find`, `f`
+Aliases: `findj`, `fj`
 
-Format: `find in/j [n/TITLE_KEYWORDS] [at/DATE_AND_TIME]
+Format: `findj [n/TITLE_KEYWORDS] [at/DATE_AND_TIME]
          [with/CONTACT_NAME_KEYWORDS]…​ [d/DESCRIPTION_KEYWORDS] [t/TAG]…​`
 
 <div markdown="block" class="alert alert-primary">
@@ -355,18 +480,19 @@ Format: `find in/j [n/TITLE_KEYWORDS] [at/DATE_AND_TIME]
 * `DATE_AND_TIME` must be in the format: "YYYY-MM-DD HH:MM"
 * `TAG` must be alphanumeric, without spaces.
 * Note that for `TAG`, IntelliJournal searches for the exact same tag instead of
-  tags containing any part of the searched terms.
+  tags containing any part of the searched terms, so tags are case-sensitive.
 
 </div>
 
-Examples:
+Example:
 
-* `find in/j n/Meeting` Finds all journal entries with a title containing
-  `Meeting`.
-* `find in/j n/Meeting d/plan for 2021 with/Alice t/Meeting at/2020-10-10 15:00`
-  <br>Finds all journal entries that have a title containing `Meeting`, a
-  description containing `plan for 2021`, with a contact whose name contains
-  `Alice`, tagged `Meeting`, and happening on Oct 10, 2020, 3pm.
+1. Type `findj n/Meeting` into the command box and press enter.
+
+   ![findj example](images/UGExamples/findjExample1.png)
+
+1. This finds all journal entries with a title containing `Meeting`.
+
+   ![findj example 2](images/UGExamples/findjExample2.png)
 
 #### Checking schedule: `check`
 
@@ -481,6 +607,17 @@ Aliases: `switch`, `swt`
 
 Format: `switch`
 
+Example:
+
+1. Type `switch` in the command box and press enter.
+
+   ![switch example](images/UGExamples/switchExample1.png)
+
+1. This switches the display to the next tab.
+
+   ![switch example 2](images/UGExamples/switchExample2.png)
+
+<!--@@author {Lingy12}-->
 #### Adding aliases for existing commands: `alias`
 
 Adds your preferred shortcut for existing commands.
@@ -511,10 +648,23 @@ Format: `alias TARGET ALIAS`
 
 Example:
 
-* `alias switch st` ---  This will add `st` as a valid shortcut for command
-  `switch`.
-* `alias addj j` --- This will add `j` as a valid shortcut for command `addj`
+1. Type `alias switch st` into the command box and press enter.
 
+   ![alias example](images/UGExamples/aliasExample1.png)
+
+2. This adds `st` as a valid shortcut for `switch`
+
+   ![alias example](images/UGExamples/aliasExample2.png)
+
+3. Then you can type `st` into the command box and press enter.
+
+   ![alias example](images/UGExamples/aliasExample3.png)
+
+4. IntelliJournal will switch the tab which is what `switch` command does
+
+   ![alias example](images/UGExamples/aliasExample4.png)
+
+<!-- @@author -->
 #### Deleting custom aliases: `deletea`
 
 Removes the custom alias from IntelliJournal.
@@ -523,9 +673,17 @@ Aliases: `deletea`, `dela`
 
 Format: `deletea ALIAS`
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+
+* Default alias cannot be removed.
+
+</div>
+
 Example:
 
-1. Assuming you have added `st` as an alias for `switch`, type `deletea sw` into
+1. Assuming you have added `st` as an alias for `switch`, type `deletea st` into
    the command box and press enter.
 
     ![deletea example](images/UGExamples/deleteaExample1.png)
@@ -548,6 +706,16 @@ Aliases: `changetheme`, `ctheme`
 
 Format: `changetheme`
 
+Example:
+
+1. Type `changetheme` into the command box and press enter.
+
+   ![changetheme example](images/UGExamples/changethemeExample1.png)
+
+1. This changes the theme of IntelliJournal.
+
+   ![changetheme example 2](images/UGExamples/changethemeExample2.png)
+
 #### Exiting the program: `exit`
 
 Exits the program.
@@ -555,6 +723,14 @@ Exits the program.
 Aliases: `exit`, `quit`, `q`
 
 Format: `exit`
+
+Example:
+
+1. Type `exit` into the command box and press enter.
+
+   ![exit example](images/UGExamples/exitExample.png)
+
+1. This exits out of IntelliJournal.
 
 #### Saving the data
 
@@ -611,7 +787,7 @@ IntelliJournal home folder.
             <td rowspan="2"><b>Editing a contact</b></td>
             <td>
                 <code>
-                    editc INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]
+                    editc INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]
                     [t/TAG]…​
                 </code>
             </td>
@@ -619,23 +795,23 @@ IntelliJournal home folder.
         <tr>
             <td>
                 <code>
-                    edc INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]
+                    edc INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]
                     [t/TAG]…​
                 </code>
             </td>
         </tr>
         <tr>
             <td rowspan="2"><b>Viewing a contact</b></td>
-            <td><code>view in/c index/INDEX</code></td>
+            <td><code>viewc INDEX</code></td>
         </tr>
         <tr>
-            <td><code>v in/c index/INDEX</code></td>
+            <td><code>vc INDEX</code></td>
         </tr>
         <tr>
             <td rowspan="2"><b>Finding contacts</b></td>
             <td>
                 <code>
-                    find in/c [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS]
+                    findc [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS]
                     [e/EMAIL_KEYWORDS] [a/ADDRESS_KEYWORDS] [t/TAG]…​
                 </code>
             </td>
@@ -643,7 +819,7 @@ IntelliJournal home folder.
         <tr>
             <td>
                 <code>
-                    f in/c [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS]
+                    fc [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS]
                     [e/EMAIL_KEYWORDS] [a/ADDRESS_KEYWORDS] [t/TAG]…​
                 </code>
             </td>
@@ -726,16 +902,16 @@ IntelliJournal home folder.
         </tr>
         <tr>
             <td rowspan="2"><b>Viewing a journal entry</b></td>
-            <td><code>view in/j index/INDEX</code></td>
+            <td><code>viewj INDEX</code></td>
         </tr>
         <tr>
-            <td><code>v in/j index/INDEX</code></td>
+            <td><code>vj INDEX</code></td>
         </tr>
         <tr>
             <td rowspan="2"><b>Finding journal entries</b></td>
             <td>
                 <code>
-                    find in/j [n/TITLE_KEYWORDS] [at/DATE_AND_TIME]
+                    findj [n/TITLE_KEYWORDS] [at/DATE_AND_TIME]
                     [with/CONTACT_NAME_KEYWORDS]…​ [d/DESCRIPTION_KEYWORDS]
                     [t/TAG]…​
                 </code>
@@ -744,7 +920,7 @@ IntelliJournal home folder.
         <tr>
             <td>
                 <code>
-                    f in/j [n/TITLE_KEYWORDS] [at/DATE_AND_TIME]
+                    fj [n/TITLE_KEYWORDS] [at/DATE_AND_TIME]
                     [with/CONTACT_NAME_KEYWORDS]…​ [d/DESCRIPTION_KEYWORDS]
                     [t/TAG]…​
                 </code>

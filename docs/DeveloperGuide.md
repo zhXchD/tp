@@ -138,6 +138,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+<!--@@author {Lingy12}-->
 ### Command alias feature
 #### Current Implementation
 
@@ -176,7 +177,6 @@ Note: *alias1, alias2, alias3* are system's default aliases. Aliases can be exte
 Given below is the implementation of constructing the `aliasMap`:
 
 ```java_holder_method_tree
-
 /**
    * Creates command alias from aliases list.
    *
@@ -217,6 +217,26 @@ Given below is the sequence diagram of command alias feature (This change only r
 
 ![aliasSequenceDiagram](images/commandAlias/aliasSequenceDiagram.png)
 
+#### Handling storage for *AliasMap*
+
+ **1. Model component**
+
+* `ModelManager` contains a `AliasMap`
+
+* `Model#updateAlias(Map<String, ValidCommand> map)` updates the model with a `Map`
+
+ **2. Storage component**
+
+* `StorageManager` contains a `AliasMapStorage`
+
+* `AliasMapStorage` is implemented by `JsonAliasMapStorage` which stores `AliasMap` as a Json file
+
+Given below is the class diagram of related part in `Storage` component:
+
+   ![aliasStorageClassDiagram](images/commandAlias/aliasStorageClassDiagram.png)
+
+
+<!--@@author -->
 ### Tab navigation feature
 
 IntelliJournal has two tabs for different information to display, one tab for
@@ -311,19 +331,6 @@ to show the help window if the `isShowHelpWindow` is `true`. Or it will return a
 
 The following sequence diagrams show how the help command works:
 ![HelpSequenceDiagram](images/HelpSequenceDiagram.png)
-
-### Edit journal entry feature
-
-The `editj` command of IntelliJournal allows users to modify the details of previously entered journal entries.
-
-#### Current Implementation
-
-Similar to the existing `editc` and `addj` commands, the `EditJournalEntryParser` makes use of `ParserUtil` to split up user input into arguments, which are then used to create an `EditEntryDescriptor` that contains the details of the journal properties to be edited.
-
-`EditEntryDescriptor` contains setter methods used to add fields that are changed, and getter methods which return `Optional` objects for use in the `createEditedEntry` method of `EditJournalEntryCommand`. If attributes have not been set for an `EditEntryDescriptor`, they are returned as `Optional.empty()` which is used to create the new edited entry with only the specified attributes modified.
-
-The following sequence diagram shows how the edit command works:
-![EditJournalSequenceDiagram](images/EditJournalSequenceDiagram.png)
 
 ### Edit journal feature
 #### Current Implementation

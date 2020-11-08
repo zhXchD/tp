@@ -14,13 +14,16 @@ public class ClearAddressBookCommand extends Command {
 
     public static final String COMMAND_WORD = "clearc";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Clears all contacts in the address book.\n"
-            + "Example: clearc";
+    public static final String MESSAGE_USAGE = "%s: Clears all contacts in the"
+            + " address book.\n"
+            + "Example: %s";
 
     public static final String MESSAGE_SUCCESS =
             "Address book has been cleared!";
 
+    public static String getMessageUsage(String commandWord) {
+        return String.format(MESSAGE_USAGE, commandWord, commandWord);
+    }
 
     @Override
     public CommandResult execute(Model model) {

@@ -9,12 +9,16 @@ public class ExitCommand extends Command {
 
     public static final String COMMAND_WORD = "exit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Exits out of IntelliJournal\n"
-            + "Example: exit";
+    public static final String MESSAGE_USAGE = "%s: Exits out of "
+            + "IntelliJournal\n"
+            + "Example: %s";
 
     public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT =
-            "Exiting Address Book as requested ...";
+            "Exiting IntelliJournal";
+
+    public static String getMessageUsage(String commandWord) {
+        return String.format(MESSAGE_USAGE, commandWord, commandWord);
+    }
 
     @Override
     public CommandResult execute(Model model) {

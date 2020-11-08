@@ -34,7 +34,7 @@ You can reach us through [GitHub](https://github.com/AY2021S1-CS2103T-W17-4).
 
 <img src="images/nauw1010.png" width="200px">
 
-[[GitHub](https://github.com/Nauw1010)]
+[[GitHub](https://github.com/Nauw1010)][[Portfolio](team/nauw1010.md)]
 
 * Role: developer
 * Responsibilities:
@@ -45,7 +45,7 @@ You can reach us through [GitHub](https://github.com/AY2021S1-CS2103T-W17-4).
 
 <img src="images/jazerler.png" width="200px">
 
-[[GitHub](https://github.com/jazerler)]
+[[GitHub](https://github.com/jazerler)][[Portfolio](team/jazerler.md)]
 
 * Role: developer
 * Responsibilities:

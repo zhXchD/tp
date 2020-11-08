@@ -140,7 +140,7 @@ public class IntelliJournalParserTest {
         @DisplayName("should generate FindContactCommand object from "
                 + "appropriate find keyword input")
         public void parseCommand_findContact() throws Exception {
-            Command command = parser.parseCommand("find in/c n/test");
+            Command command = parser.parseCommand("findc n/test");
             assertTrue(command instanceof FindContactCommand);
         }
 
@@ -148,7 +148,7 @@ public class IntelliJournalParserTest {
         @DisplayName("should generate FindJournalEntryCommand object from "
                 + "appropriate find keyword input")
         public void parseCommand_findJournalEntry() throws Exception {
-            Command command = parser.parseCommand("find in/j n/test");
+            Command command = parser.parseCommand("findj n/test");
             assertTrue(command instanceof FindJournalEntryCommand);
         }
 
@@ -203,7 +203,7 @@ public class IntelliJournalParserTest {
                     ParseException.class,
                     String.format(
                             MESSAGE_INVALID_COMMAND_FORMAT,
-                            HelpCommand.MESSAGE_USAGE
+                            HelpCommand.getMessageUsage("help")
                     ), () -> parser.parseCommand("")
             );
         }

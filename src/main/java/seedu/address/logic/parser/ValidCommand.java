@@ -8,11 +8,14 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.parser.exceptions.AliasException;
 import seedu.address.logic.parser.exceptions.AliasExistsException;
 import seedu.address.logic.parser.exceptions.AliasNotFoundException;
+import seedu.address.logic.parser.exceptions.ModifyDefaultAliasException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAliasMap;
 
+//@author {Lingy12}
 
 /**
  * ValidCommand enum represents the possible command type.
@@ -27,13 +30,15 @@ public enum ValidCommand {
     DELETE_JOURNAL_ENTRY("deletej", "delj"),
     EDIT_CONTACT("editc", "edc"),
     EDIT_JOURNAL_ENTRY("editj", "edj"),
-    FIND("find", "f"),
+    FIND_JOURNAL_ENTRY("findj", "fj"),
+    FIND_CONTACT("findc", "fc"),
     EXIT("exit", "quit", "q"),
     HELP("help", "h"),
     LIST_CONTACT("listc", "lc"),
     LIST_JOURNAL_ENTRY("listj", "lj"),
     SWITCH("switch", "swt"),
-    VIEW("view", "v"),
+    VIEW_CONTACT("viewc", "vc"),
+    VIEW_JOURNAL_ENTRY("viewj", "vj"),
     CHECK_SCHEDULE("check", "ck"),
     ADD_ALIAS("alias", "al"),
     CHANGE_THEME("changetheme", "ctheme"),
@@ -45,12 +50,14 @@ public enum ValidCommand {
      * Map that match alias with valid command
      */
     private static final Map<String, ValidCommand> aliasMap = new HashMap<>();
+    private static final Map<String, ValidCommand> defaultAliasMap = new HashMap<>();
 
     static {
         Arrays.stream(ValidCommand.values()).forEach(command -> Arrays.stream(command.aliases)
                 .forEach(alias -> {
                     assert aliasMap.get(alias) == null;
                     aliasMap.put(alias, command);
+                    defaultAliasMap.put(alias, command);
                 }));
     }
 
@@ -98,8 +105,12 @@ public enum ValidCommand {
     /**
      * Remove an alias from map.
      */
-    public static void deleteAlias(String alias) throws AliasNotFoundException {
+    public static void deleteAlias(String alias) throws AliasException {
         requireNonNull(alias);
+
+        if (defaultAliasMap.containsKey(alias)) {
+            throw new ModifyDefaultAliasException();
+        }
 
         if (!aliasMap.containsKey(alias)) {
             throw new AliasNotFoundException();
@@ -111,7 +122,7 @@ public enum ValidCommand {
     /**
      * Add a new {@code alias} to a valid command.
      */
-    public static void addAlias(ValidCommand command, String alias) throws AliasExistsException {
+    public static void addAlias(ValidCommand command, String alias) throws AliasException {
         assert command != null;
         assert alias != null && !alias.equals("");
 

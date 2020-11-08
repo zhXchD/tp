@@ -32,8 +32,8 @@ public class EditJournalEntryCommand extends Command {
 
     public static final String COMMAND_WORD = "editj";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Edits the details of the entry at the index position in the "
+    public static final String MESSAGE_USAGE = "%s: Edits the details of the "
+            + "entry at the index position in the "
             + "currently displayed entry list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
@@ -42,7 +42,7 @@ public class EditJournalEntryCommand extends Command {
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_CONTACT + "CONTACT_NAME] "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "Example: %s 1 "
             + PREFIX_NAME + "Meet with client "
             + PREFIX_DATE_AND_TIME + "2020-10-10 10:00 "
             + PREFIX_CONTACT + "Robert";
@@ -69,6 +69,10 @@ public class EditJournalEntryCommand extends Command {
 
         this.index = index;
         this.editEntryDescriptor = editEntryDescriptor;
+    }
+
+    public static String getMessageUsage(String commandWord) {
+        return String.format(MESSAGE_USAGE, commandWord, commandWord);
     }
 
     private static Entry createEditedEntry(Entry entryToEdit,

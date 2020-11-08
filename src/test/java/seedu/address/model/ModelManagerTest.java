@@ -173,7 +173,7 @@ public class ModelManagerTest {
         public void updateJournalContacts_validPersons_successful() {
             Person newPerson = new PersonBuilder(CARL)
                     .withName("Peter")
-                    .withPhone("12345")
+                    .withPhone("91234567")
                     .build();
             Entry entryOne = new EntryBuilder(TEST_ENTRY_DIFF_CONTACTS).build();
             Entry entryTwo = new EntryBuilder().withContacts(CARL).build();

@@ -14,8 +14,8 @@ activate LogicManager
 LogicManager -> IntelliJournalParser : parseCommand(someInput)
 activate IntelliJournalParser
 
-activate ValidCommand
 IntelliJournalParser -> ValidCommand: commandTypeOf(commandWord)
+activate ValidCommand
 ValidCommand --> IntelliJournalParser: commandType
 deactivate ValidCommand
 

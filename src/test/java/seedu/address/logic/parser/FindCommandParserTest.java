@@ -15,7 +15,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindContactCommand;
+import seedu.address.logic.commands.FindJournalEntryCommand;
 import seedu.address.model.AliasMap;
 import seedu.address.model.Journal;
 import seedu.address.model.Model;
@@ -61,32 +62,49 @@ public class FindCommandParserTest {
     private final Model expectedModel = new ModelManager(
             getTypicalAddressBook(), new Journal(journal), new UserPrefs(), new AliasMap());
 
-    private final FindCommandParser parser = new FindCommandParser();
+    private final FindContactCommandParser contactParser = new FindContactCommandParser();
+    private final FindJournalEntryCommandParser journalParser = new FindJournalEntryCommandParser();
 
     @Nested
     @DisplayName("parse method")
     class Parse {
         @Test
-        @DisplayName("should throw ParseException if no keywords")
-        public void parse_emptyArg_throwsParseException() {
+        @DisplayName("contact parser should throw ParseException if no keywords")
+        public void contactParse_emptyArg_throwsParseException() {
             assertParseFailure(
-                    parser,
+                    contactParser,
                     "     ",
                     String.format(
                             MESSAGE_INVALID_COMMAND_FORMAT,
-                            FindCommand.MESSAGE_USAGE
-                    )
+                            FindContactCommand.getMessageUsage("findc")
+                    ),
+                    "findc"
             );
         }
 
         @Test
-        @DisplayName("should generate FindCommand object if arguments are "
+        @DisplayName("journal entry parser should throw ParseException if no keywords")
+        public void journalParse_emptyArg_throwsParseException() {
+            assertParseFailure(
+                    journalParser,
+                    "     ",
+                    String.format(
+                            MESSAGE_INVALID_COMMAND_FORMAT,
+                            FindJournalEntryCommand.getMessageUsage("findj")
+                    ),
+                    "findj"
+            );
+        }
+
+        @Test
+        @DisplayName("should generate FindContactCommand object if arguments are "
                 + "valid")
         public void parse_validArgs_returnsFindContactCommand()
                 throws Exception {
             // no leading and trailing whitespaces
-            FindCommand actualFindCommand =
-                    parser.parse(" in/c n/Alice e/test a/test p/000 t/tes");
+            FindContactCommand actualFindCommand =
+                    contactParser.parse(
+                            "findc", " n/Alice e/test a/test p/000 t/tes");
             String expectedMessage = String.format(
                     MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
             expectedModel.updateFilteredPersonList(person -> false);
@@ -99,13 +117,15 @@ public class FindCommandParserTest {
         }
 
         @Test
-        @DisplayName("should generate FindCommand object if arguments are "
+        @DisplayName("should generate FindJournalEntryCommand object if arguments are "
                 + "valid")
         public void parse_validArgs_returnsFindJournalCommand() throws Exception {
             // no leading and trailing whitespaces
 
-            FindCommand actualFindCommand = parser.parse(
-                    " in/j n/test d/test at/2020-10-10 10:00 with/test t/tes");
+            FindJournalEntryCommand actualFindCommand = journalParser.parse(
+                    "findj",
+                    " n/test d/test at/2020-10-10 10:00 with/test t/tes"
+            );
 
             String expectedMessage =
                     String.format(MESSAGE_ENTRIES_LISTED_OVERVIEW, 0);

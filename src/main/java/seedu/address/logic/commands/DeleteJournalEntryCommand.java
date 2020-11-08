@@ -18,11 +18,11 @@ public class DeleteJournalEntryCommand extends Command {
 
     public static final String COMMAND_WORD = "deletej";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the entry at the index position in the currently "
+    public static final String MESSAGE_USAGE = "%s: Deletes the entry at the "
+            + "index position in the currently "
             + "displayed entry list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Example: %s 1";
 
     public static final String MESSAGE_DELETE_ENTRY_SUCCESS =
         "Deleted Entry: %1$s";
@@ -31,6 +31,10 @@ public class DeleteJournalEntryCommand extends Command {
 
     public DeleteJournalEntryCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
+    }
+
+    public static String getMessageUsage(String commandWord) {
+        return String.format(MESSAGE_USAGE, commandWord, commandWord);
     }
 
     @Override

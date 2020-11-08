@@ -19,7 +19,7 @@ Given below are my contributions to the project.
                    (`check` command).
   * What it does: Allows the user to filter out a list of journal entries on a
                   date given by the user.
-  * Justification: Users might need to check thier schedule for a given workday.
+  * Justification: Users might need to check their schedule for a given workday.
 
 * **Backend Work**: Support storage for journal entries.
   * What it does: Stores the user's journal entries as json so that the user

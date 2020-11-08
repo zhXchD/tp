@@ -13,12 +13,15 @@ import seedu.address.model.person.Person;
  * Finds and lists all persons in address book whose name contains any of the
  * argument keywords. Keyword matching is case insensitive.
  */
-public class FindContactCommand extends FindCommand {
-    public static final String MESSAGE_USAGE = FindCommand.COMMAND_WORD
-            + " in/c: Finds all contacts in the address book "
+public class FindContactCommand extends Command {
+    public static final String COMMAND_WORD = "findc";
+
+    public static final String MESSAGE_USAGE = "%s: Finds all contacts in the "
+            + "address book "
             + "that contains the fields specified.\n"
-            + "Parameters: [n/NAME] [a/ADDRESS] [e/EMAIL] [p/PHONE] [t/TAG]\n"
-            + "Example: find in/c n/Robert a/Paya Lebar";
+            + "Parameters: [n/NAME] [a/ADDRESS] [e/EMAIL] [p/PHONE] [t/TAG], "
+            + "there must be at least one parameter\n"
+            + "Example: %s n/Robert a/Paya Lebar";
 
     private final Predicate<Person> predicate;
 
@@ -29,6 +32,10 @@ public class FindContactCommand extends FindCommand {
     public FindContactCommand(Predicate<Person> predicate) {
         assert predicate != null;
         this.predicate = predicate;
+    }
+
+    public static String getMessageUsage(String commandWord) {
+        return String.format(MESSAGE_USAGE, commandWord, commandWord);
     }
 
     @Override

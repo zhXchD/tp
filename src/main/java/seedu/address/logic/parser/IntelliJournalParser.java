@@ -54,7 +54,12 @@ public class IntelliJournalParser {
     public Command parseCommand(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            throw new ParseException(
+                    String.format(
+                            MESSAGE_INVALID_COMMAND_FORMAT,
+                            HelpCommand.getMessageUsage("help")
+                    )
+            );
         }
 
         final String commandWord = matcher.group("commandWord");
@@ -66,25 +71,32 @@ public class IntelliJournalParser {
         switch (command) {
         case ADD_CONTACT:
             if (uuid == null) {
-                return new AddContactCommandParser().parse(arguments);
+                return new AddContactCommandParser()
+                        .parse(commandWord, arguments);
             } else {
-                return new AddContactCommandParser(uuid).parse(arguments);
+                return new AddContactCommandParser(uuid)
+                        .parse(commandWord, arguments);
             }
 
         case ADD_JOURNAL_ENTRY:
-            return new AddJournalEntryCommandParser().parse(arguments);
+            return new AddJournalEntryCommandParser()
+                    .parse(commandWord, arguments);
 
         case EDIT_CONTACT:
-            return new EditContactCommandParser().parse(arguments);
+            return new EditContactCommandParser()
+                    .parse(commandWord, arguments);
 
         case EDIT_JOURNAL_ENTRY:
-            return new EditJournalEntryCommandParser().parse(arguments);
+            return new EditJournalEntryCommandParser()
+                    .parse(commandWord, arguments);
 
         case DELETE_CONTACT:
-            return new DeleteContactCommandParser().parse(arguments);
+            return new DeleteContactCommandParser()
+                    .parse(commandWord, arguments);
 
         case DELETE_JOURNAL_ENTRY:
-            return new DeleteJournalEntryCommandParser().parse(arguments);
+            return new DeleteJournalEntryCommandParser()
+                    .parse(commandWord, arguments);
 
         case CLEAR_ADDRESS_BOOK:
             return new ClearAddressBookCommand();
@@ -92,8 +104,13 @@ public class IntelliJournalParser {
         case CLEAR_JOURNAL:
             return new ClearJournalCommand();
 
-        case FIND:
-            return new FindCommandParser().parse(arguments);
+        case FIND_JOURNAL_ENTRY:
+            return new FindJournalEntryCommandParser()
+                    .parse(commandWord, arguments);
+
+        case FIND_CONTACT:
+            return new FindContactCommandParser()
+                    .parse(commandWord, arguments);
 
         case LIST_CONTACT:
             return new ListContactCommand();
@@ -105,25 +122,34 @@ public class IntelliJournalParser {
             return new ExitCommand();
 
         case HELP:
-            return new HelpCommandParser().parse(arguments);
+            return new HelpCommandParser()
+                    .parse(commandWord, arguments);
 
-        case VIEW:
-            return new ViewCommandParser().parse(arguments);
+        case VIEW_CONTACT:
+            return new ViewPersonCommandParser()
+                    .parse(commandWord, arguments);
+
+        case VIEW_JOURNAL_ENTRY:
+            return new ViewJournalEntryCommandParser()
+                    .parse(commandWord, arguments);
 
         case SWITCH:
             return new SwitchCommand();
 
         case CHECK_SCHEDULE:
-            return new CheckScheduleCommandParser().parse(arguments);
+            return new CheckScheduleCommandParser()
+                    .parse(commandWord, arguments);
 
         case ADD_ALIAS:
-            return new AddAliasCommandParser().parse(arguments);
+            return new AddAliasCommandParser()
+                    .parse(commandWord, arguments);
 
         case CHANGE_THEME:
             return new ChangeThemeCommand();
 
         case DELETE_ALIAS:
-            return new DeleteAliasCommandParser().parse(arguments);
+            return new DeleteAliasCommandParser()
+                    .parse(commandWord, arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
