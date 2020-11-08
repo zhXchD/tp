@@ -601,8 +601,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample
-      contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with the dashboard
+   displaying recent and frequent contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -612,34 +612,214 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+1. Navigate among the tabs
 
-### Deleting a person
+    1. From the `Dashboard` tab at launch, click on the tab names `Contacts` and
+    `Journal`.<br>
+    Expected: The displaying tab will change as the user clicks on a different
+    tab name.
+    
+    1. Test case: `switch`<br>
+    Expected: The app will display the next tab, i.e. if the current tab is
+    `Dashboard`, the app will display `Contacts` after the command; if the
+    current tab is `Contacts`, the app will display `Journal` after the command;
+    if the current tab is `Journal`, the app will display `Dashboard`. 
 
-1. Deleting a person while all persons are being shown
+### Contacts
 
-   1. Prerequisites: List all persons using the `listc` command. Multiple
-      persons in the list.
+#### Finding persons
+
+1. Finding persons using phone number, address and email keywords.
+
+    1. Prerequisites: List all persons using the `listc` command. Multiple persons
+    in the list.
+    
+    1. Test case: `findc n/alex a/university`<br>
+       Expected: All contacts whose name contains case-insensitive string of "alex"
+       ("Alex Tan", "alex wong", "AleX" ...) **and** address contains case-insensitive
+       string of "university" ("National University of Singapore", "University Town")
+       are displayed in the contact list. Details of the number of persons found
+       shown in the status message.
+       
+    1. Test case: `findc p/980 e/u.nus.edu`<br>
+       Expected: All contacts whose phone number contains `980` **and** email
+       contains case-insensitive string of "u.nus.edu" are shown in the contacts
+       list. Details of the number of persons found shown in the status message.
+       
+    1. Test case: `findc x/a`<br>
+       Expected: No update to the contact list. An error message is shown in the
+       status message.
+       
+    1. Other incorrect delete commands to try: `findc`, `findc name`, `...`<br>
+      Expected: Similar to previous.
+      
+1. Finding persons using tags.
+
+    1. Prerequisites: List all persons using the `listc` command. Multiple persons
+    in the list.
+    
+    1. Test case: `findc t/Work`<br>
+       Expected: All contacts containing the exact tag `Work` (case-sensitive) are
+       shown in the contact list. The tag requires to be the same, i.e. tags like
+       "work", "Working" do not match. Details of the number of persons found
+       shown in the status message.
+       
+    1. Test case: `findc n/alex a/university t/Work`<br>
+       Expected: All contacts that satisfy the requirement of **both** of the
+       previous test cases `findc n/alex a/university` and `findc t/Work` are shown
+       in the contact list. Details of the number of persons found shown in the
+       status message.
+
+#### Deleting a person
+
+1. Deleting a person
+
+   1. Prerequisites: List persons. The list may be full (using the `listc` command)
+      or filtered (using the `findc` command). Multiple persons in the list.
 
    1. Test case: `deletec 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted
-                contact shown in the status message. Timestamp in the status bar
-                is updated.
+                contact shown in the status message.
 
    1. Test case: `deletec 0`<br>
       Expected: No person is deleted. Error details shown in the status message.
                 Status bar remains the same.
 
    1. Other incorrect delete commands to try: `deletec`, `deletec x`, `...`
-                (where x is larger than the list size)<br>
+      (where x is larger than the list size)<br>
       Expected: Similar to previous.
+      
+#### Editing a person
 
-1. _{ more test cases …​ }_
+1. Editing a person with all valid inputs
 
+    1. Prerequisite: List persons. The list may be full (using the `listc` command)
+    or filtered (using the `findc` command). Multiple persons in the list.
+    
+    1. Test case: `editc 1 n/Alex a/NUS p/84504777 t/school t/friend`<br>
+       Expected: The name of the first contact in the list will be replaced "Alex".
+       The address of the first contact will be replaced by "NUS". The phone number
+       of the first contact will be replaced by "84557777". The tag of the first
+       contact will be replaced by "school" and "friend". If the resulting contact
+       is not a duplicate in the current list, the first contact will be replaced
+       by the edited contact. Otherwise, an error message will be shown and no
+       updates of the contact list will be made.
+       
+    1. Test case: `editc 1 p/999`<br>
+       Expected: An error message saying the phone number must be an 8-digit valid
+       Singaporean number will be shown. No updates will be made to the contact list.
+       
+    1. Other incorrect edit commands to try: `editc` `editc x`, `editc 1`, ...
+       (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Journal
+
+#### Finding journal entries
+1. Finding journal entries using title and description keywords
+
+    1. Prerequisites: List all persons using the `listj` command. Multiple journal entries
+    in the list.
+    
+    1. Test case: `findj n/meeting d/report`<br>
+       Expected: All journal entries whose title contains case-insensitive string of "meeting"
+       ("Important meeting", "Meeting with clients", "Meeting1" ...) **and** description
+       contains case-insensitive string of "report" ("Weekly Report", "Reports")
+       are displayed in the entry list. Details of the number of entries found
+       shown in the status message.
+       
+    1. Test case: `findj n/Alex a/NUS`<br>
+       Expected: No update to the entry list. An error message indicating that
+       the prefix is invalid is shown in the status message.
+       
+    1. Test case: `findj x/a`<br>
+       Expected: No update to the entry list. An error message is shown in the
+       status message.
+       
+    1. Other incorrect delete commands to try: `findj`, `findj title`, `...`<br>
+      Expected: Similar to previous.
+      
+1. Finding journal entries using tags
+
+    1. Prerequisites: List all persons using the `listj` command. Multiple journal entries
+    in the list.
+    
+    1. Test case: `findj t/Work`<br>
+       Expected: All entries containing the exact tag `Work` (case-sensitive) are
+       shown in the entry list. The tag requires to be the same, i.e. tags like
+       "work", "Working" do not match. Details of the number of entries found
+       shown in the status message.
+       
+    1. Test case: `findj n/meeting a/report t/Work`<br>
+       Expected: All entries that satisfy the requirement of **both** of the
+       previous test cases `findj n/meeting a/report` and `findj t/Work` are shown
+       in the entry list. Details of the number of entries found shown in the
+       status message.
+       
+1. Finding journal entries using associated contacts
+
+    1. Prerequisites: List all persons using the `listj` command. Multiple journal entries
+    in the list. In the contact list, there is a contact named "John Doe" (case-insensitive),
+    but there is not a contact named "Prof Tan" (case-insensitive).
+    
+    1. Test case: `findj with/John Doe`<br>
+       Expected: All entries containing John Doe as one of its associated contacts are
+       shown in the entry list. Details of the number of entries found shown in the
+       status message.
+       
+    1. Test case: `findj with/Prof Tan`<br>
+       Expected: No update made to the entry list. A message indicating 0 entry has been
+       found shown in the status message.
+
+#### Deleting a journal entry
+
+1. Deleting a journal entry
+
+   1. Prerequisites: List journal entries. The list may be full (using the `listj` command)
+      or filtered (using the `findj` command). Multiple entries in the list.
+
+   1. Test case: `deletej 1`<br>
+      Expected: First entry is deleted from the list. Details of the deleted
+                entry shown in the status message.
+
+   1. Test case: `deletej 0`<br>
+      Expected: No entry is deleted. Error details shown in the status message.
+                Status bar remains the same.
+
+   1. Other incorrect delete commands to try: `deletej`, `deletej x`, `...`
+      (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+      
+#### Editing a journal entry
+
+1. Editing a journal entry with all valid inputs
+
+    1. Prerequisite: List entries. The list may be full (using the `listj` command)
+    or filtered (using the `findj` command). Multiple entries in the list.
+    
+    1. Test case: `editj 1 n/Meeting with clients`<br>
+       Expected: The name of the first entry in the list will be replaced as "Meeting
+       with clients". If the resulting entry is not a duplicate in the current list,
+       the first entry will be replaced by the edited entry. Otherwise, an error
+       message will be shown and no updates of the list will be made.
+       
+    1. Other incorrect edit commands to try: `editj` `editj x`, `editj 1`, ...
+       (where x is larger than the list size)<br>
+       Expected: No update to the entry list and an error message is shown.
+       
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Automatically save the data
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. Make some changes to the sample data. Exit the application.
+    
+    1. Reopen the application.<br>
+    Expected: The changes made to the sample data has been restored to the application. 
 
-1. _{ more test cases …​ }_
+1. Dealing with missing data files
+
+   1. Make some changes to the sample data. Exit the application.
+   
+   1. Go to the `[directory_of_the_jar_executive_file]/data/` directory, delete
+   file `addressbook.json`. Launch the application.<br>
+   Expected: The application launches with sample data.
