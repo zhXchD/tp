@@ -5,6 +5,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 
@@ -17,7 +18,7 @@ class ChangeThemeCommandTest {
     class Execute {
         @Test
         @DisplayName("should execute change scheme successfully")
-        public void execute_change_scheme_success() {
+        public void execute_changetheme_success() {
             assertCommandSuccess(
                     new ChangeThemeCommand(),
                     model,
