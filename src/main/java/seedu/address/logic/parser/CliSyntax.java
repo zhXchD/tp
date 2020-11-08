@@ -16,7 +16,15 @@ public class CliSyntax {
     public static final Prefix PREFIX_CONTACT = new Prefix("with/");
     public static final Prefix PREFIX_OF = new Prefix("of/");
 
-    public static final Prefix[] ALL_PREFIXES = {PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG,
-        PREFIX_DATE_AND_TIME, PREFIX_DESCRIPTION, PREFIX_CONTACT, PREFIX_OF};
-
+    public static final Prefix[] ALL_PREFIXES = {
+        PREFIX_NAME,
+        PREFIX_PHONE,
+        PREFIX_EMAIL,
+        PREFIX_ADDRESS,
+        PREFIX_TAG,
+        PREFIX_DATE_AND_TIME,
+        PREFIX_DESCRIPTION,
+        PREFIX_CONTACT,
+        PREFIX_OF
+    };
 }

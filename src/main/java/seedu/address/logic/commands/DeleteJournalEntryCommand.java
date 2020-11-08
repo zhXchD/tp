@@ -49,7 +49,7 @@ public class DeleteJournalEntryCommand extends Command {
 
         Entry entryToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteEntry(entryToDelete);
-        boolean isEmptyList = (lastShownList.size() == 0);
+        boolean isEmptyList = lastShownList.size() == 0;
         return new CommandResult(String.format(MESSAGE_DELETE_ENTRY_SUCCESS, entryToDelete))
             .setJournalTab().setCleaningJournalView(isEmptyList);
     }

@@ -18,17 +18,17 @@ public class HelpCommand extends Command {
 
     public static final String SHOWING_HELP_MESSAGE = "Showing help.\n";
 
-    protected boolean isShowHelpWindow;
+    protected boolean isShowingHelpWindow;
     protected ValidCommand validCommandType;
     private final String commandAlias;
 
     /**
      * Constructs a {@code HelpCommand} specified showing the help window
      * or not.
-     * @param isShowHelpWindow show the help window or not.
+     * @param isShowingHelpWindow show the help window or not.
      */
-    public HelpCommand(boolean isShowHelpWindow) {
-        this.isShowHelpWindow = isShowHelpWindow;
+    public HelpCommand(boolean isShowingHelpWindow) {
+        this.isShowingHelpWindow = isShowingHelpWindow;
         validCommandType = null;
         commandAlias = null;
     }
@@ -39,7 +39,7 @@ public class HelpCommand extends Command {
      * @param commandAlias the alias used for the command.
      */
     public HelpCommand(ValidCommand validCommandType, String commandAlias) {
-        isShowHelpWindow = false;
+        isShowingHelpWindow = false;
         this.validCommandType = validCommandType;
         this.commandAlias = commandAlias;
     }
@@ -54,7 +54,7 @@ public class HelpCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        if (isShowHelpWindow) {
+        if (isShowingHelpWindow) {
             return new CommandResult(SHOWING_HELP_MESSAGE, true, false)
                     .setSameTab();
         }

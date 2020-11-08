@@ -219,7 +219,6 @@ public class EditJournalEntryCommandParserTest {
             String userInput = targetIndex.getOneBased() + TITLE_DESC_MEETING;
             EditEntryDescriptor descriptor =
                     new EditEntryDescriptorBuilder()
-                            .withContacts()
                             .withTitle(VALID_TITLE_MEETING)
                             .build();
             EditJournalEntryCommand expectedCommand =
@@ -230,7 +229,6 @@ public class EditJournalEntryCommandParserTest {
             userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_STORY;
             descriptor =
                     new EditEntryDescriptorBuilder()
-                            .withContacts()
                             .withDescription(VALID_DESCRIPTION_STORY)
                             .build();
             expectedCommand = new EditJournalEntryCommand(targetIndex,
@@ -241,7 +239,6 @@ public class EditJournalEntryCommandParserTest {
             userInput = targetIndex.getOneBased() + DATE_DESC_OCTOBER;
             descriptor =
                     new EditEntryDescriptorBuilder()
-                            .withContacts()
                             .withDate(VALID_DATE_OCTOBER)
                             .build();
             expectedCommand = new EditJournalEntryCommand(targetIndex,
@@ -265,7 +262,6 @@ public class EditJournalEntryCommandParserTest {
             userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
             descriptor =
                     new EditEntryDescriptorBuilder()
-                            .withContacts()
                             .withTags(VALID_TAG_FRIEND)
                             .build();
             expectedCommand = new EditJournalEntryCommand(targetIndex,
@@ -286,7 +282,6 @@ public class EditJournalEntryCommandParserTest {
                     + DATE_DESC_NOVEMBER;
             EditEntryDescriptor descriptor =
                     new EditEntryDescriptorBuilder()
-                            .withContacts()
                             .withDescription(VALID_DESCRIPTION_MOVIE)
                             .withDate(VALID_DATE_NOVEMBER)
                             .build();
@@ -309,7 +304,6 @@ public class EditJournalEntryCommandParserTest {
                             + DATE_DESC_OCTOBER;
             EditEntryDescriptor descriptor =
                     new EditEntryDescriptorBuilder()
-                            .withContacts()
                             .withDescription(VALID_DESCRIPTION_MOVIE)
                             .withDate(VALID_DATE_OCTOBER)
                             .build();
@@ -328,7 +322,6 @@ public class EditJournalEntryCommandParserTest {
             EditEntryDescriptor descriptor =
                     new EditEntryDescriptorBuilder()
                             .withTags()
-                            .withContacts()
                             .build();
             EditJournalEntryCommand expectedCommand =
                     new EditJournalEntryCommand(targetIndex, descriptor);

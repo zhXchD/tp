@@ -27,7 +27,7 @@ public class DeleteContactCommand extends Command {
             + "Example: %s 1";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS =
-            "Deleted Person: %1$s\nwith associate journals:%2$s";
+            "Deleted Person: %1$s\nAssociated with journal entries:\n%2$s";
 
     private final Index targetIndex;
 
@@ -57,21 +57,23 @@ public class DeleteContactCommand extends Command {
                 .filter(entry -> entry.getContactList().contains(personToDelete))
                 .collect(Collectors.toList());
 
-        String entriesToDelete = "";
+        StringBuilder entriesToDelete = new StringBuilder();
         for (Entry entry : entriesListToDelete) {
-            entriesToDelete = new StringBuilder()
-                    .append(entriesToDelete)
-                    .append(" ")
-                    .append(entry.getTitle()).toString();
+            entriesToDelete.append(entry.getTitle()).append("\n");
         }
-        if (entriesToDelete == "") {
-            entriesToDelete = " None";
+        if (entriesToDelete.length() == 0) {
+            entriesToDelete.append("None");
         }
 
         model.deletePerson(personToDelete);
 
         return new CommandResult(
-                String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete, entriesToDelete)).setAddressBookTab();
+                String.format(
+                        MESSAGE_DELETE_PERSON_SUCCESS,
+                        personToDelete,
+                        entriesToDelete
+                )
+        ).setAddressBookTab();
     }
 
     @Override

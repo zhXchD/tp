@@ -50,11 +50,12 @@ public class DeleteContactCommandTest {
             Person personToDelete = model.getFilteredPersonList()
                     .get(INDEX_FIRST_PERSON.getZeroBased());
 
-            DeleteContactCommand deleteContactCommand = new DeleteContactCommand(INDEX_FIRST_PERSON);
+            DeleteContactCommand deleteContactCommand =
+                    new DeleteContactCommand(INDEX_FIRST_PERSON);
 
             String expectedMessage = String.format(
                     DeleteContactCommand.MESSAGE_DELETE_PERSON_SUCCESS,
-                    personToDelete, " None"
+                    personToDelete, "None"
             );
 
             ModelManager expectedModel =
@@ -79,7 +80,8 @@ public class DeleteContactCommandTest {
         public void execute_invalidIndexUnfilteredList_throwsCommandException() {
             Index outOfBoundIndex = Index.fromOneBased(
                     model.getFilteredPersonList().size() + 1);
-            DeleteContactCommand deleteContactCommand = new DeleteContactCommand(outOfBoundIndex);
+            DeleteContactCommand deleteContactCommand =
+                    new DeleteContactCommand(outOfBoundIndex);
 
             assertCommandFailure(
                     deleteContactCommand,
@@ -101,7 +103,7 @@ public class DeleteContactCommandTest {
             String expectedMessage = String.format(
                     DeleteContactCommand.MESSAGE_DELETE_PERSON_SUCCESS,
                     personToDelete,
-                    " None"
+                    "None"
             );
 
             Model expectedModel = new ModelManager(model.getAddressBook(),

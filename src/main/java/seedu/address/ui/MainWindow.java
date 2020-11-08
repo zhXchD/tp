@@ -273,8 +273,8 @@ public class MainWindow extends UiPart<Stage> {
                 }
             }
 
-            if (commandResult.isViewingPerson()) {
-                Person personToView = commandResult.getPersonToView();
+            if (commandResult.isViewingContact()) {
+                Person personToView = commandResult.getContactToView();
                 personListPanel.select(logic.getFilteredPersonList().indexOf(personToView));
             }
 

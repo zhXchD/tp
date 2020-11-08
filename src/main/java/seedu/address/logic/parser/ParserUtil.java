@@ -205,6 +205,9 @@ public class ParserUtil {
         requireNonNull(contacts);
         final UniquePersonList personList = new UniquePersonList();
         for (String name : contacts) {
+            if (contacts.size() == 1 && name.equals("")) {
+                break;
+            }
             Person person = new Person(
                     parseName(name),
                     Phone.EMPTY_PHONE,
