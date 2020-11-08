@@ -403,7 +403,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user        | delete a person                        | remove contacts that I no longer need                                  |
 | `* * *`  | user        | add a journal entry                    | record an events                                                       |
 | `* * *`  | user        | edit a journal entry                   | correct or update records of events                                    |
-| `* * *`  | user        | delete a journal                       | remove an entry that is no longer important                            |
+| `* * *`  | user        | delete a journal entry                 | remove an entry that is no longer important                            |
 | `* * *`  | user        | list all journal entries               | view all of my journal entries                                         |
 | `* * *`  | user        | list all contacts in the contacts list | view all of my contacts                                                |
 | `* * *`  | user        | search contacts                        | locate details of persons without having to go through the entire list |
@@ -459,6 +459,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
         Use case resumes at step 3.
         
+**Use case: Edit a person**
+
+**MSS**
+
+1. User requests to list persons
+2. IntelliJournal shows a list of persons
+3. User requests to modify specific fields of a specific person in the list
+4. IntelliJournal replaces the person's fields with the new fields supplied
+
+    Use case ends.
+    
+**Extensions**
+
+* 2a. The list is empty.
+
+    Use case ends.
+    
+* 3a. The given index is invalid.
+    
+    * 3a1. IntelliJournal shows an error message. 
+        
+        Use case resumes at step 2.
+
+* 3b. The given fields are invalid.
+    
+    *3b1. IntelliJournal shows an error message relating to the invalid field with the valid formats.
+    
+        Use case resumes at step 2.
+        
+        
 **Use case: Delete a person**
 
 **MSS**
@@ -466,7 +496,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to list persons
 2.  IntelliJournal shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  IntelliJournal deletes the person
 
     Use case ends.
 
@@ -503,6 +533,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case resumes at step 2.
 
+        
+**Use case: Edit a journal entry**
+
+**MSS**
+
+1. User requests to list journal entries
+2. IntelliJournal shows a list of entries
+3. User requests to modify specific fields of a specific entry in the list
+4. IntelliJournal replaces the entry's fields with the new fields supplied
+
+    Use case ends.
+    
+**Extensions**
+
+* 2a. The list is empty.
+
+    Use case ends.
+    
+* 3a. The given index is invalid.
+    
+    * 3a1. IntelliJournal shows an error message. 
+        
+        Use case resumes at step 2.
+
+* 3b. The given fields are invalid.
+    
+    *3b1. IntelliJournal shows an error message relating to the invalid field with the valid formats.
+    
+        Use case resumes at step 2.
+        
+
 **Use case: Search for a journal entry (by entry name)**
 
 **MSS**
@@ -520,7 +581,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case resumes at step 1.
 
-*{More to be added}*
+
 
 ### Non-Functional Requirements
 
