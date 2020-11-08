@@ -422,14 +422,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User uses the `help` command
+1. User requests for help
 2. IntelliJournal shows a link to the User Guide.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. User uses the `help` command with another command.
+* 1a. User uses the requests for help with another command.
     * 1a1. IntelliJournal shows the command usage details of the given command. 
     
         Use case ends.
@@ -567,7 +567,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to list contacts
-2. User uses the `findc` command with the given fields to search for
+2. User requests to search contacts with some given fields
 3. IntelliJournal displays a list of filtered persons
 
 **Extension**
@@ -591,7 +591,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User request to list entries
-2. User uses the `findj` command with the given fields to search for
+2. User requests to search entries with some given fields
 3. IntelliJournal display a list of filtered entries
 
 **Extension**
@@ -605,6 +605,56 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
         
         Use case ends.
 
+**Use case: Check schedule**
+
+**MSS**
+
+1. User requests to check schedule on a given day
+2. IntelliJournal returns a filtered list of all entries on the given day.
+
+    Use case ends.
+
+**Extension**
+
+* 1a. No day is given by the user.
+
+    * 1a1. IntelliJournal takes the current date as the day to check for.
+    
+        Use case resumes from step 2.
+
+* 1b. The given date is invalid.
+
+    * 1b1. IntelliJournal shows an error message showing the invalid format. 
+        
+        Use case ends.
+        
+**Use case: Add command alias**
+
+**MSS**
+
+1. User requests to add alias for a command
+2. IntelliJournal shows a message showing the command alias added.
+
+**Extension**
+
+* 1a. The given alias is already being used.
+
+    * 1a1. IntelliJournal shows an error message showing the alias already used.
+    
+        Use case ends.
+        
+* 1b. The given command is invalid.
+
+    * 1b1. IntelliJournal shows an error message about the target command being invalid.
+    
+        Use case ends.
+        
+**Use case: Change color scheme**
+
+**MSS**
+
+1. User requests to change the theme.
+2. IntelliJournal changes its colour scheme.
 
 ### Non-Functional Requirements
 
