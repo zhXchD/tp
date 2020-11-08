@@ -64,12 +64,14 @@ public class EditContactCommand extends Command {
      * @param index of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
-    public EditContactCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditContactCommand(
+            Index index, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(index);
         requireNonNull(editPersonDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editPersonDescriptor =
+                new EditPersonDescriptor(editPersonDescriptor);
     }
 
     public static String getMessageUsage(String commandWord) {
