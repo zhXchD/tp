@@ -15,7 +15,7 @@ You can reach us through [GitHub](https://github.com/AY2021S1-CS2103T-W17-4).
 
 [[GitHub](https://github.com/zhXchD)][[Portfolio](team/zhxchd.md)]
 
-* Role: Team lead
+* Role: Team Lead
 * Responsibilities:
     * Code integration
 
@@ -25,7 +25,7 @@ You can reach us through [GitHub](https://github.com/AY2021S1-CS2103T-W17-4).
 
 [[Github](https://github.com/Lingy12)][[Portfolio](team/lingy12.md)]
 
-* Role: developer
+* Role: Developer
 * Responsibilities:
     * Deliverables and deadlines
     * Scheduling and tracking
@@ -36,7 +36,7 @@ You can reach us through [GitHub](https://github.com/AY2021S1-CS2103T-W17-4).
 
 [[GitHub](https://github.com/Nauw1010)][[Portfolio](team/nauw1010.md)]
 
-* Role: developer
+* Role: Developer
 * Responsibilities:
     * UI
     * Logic
@@ -47,7 +47,7 @@ You can reach us through [GitHub](https://github.com/AY2021S1-CS2103T-W17-4).
 
 [[GitHub](https://github.com/jazerler)][[Portfolio](team/jazerler.md)]
 
-* Role: developer
+* Role: Developer
 * Responsibilities:
     * Code integration
 
@@ -57,7 +57,7 @@ You can reach us through [GitHub](https://github.com/AY2021S1-CS2103T-W17-4).
 
 [[GitHub](https://github.com/joshualiangxy)][[Portfolio](team/joshualiangxy.md)]
 
-* Role: developer
+* Role: Developer
 * Responsibilities:
     * Documentation/testing/code quality
     * Storage

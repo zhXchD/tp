@@ -823,3 +823,57 @@ testers are expected to do more *exploratory* testing.
    1. Go to the `[directory_of_the_jar_executive_file]/data/` directory, delete
    file `addressbook.json`. Launch the application.<br>
    Expected: The application launches with sample data.
+   
+--------------------------------------------------------------------------------
+
+## Effort
+
+### Difficulty
+
+We found the project to be quite difficult, as this the first time for multiple
+of our group members in making use of an unfamiliar code base to build an
+original product.
+
+### Challenges
+
+#### Ui
+
+JavaFx was the used to implement the GUI portion of the application. Since it
+was an API that we have not used before, we had to learn how to properly make
+use of it.
+
+Since we were not familiar with designing visuals of a product either, we had
+trouble getting the product to look as what we envisioned it to be.
+
+#### Storage
+
+Implementing the storage was a hurdle we had to jump. We were incorporating 2
+additional features to store, as compared to AB3, where only contacts were being
+stored.
+
+The 2 additional features to store are:
+
+1. Journal entries
+1. Command aliases
+
+This meant that we had to understand both the given code base properly as well
+as learn how json files are used as storage.
+
+In addition to that, the journal entries involved contacts from the address book
+as well, so we had to figure out how we wanted to store the contacts in the
+entries. We eventually settled on using a unique ID for each contact, and then
+storing the ID in the journal entry instead of storing the entire contact.
+
+### Achievements
+
+Our team managed to accomplish quite a lot.
+
+On the UI end, we managed to achieve the GUI that we had envisioned, while also
+giving the option for users to switch between pre-established themes.
+
+On features implemented, we managed to add many features that were essential to
+the product, such as create, read, edit and deleting of journal entries, and
+improvements to the search feature of AB3. We also implemented helpful features
+such as management of command aliases, to make the users' experience with our
+product much easier, by allowing them to add whatever shortcuts they feel is
+helpful to themselves.
