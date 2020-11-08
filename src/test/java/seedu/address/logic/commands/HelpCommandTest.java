@@ -23,7 +23,7 @@ public class HelpCommandTest {
         @DisplayName("should execute help command successfully")
         public void execute_help_showingWindow() {
             CommandResult expectedCommandResult = new CommandResult(
-                    SHOWING_HELP_MESSAGE, true, false);
+                    SHOWING_HELP_MESSAGE, true, false).setSameTab();
             assertCommandSuccess(
                     new HelpCommand(true),
                     model,
@@ -34,14 +34,27 @@ public class HelpCommandTest {
 
         @Test
         @DisplayName("should execute help command successfully")
-        public void execute_help_withAddCommand() {
-            ValidCommand validCommandType = ValidCommand.ADD_CONTACT;
-            CommandResult expectedCommandResult = new CommandResult(
-                    AddContactCommand.getMessageUsage("addc"));
+        public void execute_help_withValidCommand() {
+            ValidCommand validCommandTypeAddc = ValidCommand.ADD_CONTACT;
+            ValidCommand validCommandTypeCheck = ValidCommand.CHECK_SCHEDULE;
+
+            CommandResult expectedCommandResultAddc = new CommandResult(
+                    AddContactCommand.getMessageUsage("addc")).setSameTab();
+
+            CommandResult expectedCommandResultCheck = new CommandResult(
+                AddContactCommand.getMessageUsage("check")).setSameTab();
+
             assertCommandSuccess(
-                    new HelpCommand(validCommandType, "addc"),
+                    new HelpCommand(validCommandTypeAddc, "addc"),
                     model,
-                    expectedCommandResult,
+                    expectedCommandResultAddc,
+                    expectedModel
+            );
+
+            assertCommandSuccess(
+                    new HelpCommand(validCommandTypeCheck, "check"),
+                    model,
+                    expectedCommandResultCheck,
                     expectedModel
             );
         }

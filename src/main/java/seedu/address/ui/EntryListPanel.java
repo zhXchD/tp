@@ -58,6 +58,7 @@ public class EntryListPanel extends UiPart<Region> {
     }
     //@@author
 
+    //@@author {zhXchD}
     /**
      * Selects the item in the entry list at specified index.
      * @param index the index of item to be selected
