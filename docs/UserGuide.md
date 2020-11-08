@@ -766,9 +766,9 @@ IntelliJournal home folder.
 
 ## Command Summary
 
-<div style="page-break-after: always;"></div>
 ### Contacts
 
+<div style="page-break-after: always;"></div>
 <table>
   <thead>
         <tr>
@@ -858,9 +858,9 @@ IntelliJournal home folder.
     </tbody>
 </table>
 
-<div style="page-break-after: always;"></div>
 ### Journal Entries
 
+<div style="page-break-after: always;"></div>
 <table>
   <thead>
         <tr>
@@ -968,9 +968,9 @@ IntelliJournal home folder.
     </tbody>
 </table>
 
-<div style="page-break-after: always;"></div>
 ### Miscellaneous
 
+<div style="page-break-after: always;"></div>
 <table>
   <thead>
         <tr>
