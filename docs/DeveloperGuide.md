@@ -363,97 +363,6 @@ The resulting `EditJournalDescriptor` object is used along with the `Index` spec
  The following sequence diagram shows how the Edit Journal Entry command works:
 ![EditJournalSequenceDiagram](images/EditJournalSequenceDiagram.png)
 
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">
-:information_source: **Note:** The lifeline for `UndoCommand` should end at the
-destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the
-end of diagram.
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which
-shifts the `currentStatePointer` once to the right, pointing to the previously
-undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
-
-#### Design consideration:
-
-##### Aspect: How undo & redo executes
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being
-          deleted).
-  * Cons: We must ensure that the implementation of each individual command are
-          correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-
 --------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -486,25 +395,99 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a…​ | I want to…​                       | So that I can…​                                                   |
+| Priority | As a…​ | I want to…​                           | So that I can…​                                                   |
 | :---:    | :---        | :---                                   | :---                                                                   |
-| `* * *`  | new user    | see usage instructions                 | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user        | add a new person                       |                                                                        |
-| `* * *`  | user        | delete a person                        | remove entries that I no longer need                                   |
-| `* * *`  | user        | find a person by name                  | locate details of persons without having to go through the entire list |
+| `* * *`  | new user    | see usage instructions                 | refer to instructions when I forget how to use the program             |
+| `* * *`  | user        | add a new person                       | record information on a person                                         |
+| `* * *`  | user        | edit a person                          | correct or update information on a person                              |
+| `* * *`  | user        | delete a person                        | remove contacts that I no longer need                                  |
 | `* * *`  | user        | add a journal entry                    | record an events                                                       |
-| `* * *`  | user        | delete a journal                       | remove an event that is not important from journal                     |
-| `* * *`  | user        | list all journal entries               |                                                                        |
-| `* * *`  | user        | list all contacts in the contacts list |                                                                        |
-| `* * *`  | user        | search journal entries                 | navigate to the entry that I am interested                             |
+| `* * *`  | user        | edit a journal entry                   | correct or update records of events                                    |
+| `* * *`  | user        | delete a journal entry                 | remove an entry that is no longer important                            |
+| `* * *`  | user        | list all journal entries               | view all of my journal entries                                         |
+| `* * *`  | user        | list all contacts in the contacts list | view all of my contacts                                                |
+| `* * *`  | user        | search contacts                        | locate details of persons without having to go through the entire list |
+| `* * *`  | user        | search journal entries                 | navigate to entries without having to look through the entire list     |
+| `* * *`  | user        | check my schedule                      | see when I am free on a certain day                                    |
+| `* * *`  | user        | add alternative aliases for commands   | add shortcuts for commands to make using the program easier            |
+| `* *`    | user        | change the color scheme                | have options for how the program looks                                 |
 
-*{More to be added}*
 
 ### Use cases
 
 (For all use cases below, the **System** is the `IntelliJournal` and the
 **Actor** is the `user`, unless specified otherwise)
 
+**Use case: See usage instructions**
+
+**MSS**
+
+1. User requests for help
+2. IntelliJournal shows a link to the User Guide.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User uses the requests for help with another command.
+    * 1a1. IntelliJournal shows the command usage details of the given command. 
+    
+        Use case ends.
+
+**Use case: Add a new person**
+
+**MSS**
+
+1. User adds a person
+2. IntelliJournal adds the person to the contact list
+3. IntelliJournal shows a list of persons with the new person selected
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Person fields are invalid.
+    
+    * 1a1. IntelliJournal shows an error message with command usage details.
+    
+        Use case ends.
+
+* 2a. IntelliJournal is not on the Contacts tab.
+    
+    * 2a1. IntelliJournal switches to the Contacts tab.
+    
+        Use case resumes at step 3.
+        
+**Use case: Edit a person**
+
+**MSS**
+
+1. User requests to list persons
+2. IntelliJournal shows a list of persons
+3. User requests to modify specific fields of a specific person in the list
+4. IntelliJournal replaces the person's fields with the new fields supplied
+
+    Use case ends.
+    
+**Extensions**
+
+* 2a. The list is empty.
+
+    Use case ends.
+    
+* 3a. The given index is invalid.
+    
+    * 3a1. IntelliJournal shows an error message. 
+        
+        Use case resumes at step 2.
+
+* 3b. The given fields are invalid.
+    
+    *3b1. IntelliJournal shows an error message relating to the invalid field with the valid formats.
+    
+        Use case resumes at step 2.
+        
+        
 **Use case: Delete a person**
 
 **MSS**
@@ -512,7 +495,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to list persons
 2.  IntelliJournal shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  IntelliJournal deletes the person
 
     Use case ends.
 
@@ -549,24 +532,129 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case resumes at step 2.
 
-**Use case: Search for a journal entry (by entry name)**
+        
+**Use case: Edit a journal entry**
+
+**MSS**
+
+1. User requests to list journal entries
+2. IntelliJournal shows a list of entries
+3. User requests to modify specific fields of a specific entry in the list
+4. IntelliJournal replaces the entry's fields with the new fields supplied
+
+    Use case ends.
+    
+**Extensions**
+
+* 2a. The list is empty.
+
+    Use case ends.
+    
+* 3a. The given index is invalid.
+    
+    * 3a1. IntelliJournal shows an error message. 
+        
+        Use case resumes at step 2.
+
+* 3b. The given fields are invalid.
+    
+    *3b1. IntelliJournal shows an error message relating to the invalid field with the valid formats.
+    
+        Use case resumes at step 2.
+        
+**Use case: Search for a person**
+
+**MSS**
+
+1. User requests to list contacts
+2. User requests to search contacts with some given fields
+3. IntelliJournal displays a list of filtered persons
+
+**Extension**
+* 2a. The contacts list is empty.
+    
+    Use case ends.
+
+* 2b. The given field is invalid.
+    
+    2b1. IntelliJournal shows an error message relating to the invalid field with the valid formats.
+    
+        Use case resumes at step 1.
+
+* 3a. The list of filtered persons is empty.
+    * 3a1. IntelliJournal shows an empty list. 
+        
+        Use case ends.
+
+**Use case: Search for a journal entry**
 
 **MSS**
 
 1. User request to list entries
-2. User search the entry/entries with given name
-3. Intellij journal display a list of filtered entries
+2. User requests to search entries with some given fields
+3. IntelliJournal display a list of filtered entries
 
 **Extension**
-* 2a. The journal is empty (No entry in journal)
+* 2a. The journal is empty.
 
-    Use case ends
-* 3a.  The given name is not in journal
-    * 3a1. IntelliJournal shows an error message.
+    Use case ends.
 
-        Use case resumes at step 1.
+* 3a. The list of filtered entries is empty.
+    
+    * 3a1. IntelliJournal shows an empty list. 
+        
+        Use case ends.
 
-*{More to be added}*
+**Use case: Check schedule**
+
+**MSS**
+
+1. User requests to check schedule on a given day
+2. IntelliJournal returns a filtered list of all entries on the given day.
+
+    Use case ends.
+
+**Extension**
+
+* 1a. No day is given by the user.
+
+    * 1a1. IntelliJournal takes the current date as the day to check for.
+    
+        Use case resumes from step 2.
+
+* 1b. The given date is invalid.
+
+    * 1b1. IntelliJournal shows an error message showing the invalid format. 
+        
+        Use case ends.
+        
+**Use case: Add command alias**
+
+**MSS**
+
+1. User requests to add alias for a command
+2. IntelliJournal shows a message showing the command alias added.
+
+**Extension**
+
+* 1a. The given alias is already being used.
+
+    * 1a1. IntelliJournal shows an error message showing the alias already used.
+    
+        Use case ends.
+        
+* 1b. The given command is invalid.
+
+    * 1b1. IntelliJournal shows an error message about the target command being invalid.
+    
+        Use case ends.
+        
+**Use case: Change color scheme**
+
+**MSS**
+
+1. User requests to change the theme.
+2. IntelliJournal changes its colour scheme.
 
 ### Non-Functional Requirements
 
@@ -601,8 +689,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample
-      contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with the dashboard
+   displaying recent and frequent contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -612,34 +700,268 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+1. Navigate among the tabs
 
-### Deleting a person
+    1. From the `Dashboard` tab at launch, click on the tab names `Contacts` and
+    `Journal`.<br>
+    Expected: The displaying tab will change as the user clicks on a different
+    tab name.
+    
+    1. Test case: `switch`<br>
+    Expected: The app will display the next tab, i.e. if the current tab is
+    `Dashboard`, the app will display `Contacts` after the command; if the
+    current tab is `Contacts`, the app will display `Journal` after the command;
+    if the current tab is `Journal`, the app will display `Dashboard`. 
 
-1. Deleting a person while all persons are being shown
+### Contacts
 
-   1. Prerequisites: List all persons using the `listc` command. Multiple
-      persons in the list.
+#### Finding persons
+
+1. Finding persons using phone number, address and email keywords.
+
+    1. Prerequisites: List all persons using the `listc` command. Multiple persons
+    in the list.
+    
+    1. Test case: `findc n/alex a/university`<br>
+       Expected: All contacts whose name contains case-insensitive string of "alex"
+       ("Alex Tan", "alex wong", "AleX" ...) **and** address contains case-insensitive
+       string of "university" ("National University of Singapore", "University Town")
+       are displayed in the contact list. Details of the number of persons found
+       shown in the status message.
+       
+    1. Test case: `findc p/980 e/u.nus.edu`<br>
+       Expected: All contacts whose phone number contains `980` **and** email
+       contains case-insensitive string of "u.nus.edu" are shown in the contacts
+       list. Details of the number of persons found shown in the status message.
+       
+    1. Test case: `findc x/a`<br>
+       Expected: No update to the contact list. An error message is shown in the
+       status message.
+       
+    1. Other incorrect delete commands to try: `findc`, `findc name`, `...`<br>
+      Expected: Similar to previous.
+      
+1. Finding persons using tags.
+
+    1. Prerequisites: List all persons using the `listc` command. Multiple persons
+    in the list.
+    
+    1. Test case: `findc t/Work`<br>
+       Expected: All contacts containing the exact tag `Work` (case-sensitive) are
+       shown in the contact list. The tag requires to be the same, i.e. tags like
+       "work", "Working" do not match. Details of the number of persons found
+       shown in the status message.
+       
+    1. Test case: `findc n/alex a/university t/Work`<br>
+       Expected: All contacts that satisfy the requirement of **both** of the
+       previous test cases `findc n/alex a/university` and `findc t/Work` are shown
+       in the contact list. Details of the number of persons found shown in the
+       status message.
+
+#### Deleting a person
+
+1. Deleting a person
+
+   1. Prerequisites: List persons. The list may be full (using the `listc` command)
+      or filtered (using the `findc` command). Multiple persons in the list.
 
    1. Test case: `deletec 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted
-                contact shown in the status message. Timestamp in the status bar
-                is updated.
+                contact shown in the status message.
 
    1. Test case: `deletec 0`<br>
       Expected: No person is deleted. Error details shown in the status message.
                 Status bar remains the same.
 
    1. Other incorrect delete commands to try: `deletec`, `deletec x`, `...`
-                (where x is larger than the list size)<br>
+      (where x is larger than the list size)<br>
       Expected: Similar to previous.
+      
+#### Editing a person
 
-1. _{ more test cases …​ }_
+1. Editing a person with all valid inputs
 
+    1. Prerequisite: List persons. The list may be full (using the `listc` command)
+    or filtered (using the `findc` command). Multiple persons in the list.
+    
+    1. Test case: `editc 1 n/Alex a/NUS p/84504777 t/school t/friend`<br>
+       Expected: The name of the first contact in the list will be replaced "Alex".
+       The address of the first contact will be replaced by "NUS". The phone number
+       of the first contact will be replaced by "84557777". The tag of the first
+       contact will be replaced by "school" and "friend". If the resulting contact
+       is not a duplicate in the current list, the first contact will be replaced
+       by the edited contact. Otherwise, an error message will be shown and no
+       updates of the contact list will be made.
+       
+    1. Test case: `editc 1 p/999`<br>
+       Expected: An error message saying the phone number must be an 8-digit valid
+       Singaporean number will be shown. No updates will be made to the contact list.
+       
+    1. Other incorrect edit commands to try: `editc` `editc x`, `editc 1`, ...
+       (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Journal
+
+#### Finding journal entries
+1. Finding journal entries using title and description keywords
+
+    1. Prerequisites: List all persons using the `listj` command. Multiple journal entries
+    in the list.
+    
+    1. Test case: `findj n/meeting d/report`<br>
+       Expected: All journal entries whose title contains case-insensitive string of "meeting"
+       ("Important meeting", "Meeting with clients", "Meeting1" ...) **and** description
+       contains case-insensitive string of "report" ("Weekly Report", "Reports")
+       are displayed in the entry list. Details of the number of entries found
+       shown in the status message.
+       
+    1. Test case: `findj n/Alex a/NUS`<br>
+       Expected: No update to the entry list. An error message indicating that
+       the prefix is invalid is shown in the status message.
+       
+    1. Test case: `findj x/a`<br>
+       Expected: No update to the entry list. An error message is shown in the
+       status message.
+       
+    1. Other incorrect delete commands to try: `findj`, `findj title`, `...`<br>
+      Expected: Similar to previous.
+      
+1. Finding journal entries using tags
+
+    1. Prerequisites: List all persons using the `listj` command. Multiple journal entries
+    in the list.
+    
+    1. Test case: `findj t/Work`<br>
+       Expected: All entries containing the exact tag `Work` (case-sensitive) are
+       shown in the entry list. The tag requires to be the same, i.e. tags like
+       "work", "Working" do not match. Details of the number of entries found
+       shown in the status message.
+       
+    1. Test case: `findj n/meeting a/report t/Work`<br>
+       Expected: All entries that satisfy the requirement of **both** of the
+       previous test cases `findj n/meeting a/report` and `findj t/Work` are shown
+       in the entry list. Details of the number of entries found shown in the
+       status message.
+       
+1. Finding journal entries using associated contacts
+
+    1. Prerequisites: List all persons using the `listj` command. Multiple journal entries
+    in the list. In the contact list, there is a contact named "John Doe" (case-insensitive),
+    but there is not a contact named "Prof Tan" (case-insensitive).
+    
+    1. Test case: `findj with/John Doe`<br>
+       Expected: All entries containing John Doe as one of its associated contacts are
+       shown in the entry list. Details of the number of entries found shown in the
+       status message.
+       
+    1. Test case: `findj with/Prof Tan`<br>
+       Expected: No update made to the entry list. A message indicating 0 entry has been
+       found shown in the status message.
+
+#### Deleting a journal entry
+
+1. Deleting a journal entry
+
+   1. Prerequisites: List journal entries. The list may be full (using the `listj` command)
+      or filtered (using the `findj` command). Multiple entries in the list.
+
+   1. Test case: `deletej 1`<br>
+      Expected: First entry is deleted from the list. Details of the deleted
+                entry shown in the status message.
+
+   1. Test case: `deletej 0`<br>
+      Expected: No entry is deleted. Error details shown in the status message.
+                Status bar remains the same.
+
+   1. Other incorrect delete commands to try: `deletej`, `deletej x`, `...`
+      (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+      
+#### Editing a journal entry
+
+1. Editing a journal entry with all valid inputs
+
+    1. Prerequisite: List entries. The list may be full (using the `listj` command)
+    or filtered (using the `findj` command). Multiple entries in the list.
+    
+    1. Test case: `editj 1 n/Meeting with clients`<br>
+       Expected: The name of the first entry in the list will be replaced as "Meeting
+       with clients". If the resulting entry is not a duplicate in the current list,
+       the first entry will be replaced by the edited entry. Otherwise, an error
+       message will be shown and no updates of the list will be made.
+       
+    1. Other incorrect edit commands to try: `editj` `editj x`, `editj 1`, ...
+       (where x is larger than the list size)<br>
+       Expected: No update to the entry list and an error message is shown.
+       
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Automatically save the data
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. Make some changes to the sample data. Exit the application.
+    
+    1. Reopen the application.<br>
+    Expected: The changes made to the sample data has been restored to the application. 
 
-1. _{ more test cases …​ }_
+1. Dealing with missing data files
+
+   1. Make some changes to the sample data. Exit the application.
+   
+   1. Go to the `[directory_of_the_jar_executive_file]/data/` directory, delete
+   file `addressbook.json`. Launch the application.<br>
+   Expected: The application launches with sample data.
+   
+--------------------------------------------------------------------------------
+
+## Effort
+
+### Difficulty
+
+We found the project to be quite difficult, as this the first time for multiple
+of our group members in making use of an unfamiliar code base to build an
+original product.
+
+### Challenges
+
+#### Ui
+
+JavaFx was the used to implement the GUI portion of the application. Since it
+was an API that we have not used before, we had to learn how to properly make
+use of it.
+
+Since we were not familiar with designing visuals of a product either, we had
+trouble getting the product to look as what we envisioned it to be.
+
+#### Storage
+
+Implementing the storage was a hurdle we had to jump. We were incorporating 2
+additional features to store, as compared to AB3, where only contacts were being
+stored.
+
+The 2 additional features to store are:
+
+1. Journal entries
+1. Command aliases
+
+This meant that we had to understand both the given code base properly as well
+as learn how json files are used as storage.
+
+In addition to that, the journal entries involved contacts from the address book
+as well, so we had to figure out how we wanted to store the contacts in the
+entries. We eventually settled on using a unique ID for each contact, and then
+storing the ID in the journal entry instead of storing the entire contact.
+
+### Achievements
+
+Our team managed to accomplish quite a lot.
+
+On the UI end, we managed to achieve the GUI that we had envisioned, while also
+giving the option for users to switch between pre-established themes.
+
+On features implemented, we managed to add many features that were essential to
+the product, such as create, read, edit and deleting of journal entries, and
+improvements to the search feature of AB3. We also implemented helpful features
+such as management of command aliases, to make the users' experience with our
+product much easier, by allowing them to add whatever shortcuts they feel is
+helpful to themselves.
