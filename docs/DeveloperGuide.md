@@ -395,25 +395,54 @@ The resulting `EditJournalDescriptor` object is used along with the `Index` spec
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a…​ | I want to…​                       | So that I can…​                                                   |
+| Priority | As a…​ | I want to…​                           | So that I can…​                                                   |
 | :---:    | :---        | :---                                   | :---                                                                   |
-| `* * *`  | new user    | see usage instructions                 | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user        | add a new person                       |                                                                        |
-| `* * *`  | user        | delete a person                        | remove entries that I no longer need                                   |
-| `* * *`  | user        | find a person by name                  | locate details of persons without having to go through the entire list |
+| `* * *`  | new user    | see usage instructions                 | refer to instructions when I forget how to use the program             |
+| `* * *`  | user        | add a new person                       | record information on a person                                         |
+| `* * *`  | user        | edit a person                          | correct or update information on a person                              |
+| `* * *`  | user        | delete a person                        | remove contacts that I no longer need                                  |
 | `* * *`  | user        | add a journal entry                    | record an events                                                       |
-| `* * *`  | user        | delete a journal                       | remove an event that is not important from journal                     |
-| `* * *`  | user        | list all journal entries               |                                                                        |
-| `* * *`  | user        | list all contacts in the contacts list |                                                                        |
-| `* * *`  | user        | search journal entries                 | navigate to the entry that I am interested                             |
+| `* * *`  | user        | edit a journal entry                   | correct or update records of events                                    |
+| `* * *`  | user        | delete a journal                       | remove an entry that is no longer important                            |
+| `* * *`  | user        | list all journal entries               | view all of my journal entries                                         |
+| `* * *`  | user        | list all contacts in the contacts list | view all of my contacts                                                |
+| `* * *`  | user        | search contacts                        | locate details of persons without having to go through the entire list |
+| `* * *`  | user        | search journal entries                 | navigate to entries without having to look through the entire list     |
+| `* * *`  | user        | search journal entries by contacts     | find records of events involving certain people easily and quickly     |
+| `* * *`  | user        | check my schedule                      | see when I am free on a certain day                                    |
+| `* * *`  | user        | add alternative aliases for commands   | add shortcuts for commands to make using the program easier            |
+| `* *`    | user        | change the color scheme                | have options for how the program looks                                 |
 
-*{More to be added}*
 
 ### Use cases
 
 (For all use cases below, the **System** is the `IntelliJournal` and the
 **Actor** is the `user`, unless specified otherwise)
 
+**Use case: Add a person**
+
+**MSS**
+
+1. User adds a person
+2. IntelliJournal adds the person to the contact list
+3. IntelliJournal shows a list of persons with the new person selected
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Person fields are invalid.
+    
+    * 1a1. IntelliJournal shows an error message with command usage details.
+    
+        Use case ends.
+
+* 2a. IntelliJournal is not on the Contacts tab.
+    
+    * 2a1. IntelliJournal switches to the Contacts tab.
+    
+        Use case resumes at step 3.
+        
 **Use case: Delete a person**
 
 **MSS**
