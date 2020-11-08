@@ -156,6 +156,8 @@ Example:
 
    ![listc example](images/UGExamples/listcExample2.png)
 
+<div style="page-break-after: always;"></div>
+
 #### Editing a contact: `editc`
 
 Edits an existing contact in the address book.
@@ -762,6 +764,8 @@ IntelliJournal home folder.
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ## Command Summary
 
 ### Contacts
@@ -854,6 +858,8 @@ IntelliJournal home folder.
         </tr>
     </tbody>
 </table>
+
+<div style="page-break-after: always;"></div>
 
 ### Journal Entries
 
@@ -963,6 +969,8 @@ IntelliJournal home folder.
         </tr>
     </tbody>
 </table>
+
+<div style="page-break-after: always;"></div>
 
 ### Miscellaneous
 
