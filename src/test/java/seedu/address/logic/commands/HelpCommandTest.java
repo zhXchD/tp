@@ -42,7 +42,8 @@ public class HelpCommandTest {
                     AddContactCommand.getMessageUsage("addc")).setSameTab();
 
             CommandResult expectedCommandResultCheck = new CommandResult(
-                AddContactCommand.getMessageUsage("check")).setSameTab();
+                    CheckScheduleCommand.getMessageUsage("check")
+            ).setSameTab();
 
             assertCommandSuccess(
                     new HelpCommand(validCommandTypeAddc, "addc"),
