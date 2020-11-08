@@ -119,16 +119,23 @@ Format: `addcontact n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * A contact can have any number of tags (including 0).
 * `NAME` must not be a name that is already used in the address book, even if it has different case letters.
 * `TAG` must be alphanumeric, without spaces.
-* `PHONE_NUMBER` must be a valid Singaporean number, 8 digits long and starting with either 6, 8, or 9.
+* `PHONE_NUMBER` must be a valid Singaporean number, 8 digits long and starting
+  with either 6, 8, or 9.
 * The country code +65 is also accepted at the start of `PHONE_NUMBER`.
 
 </div>
 
-Examples:
+Example:
 
-* `addcontact n/John Doe` Adds a contact with the name of `John Doe`.
-* `addcontact n/Betsy Crowe t/client t/important` Adds a contact with the name
-   of `Betsy Crowe` and tags of `client` and `important`.
+1. Type `addcontact n/Betsy Crowe t/client t/important` into the command box and
+   press enter.
+
+   ![addcontact example](images/UGExamples/addcontactExample1.png)
+
+1. This adds a contact with the name of `Betsy Crowe` and tags of `client` and
+   `important`.
+
+   ![addcontact example 2](images/UGExamples/addcontactExample2.png)
 
 #### Listing all contacts: `listc`
 
@@ -137,6 +144,17 @@ Lists all the contacts in the address book.
 Aliases: `listc`, `lc`
 
 Format: `listc`
+
+Example:
+
+1. Type `listc` into the command box and press enter.
+
+   ![listc example](images/UGExamples/listcExample1.png)
+
+1. You will be directed to the address book tab, with all the contacts listed
+   on the sidebar.
+
+   ![listc example](images/UGExamples/listcExample2.png)
 
 #### Editing a contact: `editc`
 
@@ -168,13 +186,17 @@ Format: `editc INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…�
 
 </div>
 
-Examples:
+Example:
 
-* `editc 1 p/91234567 e/johndoe@example.com` Edits the phone number and email
-   address of the 1st contact to be `91234567` and `johndoe@example.com`
-   respectively.
-* `editc 2 n/Betsy Crower t/` Edits the name of the 2nd contact to be
-  `Betsy Crower` and clears all existing tags.
+1. Type `editc 2 n/Betsy Crowe t/ e/betsycrowe@example.com` into the command
+   box and press enter.
+
+   ![editc example](images/UGExamples/editcExample1.png)
+
+1. This edits the name and email of the 2nd contact to `Betsy Crowe` and
+   `betsycrowe@example.com` respectively, while removing all tags.
+
+   ![editc example 2](images/UGExamples/editcExample2.png)
 
 #### Viewing a contact: `viewc`
 
@@ -185,40 +207,42 @@ Aliases: `viewc`, `vc`
 Format: `viewc INDEX`
 
 * If you type a `viewc` command when IntelliJournal displays `Contact` tab,
-IntelliJournal will select the contact at the specified index and display
-its details on the right.
+  IntelliJournal will select the contact at the specified index and display
+  its details on the right.
 * If a `viewc` command is executed when IntelliJournal displays another tab
-(i.e. `Journal` tab or `Dashboard` tab), IntelliJournal will automatically
-navigate to the `Contact` tab, select the contact at the specified index,
-and display its details on the right.
+  (i.e. `Journal` tab or `Dashboard` tab), IntelliJournal will automatically
+  navigate to the `Contact` tab, select the contact at the specified index,
+  and display its details on the right.
 
 <div markdown="block" class="alert alert-primary">
 
 :bulb: **Tips:**<br>
 
 * `INDEX` refers to the index number of the contact in the **current displayed
-list**, instead of the index number of the contact in the full unfiltered list,
-which, for example, may have been filtered using a `findc` command. More details
-about a filtered contact list can be found under the
-[Finding contacts: `findc`](#finding-contacts-findc) section.
+  list**, instead of the index number of the contact in the full unfiltered
+  list, which, for example, may have been filtered using a `findc` command. More
+  details about a filtered contact list can be found under the
+  [Finding contacts: `findc`](#finding-contacts-findc) section.
 
-* `INDEX` must be a positive integer, which does not exceed the number of contacts in the current displayed list.
+* `INDEX` must be a positive integer, which does not exceed the number of
+  contacts in the current displayed list.
 
 </div>
 
 Example:
 
 1. Open the `Contacts` tab, IntelliJournal should display a list of contacts on
-the left with detailed content on the right. If no contact has been selected to
-display, Intellijournal will automatically select the first contact to show its
-details.
+   the left with detailed content on the right. If no contact has been selected
+   to display, IntelliJournal will automatically select the first contact to
+   show its details.
 
    ![View contact example 1](images/viewc-eg-1.png)
-   
-2. Type command `vc 4`, or equivalently, `viewc 4`, IntelliJournal will select
-the 4th contact in the list, and display its details on the right. Note that the
-red rectangle is for demonstration purpose instead of being part of the application
-interface.
+
+1. Type command `vc 4`, or equivalently, `viewc 4`, IntelliJournal will select
+   the 4th contact in the list, and display its details on the right. Note that
+   the red rectangle is for demonstration purpose instead of being part of the
+   application interface.
+
    ![View contact example 2](images/viewc-eg-2.png)
 
 #### Finding contacts: `findc`
@@ -241,15 +265,16 @@ Format: `findc [n/NAME_KEYWORDS] [p/PHONE_KEYWORDS] [e/EMAIL_KEYWORDS]
 
 </div>
 
-Examples:
+Example:
 
-* `findc n/Alice` Finds all contacts whose name contains `Alice`.
-* `findc n/Alice p/65` Find all contacts whose name contains `Alice` and
-  phone number contains `65`.
-* `findc n/Alice p/65 e/@u.nus.edu a/RC4 t/Student`<br>
-  Find all contacts whose name contains `Alice` and phone number contains `65`
-  and email contains `@u.nus.edu` and address name contains `RC4` and tagged
-  `Student`.<br>
+1. Type `findc n/Charlotte a/Ang Mo Kio` into the command box and press enter.
+
+   ![findc example](images/UGExamples/findcExample1.png)
+
+1. This finds all contacts whose name contains `Charlotte` and with an address
+   containing `Ang Mo Kio`.
+
+   ![findc example 2](images/UGExamples/findcExample2.png)
 
 #### Deleting a contact: `deletec`
 
@@ -259,12 +284,21 @@ Aliases: `deletec`, `delc`
 
 Format: `deletec INDEX`
 
-* `INDEX` refers to the index number of the contact in the list.
+<div markdown="block" class="alert alert-primary">
 
-Examples:
+:bulb: **Tip:** `INDEX` refers to the index number of the contact in the list.
 
-* `deletec 4` Deletes the 4th contact in the address book.
-* `deletec 8` Deletes the 8th contact in the address book.
+</div>
+
+Example:
+
+1. Type `deletec 2` into the command box and press enter.
+
+   ![deletec example](images/UGExamples/deletecExample1.png)
+
+1. This deletes the 2nd contact in the address book.
+
+   ![deletec example 2](images/UGExamples/deletecExample2.png)
 
 #### Clearing the address book: `clearc`
 
@@ -273,6 +307,16 @@ Clears all contacts in the addressbook.
 Aliases: `clearc`, `cc`
 
 Format: `clearc`
+
+Example:
+
+1. Type `clearc` into the command box and press enter.
+
+   ![clearc example](images/UGExamples/clearcExample1.png)
+
+1. This removes all contacts in the address book.
+
+   ![clearc example 2](images/UGExamples/clearcExample2.png)
 
 ### Journal Entries
 
@@ -306,8 +350,8 @@ Example:
 
     ![addjournal example](images/UGExamples/addjournalExample1.png)
 
-1. You will be directed to the journal tab, with the new journal entry on the
-    screen
+1. This creates a journal entry with the title `Meeting with client`, occurring
+   at `2020-09-20 14:00` and with description `Tea`.
 
     ![addjournal example 2](images/UGExamples/addjournalExample2.png)
 
@@ -360,11 +404,17 @@ Format: `editj INDEX [n/TITLE] [at/DATE_AND_TIME] [d/DESCRIPTION]
 
 </div>
 
-Example: 
-* `editj 1 n/Meeting with client at/2020-09-20 14:00 d/Tea`: Edits the title,  date, and description of the first
- journal entry to be `Meeting with client`, `2020-09-20 14:00` and `Tea` respectively. 
-* `editj 2 with/Betsy Crower t/tea`: Edits the related contact list and tags of the second journal entry to have
- `Betsy Crower` and `Tea`.
+Example:
+
+1. Type `editj 1 n/Meeting with client at/2020-09-20 14:00 d/Tea` into the
+   command box and press enter.
+
+   ![editj example](images/UGExamples/editjExample1.png)
+
+2. This edits the title, date and description of the first journal entry to be
+   `Meeting with client`, `2020-09-20 14:00` and `Tea` respectively.
+
+   ![editj example 2](images/UGExamples/editjExample2.png)
 
 #### Viewing a journal entry: `viewj`
 
@@ -399,17 +449,18 @@ in the current displayed list.
 
 Example:
 
-1. Open the `Journal` tab, IntelliJournal should display a list of journal entries on
-the left with detailed content on the right. If no entry has been selected to
-display, Intellijournal will automatically select the first entry to show its
-details.
+1. Open the `Journal` tab, IntelliJournal should display a list of journal
+   entries on the left with detailed content on the right. If no entry has been
+   selected to display, IntelliJournal will automatically select the first entry
+   to show its details.
 
    ![View entry example 1](images/viewj-eg-1.png)
-   
-2. Type command `vj 4`, or equivalently, `viewj 4`, IntelliJournal will select
-the 4th entry in the list, and display its details on the right. Note that the
-red rectangle is for demonstration purpose instead of being part of the application
-interface.
+
+1. Type command `vj 4`, or equivalently, `viewj 4`, IntelliJournal will select
+   the 4th entry in the list, and display its details on the right. Note that
+   the red rectangle is for demonstration purpose instead of being part of the
+   application interface.
+
    ![View entry example 2](images/viewj-eg-2.png)
 
 #### Finding journal entries: `findj`
@@ -429,18 +480,19 @@ Format: `findj [n/TITLE_KEYWORDS] [at/DATE_AND_TIME]
 * `DATE_AND_TIME` must be in the format: "YYYY-MM-DD HH:MM"
 * `TAG` must be alphanumeric, without spaces.
 * Note that for `TAG`, IntelliJournal searches for the exact same tag instead of
-  tags containing any part of the searched terms, so tags are case-sensitive. 
+  tags containing any part of the searched terms, so tags are case-sensitive.
 
 </div>
 
-Examples:
+Example:
 
-* `findj n/Meeting` Finds all journal entries with a title containing
-  `Meeting`.
-* `findj n/Meeting d/plan for 2021 with/Alice t/Meeting at/2020-10-10 15:00`
-  <br>Finds all journal entries that have a title containing `Meeting`, a
-  description containing `plan for 2021`, with a contact whose name contains
-  `Alice`, tagged `Meeting`, and happening on Oct 10, 2020, 3pm.
+1. Type `findj n/Meeting` into the command box and press enter.
+
+   ![findj example](images/UGExamples/findjExample1.png)
+
+1. This finds all journal entries with a title containing `Meeting`.
+
+   ![findj example 2](images/UGExamples/findjExample2.png)
 
 #### Checking schedule: `check`
 
@@ -555,6 +607,16 @@ Aliases: `switch`, `swt`
 
 Format: `switch`
 
+Example:
+
+1. Type `switch` in the command box and press enter.
+
+   ![switch example](images/UGExamples/switchExample1.png)
+
+1. This switches the display to the next tab.
+
+   ![switch example 2](images/UGExamples/switchExample2.png)
+
 <!--@@author {Lingy12}-->
 #### Adding aliases for existing commands: `alias`
 
@@ -589,15 +651,15 @@ Example:
 1. Type `alias switch st` into the command box and press enter.
 
    ![alias example](images/UGExamples/aliasExample1.png)
-   
+
 2. This adds `st` as a valid shortcut for `switch`
 
    ![alias example](images/UGExamples/aliasExample2.png)
-   
+
 3. Then you can type `st` into the command box and press enter.
 
    ![alias example](images/UGExamples/aliasExample3.png)
-   
+
 4. IntelliJournal will switch the tab which is what `switch` command does
 
    ![alias example](images/UGExamples/aliasExample4.png)
@@ -644,6 +706,16 @@ Aliases: `changetheme`, `ctheme`
 
 Format: `changetheme`
 
+Example:
+
+1. Type `changetheme` into the command box and press enter.
+
+   ![changetheme example](images/UGExamples/changethemeExample1.png)
+
+1. This changes the theme of IntelliJournal.
+
+   ![changetheme example 2](images/UGExamples/changethemeExample2.png)
+
 #### Exiting the program: `exit`
 
 Exits the program.
@@ -651,6 +723,14 @@ Exits the program.
 Aliases: `exit`, `quit`, `q`
 
 Format: `exit`
+
+Example:
+
+1. Type `exit` into the command box and press enter.
+
+   ![exit example](images/UGExamples/exitExample.png)
+
+1. This exits out of IntelliJournal.
 
 #### Saving the data
 

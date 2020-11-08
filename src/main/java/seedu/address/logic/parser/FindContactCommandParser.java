@@ -42,7 +42,7 @@ public class FindContactCommandParser implements Parser<FindContactCommand> {
         // if has preamble or prefixes are empty
         if (!argMultimap.getPreamble().isEmpty()
                 || arePrefixesEmpty(argMultimap, PREFIX_NAME, PREFIX_ADDRESS,
-                PREFIX_EMAIL, PREFIX_TAG)) {
+                PREFIX_EMAIL, PREFIX_TAG, PREFIX_PHONE)) {
             throw new ParseException(
                     String.format(
                             MESSAGE_INVALID_COMMAND_FORMAT,

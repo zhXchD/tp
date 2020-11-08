@@ -15,12 +15,12 @@ Given below are my contributions to the project.
 
 * **Team role**: In charge of code integration and PR reviews.
 
-* **New Feature**: Added the ability to edit the details of a given journal entry
-                   (`editjournal` command).
-  * What it does: Allows the user to edit existing journal entries. 
-  
-  * Justification: Users may want to modify past entries without having to remove 
-                   and rewrite them.
+* **New Feature**: Added the ability to edit the details of a given journal
+                   entry (`editjournal` command).
+  * What it does: Allows the user to edit existing journal entries.
+
+  * Justification: Users may want to modify past entries without having to
+                   remove and rewrite them.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=jazerler&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
@@ -30,8 +30,8 @@ Given below are my contributions to the project.
   * Added tags to Entry.
     (Pull request [\#70](https://github.com/AY2021S1-CS2103T-W17-4/tp/pull/70))
   * Fix bugs with Persons with duplicated names.
-    (Pull request [\#216](https://github.com/AY2021S1-CS2103T-W17-4/tp/pull/216)) 
-  * Wrote additional tests to increase coverage.  
+    (Pull request [\#216](https://github.com/AY2021S1-CS2103T-W17-4/tp/pull/216))
+  * Wrote additional tests to increase coverage.
 
 * **Documentation**:
   * User Guide:
@@ -65,5 +65,4 @@ Given below are my contributions to the project.
     [\#227](https://github.com/AY2021S1-CS2103T-W10-3/tp/issues/227),
     [\#228](https://github.com/AY2021S1-CS2103T-W10-3/tp/issues/228),
     [\#229](https://github.com/AY2021S1-CS2103T-W10-3/tp/issues/229)
-    
 
