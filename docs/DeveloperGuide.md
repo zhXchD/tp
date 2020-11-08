@@ -419,7 +419,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 (For all use cases below, the **System** is the `IntelliJournal` and the
 **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add a person**
+**Use case: See usage instructions**
+
+**MSS**
+
+1. User uses the `help` command
+2. IntelliJournal shows a link to the User Guide.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User uses the `help` command with another command.
+    * 1a1. IntelliJournal shows the command usage details of the given command. 
+    
+        Use case ends.
+
+**Use case: Add a new person**
 
 **MSS**
 
