@@ -53,7 +53,7 @@ public class EditJournalEntryCommand extends Command {
             + "edit must be provided.";
     public static final String MESSAGE_DUPLICATE_ENTRY = "This person already"
             + " exists in the address book.";
-    public static final String MESSAGE_CONTACT_NOT_IN_ADDRESSBOOK = "Person "
+    public static final String MESSAGE_CONTACT_NOT_IN_ADDRESS_BOOK = "Person "
             + "named %s does not exist in the address book!";
 
     private final Index index;
@@ -75,9 +75,11 @@ public class EditJournalEntryCommand extends Command {
         return String.format(MESSAGE_USAGE, commandWord, commandWord);
     }
 
-    private static Entry createEditedEntry(Entry entryToEdit,
-                                           EditEntryDescriptor editEntryDescriptor,
-                                           Model model) throws CommandException {
+    private static Entry createEditedEntry(
+            Entry entryToEdit,
+            EditEntryDescriptor editEntryDescriptor,
+            Model model
+    ) throws CommandException {
         assert entryToEdit != null;
 
         Title updatedTitle =
@@ -98,7 +100,8 @@ public class EditJournalEntryCommand extends Command {
                     .findFirst();
             if (personInList.isEmpty()) {
                 throw new CommandException(
-                        String.format(MESSAGE_CONTACT_NOT_IN_ADDRESSBOOK,
+                        String.format(
+                                MESSAGE_CONTACT_NOT_IN_ADDRESS_BOOK,
                                 person.getName()));
             } else {
                 updatedContactList.add(personInList.get());
@@ -186,8 +189,9 @@ public class EditJournalEntryCommand extends Command {
                     title,
                     date,
                     description,
-                    tags)
-                    || contactList.asUnmodifiableObservableList().size() > 0;
+                    tags,
+                    contactList
+            );
         }
 
         public Optional<Title> getTitle() {
@@ -216,7 +220,6 @@ public class EditJournalEntryCommand extends Command {
 
         public Optional<ObservableList<Person>> getContactList() {
             return contactList != null
-                    && contactList.asUnmodifiableObservableList().size() > 0
                     ? Optional.ofNullable(contactList.asUnmodifiableObservableList())
                     : Optional.empty();
         }
@@ -227,7 +230,9 @@ public class EditJournalEntryCommand extends Command {
         public void setContactList(ObservableList<Person> contactList) {
             // Only sets if there are more than 0 contacts
             this.contactList = new UniquePersonList();
-            contactList.forEach(this.contactList::add);
+            if (contactList.size() > 0) {
+                contactList.forEach(this.contactList::add);
+            }
         }
 
         /**

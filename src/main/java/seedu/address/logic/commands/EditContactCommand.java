@@ -104,7 +104,7 @@ public class EditContactCommand extends Command {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(
                 String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson))
-                .setViewingPerson(editedPerson);
+                .setViewingContact(editedPerson);
     }
 
     /**

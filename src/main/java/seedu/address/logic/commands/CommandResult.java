@@ -26,8 +26,8 @@ public class CommandResult {
     private boolean isViewingJournal = false;
     private boolean isCleaningJournalView = false;
     private boolean isChangingTheme = false;
-    private boolean isViewingPerson = false;
-    private Person personToView = null;
+    private boolean isViewingContact = false;
+    private Person contactToView = null;
     private Entry entryToView = null;
 
     /**
@@ -115,9 +115,9 @@ public class CommandResult {
         return this;
     }
 
-    public CommandResult setViewingPerson(Person personToView) {
-        this.isViewingPerson = true;
-        this.personToView = personToView;
+    public CommandResult setViewingContact(Person contactToView) {
+        this.isViewingContact = true;
+        this.contactToView = contactToView;
         return this;
     }
 
@@ -143,13 +143,13 @@ public class CommandResult {
         return isViewingJournal;
     }
 
-    public boolean isViewingPerson() {
-        return isViewingPerson;
+    public boolean isViewingContact() {
+        return isViewingContact;
     }
 
-    public Person getPersonToView() {
-        assert (isViewingPerson);
-        return personToView;
+    public Person getContactToView() {
+        assert (isViewingContact);
+        return contactToView;
     }
 
     public Entry getEntryToView() {
