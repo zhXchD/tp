@@ -408,7 +408,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user        | list all contacts in the contacts list | view all of my contacts                                                |
 | `* * *`  | user        | search contacts                        | locate details of persons without having to go through the entire list |
 | `* * *`  | user        | search journal entries                 | navigate to entries without having to look through the entire list     |
-| `* * *`  | user        | search journal entries by contacts     | find records of events involving certain people easily and quickly     |
 | `* * *`  | user        | check my schedule                      | see when I am free on a certain day                                    |
 | `* * *`  | user        | add alternative aliases for commands   | add shortcuts for commands to make using the program easier            |
 | `* *`    | user        | change the color scheme                | have options for how the program looks                                 |
@@ -563,24 +562,48 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
         Use case resumes at step 2.
         
+**Use case: Search for a person**
 
-**Use case: Search for a journal entry (by entry name)**
+**MSS**
+
+1. User requests to list contacts
+2. User uses the `findc` command with the given fields to search for
+3. IntelliJournal displays a list of filtered persons
+
+**Extension**
+* 2a. The contacts list is empty.
+    
+    Use case ends.
+
+* 2b. The given field is invalid.
+    
+    2b1. IntelliJournal shows an error message relating to the invalid field with the valid formats.
+    
+        Use case resumes at step 1.
+
+* 3a. The list of filtered persons is empty.
+    * 3a1. IntelliJournal shows an empty list. 
+        
+        Use case ends.
+
+**Use case: Search for a journal entry**
 
 **MSS**
 
 1. User request to list entries
-2. User search the entry/entries with given name
-3. Intellij journal display a list of filtered entries
+2. User uses the `findj` command with the given fields to search for
+3. IntelliJournal display a list of filtered entries
 
 **Extension**
-* 2a. The journal is empty (No entry in journal)
+* 2a. The journal is empty.
 
-    Use case ends
-* 3a.  The given name is not in journal
-    * 3a1. IntelliJournal shows an error message.
+    Use case ends.
 
-        Use case resumes at step 1.
-
+* 3a. The list of filtered entries is empty.
+    
+    * 3a1. IntelliJournal shows an empty list. 
+        
+        Use case ends.
 
 
 ### Non-Functional Requirements
