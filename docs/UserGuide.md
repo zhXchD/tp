@@ -156,6 +156,8 @@ Example:
 
    ![listc example](images/UGExamples/listcExample2.png)
 
+<div style="page-break-after: always;"></div>
+
 #### Editing a contact: `editc`
 
 Edits an existing contact in the address book.
@@ -245,6 +247,8 @@ Example:
 
    ![View contact example 2](images/viewc-eg-2.png)
 
+<div style="page-break-after: always;"></div>
+
 #### Finding contacts: `findc`
 
 Finds a list of contacts that satisfy the requirements
@@ -318,6 +322,8 @@ Example:
 
    ![clearc example 2](images/UGExamples/clearcExample2.png)
 
+<div style="page-break-after: always;"></div>
+
 ### Journal Entries
 
 #### Adding a journal entry: `addjournal`
@@ -355,6 +361,8 @@ Example:
 
     ![addjournal example 2](images/UGExamples/addjournalExample2.png)
 
+<div style="page-break-after: always;"></div>
+
 #### Listing all journal entries: `listj`
 
 Lists all journal entries in the journal.
@@ -373,6 +381,8 @@ Example:
    on the sidebar.
 
     ![listj example 2](images/UGExamples/listjExample2.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Editing a journal entry: `editj`
 
@@ -462,6 +472,8 @@ Example:
    application interface.
 
    ![View entry example 2](images/viewj-eg-2.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Finding journal entries: `findj`
 
@@ -617,6 +629,8 @@ Example:
 
    ![switch example 2](images/UGExamples/switchExample2.png)
 
+<div style="page-break-after: always;"></div>
+
 <!--@@author {Lingy12}-->
 #### Adding aliases for existing commands: `alias`
 
@@ -663,6 +677,8 @@ Example:
 4. IntelliJournal will switch the tab which is what `switch` command does
 
    ![alias example](images/UGExamples/aliasExample4.png)
+
+<div style="page-break-after: always;"></div>
 
 <!-- @@author -->
 #### Deleting custom aliases: `deletea`
@@ -752,6 +768,7 @@ IntelliJournal home folder.
 
 ### Contacts
 
+<div style="page-break-after: always;"></div>
 <table>
   <thead>
         <tr>
@@ -843,6 +860,7 @@ IntelliJournal home folder.
 
 ### Journal Entries
 
+<div style="page-break-after: always;"></div>
 <table>
   <thead>
         <tr>
@@ -952,6 +970,7 @@ IntelliJournal home folder.
 
 ### Miscellaneous
 
+<div style="page-break-after: always;"></div>
 <table>
   <thead>
         <tr>
