@@ -47,7 +47,8 @@ public class EditJournalEntryCommandParser implements Parser<EditJournalEntryCom
         }
 
         // if any of the invalid prefixes shows up, throw an exception
-        if (!arePrefixesEmpty(argMultimap, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_OF)) {
+        if (!arePrefixesEmpty(argMultimap, PREFIX_ADDRESS, PREFIX_PHONE,
+                PREFIX_ADDRESS, PREFIX_OF)) {
             throw new ParseException(
                     String.format(
                             MESSAGE_INVALID_PREFIX,
@@ -60,21 +61,36 @@ public class EditJournalEntryCommandParser implements Parser<EditJournalEntryCom
                 new EditJournalEntryCommand.EditEntryDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editEntryDescriptor.setTitle(
-                    ParserUtil.parseTitle(argMultimap.getValue(PREFIX_NAME).get()));
+                    ParserUtil.parseTitle(
+                            argMultimap.getValue(PREFIX_NAME).get()
+                    )
+            );
         }
         if (argMultimap.getValue(PREFIX_DATE_AND_TIME).isPresent()) {
             editEntryDescriptor.setDate(
-                    ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE_AND_TIME).get()));
+                    ParserUtil.parseDate(
+                            argMultimap.getValue(PREFIX_DATE_AND_TIME).get()
+                    )
+            );
         }
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
             editEntryDescriptor.setDescription(
-                    ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
+                    ParserUtil.parseDescription(
+                            argMultimap.getValue(PREFIX_DESCRIPTION).get()
+                    )
+            );
         }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editEntryDescriptor::setTags);
+        parseTagsForEdit(
+                argMultimap.getAllValues(PREFIX_TAG)
+        ).ifPresent(editEntryDescriptor::setTags);
 
-        editEntryDescriptor.setContactList(ParserUtil.parseContacts(
-                argMultimap.getAllValues(PREFIX_CONTACT))
-                .asUnmodifiableObservableList());
+        if (argMultimap.getValue(PREFIX_CONTACT).isPresent()) {
+            editEntryDescriptor.setContactList(
+                    ParserUtil.parseContacts(
+                            argMultimap.getAllValues(PREFIX_CONTACT)
+                    ).asUnmodifiableObservableList()
+            );
+        }
 
         if (!editEntryDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditJournalEntryCommand.MESSAGE_NOT_EDITED);
@@ -84,25 +100,31 @@ public class EditJournalEntryCommandParser implements Parser<EditJournalEntryCom
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if
+     * {@code tags} is non-empty. If {@code tags} contain only one element
+     * which is an empty string, it will be parsed into a
      * {@code Set<Tag>} containing zero tags.
      */
-    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
+    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags)
+            throws ParseException {
         assert tags != null;
 
         if (tags.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
+        Collection<String> tagSet = tags.size() == 1 && tags.contains("")
+                ? Collections.emptySet()
+                : tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
 
     /**
-     * Returns true if none of the prefixes contains present {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
+     * Returns true if none of the prefixes contains present {@code Optional}
+     * values in the given {@code ArgumentMultimap}.
      */
-    private static boolean arePrefixesEmpty(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isEmpty());
+    private static boolean arePrefixesEmpty(
+            ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes)
+                .allMatch(prefix -> argumentMultimap.getValue(prefix).isEmpty());
     }
 }

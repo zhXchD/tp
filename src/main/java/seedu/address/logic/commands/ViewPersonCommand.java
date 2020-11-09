@@ -53,7 +53,7 @@ public class ViewPersonCommand extends Command {
                         MESSAGE_VIEW_SUCCESS,
                         personToView.toString()
                 )
-        ).setAddressBookTab().setViewingPerson(personToView);
+        ).setAddressBookTab().setViewingContact(personToView);
     }
 
     @Override

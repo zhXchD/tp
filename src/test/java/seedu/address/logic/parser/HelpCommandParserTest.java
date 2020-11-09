@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.HelpCommand.SHOWING_HELP_MESSAGE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 
 import org.junit.jupiter.api.DisplayName;
@@ -43,16 +44,27 @@ public class HelpCommandParserTest {
         }
 
         @Test
-        @DisplayName("should throw ParseException if the command is not valid")
+        @DisplayName("should generate correct HelpCommand object if the command is valid")
         public void parse_isValidCommand_returnsHelpCommand() throws ParseException {
+            HelpCommand helpCommandOfEmptyArg = parser.parse("help", "");
             HelpCommand helpCommandOfAddc = parser.parse("help", " of/addc");
             HelpCommand helpCommandOfDelc = parser.parse("help", " of/delc");
+
+            CommandResult expectedCommandResultOfEmptyArg = new CommandResult(
+                    SHOWING_HELP_MESSAGE, true, false);
 
             CommandResult expectedCommandResultOfAddc = new CommandResult(
                     AddContactCommand.getMessageUsage("addc"));
 
             CommandResult expectedCommandResultOfDelc = new CommandResult(
                     DeleteContactCommand.getMessageUsage("delc"));
+
+            assertCommandSuccess(
+                helpCommandOfEmptyArg,
+                model,
+                expectedCommandResultOfEmptyArg,
+                expectedModel
+            );
 
             assertCommandSuccess(
                 helpCommandOfAddc,
