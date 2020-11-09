@@ -26,4 +26,5 @@ is done through a CLI (Command Line Interface).
   [JavaFX](https://openjfx.io/),
   [Jackson](https://github.com/FasterXML/jackson),
   [JUnit5](https://github.com/junit-team/junit5),
-  [JFoeniX](http://www.jfoenix.com/)
+  [JFoeniX](http://www.jfoenix.com/),
+  [Ikonli](https://github.com/kordamp/ikonli).
