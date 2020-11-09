@@ -1,7 +1,7 @@
 # IntelliJournal
 [![CI Status](https://github.com/AY2021S1-CS2103T-W17-4/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S1-CS2103T-W17-4/tp/actions)
 
-![Ui](docs/images/Ui-dashboard.png)
+![Ui](docs/images/Ui.png)
 ![Ui](docs/images/Ui-contacts.png)
 ![Ui](docs/images/Ui-journal.png)
 

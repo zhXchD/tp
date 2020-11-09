@@ -34,7 +34,7 @@ as well as location information faster than traditional GUI apps.
 1. The GUI similar to the below should appear in a few seconds. The app will
    start with the dashboard tab, which shows you the list of recent contacts and
    the list of frequent contacts.<br>
-   ![Ui](images/Ui-dashboard.png)
+   ![Ui](images/Ui.png)
 
 1. You can also navigate to the other two tabs, which will look like the second
    and third screenshots below. There will be sample contacts and journal
